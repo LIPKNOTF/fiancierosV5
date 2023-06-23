@@ -34,3 +34,10 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
+//mis rutas
+//vista
+Route::view('capitulo','capitulo/capitulo');
+Route::view('partida','partida/partida');
+//api
+Route::apiResource('apiCapitulo',CapituloController::class);
+Route::apiResource('apiPartida',PartidaController::class);
