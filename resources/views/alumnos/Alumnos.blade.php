@@ -62,49 +62,51 @@
   }
 </script>
 </div>
+
+<!-- AQUI EMPIEZA LA VISTA -->
 <div id="apiAlumno">
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-20"> <!-- Cambiado a col-md-10 para un ancho más amplio -->
             <div class="card">
               
-                <div class="card-header text-center text-white" style="background-color: #087990; margin-bottom: 10px;" >{{ __('Modulo Alumno') }} </div>
+                <div class="card-header text-center fw-bold text-white" style="background-color: #5D6D7E; margin-bottom: 10px;" >{{ __('MODULO DE ALUMNOS') }} </div>
 
     <!-- Button trigger modal -->
     <div class="d-flex justify-content-center">
   <button type="button" class="btn btn-outline-success btn-sm text-white text-center" style="background-color: #28a717;" 
   @click="mostrarModal()">
-  <i class="fa-sharp fa-regular fa-address-card"></i>  AGREGAR ALUMNOS
+  <i class="fa-sharp fa-regular fa-address-card"></i>  AGREGAR UN NUEVO ALUMNO
   </button>
 </div>
   
 
 
-<table class="table table-bordered  table-striped table-hover mt-4" >
-  <thead>
+<table class="table table-bordered table-striped table-hover mt-4">
+  <thead class="table-primary">
     <tr>
-    <th scope="col">Matricula</th>
-      <th scope="col">Nombres</th>
-      <th scope="col">AP. Paterno</th>
-      <th scope="col">AP. Materno</th>
-      <th scope="col">Grado</th>
-      <th scope="col">Grupo</th>
-      <th scope="col">Carrera</th>
-      <th scope="col">Turno</th>
-      <th scope="col">Acciones</th>
+    <th scope="col" class="text-center">Matricula</th>
+      <th scope="col" class="text-center">Nombres</th>
+      <th scope="col" class="text-center">AP. Paterno</th>
+      <th scope="col" class="text-center">AP. Materno</th>
+      <th scope="col" class="text-center">Grado</th>
+      <th scope="col" class="text-center">Grupo</th>
+      <th scope="col" class="text-center">Carrera</th>
+      <th scope="col" class="text-center">Turno</th>
+      <th scope="col" class="text-center">Acciones</th>
     </tr>
   </thead>
   <tbody class="table-group-divider">
     <tr v-for="alu in alumnos">
-    <td>@{{alu.matricula}}</td>
-      <td>@{{alu.nombres}}</td>
-      <td>@{{alu.apellido_p}}</td>
-      <td>@{{alu.apellido_m}}</td>
-      <td>@{{alu.grado}}</td>
-      <td>@{{alu.grupo}}</td>
-      <td>@{{alu.carrera}}</td>
-      <td>@{{alu.turno}}</td>
-      <td>
+    <td class="text-center">@{{alu.matricula}}</td>
+      <td class="text-center">@{{alu.nombres}}</td>
+      <td class="text-center">@{{alu.apellido_p}}</td>
+      <td class="text-center">@{{alu.apellido_m}}</td>
+      <td class="text-center">@{{alu.grado}}</td>
+      <td class="text-center">@{{alu.grupo}}</td>
+      <td class="text-center">@{{alu.carrera}}</td>
+      <td class="text-center">@{{alu.turno}}</td>
+      <td class="text-center">
       <div class="btn-group">
   <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
  Acciones
@@ -146,45 +148,45 @@
         <div class="row">
   <div class="col-md-6">
     <div class="form-group">
-      <label for="matricula" class="fw-bold">MATRICULA</label>
-      <input id="matricula" placeholder="Matricula" v-model="matricula" @input="convertirMayusculas" autofocus required type="text" class="form-control"></input>
+      <label  class="fw-bold">MATRICULA</label>
+      <input  placeholder="Matricula" v-model="matricula" @input="convertirMayusculas" autofocus required type="text" class="form-control"></input>
     </div>
 
     <div class="form-group">
-      <label for="nombres" class="fw-bold">NOMBRES</label>
-      <input id="nombres" placeholder="Nombres" v-model="nombres" @input="convertirMayusculas" autofocus required type="text" class="form-control"></input>
+      <label  class="fw-bold">NOMBRES</label>
+      <input  placeholder="Nombres" v-model="nombres" @input="convertirMayusculas" autofocus required type="text" class="form-control"></input>
     </div>
 
     <div class="form-group">
-      <label for="apellido_p" class="fw-bold">APELLIDO PATERNO</label>
-      <input id="apellido_p" placeholder="Apellido Paterno" v-model="apellido_p" @input="convertirMayusculas" autofocus required type="text" class="form-control"></input>
+      <label  class="fw-bold">APELLIDO PATERNO</label>
+      <input  placeholder="Apellido Paterno" v-model="apellido_p" @input="convertirMayusculas" autofocus required type="text" class="form-control"></input>
     </div>
 
     <div class="form-group">
-      <label for="apellido_m" class="fw-bold">APELLIDO MATERNO</label>
-      <input id="apellido_m" placeholder="Apellido Materno" v-model="apellido_m" @input="convertirMayusculas" autofocus required type="text" class="form-control"></input>
+      <label  class="fw-bold">APELLIDO MATERNO</label>
+      <input  placeholder="Apellido Materno" v-model="apellido_m" @input="convertirMayusculas" autofocus required type="text" class="form-control"></input>
     </div>
   </div>
 
   <div class="col-md-6">
     <div class="form-group">
-      <label for="grado" class="fw-bold">GRADO</label>
-      <input id="grado" placeholder="Grado" v-model="grado" autofocus @input="convertirMayusculas" required type="text" class="form-control"></input>
+      <label  class="fw-bold">GRADO</label>
+      <input placeholder="Grado" v-model="grado" autofocus @input="convertirMayusculas" required type="text" class="form-control"></input>
     </div>
 
     <div class="form-group">
-      <label for="grupo" class="fw-bold">GRUPO</label>
-      <input id="grupo" placeholder="Grupo" v-model="grupo" autofocus @input="convertirMayusculas" required type="text" class="form-control"></input>
+      <label class="fw-bold">GRUPO</label>
+      <input  placeholder="Grupo" v-model="grupo" autofocus @input="convertirMayusculas" required type="text" class="form-control"></input>
     </div>
 
     <div class="form-group">
-      <label for="carrera" class="fw-bold">CARRERA</label>
-      <input id="carrera" placeholder="Carrera" v-model="carrera" @input="convertirMayusculas" autofocus required type="text" class="form-control"></input>
+      <label  class="fw-bold">CARRERA</label>
+      <input  placeholder="Carrera" v-model="carrera" @input="convertirMayusculas" autofocus required type="text" class="form-control"></input>
     </div>
 
     <div class="form-group">
-      <label for="turno" class="fw-bold">TURNO</label>
-      <input id="turno" placeholder="Turno" v-model="turno" @input="convertirMayusculas" autofocus required type="text" class="form-control"></input>
+      <label  class="fw-bold">TURNO</label>
+      <input  placeholder="Turno" v-model="turno" @input="convertirMayusculas" autofocus required type="text" class="form-control"></input>
     </div>
   </div>
 </div>

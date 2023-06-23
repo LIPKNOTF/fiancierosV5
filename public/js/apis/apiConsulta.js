@@ -22,13 +22,23 @@ function init(){
      cuota:"", 
      fecha:"", 
      folio:"",
-     concepto:"", 
-     agregando:true,
+     concepto:"",
+     agregando:"true", 
     },
     created: function(){
         this.obtenerConsulta();
     },
     methods : {
+      convertirMayusculas() {
+        this.id_alumno = this.id_alumno.toUpperCase();
+        this.importe = this.importe.toUpperCase();
+        this.clave = this.clave.toUpperCase();
+        this.cantidad = this.cantidad.toUpperCase();
+        this.cuota = this.cuota.toUpperCase();
+        this.fecha = this.fecha.toUpperCase();
+        this.folio = this.folio.toUpperCase();
+        this.concepto = this.concepto.toUpperCase();
+      },
 
         obtenerConsulta :function(){
     this.$http.get(apiCon).then(function(json){

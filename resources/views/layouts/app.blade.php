@@ -39,8 +39,8 @@
 <body>
     <div id="app">
    
-        <nav class="navbar navbar-expand-md navbar-light  shadow-sm" style="background-color: #cfe2ff;">
-            <div class="container" style="background-color: #e3f2fd;">
+        <nav class="navbar navbar-expand-md navbar-light  shadow-sm" style="background-color: #F2F4F4;">
+            <div class="container" >
             <a class="navbar-brand" href="{{ url('home') }}">
                     {{  'Panel' }}
                 </a>
@@ -50,12 +50,14 @@
                 <a class="navbar-brand" href="{{ url('consulta') }}">
                     {{'Consulta' }}
                 </a>
+        
+
                
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                <div class="collapse navbar-collapse" style="background-color: #e3f2fd;" id="navbarSupportedContent">
+                <div class="collapse navbar-collapse"  id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto" >
 
