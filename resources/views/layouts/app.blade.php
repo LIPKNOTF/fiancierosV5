@@ -18,8 +18,7 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/dataTables.bootstrap5.min.css">
-    <link rel="stylesheet" type="text/css" href="css/datatables.min.css" />
+
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <meta name="token" id="token" value="{{ csrf_token() }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
@@ -116,9 +115,8 @@
     <!-- Global Init -->
     {{-- <script src="js/bootstrap.bundle.min.js"></script> --}}
 
-    <script src="js/jquery.dataTables.min.js"></script>
-    <script src="js/dataTables.bootstrap5.min.js"></script>
-    <script src="js/dataTables.buttons.min.js"></script>
+
+
     <script src="js/jszip.min.js"></script>
     <script src="js/buttons.html5.min.js"></script>
 
