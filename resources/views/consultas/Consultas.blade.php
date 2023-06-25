@@ -1,5 +1,4 @@
 @extends('layouts.app')
-@section('titulo','alumnos')
 @section('content')
 <div id="apiConsulta">
 <div class="card">

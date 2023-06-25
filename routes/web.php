@@ -20,20 +20,13 @@ Route::get('/', function () {
 
 
 
-
+Route::middleware(['auth'])->group(function () {
 Route::get('/import-form', [ExcelImportController::class, 'importForm']);
 Route::post('/import', [ExcelImportController::class, 'import']);
 Route::view('alumno','alumnos/alumnos');
 Route::view('consulta', 'consultas/Consultas');
-// rutas apis(controladores)
 Route::apiResource('apiAlumno',AlumnosController::class);
 Route::apiResource('apiConsulta', ConsulasControlador::class);
-Auth::routes();
-
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-
 //mis rutas
 //vista
 Route::view('capitulo','capitulo/capitulo');
@@ -41,3 +34,14 @@ Route::view('partida','partida/partida');
 //api
 Route::apiResource('apiCapitulo',CapituloController::class);
 Route::apiResource('apiPartida',PartidaController::class);
+Route::apiResource('apiAlumno',AlumnosController::class);
+Route::apiResource('apiConsulta', ConsulasControlador::class);
+});
+// rutas apis(controladores)
+
+Auth::routes();
+
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+

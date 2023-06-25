@@ -1,5 +1,4 @@
 @extends('layouts.app')
-
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -64,3 +63,10 @@
     </div>
 </div>
 @endsection
+
+
+@push('scripts')
+<!-- IMPORTANTE PARA QUE NO OCURRA ERROR -->
+<script src="js/bootstrap.bundle.min.js"></script>
+
+@endpush
