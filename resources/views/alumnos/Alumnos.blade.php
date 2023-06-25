@@ -9,7 +9,12 @@
     <div class="row justify-content-center">
 
 
-                <div class="card-header text-center fw-bold text-white" style="background-color: #5D6D7E; margin-bottom: 10px;" >{{ __('MODULO DE ALUMNOS') }} </div>
+    <div class="card-header text-center fw-bold text-white" style="background-color: #5D6D7E; margin-bottom: 10px; border-radius: 5px;">
+  <h4 class="mb-0">
+    <i  class="fa-sharp fa-regular fa-address-card" style="margin-right: 5px;"></i>
+    {{ __('MODULO DE ALUMNOS') }}
+  </h4>
+</div>
 
     <!-- INICIA BOTON PARA CARGAR A EXCEL -->
     <div class="container">
@@ -63,14 +68,13 @@
 
 </div>
     <!-- TERMINA BOTON PARA CARGAR A EXCEL -->
-    <div class="d-flex justify-content-between">
-  <!-- Button trigger modal -->
-  <button type="button" class="btn btn-outline-success btn-sm text-white text-center" style="background-color: #28a717;" 
-  @click="mostrarModal()">
-    <i class="fa-sharp fa-regular fa-address-card"></i>  AGREGAR UN NUEVO ALUMNO
+   <div class="d-flex justify-content-between align-items-center">
+  <button type="button" class="btn btn-outline-success btn-sm text-white text-center" style="background-color: #28a717;" @click="mostrarModal()">
+    <i class="fa-sharp fa-regular fa-address-card"></i> AGREGAR UN NUEVO ALUMNO
   </button>
+  <div class="mx-2"></div> <!-- Espacio entre los botones -->
   <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
-    <i class="fa-solid fa-file-excel"></i>CARGAR ARCHIVO EXCEL
+    <i class="fa-solid fa-file-excel"></i> CARGAR ARCHIVO EXCEL
   </button>
 </div>
 

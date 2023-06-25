@@ -6,20 +6,24 @@
 <div class="card-body">
     <div class="row justify-content-center">
        
-      
-              
-            <div class="card-header text-center fw-bold text-white" style="background-color: #5D6D7E; margin-bottom: 10px;" >{{ __('MODULO DE COSULTAS') }} </div>
+    
+    <div class="card-header text-center fw-bold text-white" style="background-color: #5D6D7E; margin-bottom: 10px; border-radius: 5px;">
+  <h4 class="mb-0">
+    <i class="fa-solid fa-ticket" style="margin-right: 5px;"></i>
+  {{ __('MODULO DE CONSULTAS') }}
+  </h4>
+</div>
 
     <!-- Button trigger modal -->
     <div class="d-flex justify-content-center">
   <button type="button" class="btn btn-outline-success btn-sm text-white text-center" style="background-color: #28a717;" 
   @click="mostrarModal()">
-  <i class="fa-solid fa-ticket-simple"></i>  AGREGAR UNA NUEVA CONSULTA
+  <i class="fa-solid fa-ticket"></i>  AGREGAR UNA NUEVA CONSULTA
   </button>
 </div>
 
 <table id="myTable" class="table table-bordered table-striped table-hover mt-6">
-  <thead class="table-primary">
+  <thead class="table-primary"> 
     <tr>
     <th scope="col" class="text-center">Matricula</th>
       <th scope="col" class="text-center">Nombre</th>
