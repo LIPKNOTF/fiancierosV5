@@ -1,9 +1,18 @@
-
 @extends('layouts.app')
 @section('titulo','alumnos')
 @section('content')
 
-<div class="container">
+<!-- AQUI EMPIEZA LA VISTA -->
+<div id="apiAlumno">
+<div class="card">
+<div class="card-body">
+    <div class="row justify-content-center">
+
+
+                <div class="card-header text-center fw-bold text-white" style="background-color: #5D6D7E; margin-bottom: 10px;" >{{ __('MODULO DE ALUMNOS') }} </div>
+
+    <!-- INICIA BOTON PARA CARGAR A EXCEL -->
+    <div class="container">
 @if ($errors->any())
     <div class="alert alert-danger alert-dismissible fade show" role="alert">
         <ul>
@@ -21,10 +30,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
 @endif
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
-<i class="fa-solid fa-file-excel"></i>CARGAR
-</button>
+
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static">
@@ -54,35 +60,24 @@
   </div>
 </div>
 
-<script>
-  function handleFileSelect(event) {
-    const file = event.target.files[0];
-    const fileLabel = document.getElementById('fileLabel');
-    fileLabel.innerHTML = file.name;
-  }
-</script>
+
 </div>
-
-<!-- AQUI EMPIEZA LA VISTA -->
-<div id="apiAlumno">
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-20"> <!-- Cambiado a col-md-10 para un ancho más amplio -->
-            <div class="card">
-              
-                <div class="card-header text-center fw-bold text-white" style="background-color: #5D6D7E; margin-bottom: 10px;" >{{ __('MODULO DE ALUMNOS') }} </div>
-
-    <!-- Button trigger modal -->
-    <div class="d-flex justify-content-center">
+    <!-- TERMINA BOTON PARA CARGAR A EXCEL -->
+    <div class="d-flex justify-content-between">
+  <!-- Button trigger modal -->
   <button type="button" class="btn btn-outline-success btn-sm text-white text-center" style="background-color: #28a717;" 
   @click="mostrarModal()">
-  <i class="fa-sharp fa-regular fa-address-card"></i>  AGREGAR UN NUEVO ALUMNO
+    <i class="fa-sharp fa-regular fa-address-card"></i>  AGREGAR UN NUEVO ALUMNO
+  </button>
+  <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    <i class="fa-solid fa-file-excel"></i>CARGAR ARCHIVO EXCEL
   </button>
 </div>
+
   
 
 
-<table class="table table-bordered table-striped table-hover mt-4">
+<table id="myTableAlumnos" class="table table-bordered table-striped table-hover mt-4 ">
   <thead class="table-primary">
     <tr>
     <th scope="col" class="text-center">Matricula</th>
@@ -108,13 +103,10 @@
       <td class="text-center">@{{alu.turno}}</td>
       <td class="text-center">
       <div class="btn-group">
-  <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
- Acciones
-  </button>
-  <ul class="dropdown-menu">
-    <li><a class="dropdown-item"  @click="editarAlumno(alu.id)"><i class="fa-solid fa-pen-to-square"></i> Editar</a></li>
-    <li><a class="dropdown-item"  @click="eliminarAlumno(alu.id, alu.matricula, alu.nombres, alu.apellido_p, alu.apellido_m)"><i class="fa-solid fa-trash"></i> Eliminar</a></li>
-  </ul>
+ 
+    
+    <button class="btn btn-warning"  @click="editarAlumno(alu.id)"><i class="fa-solid fa-pen-to-square"></i></i> EDITAR </a></button>
+<button class="btn btn-danger"  @click="eliminarAlumno(alu.id, alu.matricula, alu.nombres, alu.apellido_p, alu.apellido_m)"><i class="fa-solid fa-trash"></i></button>
 </div>
 
 
@@ -123,12 +115,11 @@
   </tbody>
 </table>
 
-</div>
 
 <div class="card-body">
                   
                   </div>
-              </div>
+          </div>
           </div>
       </div>
 
@@ -185,9 +176,13 @@
     </div>
 
     <div class="form-group">
-      <label  class="fw-bold">TURNO</label>
-      <input  placeholder="Turno" v-model="turno" @input="convertirMayusculas" autofocus required type="text" class="form-control"></input>
-    </div>
+  <label class="fw-bold">TURNO</label>
+  <select v-model="turno" required class="form-control">
+    <option value="MATUTINO">MATUTINO</option>
+    <option value="VESPERTINO">VESPERTINO</option>
+    <option value="OTRO">OTRO</option>
+  </select>
+</div>
   </div>
 </div>
  <!-- TERMINA EL FORMULARIO -->
@@ -207,9 +202,14 @@
 
 
 @push('scripts')
- <script src="js/bootstrap.bundle.min.js"></script>
 <script src="js/vue-resource.js"></script>
 <script src="js/apis/apiAlumno.js"></script>
-
+<script>
+  function handleFileSelect(event) {
+    const file = event.target.files[0];
+    const fileLabel = document.getElementById('fileLabel');
+    fileLabel.innerHTML = file.name;
+  }
+</script>
 @endpush
 <input type="hidden" name="route" value="{{ url('/') }}">

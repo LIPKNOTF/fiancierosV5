@@ -2,10 +2,11 @@
 @section('titulo','alumnos')
 @section('content')
 <div id="apiConsulta">
-<div class="container">
+<div class="card">
+<div class="card-body">
     <div class="row justify-content-center">
-        <div class="col-md-20"> <!-- Cambiado a col-md-10 para un ancho más amplio -->
-            <div class="card">
+       
+      
               
             <div class="card-header text-center fw-bold text-white" style="background-color: #5D6D7E; margin-bottom: 10px;" >{{ __('MODULO DE COSULTAS') }} </div>
 
@@ -17,23 +18,29 @@
   </button>
 </div>
 
-<table class="table table-bordered table-striped table-hover mt-4">
+<table id="myTable" class="table table-bordered table-striped table-hover mt-6">
   <thead class="table-primary">
     <tr>
-      <th scope="col" class="text-center">ALUMNO</th>
-      <th scope="col" class="text-center">IMPORTE</th>
-      <th scope="col" class="text-center">CLAVE</th>
-      <th scope="col" class="text-center">CANTIDAD</th>
-      <th scope="col" class="text-center">CUOTA</th>
-      <th scope="col" class="text-center">FECHA</th>
-      <th scope="col" class="text-center">FOLIO</th>
-      <th scope="col" class="text-center">CONCEPTO</th>
-      <th scope="col" class="text-center">ACCIONES</th>
+    <th scope="col" class="text-center">Matricula</th>
+      <th scope="col" class="text-center">Nombre</th>
+      <th scope="col" class="text-center">AP. Paterno</th>
+      <th scope="col" class="text-center">AP. Materno</th>
+      <th scope="col" class="text-center">Importe</th>
+      <th scope="col" class="text-center">Clave</th>
+      <th scope="col" class="text-center">Cantidad</th>
+      <th scope="col" class="text-center">Cuota</th>
+      <th scope="col" class="text-center">Fecha</th>
+      <th scope="col" class="text-center">Folio</th>
+      <th scope="col" class="text-center">Concepto</th>
+      <th scope="col" class="text-center">Acciones</th>
     </tr>
   </thead>
   <tbody>
     <tr v-for="con in consultas">
-      <td class="text-center">@{{con.id_alumno}}</td>
+     <td class="text-center">@{{con.alumno.matricula}}</td>
+      <td class="text-center">@{{con.alumno.nombres}}</td>
+      <td class="text-center">@{{con.alumno.apellido_p}}</td>
+      <td class="text-center">@{{con.alumno.apellido_m}}</td>
       <td class="text-center">@{{con.importe}}</td>
       <td class="text-center">@{{con.clave}}</td>
       <td class="text-center">@{{con.cantidad}}</td>
@@ -55,14 +62,16 @@
     </tr>
   </tbody>
 </table>
-</div>
+
+
 
 <div class="card-body">
                   
                   </div>
-              </div>
+          </div>
           </div>
       </div>
+      
 
 
 
@@ -83,7 +92,8 @@
   <div class="col-md-6">
     <div class="form-group">
       <label  class="fw-bold">ALUMNO</label>
-      <input placeholder="ALMNO" v-model="id_alumno" @input="convertirMayusculas" autofocus required type="text" class="form-control"></input>
+      <v-select  v-model="id_alumno" :reduce="alumnos => alumnos.id" :options="alumnos" label="matricula"></v-select>
+
     </div>
 
     <div class="form-group">
@@ -110,7 +120,7 @@
 
     <div class="form-group">
       <label class="fw-bold">FECHA</label>
-      <input  placeholder="Fecha" v-model="fecha" autofocus @input="convertirMayusculas" required type="text" class="form-control"></input>
+      <input  placeholder="Fecha" v-model="fecha" autofocus @input="convertirMayusculas" required type="date" class="form-control"></input>
     </div>
 
     <div class="form-group">
@@ -141,7 +151,7 @@
  
 
 @push('scripts')
- <script src="js/bootstrap.bundle.min.js"></script>
+<script src="js/bootstrap.bundle.min.js"></script>
 <script src="js/vue-resource.js"></script>
 <script src="js/apis/apiConsulta.js"></script>
 @endpush

@@ -9,6 +9,8 @@ class Consultas extends Model
 {
     use HasFactory;
     protected $table = 'consultas'; // Nombre de la tabla en la base de datos
+    protected $primaryKey = "id";
+    protected $with = ['alumno'];
     protected $fillable = [
         'id_alumno', 
         'importe', 
@@ -19,4 +21,8 @@ class Consultas extends Model
         'concepto',
         'fecha'
     ]; // Campos que se pueden asignar masivamente
+    public function alumno()
+    {
+        return $this->belongsTo(Alumnos::class, 'id_alumno');
+    }
 }
