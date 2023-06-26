@@ -39,7 +39,7 @@
 <body>
     <div id="app">
    
-        <nav class="navbar navbar-expand-md navbar-light  shadow-sm" style="background-color: #cfe2ff;">
+        <nav class="navbar navbar-expand-md navbar-light  shadow-sm " style="background-color: #cfe2ff;">
             <div class="container" style="background-color: #e3f2fd;">
             <a class="navbar-brand" href="{{ url('home') }}">
                     {{  'Panel' }}
