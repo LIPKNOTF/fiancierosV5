@@ -11,25 +11,29 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/index.min.js"></script>
     <script type="text/javascript" src="{{ asset('js/vue.js') }}"></script>
+    <script src="https://unpkg.com/vue-multiselect@2.1.6"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/dataTables.bootstrap5.min.css">
-    <link rel="stylesheet" type="text/css" href="css/datatables.min.css" />
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <meta name="token" id="token" value="{{ csrf_token() }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/vue-select@3.0.0/dist/vue-select.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" type="text/css" href="css/datatables.min.css" />
+ 
 
     <!-- Styles -->
+    <link rel="stylesheet" href="https://unpkg.com/vue-multiselect@2.1.6/dist/vue-multiselect.min.css">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/font-awesome.css">
-    <link rel="stylesheet" href="css/templatemo-softy-pinko.css">
+
     {{-- <script src="https://unpkg.com/vue@latest"></script> --}}
 
     <script src="https://unpkg.com/vue-select@3.0.0"></script>
@@ -39,8 +43,9 @@
 <body>
     <div id="app">
    
-        <nav class="navbar navbar-expand-md navbar-light  shadow-sm " style="background-color: #cfe2ff;">
-            <div class="container" style="background-color: #e3f2fd;">
+
+        <nav class="navbar navbar-expand-md navbar-light  shadow-sm" style="background-color: #e3f2fd;">
+            <div class="container" >
             <a class="navbar-brand" href="{{ url('home') }}">
                     {{  'Panel' }}
                 </a>
@@ -50,12 +55,14 @@
                 <a class="navbar-brand" href="{{ url('consulta') }}">
                     {{'Consulta' }}
                 </a>
+        
+
                
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                <div class="collapse navbar-collapse" style="background-color: #e3f2fd;" id="navbarSupportedContent">
+                <div class="collapse navbar-collapse"  id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto" >
 
@@ -71,11 +78,7 @@
                                 </li>
                             @endif
 
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
+                      
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -105,26 +108,26 @@
         </main>
     </div>
     @stack('scripts')
-    <!-- jQuery -->
     <script src="js/jquery.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <!-- Plugins -->
-    <script src="js/scrollreveal.min.js"></script>
-    <!-- Global Init -->
-    {{-- <script src="js/bootstrap.bundle.min.js"></script> --}}
-
+    <!-- jQuery -->
     <script src="js/jquery.dataTables.min.js"></script>
     <script src="js/dataTables.bootstrap5.min.js"></script>
     <script src="js/dataTables.buttons.min.js"></script>
-    <script src="js/jszip.min.js"></script>
-    <script src="js/buttons.html5.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <!-- Plugins -->
+
+    <!-- Global Init -->
+    
+
+
+
+    
+
 
     {{-- sweft --}}
     <script src="js/sweetalert2.all.min.js"></script>
-
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/vue-select@3.0.0"></script>
-    <script src="js/custom.js"></script>
+  
 </body>
 </html>

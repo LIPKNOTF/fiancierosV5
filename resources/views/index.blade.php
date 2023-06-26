@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/vue-select@3.0.0/dist/vue-select.css">
     <title>@yield('titulo')</title>
+    
     <!--
 SOFTY PINKO
 https://templatemo.com/tm-535-softy-pinko

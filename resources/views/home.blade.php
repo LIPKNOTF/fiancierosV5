@@ -1,11 +1,10 @@
 @extends('layouts.app')
-
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-15"> <!-- Cambiado a col-md-10 para un ancho más amplio -->
             <div class="card">
-                <div class="card-header text-center">{{ __('PANEL DE CONTROL') }}</div>
+                <div class="card-header text-center "  style="background-color:#e3f2fd">{{ __('PANEL DE CONTROL') }}</div>
     <div class="section-body">
 
         <div class="card-body">
@@ -64,3 +63,10 @@
     </div>
 </div>
 @endsection
+
+
+@push('scripts')
+<!-- IMPORTANTE PARA QUE NO OCURRA ERROR -->
+<script src="js/bootstrap.bundle.min.js"></script>
+
+@endpush

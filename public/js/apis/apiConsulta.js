@@ -1,6 +1,8 @@
 function init(){
     var ruta = document.querySelector("[name=route]").value;
+    Vue.component("v-select", VueSelect.VueSelect);
     var apiCon = ruta + "/apiConsulta";
+    var apiAlum = ruta + "/apiAlumno";
        
     new Vue({
         http:{
@@ -13,6 +15,7 @@ function init(){
 
     el: "#apiConsulta",
     data:{
+     alumnos:[],
      consultas:[],
      id:"",
      id_alumno:"", 
@@ -22,19 +25,91 @@ function init(){
      cuota:"", 
      fecha:"", 
      folio:"",
-     concepto:"", 
-     agregando:true,
+     concepto:"",
+     agregando:"true", 
     },
     created: function(){
         this.obtenerConsulta();
+        this.obtenerAlumno();
     },
     methods : {
+      //METODO PARA CONVERTIR EN MAYUSCULAS.
+   
 
         obtenerConsulta :function(){
     this.$http.get(apiCon).then(function(json){
         this.consultas = json.data;
+        this.dataPagPre();
     })
         },
+
+        obtenerAlumno :function(){
+          this.$http.get(apiAlum).then(function(json){
+            this.alumnos = json.data;
+
+          })
+        },
+          // funcion para el complemento de dataTables
+          dataPagPre() {
+            $(document).ready(function() {
+              var table = $('#myTable');
+              if (!table.hasClass('dataTable')) {
+                table.DataTable({
+                  initComplete: function() {
+                    this.api().columns().every(function(index) {
+                        var column = this;
+                        var header = $(column.header());
+                        if (header.hasClass('actions')) {
+                            // No hacer nada si es la columna de acciones
+                            return;
+                        }
+                        var input = $('<input type="text" class="text-center form-control form-control-sm mb-2" placeholder="Buscar ">')
+                            .appendTo(header)
+                            .on('keyup change clear', function() {
+                                if (column.search() !== this.value) {
+                                    column.search(this.value).draw();
+                                }
+                            });
+                    });
+                },
+                  language: {
+                    "sProcessing": "Procesando...",
+                    "sLengthMenu": "Mostrar _MENU_ registros",
+                    "sZeroRecords": "No se encontraron resultados",
+                    "sEmptyTable": "Ningún dato disponible en esta tabla",
+                    "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                    "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                    "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+                    "sInfoPostFix": "",
+                    "sSearch": "Buscar:",
+                    "sUrl": "",
+                    "sInfoThousands": ",",
+                    "sLoadingRecords": "Cargando...",
+                    "oPaginate": {
+                      "sFirst": "Primero",
+                      "sLast": "Último",
+                      "sNext": "Siguiente",
+                      "sPrevious": "Anterior"
+                    },
+                    "oAria": {
+                      "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                      "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                    }
+                  },
+                  columnDefs: [{
+                    targets: -1,
+                    className: 'actions',
+                    searchable: false
+                }],
+            
+                  pageLength: 5, // Número de registros por página
+                  lengthMenu: [5, 10, 25, 50], // Opciones de número de registros por página
+                });
+              }
+            });
+        },
+        // fin de la funcion para el complemento de dataTables
+
         mostrarModal: function(){
             this.agregando=true;
             this.id="";
@@ -218,21 +293,18 @@ function init(){
               }
             })
 
-          }
-
-
+          },
+          convertirMayusculas() {
+            this.importe = this.importe.toUpperCase();
+            this.clave = this.clave.toUpperCase();
+            this.cantidad = this.cantidad.toUpperCase();
+            this.cuota = this.cuota.toUpperCase();
+            this.fecha = this.fecha.toUpperCase();
+            this.folio = this.folio.toUpperCase();
+            this.concepto = this.concepto.toUpperCase();
+          },
 
     },
-
-
-
-
-
-
-
-
-
-
     })
 
 }
