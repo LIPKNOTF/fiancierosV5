@@ -18,4 +18,9 @@ class Concentrado extends Model
         'monto',
         'productos'
     ]; 
+
+    public function partida(){
+
+        return $this->belongsTo(Partida::class, 'id_partida', 'id');
+    }
 }

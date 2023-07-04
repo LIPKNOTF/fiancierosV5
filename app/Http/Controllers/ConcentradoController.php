@@ -27,6 +27,14 @@ class ConcentradoController extends Controller
     public function store(Request $request)
     {
         //
+        $concentrado= new Concentrado();
+        $concentrado->id_partida = $request->get('id_partida');
+        $concentrado->fecha = $request->get('fecha');
+        $concentrado->razon_social = $request->get('razon_social');
+        $concentrado->rfc = $request->get('rfc');
+        $concentrado->monto = $request->get('monto');
+        $concentrado->productos = $request->get('productos');
+        $concentrado->save();
     }
 
     /**
@@ -37,7 +45,8 @@ class ConcentradoController extends Controller
      */
     public function show($id)
     {
-        //
+
+        return $concentrado = Concentrado::find($id);
     }
 
     /**
@@ -50,6 +59,14 @@ class ConcentradoController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $concentrado = Concentrado::find($id);
+        $concentrado->id_partida = $request->get('id_partida');
+        $concentrado->fecha = $request->get('fecha');
+        $concentrado->razon_social = $request->get('razon_social');
+        $concentrado->rfc = $request->get('rfc');
+        $concentrado->monto = $request->get('monto');
+        $concentrado->productos = $request->get('productos');
+        $concentrado->update();
     }
 
     /**
@@ -61,5 +78,7 @@ class ConcentradoController extends Controller
     public function destroy($id)
     {
         //
+        $concentrado = Concentrado::find($id);
+        $concentrado->delete();
     }
 }
