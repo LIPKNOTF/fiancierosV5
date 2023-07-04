@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AlumnosController;
 use App\Http\Controllers\ConcentradoController;
 use App\Http\Controllers\ExcelImportController;
+use App\Http\Controllers\CapituloController;
+use App\Http\Controllers\PartidaController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
