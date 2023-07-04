@@ -1,11 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Alumnos;
-use App\Models\Consultas;
+use App\Models\Clave;
 use Illuminate\Http\Request;
 
-class ConsulasControlador extends Controller
+class ClaveController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +16,8 @@ class ConsulasControlador extends Controller
     public function index()
     {
         //
-        $consulta = Consultas::all();
-        return $consulta;
+        return $claves = Clave::all();
+
     }
 
     /**
@@ -38,17 +39,13 @@ class ConsulasControlador extends Controller
     public function store(Request $request)
     {
         //
-        $consulta = new Consultas();
-        $consulta->id = $request->get('id');
-        $consulta->id_alumno = $request->get('id_alumno');
-        $consulta->importe = $request->get('importe');
-        $consulta->cantidad = $request->get('cantidad');
-        $consulta->cuota = $request->get('cuota');
-        $consulta->fecha = $request->get('fecha');
-        $consulta->folio = $request->get('folio');
-        $consulta->id_clave = $request->get('id_clave');
-        $consulta->total = $request->get('total');
-        $consulta->save();
+        $clave = new Clave();
+        $clave -> id = $request->get('id');
+        $clave -> clave = $request->get('clave');
+        $clave-> concepto =$request->get('concepto');
+        $clave ->save();
+
+
     }
 
     /**
@@ -60,7 +57,7 @@ class ConsulasControlador extends Controller
     public function show($id)
     {
         //
-        return Consultas::find($id);
+        return Clave::find($id);
     }
 
     /**
@@ -84,17 +81,11 @@ class ConsulasControlador extends Controller
     public function update(Request $request, $id)
     {
         //
-        $consulta = Consultas::find($id);
-        $consulta->id = $request->get('id');
-        $consulta->id_alumno = $request->get('id_alumno');
-        $consulta->importe = $request->get('importe');
-        $consulta->cantidad = $request->get('cantidad');
-        $consulta->cuota = $request->get('cuota');
-        $consulta->fecha = $request->get('fecha');
-        $consulta->folio = $request->get('folio');
-        $consulta->id_clave = $request->get('id_clave');
-        $consulta->total = $request->get('total');
-        $consulta->update();
+        $clave = Clave::find($id);
+        $clave -> id = $request->get('id');
+        $clave -> clave = $request->get('clave');
+        $clave-> concepto =$request->get('concepto');
+        $clave -> update();
     }
 
     /**
@@ -106,7 +97,7 @@ class ConsulasControlador extends Controller
     public function destroy($id)
     {
         //
-        $consulta = Consultas::find($id);
-        $consulta->delete();
+        $clave = Clave::find($id);
+        $clave ->delete();
     }
 }

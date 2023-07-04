@@ -13,8 +13,6 @@
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script type="text/javascript" src="{{ asset('js/vue.js') }}"></script>
     <script src="https://unpkg.com/vue-multiselect@2.1.6"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
 
 
     <!-- Fonts -->
@@ -53,6 +51,9 @@
                 </a>
                 <a class="navbar-brand" href="{{ url('consulta') }}">
                     {{'Consulta' }}
+                </a>
+                <a class="navbar-brand" href="{{ url('clave') }}">
+                    {{'Clave' }}
                 </a>
         
 
