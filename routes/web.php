@@ -2,7 +2,9 @@
 use App\Http\Controllers\ConsulasControlador;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AlumnosController;
+use App\Http\Controllers\ClaveController;
 use App\Http\Controllers\ExcelImportController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes

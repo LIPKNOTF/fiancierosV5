@@ -112,7 +112,7 @@
     </div>
     <div class="form-group">
       <label class="fw-bold">CLAVE</label>
-      <v-select v-model="id_clave" :reduce="claves_p => claves_p.id" :options="claves_p" label="concepto"></v-select>
+      <v-select v-model="id_clave" :reduce="claves_p => claves_p.id" :options="claves_p" label="clave"></v-select>
     </div>
     <div class="form-group">
       <label class="fw-bold">IMPORTE</label>
