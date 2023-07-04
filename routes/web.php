@@ -26,7 +26,6 @@ Route::get('/import-form', [ExcelImportController::class, 'importForm']);
 Route::post('/import', [ExcelImportController::class, 'import']);
 Route::view('alumno','alumnos/alumnos');
 Route::view('consulta', 'consultas/Consultas');
-
 Route::view('concentrado', 'concentrado/concentrado');
 // rutas apis(controladores)
 Route::apiResource('apiAlumno',AlumnosController::class);
