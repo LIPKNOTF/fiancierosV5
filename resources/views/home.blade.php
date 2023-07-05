@@ -16,7 +16,7 @@
     <a href="/consulta" class="text-home text-decoration-none">
         <div class="home card text-white " style="background-color: #21618C; margin-bottom: 10px;">
             <div class="card-body d-flex flex-column align-items-center justify-content-center">
-                <h5 class="text-center mb-3 fw-bold">Consultas</h5>
+                <h5 class="text-center mb-3 fw-bold">CONSULTAS</h5>
                                 @php
                                 use App\Models\Consultas;
                                 $cant_Consultas = Consultas::count();
@@ -62,12 +62,61 @@
     </a>
 </div>
    <!-- FIN CARD DE ALUMNOS-->
+     <!-- EMPIEZA CARD DE ALUMNOS-->
+     <div class="col-md-4 col-xl-4">
+    <a href="/partida" class="text-home text-decoration-none">
+        <div class="home card text-white " style="background-color: #117864 ; margin-bottom: 10px;">
+            <div class="card-body d-flex flex-column align-items-center justify-content-center">
+                <h5 class="text-center mb-3 fw-bold">PARTIDA</h5>
+                @php
+                use App\Models\Partida;
+                $cant_Partida= Partida::count();
+                @endphp
+                <h2 class="text-center"><i class="fa-solid fa-bookmark"></i><span class="ml-2"> {{$cant_Partida}}</span></h2>
+            </div>
+        </div>
+    </a>
+</div>
+   <!-- FIN CARD DE ALUMNOS-->
+     <!-- EMPIEZA CARD DE ALUMNOS-->
+     <div class="col-md-4 col-xl-4">
+    <a href="/capitulo" class="text-home text-decoration-none">
+        <div class="home card text-white " style="background-color: #148F77 ; margin-bottom: 10px;">
+            <div class="card-body d-flex flex-column align-items-center justify-content-center">
+                <h5 class="text-center mb-3 fw-bold">CAPITULO</h5>
+                @php
+                use App\Models\Capitulo;
+                $cant_Capitulo= Capitulo::count();
+                @endphp
+                <h2 class="text-center"><i class="fa-solid fa-book-bookmark"></i><span class="ml-2">{{$cant_Capitulo}}</span></h2>
+            </div>
+        </div>
+    </a>
+</div>
+   <!-- FIN CARD DE ALUMNOS-->
+
+    <!-- EMPIEZA CARD DE ALUMNOS-->
+    <div class="col-md-4 col-xl-4">
+    <a href="/descripcion" class="text-home text-decoration-none">
+        <div class="home card text-white " style="background-color: #17A589 ; margin-bottom: 10px;">
+            <div class="card-body d-flex flex-column align-items-center justify-content-center">
+                <h5 class="text-center mb-3 fw-bold"> DESCRIPCION DE CLAVES</h5>
+                @php
+                use App\Models\Descripcion;
+                $cant_Descripcion= Descripcion::count();
+                @endphp
+                <h2 class="text-center"><i class="fa-solid fa-book"></i> {{ $cant_Descripcion}}</span></h2>
+            </div>
+        </div>
+    </a>
+</div>
+   <!-- FIN CARD DE ALUMNOS-->
    
 
 
                
 
-              
+   
             </div>
         </div>
     </div>

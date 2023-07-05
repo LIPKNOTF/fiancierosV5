@@ -12,5 +12,5 @@ class Clave extends Model
     protected $table = 'claves_p';
     protected $primaryKey = 'id';
     public $incrementing=false;
-    protected $fillable = ['id','clave','concepto'];
+    protected $fillable = ['id','clave','concepto','precio'];
 }

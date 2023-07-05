@@ -17,6 +17,7 @@ function init() {
             id: "",
             clave: "",
             concepto: "",
+            precio:"",
             agregando: "true",
           
         },
@@ -122,6 +123,7 @@ function init() {
                 this.id = "";
                 this.clave = "";
                 this.concepto = "";
+                this.precio = "";
               
 
                 $("#modalClave").modal("show");
@@ -132,10 +134,12 @@ function init() {
                     id: this.id,
                     clave: this.clave,
                     concepto: this.concepto,
+                    precio: this.precio,
                     
                 };
                 if (
                     !this.clave ||
+                    !this.precio ||
                     !this.concepto 
                 ) {
                     Swal.fire({
@@ -151,6 +155,7 @@ function init() {
                         this.id = "";
                         this.clave = "";
                         this.concepto = "";
+                        this.precio = "";
                        
 
                         Swal.fire({
@@ -173,6 +178,7 @@ function init() {
                     this.id = json.data.id;
                     this.clave = json.data.clave;
                     this.concepto = json.data.concepto;
+                    this.precio = json.data.precio;
 
                 });
                 $("#modalClave").modal("show");
@@ -184,6 +190,7 @@ function init() {
                     id: this.id,
                     clave: this.clave,
                     concepto: this.concepto,
+                    precio: this.precio,
                 };
                 if (
                     !this.clave ||

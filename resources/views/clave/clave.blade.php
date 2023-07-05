@@ -35,6 +35,7 @@
     <th scope="col" class="text-center">ID</th>
       <th scope="col" class="text-center">CLAVE</th>
       <th scope="col" class="text-center">CONCEPTO</th>
+      <th scope="col" class="text-center">PRECIO</th>
       <th scope="col" class="text-center">ACCIONES</th>
     </tr>
   </thead>
@@ -43,6 +44,7 @@
     <td class="text-center">@{{cla.id}}</td>
       <td class="text-center">@{{cla.clave}}</td>
       <td class="text-center">@{{cla.concepto}}</td>
+      <td class="text-center">@{{cla.precio}}</td>
       <td class="text-center">
       <div class="btn-group">
  
@@ -77,6 +79,10 @@
     <div class="form-group">
       <label  class="fw-bold">CLAVE</label>
       <input  placeholder="Clave" v-model="clave" @input="convertirMayusculas" autofocus required type="text" class="form-control"></input>
+    </div>
+    <div class="form-group">
+      <label  class="fw-bold">PRECIO</label>
+      <input  placeholder="Precio" v-model="precio" autofocus required type="text" class="form-control"></input>
     </div>
 
    
