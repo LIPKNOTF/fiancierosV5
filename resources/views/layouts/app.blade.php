@@ -127,6 +127,7 @@
     {{-- sweft --}}
     <script src="js/sweetalert2.all.min.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/jquery.js"></script>
     <script src="https://unpkg.com/vue-select@3.0.0"></script>
   
 </body>
