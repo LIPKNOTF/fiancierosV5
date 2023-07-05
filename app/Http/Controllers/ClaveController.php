@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Alumnos;
 use App\Models\Clave;
 use Illuminate\Http\Request;
 
@@ -43,6 +42,7 @@ class ClaveController extends Controller
         $clave -> id = $request->get('id');
         $clave -> clave = $request->get('clave');
         $clave-> concepto =$request->get('concepto');
+        $clave-> precio =$request->get('precio');
         $clave ->save();
 
 
@@ -85,6 +85,7 @@ class ClaveController extends Controller
         $clave -> id = $request->get('id');
         $clave -> clave = $request->get('clave');
         $clave-> concepto =$request->get('concepto');
+        $clave-> precio =$request->get('precio');
         $clave -> update();
     }
 
