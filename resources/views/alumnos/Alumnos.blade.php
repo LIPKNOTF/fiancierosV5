@@ -7,7 +7,7 @@
     <div class="row justify-content-center">
 
 
-    <div class="card-header text-center fw-bold text-white" style="background-color: #5D6D7E; margin-bottom: 10px; border-radius: 5px;">
+    <div class="card-header text-center fw-bold text-white" style="background-color: #2471A3; margin-bottom: 10px; border-radius: 5px;">
   <h4 class="mb-0">
     <i  class="fa-sharp fa-regular fa-address-card" style="margin-right: 5px;"></i>
     {{ __('MODULO DE ALUMNOS') }}
@@ -106,8 +106,8 @@
       <td class="text-center">
       <div class="btn-group">
  
-    
-    <button class="btn btn-warning"  @click="editarAlumno(alu.id)"><i class="fa-solid fa-pen-to-square"></i></i> EDITAR </a></button>
+      <button class="btn btn-success"  @click="mostrarAlumno(alu.id)"><i class="fa-regular fa-calendar-plus"></i> CONSULTA</a></button>
+    <button class="btn btn-warning"  @click="editarAlumno(alu.id)"><i class="fa-solid fa-pen-to-square"></i> EDITAR </a></button>
 <button class="btn btn-danger"  @click="eliminarAlumno(alu.id, alu.matricula, alu.nombres, alu.apellido_p, alu.apellido_m)"><i class="fa-solid fa-trash"></i></button>
 </div>
 
@@ -116,11 +116,6 @@
     </tr>
   </tbody>
 </table>
-
-
-<div class="card-body">
-                  
-                  </div>
           </div>
           </div>
       </div>
@@ -194,6 +189,95 @@
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
         <button type="button" class="btn text-white" @click="agregarAlumno()" v-if="agregando" :style="agregando ? 'background-color: #28a717;' : 'background-color: #f8be10;'">GUARDAR</button>
         <button type="button" class="btn text-white" @click="actualizarAlumno()" v-else :style="agregando ? 'background-color: #28a717;' : 'background-color: #f8be10;'">GUARDAR</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+     <!-- VENTANA MODA CREAR UNA CONSULTA -->
+     <div class="modal fade" id="modalConsulta" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header text-white bg-success">
+        <h1 class="modal-title fs-5 text-center fw-bold" id="staticBackdropLabel" >AGREGAR UNA CONSULTA</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <!-- EMPIEZA EL FORMULARIO -->
+   <div class="row">
+  <div class="col-md-6">
+  
+  <div class="form-group">
+      <label  class="fw-bold">MATRICULA</label>
+      <input  placeholder="Apellido Materno" v-model="matricula" @input="convertirMayusculas" class="form-control" disabled>
+    </div>
+    <div class="form-group">
+      <label  class="fw-bold">APELLIDO PATERNO</label>
+      <input  placeholder="Apellido Paterno" v-model="apellido_p" class="form-control" disabled></input>
+    </div>
+
+  <div class="form-group">
+      <label  class="fw-bold">FOLIO</label>
+      <input  placeholder="Folio" v-model="folio" @input="convertirMayusculas" autofocus required type="text" class="form-control" ></input>
+    </div>
+
+    <div class="form-group">
+      <label class="fw-bold">CLAVE</label>
+      <v-select v-model="id_clave" :reduce="claves_p => claves_p.id" :options="claves_p" label="clave" type="text"></v-select>
+    </div>
+
+    <div class="form-group">
+      <label  class="fw-bold">IMPORTE</label>
+      <input  placeholder="Importe(Valor)" v-model="importe" @input="convertirMayusculas" autofocus required type="number" class="form-control"></input>
+    </div>
+
+
+    <div class="form-group">
+      <label  class="fw-bold">CANTIDAD</label>
+      <input  placeholder="Cantidad(Valor) " v-model="cantidad" @input="convertirMayusculas" autofocus required type="number" class="form-control"></input>
+    </div>
+  </div>
+
+  <div class="col-md-6">
+
+  <div class="form-group">
+      <label  class="fw-bold">NOMBRES</label>
+      <input  placeholder="Nombres" v-model="nombres" @input="convertirMayusculas" class="form-control" disabled></input>
+    </div>
+
+    <div class="form-group">
+      <label  class="fw-bold">APELLIDO MATERNO</label>
+      <input  placeholder="Apellido Materno" v-model="apellido_m" class="form-control" disabled></input>
+    </div>
+
+    <div class="form-group">
+      <label  class="fw-bold">CUOTA</label>
+      <input placeholder="Cuota(Valor)" v-model="cuota" autofocus @input="convertirMayusculas" required type="number" class="form-control"></input>
+    </div>
+
+    <div class="form-group">
+      <label class="fw-bold">FECHA</label>
+      <input  placeholder="Fecha" v-model="fecha" autofocus @input="convertirMayusculas" required type="date" class="form-control"></input>
+    </div>    
+    <div class="form-group">
+      <label  class="fw-bold">TOTAL</label>
+      <input  placeholder="TOTAL (VALOR)" v-model="total" @input="convertirMayusculas" autofocus required type="number" class="form-control"></input>
+    </div>
+ 
+  </div>
+</div>
+ <!-- TERMINA EL FORMULARIO -->
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn text-white" @click="agregarConsulta()"  style="background-color: #28a717;">GUARDAR</button>
       </div>
     </div>
   </div>

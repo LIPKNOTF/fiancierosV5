@@ -13,8 +13,8 @@
 
                 <!-- CARD DE SERVICIOS -->
                 <div class="col-md-4 col-xl-4">
-    <a href="/alumno" class="text-home text-decoration-none">
-        <div class="home card text-white " style="background-color: #0a58ca; margin-bottom: 10px;">
+    <a href="/consulta" class="text-home text-decoration-none">
+        <div class="home card text-white " style="background-color: #21618C; margin-bottom: 10px;">
             <div class="card-body d-flex flex-column align-items-center justify-content-center">
                 <h5 class="text-center mb-3 fw-bold">Consultas</h5>
                                 @php
@@ -32,7 +32,7 @@
                   <!-- EMPIEZA CARD DE ALUMNOS-->
                   <div class="col-md-4 col-xl-4">
     <a href="/alumno" class="text-home text-decoration-none">
-        <div class="home card text-white " style="background-color: #087990; margin-bottom: 10px;">
+        <div class="home card text-white " style="background-color: #2471A3; margin-bottom: 10px;">
             <div class="card-body d-flex flex-column align-items-center justify-content-center">
                 <h5 class="text-center mb-3 fw-bold">ALUMNOS</h5>
                 @php
@@ -40,6 +40,23 @@
                 $cant_alumnos = Alumnos::count();
                 @endphp
                 <h2 class="text-center"><i class="fa-solid fa-users"></i> <span class="ml-2">{{$cant_alumnos}}</span></h2>
+            </div>
+        </div>
+    </a>
+</div>
+   <!-- FIN CARD DE ALUMNOS-->
+
+   <!-- EMPIEZA CARD DE ALUMNOS-->
+   <div class="col-md-4 col-xl-4">
+    <a href="/clave" class="text-home text-decoration-none">
+        <div class="home card text-white " style="background-color: #5DADE2; margin-bottom: 10px;">
+            <div class="card-body d-flex flex-column align-items-center justify-content-center">
+                <h5 class="text-center mb-3 fw-bold">CLAVES</h5>
+                @php
+                use App\Models\Clave;
+                $cant_Clave = Clave::count();
+                @endphp
+                <h2 class="text-center"><i class="fa-solid fa-key"></i><span class="ml-2">{{$cant_Clave}}</span></h2>
             </div>
         </div>
     </a>
@@ -55,9 +72,7 @@
         </div>
     </div>
 
-                <div class="card-body">
-                  
-                </div>
+               
             </div>
         </div>
     </div>

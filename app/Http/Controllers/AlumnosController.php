@@ -16,8 +16,8 @@ class AlumnosController extends Controller
     public function index()
     {
         //
-        $alumnos = Alumnos::all();
-        return $alumnos;
+        return $alumnos = Alumnos::all();
+      
     }
 
     /**
