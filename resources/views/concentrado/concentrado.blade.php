@@ -61,6 +61,10 @@
         </button>
       </div>
       <div class="modal-body">
+
+        <label for="formFile" class="form-label">Ingrese su Arvhivo</label>
+        <input class="form-control" type="file" id="formFile">
+
             <label for="" class="form-label mt-2">Partida</label>
             <input type="number" class="form-control" v-model="id_partida" placeholder="Ingrese la Partida">
 

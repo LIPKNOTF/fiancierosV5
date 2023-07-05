@@ -1,6 +1,6 @@
 function init(){
     var ruta = document.querySelector("[name=route]").value;
-
+    Vue.component("v-select", VueSelect.VueSelect);
     var apiConcentrado = ruta + "/apiConcentrado";
     new Vue({
         http:{
@@ -40,26 +40,51 @@ function init(){
 
 
             openModal:function(){
-                agregando=true;
-                id_partida='',
-                fecha='',
-                razon_social='',
-                rfc='',
-                monto='',
-                productos='',
+                this.agregando=true;
+                this.id_partida='',
+                this.fecha='',
+                this.razon_social='',
+                this.rfc='',
+                this.monto='',
+                this.productos='',
 			    $('#modalCon').modal('show');
             },
 
 
             saveConcentrado:function(){
-                var concentrado={id_partida:this.id_partida,fecha:this.fecha,razon_social:this.razon_social,rfc:this.rfc,monto:this.monto,productos:this.productos};
+                let concentrado={id_partida:this.id_partida,fecha:this.fecha,razon_social:this.razon_social,rfc:this.rfc,monto:this.monto,productos:this.productos};
+                if(
+                    !this.id_partida||
+                    !this.fecha||
+                    !this.razon_social||
+                    !this.rfc||
+                    !this.monto||
+                    !this.productos
+                ){
+                    Swal.fire({
+                        icon: "warning",
+                        title: "OCURRIO UN PROBLEMA",
+                        text: "Existen campos vacios!",
+                        showConfirmButton: false,
+                        timer: 1000,
+                    });
+
+                }else{
                 this.$http.post(apiConcentrado,concentrado).then(function(json){
-                    console.log(json)
+                    console.log(json);
                     $('#modalCon').modal('hide');
                     this.getConcentrados();
+                    Swal.fire({
+                        icon: "success",
+                        title: "GENIAL",
+                        text: "Se agrego el concentrado con éxito!",
+                        showConfirmButton: false,
+                        timer: 1000,
+                    });
                 }).catch(function(json){
 
                 });
+             }
             },
 
             showConcentrado:function(id){
@@ -77,7 +102,7 @@ function init(){
             },
 
             updateConcentrado:function(){
-                var jsonConcentrado={id_partida:this.id_partida,fecha:this.fecha,razon_social:this.razon_social,rfc:this.rfc,monto:this.monto,productos:this.productos};
+                let jsonConcentrado={id_partida:this.id_partida,fecha:this.fecha,razon_social:this.razon_social,rfc:this.rfc,monto:this.monto,productos:this.productos};
                 this.$http.patch(apiConcentrado+'/'+this.id,jsonConcentrado).then(function(json){
                         this.getConcentrados();
                 });
