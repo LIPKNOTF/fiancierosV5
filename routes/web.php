@@ -1,9 +1,11 @@
 <?php
-use App\Http\Controllers\ConsulasControlador;
+
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AlumnosController;
+
+
 use App\Http\Controllers\ConcentradoController;
 use App\Http\Controllers\ExcelImportController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -27,22 +29,14 @@ Route::get('/import-form', [ExcelImportController::class, 'importForm']);
 Route::post('/import', [ExcelImportController::class, 'import']);
 Route::view('alumno','alumnos/alumnos');
 Route::view('consulta', 'consultas/Consultas');
+Route::view('clave', 'clave/clave');
 
 Route::view('concentrado', 'concentrado/concentrado');
 // rutas apis(controladores)
 Route::apiResource('apiAlumno',AlumnosController::class);
 Route::apiResource('apiConsulta', ConsulasControlador::class);
 Route::apiResource('apiConcentrado', ConcentradoController::class);
-// =======================
-Route::apiResource('apiAlumno',AlumnosController::class);
-Route::apiResource('apiConsulta', ConsulasControlador::class);
-//mis rutas
-//vista
-
-//api
-
-Route::apiResource('apiAlumno',AlumnosController::class);
-Route::apiResource('apiConsulta', ConsulasControlador::class);
+Route::apiResource('apiClave', ClaveController::class);
 });
 
 // rutas apis(controladores)
