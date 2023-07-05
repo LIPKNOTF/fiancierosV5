@@ -3,7 +3,7 @@
 @section('content')
 
 <div id="capitulos">
-    <div class="card">
+    <div class="row">
         <div class="col-md-12">
             <pre></pre>
             <div class="card header">
@@ -14,6 +14,7 @@
                         </button>
                     </h3>
 
+                    <div class="card-body">
                     <!--Inicion de la tabla-->
                     <table class="table table-bordered">
                         <thead class="thead-dark">
@@ -39,7 +40,7 @@
                             </tr>
                         </tbody>
                     </table>
-
+                    </div>
 
                 </div>
             </div>

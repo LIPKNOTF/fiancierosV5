@@ -4,34 +4,40 @@
 
 <div id="partidas">
     <div class="card">
-        <div class="col-md-12">
+        <div class="card-body">
             <pre></pre>
             <div class="card header">
                 <div class="content-header">
-                    <h3>@{{titulo}}
-                        <button class="btn btn-sm" @click="abrirModal()">
+                    
+                    <div class="card-header text-center fw-bold text-white" style="background-color: #2471A3; margin-bottom: 10px; border-radius: 5px;">
+                        <h4 class="mb-0">
+                            MODULO DE PARTIDAS
+                        </h4>
+                    </div>
+
+                    <button class="btn btn-sm" @click="abrirModal()">
                             <i class="fas fa-user-plus"></i>
                         </button>
-                    </h3>
-
                     <div class="card-body">
+
+
                     <!--Inicion de la tabla-->
-                    <table class="table table-bordered">
-                        <thead class="thead-dark">
-                            <th>ID</th>
-                            <th>CODIGO</th>
-                            <th>Nombre</th>
-                            <th>Capitulo</th>
-                            <th>OPCIONES</th>
+                    <table class="table table-bordered table-striped table-hover mt-4">
+                        <thead class="table-primary">
+                            <th scope="col" class="text-center">ID</th>
+                            <th scope="col" class="text-center">CODIGO</th>
+                            <th scope="col" class="text-center">Nombre</th>
+                            <th scope="col" class="text-center">Capitulo</th>
+                            <th scope="col" class="text-center">OPCIONES</th>
                         </thead>
 
                         <tbody v-for="Partida in partidas">
                             <tr>
-                                <td>@{{Partida.id}}</td>
-                                <td>@{{Partida.codigo}}</td>
-                                <td>@{{Partida.nombre}}</td>
-                                <td>@{{Partida.id_capitulo}}</td>
-                                <td>
+                                <td class="text-center">@{{Partida.id}}</td>
+                                <td class="text-center">@{{Partida.codigo}}</td>
+                                <td class="text-center">@{{Partida.nombre}}</td>
+                                <td class="text-center">@{{Partida.id_capitulo}}</td>
+                                <td class="text-center">
                                     <button class="btn btn-sm">
                                         <i class="fa-regular fa-pen-to-square" @click="editarPartida(Partida.id)"></i>
                                     </button>
@@ -72,7 +78,7 @@
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                    <a type="button" class="btn btn-danger" href="partida" data-dismiss="modal">Cerrar</a>
                     <button type="button" class="btn btn-primary" @click="guardarPartida()" v-if="agregando==true">Guardar</button>
                     <button type="button" class="btn btn-primary" @click="actualizarPartida()" v-if="agregando==false">Guardar</button>
                 </div>
