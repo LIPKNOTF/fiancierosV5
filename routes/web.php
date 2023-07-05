@@ -4,8 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AlumnosController;
 use App\Http\Controllers\ConcentradoController;
 use App\Http\Controllers\ExcelImportController;
-use App\Http\Controllers\CapituloController;
-use App\Http\Controllers\PartidaController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -39,11 +38,9 @@ Route::apiResource('apiAlumno',AlumnosController::class);
 Route::apiResource('apiConsulta', ConsulasControlador::class);
 //mis rutas
 //vista
-Route::view('capitulo','capitulo/capitulo');
-Route::view('partida','partida/partida');
+
 //api
-Route::apiResource('apiCapitulo',CapituloController::class);
-Route::apiResource('apiPartida',PartidaController::class);
+
 Route::apiResource('apiAlumno',AlumnosController::class);
 Route::apiResource('apiConsulta', ConsulasControlador::class);
 });
@@ -55,4 +52,7 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-
+Route::view('capitulo','capitulo/capitulo');
+Route::view('partida','partida/partida');
+Route::apiResource('apiCapitulo',CapituloController::class);
+Route::apiResource('apiPartida',PartidaController::class);

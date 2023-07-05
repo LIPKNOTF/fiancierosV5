@@ -1,9 +1,9 @@
-@extends('index')
+@extends('layouts.app')
 @section('titulo','Capitulo')
-@section('contenido')
+@section('content')
 
 <div id="capitulos">
-    <div class="row">
+    <div class="card">
         <div class="col-md-12">
             <pre></pre>
             <div class="card header">

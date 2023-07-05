@@ -1,6 +1,6 @@
-@extends('index')
+@extends('layouts.app')
 @section('titulo','Partidas')
-@section('contenido')
+@section('content')
 
 <div id="partidas">
     <div class="card">
