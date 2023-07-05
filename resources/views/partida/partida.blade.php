@@ -3,7 +3,7 @@
 @section('content')
 
 <div id="partidas">
-    <div class="card">
+    <div class="card bg-primary">
         <div class="card-body">
             <pre></pre>
             <div class="card header">
@@ -11,18 +11,17 @@
                     
                     <div class="card-header text-center fw-bold text-white" style="background-color: #2471A3; margin-bottom: 10px; border-radius: 5px;">
                         <h4 class="mb-0">
-                            MODULO DE PARTIDAS
+                            Modulo de partidas
                         </h4>
                     </div>
 
                     <button class="btn btn-sm" @click="abrirModal()">
-                            <i class="fas fa-user-plus"></i>
-                        </button>
+                        <i class="fas fa-user-plus"></i>
+                    </button>
+
                     <div class="card-body">
-
-
                     <!--Inicion de la tabla-->
-                    <table class="table table-bordered table-striped table-hover mt-4">
+                    <table class="table table-bordered">
                         <thead class="table-primary">
                             <th scope="col" class="text-center">ID</th>
                             <th scope="col" class="text-center">CODIGO</th>

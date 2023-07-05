@@ -3,33 +3,38 @@
 @section('content')
 
 <div id="capitulos">
-    <div class="row">
-        <div class="col-md-12">
+    <div class="card bg-primary">
+        <div class="card-body">
             <pre></pre>
             <div class="card header">
                 <div class="content-header">
-                    <h3>@{{prueba}}
-                        <button class="btn btn-sm" @click="mostrarModal()">
-                            <i class="fas fa-user-plus"></i>
-                        </button>
-                    </h3>
+                    
+                    <div class="card-header text-center fw-bold text-white" style="background-color: #2471A3; margin-bottom: 10px; border-radius: 5px;">
+                        <h4 class="mb-0">
+                            Modulo de capitulos
+                        </h4>
+                    </div>
+
+                    <button class="btn btn-sm" @click="mostrarModal()">
+                        <i class="fas fa-user-plus"></i>
+                    </button>
 
                     <div class="card-body">
                     <!--Inicion de la tabla-->
                     <table class="table table-bordered">
-                        <thead class="thead-dark">
-                            <th>ID</th>
-                            <th>CODIGO</th>
-                            <th>TITULO</th>
-                            <th>OPCIONES</th>
+                        <thead class="table-primary">
+                            <th scope="col" class="text-center">ID</th>
+                            <th scope="col" class="text-center">CODIGO</th>
+                            <th scope="col" class="text-center">TITULO</th>
+                            <th scope="col" class="text-center">OPCIONES</th>
                         </thead>
 
                         <tbody v-for="Capitulo in capitulos">
                             <tr>
-                                <td>@{{Capitulo.id}}</td>
-                                <td>@{{Capitulo.codigo}}</td>
-                                <td>@{{Capitulo.titulo}}</td>
-                                <td>
+                                <td class="text-center">@{{Capitulo.id}}</td>
+                                <td class="text-center">@{{Capitulo.codigo}}</td>
+                                <td class="text-center">@{{Capitulo.titulo}}</td>
+                                <td class="text-center">
                                     <button class="btn btn-sm">
                                         <i class="fa-regular fa-pen-to-square" @click="editarCapitulo(Capitulo.id)"></i>
                                     </button>
