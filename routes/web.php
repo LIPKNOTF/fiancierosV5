@@ -32,6 +32,7 @@ Route::view('consulta', 'consultas/Consultas');
 Route::view('clave', 'clave/clave');
 Route::view('capitulo','capitulo/capitulo');
 Route::view('partida','partida/partida');
+Route::view('descripcion','descripcion/index');
 
 Route::view('concentrado', 'concentrado/concentrado');
 // rutas apis(controladores)
