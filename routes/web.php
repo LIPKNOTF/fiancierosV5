@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\ConcentradoController;
 use App\Http\Controllers\ExcelImportController;
-
+use App\Http\Controllers\ListConcentradoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +32,8 @@ Route::view('consulta', 'consultas/Consultas');
 Route::view('clave', 'clave/clave');
 
 Route::view('concentrado', 'concentrado/concentrado');
+Route::resource('listConcentrado',ListConcentradoController::class);
+Route::post('guardarConcentrado',[ListConcentradoController::class,'store']);
 // rutas apis(controladores)
 Route::apiResource('apiAlumno',AlumnosController::class);
 Route::apiResource('apiConsulta', ConsulasControlador::class);

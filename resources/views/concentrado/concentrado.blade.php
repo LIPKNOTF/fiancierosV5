@@ -150,7 +150,7 @@
 
     <div class="col-md-4 m-3 ">
       <label for="" class="form-label">Total</label>
-      <input type="text" name="fecha" id="total" class="form-control mt-2 @error('fecha') is-invalid @enderror" value="{{old('fecha')}}">
+      <input type="text" name="fecha" id="total" class="form-control mt-2 @error('total') is-invalid @enderror" value="{{old('total')}}">
       @error('fecha')
       <span class="invalid-feedback">
         <strong>{{$message}}</strong>
@@ -163,23 +163,23 @@
     <div class="col-md-2"></div>
     <div class="col-md-4 m-3 ">
       <label for="" class="form-label">Descripcion</label>
-      <input type="text" name="fecha" class="form-control mt-2 @error('fecha') is-invalid @enderror" value="{{old('fecha')}}">
-      @error('fecha')
+      <input type="text" name="fecha" class="form-control mt-2 @error('descripcion') is-invalid @enderror" value="{{old('descripcion')}}">
+      @error('descripcion')
       <span class="invalid-feedback">
         <strong>{{$message}}</strong>
       </span>
       @enderror
     </div>
 
-    <div class="col-md-4 m-3">
+    <div class="col-md-4 m-3 ">
       <label for="" class="form-label">Partida</label>
-      <input type="text" name="id_partida" class="form-control mt-2 @error('importe') is-invalid @enderror" value="{{old('id_partida')}}">
+      <input type="text" name="fecha" class="form-control mt-2 @error('id_partida') is-invalid @enderror" value="{{old('id_partida')}}">
+      @error('id_partida')
+      <span class="invalid-feedback">
+        <strong>{{$message}}</strong>
+      </span>
+      @enderror
     </div>
-    @error('id_partida')
-    <span class="invalid-feedback">
-      <strong>{{$message}}</strong>
-    </span>
-    @enderror
 
     
     <div class="col-md-4 offset-md-4">
