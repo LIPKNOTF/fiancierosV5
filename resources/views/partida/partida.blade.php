@@ -3,7 +3,7 @@
 @section('content')
 
 <div id="partidas">
-    <div class="card bg-primary">
+    <div class="card ">
         <div class="card-body">
             <pre></pre>
             <div class="card header">
@@ -15,9 +15,15 @@
                         </h4>
                     </div>
 
-                    <button class="btn btn-sm" @click="abrirModal()">
-                        <i class="fas fa-user-plus"></i>
+                    <div class="col-6">
+                    <button class="btn btn-sm btn-info" @click="abrirModal()">
+                        Agregar <i class="fa-solid fa-file-circle-plus"></i>
                     </button>
+                    </div>
+
+                    <div class="col-md-3 offset-md-9">
+                        <input type="text" placeholder="Escriba un Código" class="form-control" v-model="buscar">
+                    </div>
 
                     <div class="card-body">
                     <!--Inicion de la tabla-->
@@ -30,18 +36,18 @@
                             <th scope="col" class="text-center">OPCIONES</th>
                         </thead>
 
-                        <tbody v-for="Partida in partidas">
+                        <tbody v-for="Partida in filtroPatidas">
                             <tr>
                                 <td class="text-center">@{{Partida.id}}</td>
                                 <td class="text-center">@{{Partida.codigo}}</td>
                                 <td class="text-center">@{{Partida.nombre}}</td>
                                 <td class="text-center">@{{Partida.id_capitulo}}</td>
                                 <td class="text-center">
-                                    <button class="btn btn-sm">
-                                        <i class="fa-regular fa-pen-to-square" @click="editarPartida(Partida.id)"></i>
+                                    <button class="btn btn-sm" :style="'background-color:#ABC5F3;'" title="Editar" @click="editarPartida(Partida.id)">
+                                        <i class="fa-sharp fa-regular fa-pen-to-square"></i>
                                     </button>
-                                    <button class="btn btn-sm">
-                                        <i class="fa-solid fa-eraser" @click="eliminarPartida(Partida.id)"></i>
+                                    <button class="btn btn-sm" :style="'background-color:#F3B6AB;'" title="Eliminar" @click="eliminarPartida(Partida.id)">
+                                        <i class="fa-solid fa-trash"></i>
                                     </button>
                                 </td>
                             </tr>
@@ -61,15 +67,12 @@
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel" v-if="agregando==true">Agregando Partida</h5>
                     <h5 class="modal-title" id="exampleModalLabel" v-if="agregando==false">Editando Partida</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
 
                 <div class="modal-body">
-                    <input type="number" class="form-control" placeholder="Id" v-model="id"><br>
-                    <input type="text" class="form-control" placeholder="Capitulo" v-model="codigo"><br>
-                    <input type="text" class="form-control" placeholder="Nombre" v-model="nombre"><br>
+                    <input type="text" class="form-control" placeholder="Codigo" v-model="codigo" @input="validarCodigo"><br>
+                    <input type="text" class="form-control" placeholder="Nombre" v-model="nombre" @input="validarNombre"><br>
                     <select name="" v-model="id_capitulo" class="form-control" :disabled="!agregando==true">
                         <option value="" selected>Seleciona un capitulo</option>
                         <option v-for="cap in capitulos" :value="cap.id">@{{cap.id}}</option>
@@ -77,7 +80,7 @@
                 </div>
 
                 <div class="modal-footer">
-                    <a type="button" class="btn btn-danger" href="partida" data-dismiss="modal">Cerrar</a>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                     <button type="button" class="btn btn-primary" @click="guardarPartida()" v-if="agregando==true">Guardar</button>
                     <button type="button" class="btn btn-primary" @click="actualizarPartida()" v-if="agregando==false">Guardar</button>
                 </div>
@@ -95,3 +98,4 @@
 <script type="text/javascript" src="js/vue-resource.js"></script>
 @endpush
 
+<input type="hidden" name="route" value="{{ url('/') }}">

@@ -3,7 +3,7 @@
 @section('content')
 
 <div id="capitulos">
-    <div class="card bg-primary">
+    <div class="card">
         <div class="card-body">
             <pre></pre>
             <div class="card header">
@@ -15,9 +15,15 @@
                         </h4>
                     </div>
 
-                    <button class="btn btn-sm" @click="mostrarModal()">
-                        <i class="fas fa-user-plus"></i>
+                    <div class="col-6">
+                    <button class="btn btn-sm btn-info" @click="mostrarModal()">
+                        Agregar <i class="fa-solid fa-file-circle-plus"></i>
                     </button>
+                    </div>
+                    
+                    <div class="col-md-3 offset-md-9">
+                        <input type="text" placeholder="Escriba un Código" class="form-control" v-model="buscar">
+                    </div>
 
                     <div class="card-body">
                     <!--Inicion de la tabla-->
@@ -29,17 +35,17 @@
                             <th scope="col" class="text-center">OPCIONES</th>
                         </thead>
 
-                        <tbody v-for="Capitulo in capitulos">
+                        <tbody v-for="Capitulo in filtroCapitulo">
                             <tr>
                                 <td class="text-center">@{{Capitulo.id}}</td>
                                 <td class="text-center">@{{Capitulo.codigo}}</td>
                                 <td class="text-center">@{{Capitulo.titulo}}</td>
                                 <td class="text-center">
-                                    <button class="btn btn-sm">
-                                        <i class="fa-regular fa-pen-to-square" @click="editarCapitulo(Capitulo.id)"></i>
+                                    <button class="btn btn-sm" :style="'background-color:#ABC5F3;'" title="Editar" @click="editarCapitulo(Capitulo.id)">
+                                        <i class="fa-regular fa-pen-to-square" ></i>
                                     </button>
-                                    <button class="btn btn-sm" @click="eliminarCapitulo(Capitulo.id)">
-                                        <i class="fa-solid fa-eraser"></i>
+                                    <button class="btn btn-sm" :style="'background-color:#F3B6AB;'" title="Eliminar" @click="eliminarCapitulo(Capitulo.id)">
+                                        <i class="fa-solid fa-trash"></i>
                                     </button>
                                 </td>
                             </tr>
@@ -59,19 +65,16 @@
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel" v-if="agregando==true">Agregando Capitulo</h5>
                     <h5 class="modal-title" id="exampleModalLabel" v-if="agregando==false">Editando Capitulos</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
 
                 <div class="modal-body">
-                    <input type="number" class="form-control" placeholder="Id" v-model="id"><br>
-                    <input type="text" class="form-control" placeholder="Capitulo" v-model="codigo"><br>
-                    <input type="text" class="form-control" placeholder="Titulo" v-model="titulo"><br>
+                    <input type="text" class="form-control" placeholder="Codigo" v-model="codigo" @input="validarCodigo"><br>
+                    <input type="text" class="form-control" placeholder="Titulo" v-model="titulo" @input="validarTitulo"><br>
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                     <button type="button" class="btn btn-primary" @click="guardarCapitulo()" v-if="agregando==true">Guardar</button>
                     <button type="button" class="btn btn-primary" @click="actualizarCapitulo()" v-if="agregando==false">Guardar</button>
                 </div>
@@ -79,6 +82,7 @@
         </div>
     </div>
     <!-- FIN MODAL -->
+
 
 </div>
 
@@ -88,4 +92,4 @@
 <script type="text/javascript" src="js/apis/apiCapitulo.js"></script>
 <script type="text/javascript" src="js/vue-resource.js"></script>
 @endpush
-
+<input type="hidden" name="route" value="{{ url('/') }}">
