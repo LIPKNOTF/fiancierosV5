@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\ConcentradoController;
 use App\Http\Controllers\ExcelImportController;
-
+use App\Http\Controllers\ListConcentradoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,6 +39,8 @@ Route::view('descripcion', 'descripcion.index');
 >>>>>>> Stashed changes
 
 Route::view('concentrado', 'concentrado/concentrado');
+Route::resource('listConcentrado',ListConcentradoController::class);
+Route::post('guardarConcentrado',[ListConcentradoController::class,'store']);
 // rutas apis(controladores)
 Route::apiResource('apiAlumno',AlumnosController::class);
 Route::apiResource('apiConsulta', ConsulasControlador::class);
