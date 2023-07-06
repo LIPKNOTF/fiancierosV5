@@ -1,6 +1,7 @@
 function init(){
 
-    var apiCapitulo = 'http://127.0.0.1:8000/apiCapitulo';
+    var ruta = document.querySelector("[name=route]").value;
+    var apiCapitulo = ruta + "/apiCapitulo";
 
     new Vue({
 
@@ -18,7 +19,8 @@ function init(){
             id:'',
             codigo:'',
             titulo:'',
-            agregando:true
+            agregando:true,
+            buscar:''
         },
 
         created:function(){
@@ -97,7 +99,25 @@ function init(){
                 }
             }, //fin de eliminarcapitulo
 
-        }//fin de metodos
+            validarCodigo() {
+                this.codigo = this.codigo.replace(/[^0-9]/g, '');
+            },//fin de validar codigo
+
+            
+            validarTitulo() {
+                this.titulo = this.titulo.replace(/[^a-zA-Z\s]/g, '');
+            }//fin de validar titulo
+
+        },//fin de metodos
+
+        computed : {
+            filtroCapitulo:function(){
+                return this.capitulos.filter((capitulo)=>{
+                    return capitulo.codigo.toString().match(this.buscar.trim())
+                });
+            }//fin de filtrocapitulo
+
+        }//fin de computed
 
     });//fin de vue
 

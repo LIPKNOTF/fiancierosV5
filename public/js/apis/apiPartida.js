@@ -1,8 +1,8 @@
 function init(){
     
-    var apiPartida = 'http://127.0.0.1:8000/apiPartida';
-    var apiCapitulo = 'http://127.0.0.1:8000/apiCapitulo';
-
+    var ruta = document.querySelector("[name=route]").value;
+    var apiPartida = ruta + "/apiPartida"
+    var apiCapitulo = ruta + "/apiCapitulo"
 
     new Vue({
 
@@ -22,7 +22,8 @@ function init(){
             codigo:'',
             nombre:'',  
             id_capitulo: '',
-            agregando:true
+            agregando:true,
+            buscar:''
         },
 
         created:function(){
@@ -116,9 +117,26 @@ function init(){
 
                     });
                 }
-            } //eliminarpartida
+            }, //eliminarpartida
 
-        }//metodos
+            validarCodigo() {
+                this.codigo = this.codigo.replace(/[^0-9]/g, '');
+            },//fin de validar codigo
+
+            
+            validarNombre() {
+                this.nombre = this.nombre.replace(/[^a-zA-Z\s]/g, '');
+            }//fin de validar titulo
+
+        },//metodos
+
+        computed : {
+            filtroPatidas:function(){
+                return this.partidas.filter((partida)=>{
+                    return partida.codigo.toString().match(this.buscar.trim())
+                });
+            }
+        }
 
     }); //fin de vue
 }window.onload = init;
