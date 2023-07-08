@@ -17,9 +17,9 @@ class ListConcentradoController extends Controller
     {
         //
         $partida = Partida::all();
-        $concentrados = Concentrado::select('concetrado.id','fecha','razon_social_emisor','razon_social_receptor','rfc_emisor','rfc_receptor','regimen_emisor','regimen_receptor','total','sub_total','impuesto_traslado','impuesto_retenido','descripcion',
+        $concentrados = Concentrado::select('concentrado.id','fecha','razon_social_emisor','razon_social_receptor','rfc_emisor','rfc_receptor','regimen_emisor','regimen_receptor','total','sub_total','impuesto_traslado','impuesto_retenido','descripcion',
         'id_partida','nombre')->join('partida','partida.id','=','concentrado.id_partida')->get();
-        return view('concentrado.concentrado',compact('concentrados'));
+        return view('concentrado.concentrado',compact('concentrados','partida'));
     }
 
     /**
