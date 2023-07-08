@@ -29,9 +29,13 @@ Route::post('/import', [ExcelImportController::class, 'import']);
 Route::view('alumno','alumnos/alumnos');
 Route::view('consulta', 'consultas/Consultas');
 Route::view('clave', 'clave/clave');
+
 Route::view('capitulo','capitulo/capitulo');
 Route::view('partida','partida/partida');
 Route::view('descripcion','descripcion/index');
+
+Route::view('descripcion', 'descripcion.index');
+
 
 Route::view('concentrado', 'concentrado/concentrado');
 Route::resource('listConcentrado',ListConcentradoController::class);
@@ -41,8 +45,12 @@ Route::apiResource('apiAlumno',AlumnosController::class);
 Route::apiResource('apiConsulta', ConsulasControlador::class);
 Route::apiResource('apiConcentrado', ConcentradoController::class);
 Route::apiResource('apiClave', ClaveController::class);
+
 Route::apiResource('apiCapitulo',CapituloController::class);
 Route::apiResource('apiPartida',PartidaController::class);
+
+
+Route::apiResource('apiDescripcion', DescripcionController::class);
 
 });
 

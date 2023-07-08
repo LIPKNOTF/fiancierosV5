@@ -41,6 +41,7 @@ class AlumnosController extends Controller
         //
         $alumno = new Alumnos();
         $alumno->id = $request->get('id');
+        
         $alumno->matricula = $request->get('matricula');
         $alumno->nombres = $request->get('nombres');
         $alumno->apellido_p = $request->get('apellido_p');
