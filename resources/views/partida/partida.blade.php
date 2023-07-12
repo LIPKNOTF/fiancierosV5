@@ -43,10 +43,10 @@
                                 <td class="text-center">@{{Partida.nombre}}</td>
                                 <td class="text-center">@{{Partida.id_capitulo}}</td>
                                 <td class="text-center">
-                                    <button class="btn btn-sm" :style="'background-color:#ABC5F3;'" title="Editar" @click="editarPartida(Partida.id)">
+                                    <button class="btn btn-sm btn-Warning"  title="Editar" @click="editarPartida(Partida.id)">
                                         <i class="fa-sharp fa-regular fa-pen-to-square"></i>
                                     </button>
-                                    <button class="btn btn-sm" :style="'background-color:#F3B6AB;'" title="Eliminar" @click="eliminarPartida(Partida.id)">
+                                    <button class="btn btn-sm btn-danger" title="Eliminar" @click="eliminarPartida(Partida.id)">
                                         <i class="fa-solid fa-trash"></i>
                                     </button>
                                 </td>
