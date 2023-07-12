@@ -174,6 +174,14 @@
     <div class="col-md-4 m-3 ">
       <label for="" class="form-label">Partida</label>
       <input type="text" name="fecha" class="form-control mt-2 @error('id_partida') is-invalid @enderror" value="{{old('id_partida')}}">
+      
+      <select name="id_partida" id="" class="form-control">
+      <option class="select-wit" value="">Plan de Estudios</option>
+      @foreach($partida as $row)
+        <option value="{{$row->id}}">{{$row->nombre}}</option>
+        @endforeach
+      </select>
+     
       @error('id_partida')
       <span class="invalid-feedback">
         <strong>{{$message}}</strong>
