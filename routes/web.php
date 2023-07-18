@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\ConcentradoController;
 use App\Http\Controllers\ExcelImportController;
+use App\Http\Controllers\ListConcentradoController;
+use App\Http\Controllers\PartidaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,8 +39,8 @@ Route::view('descripcion','descripcion/index');
 Route::view('descripcion', 'descripcion.index');
 
 
-Route::view('concentrado', 'concentrado/concentrado');
-Route::resource('listConcentrado',ListConcentradoController::class);
+Route::view('listConcentrado', 'concentrado/vueConcentrado');
+Route::resource('concentrado',ListConcentradoController::class);
 Route::post('guardarConcentrado',[ListConcentradoController::class,'store']);
 // rutas apis(controladores)
 Route::apiResource('apiAlumno',AlumnosController::class);

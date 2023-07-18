@@ -2,6 +2,7 @@ function init(){
     var ruta = document.querySelector("[name=route]").value;
     Vue.component("v-select", VueSelect.VueSelect);
     var apiConcentrado = ruta + "/apiConcentrado";
+    var apiPartida = ruta + "/apiConcentrado"
     new Vue({
         http:{
             headers:{
@@ -14,12 +15,22 @@ function init(){
         el:"#concentrado",
         data:{
             concentrados:[],
+            partidas:[],
             mensaje:'Aqui es el concentrado',
             id:'',
             id_partida:'',
             fecha:'',
-            razon_social:'',
-            rfc:'',
+            razon_social_emisor:'',
+            razon_social_receptor:'',
+            rfc_emisor:'',
+            rfc_receptor:'',
+            regimen_emisor:'',
+            regimen_receptor:'',
+            total:'',
+            sub_total:'',
+            descripcion:'',
+            impuesto_traslado:'',
+            impuesto_retenido:'',
             monto:null,
             productos:'',
             agregando:false,

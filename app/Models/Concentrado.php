@@ -13,10 +13,18 @@ class Concentrado extends Model
         'id',
         'id_partida',
         'fecha',
-        'razon_social',
-        'rfc',
-        'monto',
-        'productos'
+        'razon_social_emisor',
+        'razon_social_receptor',
+        'rfc_emisor',
+        'rfc_receptor',
+        'regimen_emisor',
+        'regimen_receptor',
+        'total',
+        'sub_total',
+        'impuesto_traslado',
+        'impuesto_retenido',
+        'productos',
+        'descripcion',
     ]; 
 
     public function partida(){

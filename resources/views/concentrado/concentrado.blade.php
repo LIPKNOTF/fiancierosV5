@@ -29,7 +29,7 @@
   <div class="col-md-2"></div>
     <div class="col-md-4 m-3 ">
       <label for="" class="form-label">Fecha</label>
-      <input type="text" name="fecha" id="fecha" class="form-control mt-2 @error('fecha') is-invalid @enderror" value="{{old('fecha')}}">
+      <input type="text" name="fecha" id="fecha" class="form-control mt-2 @error('fecha') is-invalid @enderror" value="{{old('fecha')}}" readonly>
       @error('fecha')
       <span class="invalid-feedback">
         <strong>{{$message}}</strong>
@@ -40,8 +40,8 @@
 
     <div class="col-md-4 m-3">
       <label for="" class="form-label">Receptor: RFC</label>
-      <input type="text" name="rfc" id="rfcReceptor" class="form-control mt-2 @error('rfc') is-invalid @enderror" value="{{old('rfc')}}" readonly>
-      @error('rfc')
+      <input type="text" name="rfc_receptor" id="rfcReceptor" class="form-control mt-2 @error('rfc') is-invalid @enderror" value="{{old('rfc')}}" readonly>
+      @error('rfc_receptor')
       <span class="invalid-feedback">
         <strong>{{$message}}</strong>
       </span>
@@ -51,8 +51,8 @@
     <div class="col-md-2"></div>
     <div class="col-md-4 m-3 reponsive">
       <label for="" class="form-label">Receptor: Razon Social</label>
-      <input type="text" name="razon_socialReceptor" class="form-control mt-2 @error('razon_social') is-invalid @enderror" value="{{old('razon_social')}}" id="razon_socialReceptor" readonly>
-      @error('razon_social')
+      <input type="text" name="razon_social_receptor" class="form-control mt-2 @error('razon_social') is-invalid @enderror" value="{{old('razon_social')}}" id="razon_socialReceptor" readonly>
+      @error('razon_social_receptor')
       <span class="invalid-feedback">
         <strong>{{$message}}</strong>
       </span>
@@ -61,8 +61,8 @@
 
     <div class="col-md-4 m-3">
       <label for="" class="form-label">Receptor: Regimen Fiscal</label>
-      <input type="text" name="razon_socialReceptor" class="form-control mt-2 @error('razon_social') is-invalid @enderror" value="{{old('razon_social')}}" id="regimenFiscalReceptor" readonly>
-      @error('razon_social')
+      <input type="text" name="regimen_receptor" class="form-control mt-2 @error('razon_social') is-invalid @enderror" value="{{old('razon_social')}}" id="regimenFiscalReceptor" readonly>
+      @error('regimen_receptor')
       <span class="invalid-feedback">
         <strong>{{$message}}</strong>
       </span>
@@ -72,8 +72,8 @@
     <div class="col-md-2"></div>
     <div class="col-md-4 m-3">
       <label for="" class="form-label">Emisor: RFC</label>
-      <input type="text" name="rfc" id="rfcEmisor" class="form-control mt-2 @error('rfc') is-invalid @enderror" value="{{old('rfc')}}" readonly>
-      @error('rfc')
+      <input type="text" name="rfc_emisor" id="rfcEmisor" class="form-control mt-2 @error('rfc') is-invalid @enderror" value="{{old('rfc')}}" readonly>
+      @error('rfc_emisor')
       <span class="invalid-feedback">
         <strong>{{$message}}</strong>
       </span>
@@ -83,8 +83,8 @@
 
     <div class="col-md-4 m-3">
       <label for="" class="form-label">Emisor: Razon Social</label>
-      <input type="text" name="razon_socialEmisor" class="form-control mt-2 @error('razon_social') is-invalid @enderror" value="{{old('razon_social')}}" id="razon_socialEmisor" readonly>
-      @error('razon_social')
+      <input type="text" name="razon_social_emisor" class="form-control mt-2 @error('razon_social') is-invalid @enderror" value="{{old('razon_social')}}" id="razon_socialEmisor" readonly>
+      @error('razon_social_emisor')
       <span class="invalid-feedback">
         <strong>{{$message}}</strong>
       </span>
@@ -95,8 +95,8 @@
     <div class="col-md-2"></div>
     <div class="col-md-4 m-3">
       <label for="" class="form-label">Emisor: Regimen Fiscal</label>
-      <input type="text" name="razon_socialEmisor" class="form-control mt-2 @error('razon_social') is-invalid @enderror" value="{{old('razon_social')}}" id="regimenFiscalEmisor" readonly>
-      @error('razon_social')
+      <input type="text" name="regimen_emisor" class="form-control mt-2 @error('razon_social') is-invalid @enderror" value="{{old('razon_social')}}" id="regimenFiscalEmisor" readonly>
+      @error('regimen_emisor')
       <span class="invalid-feedback">
         <strong>{{$message}}</strong>
       </span>
@@ -105,8 +105,8 @@
 
     <div class="col-md-4 m-3 reponsive">
       <label for="" class="form-label">Producto</label>
-      <input type="text" name="producto" class="form-control mt-2 @error('producto') is-invalid @enderror" value="{{old('producto')}}" id="producto" readonly>
-      @error('producto')
+      <input type="text" name="productos" class="form-control mt-2 @error('producto') is-invalid @enderror" value="{{old('producto')}}" id="producto" readonly>
+      @error('productos')
       <span class="invalid-feedback">
         <strong>{{$message}}</strong>
       </span>
@@ -118,9 +118,9 @@
     <div class="col-md-2"></div>
     <div class="col-md-4 m-3">
       <label for="" class="form-label">Impuesto de Retenido</label>
-      <input type="text" name="importe" class="form-control mt-2 @error('importe') is-invalid @enderror" value="{{old('importe')}}" id="impuestoRetenido">
+      <input type="text" name="impuesto_retenido" class="form-control mt-2 @error('importe') is-invalid @enderror" value="{{old('importe')}}" id="impuestoRetenido">
     </div>
-    @error('importe')
+    @error('impuesto_retenido')
     <span class="invalid-feedback">
       <strong>{{$message}}</strong>
     </span>
@@ -128,9 +128,9 @@
 
     <div class="col-md-4 m-3">
       <label for="" class="form-label">Impuesto de Traslado</label>
-      <input type="text" name="importe" class="form-control mt-2 @error('importe') is-invalid @enderror" value="{{old('importe')}}" id="impuestoTraslado" readonly>
+      <input type="text" name="impuesto_traslado" class="form-control mt-2 @error('importe') is-invalid @enderror" value="{{old('importe')}}" id="impuestoTraslado" readonly>
     </div>
-    @error('importe')
+    @error('impuesto_traslado')
     <span class="invalid-feedback">
       <strong>{{$message}}</strong>
     </span>
@@ -140,8 +140,8 @@
     <div class="col-md-2"></div>
     <div class="col-md-4 m-3 ">
       <label for="" class="form-label">Sub Total</label>
-      <input type="text" name="fecha" id="subTotal" class="form-control mt-2 @error('fecha') is-invalid @enderror" value="{{old('fecha')}}">
-      @error('fecha')
+      <input type="text" name="sub_total" id="subTotal" class="form-control mt-2 @error('fecha') is-invalid @enderror" value="{{old('fecha')}}">
+      @error('sub_total')
       <span class="invalid-feedback">
         <strong>{{$message}}</strong>
       </span>
@@ -150,8 +150,8 @@
 
     <div class="col-md-4 m-3 ">
       <label for="" class="form-label">Total</label>
-      <input type="text" name="fecha" id="total" class="form-control mt-2 @error('total') is-invalid @enderror" value="{{old('total')}}">
-      @error('fecha')
+      <input type="text" name="total" id="total" class="form-control mt-2 @error('total') is-invalid @enderror" value="{{old('total')}}">
+      @error('total')
       <span class="invalid-feedback">
         <strong>{{$message}}</strong>
       </span>
@@ -163,7 +163,7 @@
     <div class="col-md-2"></div>
     <div class="col-md-4 m-3 ">
       <label for="" class="form-label">Descripcion</label>
-      <input type="text" name="fecha" class="form-control mt-2 @error('descripcion') is-invalid @enderror" value="{{old('descripcion')}}">
+      <input type="text" name="descripcion" class="form-control mt-2 @error('descripcion') is-invalid @enderror" value="{{old('descripcion')}}">
       @error('descripcion')
       <span class="invalid-feedback">
         <strong>{{$message}}</strong>
@@ -173,21 +173,20 @@
 
     <div class="col-md-4 m-3 ">
       <label for="" class="form-label">Partida</label>
-      <input type="text" name="fecha" class="form-control mt-2 @error('id_partida') is-invalid @enderror" value="{{old('id_partida')}}">
       
-      <select name="id_partida" id="" class="form-control">
-      <option class="select-wit" value="">Plan de Estudios</option>
-      @foreach($partida as $row)
-        <option value="{{$row->id}}">{{$row->nombre}}</option>
+      <select name="id_partida" id="" class="form-control mt-2 @error('id_partida') is-invalid @enderror" value="{{old('id_partida')}}">
+      <option class="select-wit" value="" >Seleccione la Partida</option>
+      @foreach($partidas as $row)
+        <option value="{{$row->id}}" class="fw-bold">{{$row->codigo}}:   {{$row->nombre }} </option>
         @endforeach
       </select>
-     
       @error('id_partida')
       <span class="invalid-feedback">
         <strong>{{$message}}</strong>
       </span>
       @enderror
     </div>
+    
 
     
     <div class="col-md-4 offset-md-4">
@@ -325,4 +324,3 @@
 </script>
 <!-- Fin -->
 @endpush
-<input type="hidden" name="route" value="{{ url('/') }}">
