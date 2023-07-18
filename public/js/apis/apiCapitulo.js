@@ -79,7 +79,7 @@ function init(){
                     id: this.id,
                     codigo: this.codigo,
                     titulo: this.titulo};
-                    
+
                 this.$http.patch(apiCapitulo + '/' + this.id, jsonCapitulo).then(function(json){
                     this.mostrarcapitulos();
                 }).catch(function(json){
