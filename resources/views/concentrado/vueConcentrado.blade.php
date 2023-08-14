@@ -3,6 +3,11 @@
 @section('content')
 <div id="concentrado">
     <div class="container">
+      <div class="col-md-4 offset-md-4">
+      <div class="d-grid mx-auto">
+      <button class="btn btn-dark mb-2" @click="openModal()">Agregar Concentrado <i class="fa-solid fa-plus"></i></button>
+      </div>
+    </div>
         <table class="table table-bordered table-striped table-responsive">
             <thead>
                 <th>Partida</th>
@@ -19,6 +24,7 @@
                 <th>Impuesto Retenido</th>
                 <th>Productos</th>
                 <th>Descripcion</th>
+                <th>Acciones</th>
             </thead>
             <tbody>
                 <tr v-for="row in concentrados">
@@ -36,6 +42,10 @@
                     <td>@{{row.impuesto_retenido}}</td>
                     <td>@{{row.productos}}</td>
                     <td>@{{row.descripcion}}</td>
+                    <td>
+                      <button class="btn btn-warning"><i class="fa-solid fa-pencil"></i></button>
+                      <button class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
+                    </td>
                 </tr>
             </tbody>
         </table>
@@ -45,7 +55,7 @@
 
 <!-- Ventana modal -->
      <!-- VENTANA MODA CREAR UNA CONSULTA -->
-     <div class="modal fade" id="modalConcentrado" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+     <div class="modal fade" id="modalCon" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header text-white bg-success">

@@ -9,6 +9,7 @@ class Concentrado extends Model
 {
     use HasFactory;
     protected $table = 'concentrado'; // Nombre de la tabla en la base de datos
+    public $with = ['partida'];
     protected $fillable = [
         'id',
         'id_partida',
