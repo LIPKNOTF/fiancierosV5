@@ -56,7 +56,7 @@ function init(){
                     this.mostrarcapitulos();
                 }).catch(function(json){
                 });
-
+  
                 $('#modalCapitulo').modal('hide');
                 console.log(capitulo);
             }, //fin guardarcapitulo

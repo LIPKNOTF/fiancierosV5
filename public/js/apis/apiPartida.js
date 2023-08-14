@@ -86,7 +86,7 @@ function init(){
                     this.codigo = json.data.codigo;
                     this.nombre = json.data.nombre;
                 }).catch(function(json){
-
+ 
                 });
                 $('#modalPartida').modal('show');
             }, //editarpartida
