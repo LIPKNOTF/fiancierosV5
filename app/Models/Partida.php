@@ -12,8 +12,6 @@ class Partida extends Model
     protected $table = 'partida';
     protected $primaryKey = 'id';
     public $with = ['capitulo'];
-    public $incrementing=false;
-    public $timestamps=false;
     protected $fillable = ['id','codigo','nombre','id_capitulo'];
 
     public function capitulo(){

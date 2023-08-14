@@ -9,14 +9,23 @@ class Concentrado extends Model
 {
     use HasFactory;
     protected $table = 'concentrado'; // Nombre de la tabla en la base de datos
+    public $with = ['partida'];
     protected $fillable = [
         'id',
         'id_partida',
         'fecha',
-        'razon_social',
-        'rfc',
-        'monto',
-        'productos'
+        'razon_social_emisor',
+        'razon_social_receptor',
+        'rfc_emisor',
+        'rfc_receptor',
+        'regimen_emisor',
+        'regimen_receptor',
+        'total',
+        'sub_total',
+        'impuesto_traslado',
+        'impuesto_retenido',
+        'productos',
+        'descripcion',
     ]; 
 
     public function partida(){
