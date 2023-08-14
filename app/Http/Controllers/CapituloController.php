@@ -62,7 +62,7 @@ class CapituloController extends Controller
 
         $capitulo->update();
     }
-
+ 
     /**
      * Remove the specified resource from storage.
      *

@@ -8,15 +8,15 @@
             <pre></pre>
             <div class="card header">
                 <div class="content-header">
-                    
+                      
                     <div class="card-header text-center fw-bold text-white" style="background-color: #2471A3; margin-bottom: 10px; border-radius: 5px;">
                         <h4 class="mb-0">
                             Modulo de capitulos
                         </h4>
                     </div>
 
-                    <div class="col-6">
-                    <button class="btn btn-sm btn-info" @click="mostrarModal()">
+                    <div class="col-auto mt-4 text-center">
+                    <button class="btn btn-sm btn-primary" @click="mostrarModal()">
                         Agregar <i class="fa-solid fa-file-circle-plus"></i>
                     </button>
                     </div>
@@ -41,10 +41,10 @@
                                 <td class="text-center">@{{Capitulo.codigo}}</td>
                                 <td class="text-center">@{{Capitulo.titulo}}</td>
                                 <td class="text-center">
-                                    <button class="btn btn-sm" :style="'background-color:#ABC5F3;'" title="Editar" @click="editarCapitulo(Capitulo.id)">
+                                    <button class="btn btn-sm btn-warning"  title="Editar" @click="editarCapitulo(Capitulo.id)">
                                         <i class="fa-regular fa-pen-to-square" ></i>
                                     </button>
-                                    <button class="btn btn-sm" :style="'background-color:#F3B6AB;'" title="Eliminar" @click="eliminarCapitulo(Capitulo.id)">
+                                    <button class="btn btn-sm btn-danger"  title="Eliminar" @click="eliminarCapitulo(Capitulo.id)">
                                         <i class="fa-solid fa-trash"></i>
                                     </button>
                                 </td>
@@ -62,7 +62,7 @@
     <div class="modal fade" id="modalCapitulo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header" style="background-color: #96C7EB;">
                     <h5 class="modal-title" id="exampleModalLabel" v-if="agregando==true">Agregando Capitulo</h5>
                     <h5 class="modal-title" id="exampleModalLabel" v-if="agregando==false">Editando Capitulos</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>

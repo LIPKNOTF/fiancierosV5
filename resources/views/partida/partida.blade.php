@@ -15,8 +15,8 @@
                         </h4>
                     </div>
 
-                    <div class="col-6">
-                    <button class="btn btn-sm btn-info" @click="abrirModal()">
+                    <div class="col-auto mt-4 text-center">
+                    <button class="btn btn-sm btn-primary" @click="abrirModal()">
                         Agregar <i class="fa-solid fa-file-circle-plus"></i>
                     </button>
                     </div>
@@ -64,12 +64,12 @@
     <div class="modal fade" id="modalPartida" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header" style="background-color: #96C7EB;">
                     <h5 class="modal-title" id="exampleModalLabel" v-if="agregando==true">Agregando Partida</h5>
                     <h5 class="modal-title" id="exampleModalLabel" v-if="agregando==false">Editando Partida</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-
+  
                 <div class="modal-body">
                     <input type="text" class="form-control" placeholder="Codigo" v-model="codigo" @input="validarCodigo"><br>
                     <input type="text" class="form-control" placeholder="Nombre" v-model="nombre" @input="validarNombre"><br>

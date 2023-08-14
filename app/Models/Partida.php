@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Partida extends Model
 {
     use HasFactory;
-
+ 
     protected $table = 'partida';
     protected $primaryKey = 'id';
     public $with = ['capitulo'];
