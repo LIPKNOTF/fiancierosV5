@@ -88,7 +88,7 @@
 
                 <div class="form-group">
                   <label class="fw-bold">PARTIDA</label>
-                  <input placeholder="Partida" type="number" v-model="id_partida" class="form-control">
+                  <v-select v-model="id_partida" :reduce="partida => partida.id" :options="partidas" label="nombre"></v-select>
                 </div>
                 <div class="form-group">
                   <label class="fw-bold">FECHA</label>
@@ -107,7 +107,7 @@
 
                 <div class="form-group">
                   <label class="fw-bold">EMISOR: REGIIMEN FISCAL</label>
-                  <input type="text" v-model="regimen_emisor" placeholder="Regimen fiscal del emisor" class="form-control">
+                  <input type="number" v-model="regimen_emisor" placeholder="Regimen fiscal del emisor" class="form-control">
                 </div>
 
                 <div class="form-group">
@@ -126,7 +126,7 @@
 
                 <div class="form-group">
                   <label class="fw-bold">RECEPTOR: REGIMEN FISCAL</label>
-                  <input placeholder="Regimen fiscal del receptor" v-model="regimen_receptor" class="form-control">
+                  <input type="number" placeholder="Regimen fiscal del receptor" v-model="regimen_receptor" class="form-control">
                 </div>
 
                 <div class="form-group">
@@ -155,7 +155,7 @@
 
                 <div class="form-group">
                   <label class="fw-bold">DESCRIPCION</label>
-                  <input placeholder="Descripcion" v-model="descripcion" required type="number" class="form-control">
+                  <input placeholder="Descripcion" v-model="descripcion"  type="text" class="form-control">
                 </div>
 
               </div>
@@ -165,7 +165,8 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-          <button type="button" class="btn text-white" @click="agregarConsulta()" style="background-color: #28a717;">GUARDAR</button>
+          <button type="button" class="btn text-white" @click="saveConcentrado()" v-if="agregando==true" style="background-color: #28a717;">GUARDAR</button>
+          <button type="button" class="btn btn-warning text-white" @click="updateConcentrado()" v-if="agregando==false" style="background-color: #28a717;">GUARDAR</button>
         </div>
       </div>
     </div>

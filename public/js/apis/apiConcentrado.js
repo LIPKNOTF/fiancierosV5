@@ -82,13 +82,34 @@ function init() {
 
 
             saveConcentrado: function () {
-                let concentrado = { id_partida: this.id_partida, fecha: this.fecha, razon_social: this.razon_social, rfc: this.rfc, monto: this.monto, productos: this.productos };
+                let concentrado = { id_partida: this.id_partida, 
+                    fecha: this.fecha, 
+                    razon_social_emisor: this.razon_social_emisor, 
+                    razon_social_receptor: this.razon_social_receptor, 
+                    rfc_emisor: this.rfc_emisor, 
+                    rfc_receptor: this.rfc_receptor, 
+                    regimen_emisor: this.regimen_emisor,
+                    regimen_receptor: this.regimen_receptor,
+                    impuesto_retenido: this.impuesto_retenido,
+                    impuesto_traslado: this.impuesto_traslado,
+                    total: this.total,
+                    sub_total: this.sub_total,
+                    productos: this.productos,
+                    descripcion: this.descripcion };
                 if (
                     !this.id_partida ||
                     !this.fecha ||
-                    !this.razon_social ||
-                    !this.rfc ||
-                    !this.monto ||
+                    !this.razon_social_emisor ||
+                    !this.razon_social_receptor ||
+                    !this.rfc_emisor ||
+                    !this.rfc_receptor ||
+                    !this.regimen_emisor ||
+                    !this.regimen_receptor ||
+                    !this.impuesto_retenido ||
+                    !this.impuesto_traslado ||
+                    !this.total ||
+                    !this.sub_total ||
+                    !this.descripcion ||
                     !this.productos
                 ) {
                     Swal.fire({
@@ -158,6 +179,13 @@ function init() {
                     descripcion: this.descripcion };
                 this.$http.patch(apiConcentrado + '/' + this.id, jsonConcentrado).then(function (json) {
                     this.getConcentrados();
+                    Swal.fire({
+                        icon: "success",
+                        title: "GENIAL",
+                        text: "Se actualizo el concentrado con éxito!",
+                        showConfirmButton: false,
+                        timer: 1000,
+                    });
                 });
                 $('#modalCon').modal('hide');
             },
