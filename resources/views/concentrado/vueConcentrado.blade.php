@@ -3,6 +3,11 @@
 @section('content')
 <div id="concentrado">
   <div class="container">
+  <div class="text-center p-1 fw-bold text-white" style="background-color: #2471A3; margin-bottom: 10px; border-radius: 5px;">
+                        <h4 class="mb-2">
+                            Modulo de concentrados
+                        </h4>
+                    </div>
     <div class="col-md-4 offset-md-4">
       <div class="d-grid mx-auto">
         <button class="btn btn-dark mb-2" @click="openModal()">Agregar Concentrado <i class="fa-solid fa-plus"></i></button>

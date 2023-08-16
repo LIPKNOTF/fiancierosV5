@@ -23,7 +23,9 @@ function init(){
             nombre:'',  
             id_capitulo: '',
             agregando:true,
+            titulo:'',
             buscar:''
+
         },
 
         created:function(){
@@ -41,6 +43,9 @@ function init(){
                     console.log(json)
                 });
             }, //fin mostrarpartida
+
+
+
             mostrarcapitulos:function(){
                 this.$http.get(apiCapitulo).then(function(json){
                     this.capitulos = json.data;
@@ -49,6 +54,8 @@ function init(){
                     console.log(json)
                 });
             }, //fin mostrarpartida
+
+
 
             abrirModal(){
                 this.agregando = true;
@@ -59,22 +66,49 @@ function init(){
                 $('#modalPartida').modal('show');
             }, //abrir modal
 
+
+
+
             guardarPartida(){
-                var partida = {
+                let partida = {
                     id:this.id,
                     codigo:this.codigo,
                     nombre:this.nombre,
                     id_capitulo:this.id_capitulo
                 };
+                if(
+                    !this.codigo ||
+                    !this.nombre ||
+                    !this.id_capitulo 
+                ){
+                    Swal.fire({
+                        icon: "warning",
+                        title: "OCURRIO UN PROBLEMA",
+                        text: "Existen campos vacios!",
+                        showConfirmButton: false,
+                        timer: 1000,
+                    });
+
+                }else{
 
                 this.$http.post(apiPartida,partida).then(function(json){
                     this.mostrarpartidas();
+                    $('#modalPartida').modal('hide');
+                    Swal.fire({
+                        icon: "success",
+                        title: "GENIAL",
+                        text: "Se agrego la partida con éxito!",
+                        showConfirmButton: false,
+                        timer: 1000,
+                    });
                 }).catch(function(json){
 
                 });
 
-                $('#modalPartida').modal('hide');
+                
                 console.log(partida);
+                }
+                
             },//guardarpartida
 
             editarPartida(id){
@@ -92,19 +126,42 @@ function init(){
             }, //editarpartida
 
             actualizarPartida(){
-                var Jpartida = {
+                let Jpartida = {
                     id: this.id,
                     codigo: this.codigo,
                     nombre: this.nombre,
                     id_capitulo: this.id_capitulo
                 };
+                if(
+                    !this.codigo ||
+                    !this.nombre ||
+                    !this.id_capitulo 
+                ){
+                    Swal.fire({
+                        icon: "warning",
+                        title: "OCURRIO UN PROBLEMA",
+                        text: "Existen campos vacios!",
+                        showConfirmButton: false,
+                        timer: 1000,
+                    });
+
+                } else {
 
                 this.$http.patch(apiPartida + '/'+ this.id,Jpartida).then(function(json){
                     this.mostrarpartidas();
+                    $('#modalPartida').modal('hide');
+                    Swal.fire({
+                        icon: "success",
+                        title: "GENIAL",
+                        text: "Se actualizó la partida con éxito!",
+                        showConfirmButton: false,
+                        timer: 1000,
+                    });
                 }).catch(function(json){
 
                 });
-                $('#modalPartida').modal('hide');
+                
+                }
             }, //actualizarpartida
 
             eliminarPartida(id){
@@ -130,7 +187,7 @@ function init(){
 
         },//metodos
 
-        computed : {
+        computed: {
             filtroPatidas:function(){
                 return this.partidas.filter((partida)=>{
                     return partida.codigo.toString().match(this.buscar.trim())

@@ -177,6 +177,7 @@ function init() {
                     impuesto_traslado:this.impuesto_traslado, 
                     productos: this.productos,
                     descripcion: this.descripcion };
+                    
                 this.$http.patch(apiConcentrado + '/' + this.id, jsonConcentrado).then(function (json) {
                     this.getConcentrados();
                     Swal.fire({
@@ -188,20 +189,11 @@ function init() {
                     });
                 });
                 $('#modalCon').modal('hide');
+                
             },
 
 
             deleteConcentrado: function (id) {
-                // var confirmacion = confirm('¿Esta seguro de elminar el concentrado?');
-                // if(confirmacion){
-                //     this.$http.delete(apiConcentrado+'/'+id).then(function(json){
-                //         this.getConcentrados();
-                //         console.log('Eliminacion exitosa!')
-                //     }).catch(function(json){
-
-                //     });
-                // }
-
                 Swal.fire({
                     title:
                         "Se eliminara el registro esta seguro?",
@@ -216,7 +208,7 @@ function init() {
                     if (result.isConfirmed) {
                         Swal.fire({
                             title: "Eliminado!",
-                            text: "La consulta ha sido eliminado con éxito.",
+                            text: "El concentrado ha sido eliminado con éxito.",
                             icon: "success",
                             timer: 1000,
                             showConfirmButton: false,

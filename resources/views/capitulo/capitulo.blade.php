@@ -15,11 +15,14 @@
                         </h4>
                     </div>
 
-                    <div class="col-auto mt-4 text-center">
-                    <button class="btn btn-sm btn-primary" @click="mostrarModal()">
+                    <div class="col-md-4 offset-md-4">
+                    <div class="d-grid mx-auto">
+                    <button class="btn btn-sm btn-dark" @click="mostrarModal()">
                         Agregar <i class="fa-solid fa-file-circle-plus"></i>
                     </button>
                     </div>
+                    </div>
+
                     
                     <div class="col-md-3 offset-md-9">
                         <input type="text" placeholder="Escriba un Código" class="form-control" v-model="buscar">
@@ -44,7 +47,7 @@
                                     <button class="btn btn-sm btn-warning"  title="Editar" @click="editarCapitulo(Capitulo.id)">
                                         <i class="fa-regular fa-pen-to-square" ></i>
                                     </button>
-                                    <button class="btn btn-sm btn-danger"  title="Eliminar" @click="eliminarCapitulo(Capitulo.id)">
+                                    <button class="btn btn-sm btn-danger"  title="Eliminar" @click="eliminarCapitulo(Capitulo.id, Capitulo.titulo)">
                                         <i class="fa-solid fa-trash"></i>
                                     </button>
                                 </td>

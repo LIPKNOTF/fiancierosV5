@@ -47,17 +47,37 @@ function init(){
             }, //fin mostrar modal
 
             guardarCapitulo(){
-                var capitulo = {
+                let capitulo = {
                     id:this.id,
                     codigo:this.codigo,
                     titulo:this.titulo};
-
-                this.$http.post(apiCapitulo,capitulo).then(function(json){
-                    this.mostrarcapitulos();
-                }).catch(function(json){
-                });
-  
-                $('#modalCapitulo').modal('hide');
+                    if(
+                        !this.codigo ||
+                        !this.titulo 
+                    ){
+                        Swal.fire({
+                            icon: "warning",
+                            title: "OCURRIO UN PROBLEMA",
+                            text: "Existen campos vacios!",
+                            showConfirmButton: false,
+                            timer: 1000,
+                        });
+    
+                    }else{
+                        this.$http.post(apiCapitulo,capitulo).then(function(json){
+                            this.mostrarcapitulos();
+                            $('#modalCapitulo').modal('hide');
+                            Swal.fire({
+                                icon: "success",
+                                title: "GENIAL",
+                                text: "Se agrego el capitulo con éxito!",
+                                showConfirmButton: false,
+                                timer: 1000,
+                            });
+                        }).catch(function(json){
+                        });
+                    }
+                
                 console.log(capitulo);
             }, //fin guardarcapitulo
 
@@ -75,28 +95,60 @@ function init(){
             }, //fin de editarcapitulo
 
             actualizarCapitulo(){
-                var jsonCapitulo = {
+                let jsonCapitulo = {
                     id: this.id,
                     codigo: this.codigo,
                     titulo: this.titulo};
-
+                    if(
+                        !this.codigo ||
+                        !this.titulo 
+                    ){
+                        Swal.fire({
+                            icon: "warning",
+                            title: "OCURRIO UN PROBLEMA",
+                            text: "Existen campos vacios!",
+                            showConfirmButton: false,
+                            timer: 1000,
+                        });
+    
+                    }else {
                 this.$http.patch(apiCapitulo + '/' + this.id, jsonCapitulo).then(function(json){
                     this.mostrarcapitulos();
                 }).catch(function(json){
                 });
                 $('#modalCapitulo').modal('hide');
+                }
+                // fin del else(validacion del formulario)
             }, //fin de actuaoizarcapitulo
 
-            eliminarCapitulo(id){
-                var confirmar = confirm('estas seguro de eliminar el capitulo?')
-                if(confirmar)
-                {
-                    this.$http.delete(apiCapitulo + '/' + id).then(function(json){
-                        this.mostrarcapitulos();
-                    }).catch(function(json){
-                        
-                    });
-                }
+            eliminarCapitulo(id,titulo){
+                Swal.fire({
+                    title:
+                        "Se eliminara el registro de "+ titulo + " está seguro?",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#d33",
+                    confirmButtonText:
+                        '<i class="fa-solid fa-check"></i>SI, Eliminar',
+                    cancelButtonText:
+                        '<i class="fa-solid fa-ban"></i> CANCELAR',
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Swal.fire({
+                            title: "Eliminado!",
+                            text: "El capitulo ha sido eliminado con éxito.",
+                            icon: "success",
+                            timer: 1000,
+                            showConfirmButton: false,
+                        });
+                        this.$http.delete(apiCapitulo + '/' + id).then(function(json){
+                            this.mostrarcapitulos();
+                        }).catch(function(json){
+                            
+                        });
+                    }
+                });
+               
             }, //fin de eliminarcapitulo
 
             validarCodigo() {
