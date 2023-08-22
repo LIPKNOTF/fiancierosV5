@@ -111,6 +111,35 @@
     </a>
 </div>
    <!-- FIN CARD DE ALUMNOS-->
+   <!-- EMPIEZA CARD DE XML CONCENTRADOS-->
+   <div class="col-md-4 col-xl-4">
+    <a href="/descripcion" class="text-home text-decoration-none">
+        <div class="home card text-white " style="background-color: #EF7A4A ; margin-bottom: 10px;">
+            <div class="card-body d-flex flex-column align-items-center justify-content-center">
+                <h5 class="text-center mb-3 fw-bold"> LECTURA DE XML</h5>
+                
+                <h2 class="text-center"><i class="fa-solid fa-book"></i> </span></h2>
+            </div>
+        </div>
+    </a>
+</div>
+   <!-- FIN CARD DE ALUMNOS-->
+   <!-- EMPIEZA CARD DE CONCENTRADOS CON VUE-->
+   <div class="col-md-4 col-xl-4">
+    <a href="/descripcion" class="text-home text-decoration-none">
+        <div class="home card text-white " style="background-color: #B04AEF ; margin-bottom: 10px;">
+            <div class="card-body d-flex flex-column align-items-center justify-content-center">
+                <h5 class="text-center mb-3 fw-bold"> LISTA DE CONCENTRADOS</h5>
+                @php
+                use App\Models\Concentrado;
+                $cant_Concentrado= Concentrado::count();
+                @endphp
+                <h2 class="text-center"><i class="fa-solid fa-book"></i> {{ $cant_Concentrado}}</span></h2>
+            </div>
+        </div>
+    </a>
+</div>
+   <!-- FIN CARD DE ALUMNOS-->
    
 
 

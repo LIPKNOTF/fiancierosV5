@@ -8,6 +8,7 @@ use App\Http\Controllers\ExcelImportController;
 use App\Http\Controllers\ListConcentradoController;
 use App\Http\Controllers\PartidaController;
 use App\Http\Controllers\CapituloController;
+use App\Http\Controllers\AlumnosController;
 
 /*
 |--------------------------------------------------------------------------
