@@ -39,6 +39,7 @@ function init() {
             concepto: "",
             total: "",
             agregando: "true",
+            id_clave: "",
           
         },
 

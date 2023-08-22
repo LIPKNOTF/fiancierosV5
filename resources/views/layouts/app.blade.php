@@ -40,12 +40,15 @@
 </head>
 <body>
     <div id="app">
-   
+        <div class="col-md-2 justify-content-center">
+        
+            
+        </div>
 
         <nav class="navbar navbar-expand-md navbar-light  shadow-sm" style="background-color: #e3f2fd;">
             <div class="container" >
             <a class="navbar-brand" href="{{ url('home') }}">
-                    {{  'Panel' }}
+            <a class="fw-bold fs-5 text-dark p-2 me-4" href="/home"><i class="fa-solid fa-house"></i></a>
                 </a>
                 <a class="navbar-brand" href="{{ url('alumno') }}">
                     {{  'Alumno' }}
@@ -56,7 +59,18 @@
                 <a class="navbar-brand" href="{{ url('clave') }}">
                     {{'Clave' }}
                 </a>
-        
+                <a class="navbar-brand" href="{{ url('concentrado') }}">
+                    {{'Lectura de XML' }}
+                </a>
+                <a class="navbar-brand" href="{{ url('listConcentrado') }}">
+                    {{'Concentrados' }}
+                </a>
+                <a class="navbar-brand" href="{{ url('partida') }}">
+                    {{'Partidas' }}
+                </a>
+                <a class="navbar-brand" href="{{ url('capitulo') }}">
+                    {{'Capitulos' }}
+                </a>
 
                
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">

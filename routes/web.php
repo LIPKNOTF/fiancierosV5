@@ -9,6 +9,8 @@ use App\Http\Controllers\ListConcentradoController;
 use App\Http\Controllers\PartidaController;
 use App\Http\Controllers\CapituloController;
 use App\Http\Controllers\AlumnosController;
+use App\Http\Controllers\ClaveController;
+use App\Http\Controllers\ConsulasControlador;
 
 /*
 |--------------------------------------------------------------------------

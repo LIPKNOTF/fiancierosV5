@@ -2,7 +2,7 @@
 @section('titulo','alumnos')
 @section('content')
 <div id="concentrado">
-  <div class="container">
+  <div class="container justify-content-center">
   <div class="text-center p-1 fw-bold text-white" style="background-color: #2471A3; margin-bottom: 10px; border-radius: 5px;">
                         <h4 class="mb-2">
                             Modulo de concentrados
@@ -30,7 +30,7 @@
     </div>
 
     <table class="table table-bordered table-striped table-responsive">
-      <thead>
+      <thead class="table-primary">
         <th>Partida Codigo</th>
         <th>Partida Nombre</th>
         <th>Fecha</th>
