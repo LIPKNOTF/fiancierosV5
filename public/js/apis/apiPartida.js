@@ -134,8 +134,7 @@ function init(){
                 };
                 if(
                     !this.codigo ||
-                    !this.nombre ||
-                    !this.id_capitulo 
+                    !this.nombre
                 ){
                     Swal.fire({
                         icon: "warning",

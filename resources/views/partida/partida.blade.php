@@ -79,10 +79,10 @@
                         <option value="" selected>Seleciona un capitulo</option>
                         <option v-for="cap in capitulos" :value="cap.id">@{{cap.titulo}}</option>
                     </select>
-                    <select name="" v-model="id_capitulo" class="form-control" v-if="agregando==false">
-                        <option value="" selected>Seleciona un capitulo</option>
-                        <option v-for="cap in capitulos" :value="cap.id">@{{cap.titulo}}</option>
-                    </select>
+                    <!-- <select name="" v-model="id_capitulo" class="form-control" v-if="agregando==false">
+                        <option value="" >Seleciona un capitulo</option>
+                        <option v-for="cap in capitulos" :value="cap.id" selected>@{{cap.titulo}}</option>
+                    </select> -->
                 </div>
                 
 
