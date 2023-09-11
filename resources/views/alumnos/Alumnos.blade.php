@@ -224,12 +224,14 @@
 
   <div class="form-group">
       <label  class="fw-bold">FOLIO</label>
-      <input  placeholder="Folio" v-model="folio" @input="convertirMayusculas" autofocus required type="text" class="form-control" ></input>
+      <input  placeholder="Folio" v-model="folio" @input="convertirMayusculas"  disabled required type="text" class="form-control" ></input>
+      
     </div>
 
     <div class="form-group">
       <label class="fw-bold">CLAVE</label>
       <v-select v-model="id_clave" :reduce="claves_p => claves_p.id" :options="claves_p" label="clave" type="text"></v-select>
+      <button class="btn btn-primary" @click="getClave(id_clave)">Buscar</button>
     </div>
 
     <div class="form-group">
@@ -258,7 +260,7 @@
 
     <div class="form-group">
       <label  class="fw-bold">CUOTA</label>
-      <input placeholder="Cuota(Valor)" v-model="cuota" autofocus @input="convertirMayusculas" required type="number" class="form-control"></input>
+      <input placeholder="Cuota(Valor)" v-model="cuota" autofocus @input="convertirMayusculas" required type="number" class="form-control" disabled></input>
     </div>
 
     <div class="form-group">
@@ -267,7 +269,8 @@
     </div>    
     <div class="form-group">
       <label  class="fw-bold">TOTAL</label>
-      <input  placeholder="TOTAL (VALOR)" v-model="total" @input="convertirMayusculas" autofocus required type="number" class="form-control"></input>
+      <input  placeholder="TOTAL (VALOR)" value="calcularTotal" v-model="calcularTotal" @input="convertirMayusculas" disabled type="number" class="form-control"></input>
+      
     </div>
  
   </div>

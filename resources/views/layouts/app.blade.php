@@ -128,6 +128,8 @@
     <script src="js/jquery.dataTables.min.js"></script>
     <script src="js/dataTables.bootstrap5.min.js"></script>
     <script src="js/dataTables.buttons.min.js"></script>
+    <script src="js/moment.min.js"></script>
+    <script src="js/moment-with-locales.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <!-- Plugins -->
 

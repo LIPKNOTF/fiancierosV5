@@ -32,7 +32,7 @@ function init() {
             id_alumno: "",
             importe: "",
             clave: "",
-            cantidad: "",
+            cantidad: 1,
             cuota: "",
             fecha: "",
             folio: "",
@@ -47,6 +47,7 @@ function init() {
             this.obtenerAlumno();
             this.obtenerConsulta();
             this.obtenerClave_p();
+            this.makeFolio();
         },
 
         methods: {
@@ -405,6 +406,18 @@ function init() {
               }
             },
 
+            getClave:function(id){
+                id_clave=id;
+                this.$http.get(apiClav+"/"+id).then(function(json){
+                    this.id_clave=json.data.id;
+                    this.cuota=json.data.precio;
+                });
+            },
+
+            makeFolio:function(){
+                this.folio="VNT-" + moment().format('YYMMDDhmmss');
+            },
+
             actualizarAlumno: function () {
                 let alumno = {
                     id: this.id,
@@ -493,6 +506,15 @@ function init() {
                     }
                 });
             },
+        },
+        // fin de los methods
+        computed:{
+            calcularTotal(){
+                    let calculoTotal=0;
+                    calculoTotal=this.cantidad*this.cuota;
+                    
+                    return calculoTotal.toFixed(1);
+            }
         },
     });
 }
