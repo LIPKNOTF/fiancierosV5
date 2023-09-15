@@ -63,6 +63,14 @@ function init() {
                     this.alumnos = json.data;
                 });
             },
+
+            // traer tanto nombre y matricula del alumno
+            formatLabel:function(alumno){
+                return '${alumno.matricula} - ${alumno.nombres}';
+            },
+            // fin de traer el nombre y la matricula 
+
+
             // funcion para el complemento de dataTables
             dataPagPre() {
                 $(document).ready(function () {

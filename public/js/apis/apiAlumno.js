@@ -19,6 +19,8 @@ function init() {
             alumnos: [],
             consultas: [],
             claves_p:[],
+            claveConsulta:[],
+            cantidades:[1,1,1,1,1,1,1,1,1],
             id: "",
             matricula: "",
             nombres: "",
@@ -409,13 +411,49 @@ function init() {
             getClave:function(id){
                 id_clave=id;
                 this.$http.get(apiClav+"/"+id).then(function(json){
-                    this.id_clave=json.data.id;
-                    this.cuota=json.data.precio;
+                    let consultaHecha={
+                    id_clave:json.data.id,
+                    clave:json.data.clave,
+                    cuota:json.data.precio,
+                };
+                this.claveConsulta.push(consultaHecha);
+                
                 });
+
+
             },
 
             makeFolio:function(){
-                this.folio="VNT-" + moment().format('YYMMDDhmmss');
+                this.folio="DGETAYCM " + moment().format('7949993')+1;
+            },
+
+            findClave:function(){
+                
+                let encontrado=0;
+                if(this.id_clave){
+                    for (let i = 0; i < this.claveConsulta.length; i++) {
+                        encontrado=1;
+                        this.claveConsulta[i].cantidad++;
+                        this.cantidades[i]++;
+                        break;
+                        
+                    }
+                    if (encontrado===0) {
+                        this.$http.get(apiClav+'/'+this.id_clave).then(function(json){
+                            consultaClave={
+                                id_clave:json.data.id_clave,
+                                cuota:json.data.precio,
+                                cantidad:1,
+                                importe:json.data.precio,
+                            };
+                            this.claveConsulta.push(consultaClave);
+                            this.cantidades.push(1);
+                            this.id_clave='';
+                        });
+                        
+                    }
+
+                }
             },
 
             actualizarAlumno: function () {

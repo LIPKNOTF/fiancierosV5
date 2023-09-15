@@ -158,6 +158,7 @@
 <script src="js/bootstrap.bundle.min.js"></script>
 <script src="js/vue-resource.js"></script>
 <script src="js/apis/apiConsulta.js"></script>
+
 @endpush
 
 <input type="hidden" name="route" value="{{ url('/') }}">

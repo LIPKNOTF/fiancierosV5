@@ -200,9 +200,9 @@
 
 
      <!-- VENTANA MODA CREAR UNA CONSULTA -->
-     <div class="modal fade" id="modalConsulta" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+     <div id="modalConsulta" class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
-    <div class="modal-content">
+    <div class="modal-content row">
       <div class="modal-header text-white bg-success">
         <h1 class="modal-title fs-5 text-center fw-bold" id="staticBackdropLabel" >AGREGAR UNA CONSULTA</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -211,12 +211,14 @@
         <form>
           <!-- EMPIEZA EL FORMULARIO -->
    <div class="row">
-  <div class="col-md-6">
+  <div class="col-md-8">
   
-  <div class="form-group">
+   <div class="form-group">
       <label  class="fw-bold">MATRICULA</label>
       <input  placeholder="Apellido Materno" v-model="matricula" @input="convertirMayusculas" class="form-control" disabled>
     </div>
+
+  
     <div class="form-group">
       <label  class="fw-bold">APELLIDO PATERNO</label>
       <input  placeholder="Apellido Paterno" v-model="apellido_p" class="form-control" disabled></input>
@@ -233,6 +235,35 @@
       <v-select v-model="id_clave" :reduce="claves_p => claves_p.id" :options="claves_p" label="clave" type="text"></v-select>
       <button class="btn btn-primary" @click="getClave(id_clave)">Buscar</button>
     </div>
+    
+
+    <div class="form-group">
+      <table class="table table-stripped table-hover">
+        <thead>
+          <tr>
+            <th>Cantidad</th>
+            <th>Descripcion</th>
+            <th>Precio</th>
+            <th>Importe</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(row,index) in claveConsulta">
+          <td><input type="number" v-model.number="cantidades[index]"></td>
+            <td>@{{row.clave}}</td>
+            <td>@{{row.cuota}}</td>
+            <td>@{{row.total}}</td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+
+    <!-- <div class="form-group">
+      <label  class="fw-bold">TOTAL</label>
+      <input  placeholder="TOTAL (VALOR)" value="calcularTotal" v-model="calcularTotal" @input="convertirMayusculas" disabled type="number" class="form-control"></input>
+      
+    </div>
 
     <div class="form-group">
       <label  class="fw-bold">IMPORTE</label>
@@ -244,9 +275,9 @@
       <label  class="fw-bold">CANTIDAD</label>
       <input  placeholder="Cantidad(Valor) " v-model="cantidad" @input="convertirMayusculas" autofocus required type="number" class="form-control"></input>
     </div>
-  </div>
+  </div> -->
 
-  <div class="col-md-6">
+  <div class="col-md-8">
 
   <div class="form-group">
       <label  class="fw-bold">NOMBRES</label>
@@ -260,18 +291,14 @@
 
     <div class="form-group">
       <label  class="fw-bold">CUOTA</label>
-      <input placeholder="Cuota(Valor)" v-model="cuota" autofocus @input="convertirMayusculas" required type="number" class="form-control" disabled></input>
+      <input placeholder="Cuota(Valor)" v-model="cuota" autofocus @input="convertirMayusculas" required type="number" class="form-control" ></input>
     </div>
 
     <div class="form-group">
       <label class="fw-bold">FECHA</label>
       <input  placeholder="Fecha" v-model="fecha" autofocus @input="convertirMayusculas" required type="date" class="form-control"></input>
-    </div>    
-    <div class="form-group">
-      <label  class="fw-bold">TOTAL</label>
-      <input  placeholder="TOTAL (VALOR)" value="calcularTotal" v-model="calcularTotal" @input="convertirMayusculas" disabled type="number" class="form-control"></input>
-      
-    </div>
+    </div>  
+    
  
   </div>
 </div>
