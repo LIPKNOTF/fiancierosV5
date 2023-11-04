@@ -13,9 +13,9 @@ class Consultas extends Model
     protected $with = ['alumno','claves_p'];
     protected $fillable = [
         'id_alumno', 
-        'importe', 
+        
         'cantidad',
-        'cuota',
+        
         'folio',
         'fecha',
         'total',

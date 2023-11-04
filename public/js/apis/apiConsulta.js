@@ -310,11 +310,11 @@ function init() {
                 }
             },
 
-            eliminarConsulta: function (id, clave, matricula) {
+            eliminarConsulta: function (id, id_clave, matricula) {
                 Swal.fire({
                     title:
                         "Se eliminara el registro con la clave: " +
-                        clave +
+                        id_clave +
                         " y la matricula " +
                         matricula +
                         "?",
