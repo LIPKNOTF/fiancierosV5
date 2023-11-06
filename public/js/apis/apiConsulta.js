@@ -63,6 +63,14 @@ function init() {
                     this.alumnos = json.data;
                 });
             },
+
+            // traer tanto nombre y matricula del alumno
+            formatLabel:function(alumno){
+                return '${alumno.matricula} - ${alumno.nombres}';
+            },
+            // fin de traer el nombre y la matricula 
+
+
             // funcion para el complemento de dataTables
             dataPagPre() {
                 $(document).ready(function () {
@@ -302,11 +310,11 @@ function init() {
                 }
             },
 
-            eliminarConsulta: function (id, clave, matricula) {
+            eliminarConsulta: function (id, id_clave, matricula) {
                 Swal.fire({
                     title:
                         "Se eliminara el registro con la clave: " +
-                        clave +
+                        id_clave +
                         " y la matricula " +
                         matricula +
                         "?",

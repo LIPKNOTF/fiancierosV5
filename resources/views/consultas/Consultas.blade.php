@@ -77,7 +77,7 @@
   </button>
   <ul class="dropdown-menu">
     <li><a class="dropdown-item"  @click="editarConsulta(con.id)"><i class="fa-solid fa-pen-to-square"></i> Editar</a></li>
-    <li><a class="dropdown-item"  @click="eliminarConsulta(con.id,con.claves_p.clave,con.alumno.matricula)"><i class="fa-solid fa-trash"></i> Eliminar</a></li>
+    <li><a class="dropdown-item"  @click="eliminarConsulta(con.id,con.clave,con.matricula)"><i class="fa-solid fa-trash"></i> Eliminar</a></li>
   </ul>
 </div>
       </td>
@@ -158,6 +158,7 @@
 <script src="js/bootstrap.bundle.min.js"></script>
 <script src="js/vue-resource.js"></script>
 <script src="js/apis/apiConsulta.js"></script>
+
 @endpush
 
 <input type="hidden" name="route" value="{{ url('/') }}">

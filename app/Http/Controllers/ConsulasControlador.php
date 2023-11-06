@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Alumnos;
 use App\Models\Consultas;
+use App\Models\DetalleConsulta;
 use Illuminate\Http\Request;
 
 class ConsulasControlador extends Controller
@@ -41,14 +42,18 @@ class ConsulasControlador extends Controller
         $consulta = new Consultas();
         $consulta->id = $request->get('id');
         $consulta->id_alumno = $request->get('id_alumno');
-        $consulta->importe = $request->get('importe');
+        
         $consulta->cantidad = $request->get('cantidad');
-        $consulta->cuota = $request->get('cuota');
+        
         $consulta->fecha = $request->get('fecha');
         $consulta->folio = $request->get('folio');
         $consulta->id_clave = $request->get('id_clave');
         $consulta->total = $request->get('total');
         $consulta->save();
+
+        $detalles=$request->get('detalles');
+        DetalleConsulta::insert($detalles);
+
     }
 
     /**

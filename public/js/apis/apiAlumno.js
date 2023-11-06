@@ -19,6 +19,9 @@ function init() {
             alumnos: [],
             consultas: [],
             claves_p:[],
+            claveConsulta:[],
+            cantidades:[],
+            cuotasObtenidas:[],
             id: "",
             matricula: "",
             nombres: "",
@@ -32,7 +35,7 @@ function init() {
             id_alumno: "",
             importe: "",
             clave: "",
-            cantidad: "",
+            cantidad: 1,
             cuota: "",
             fecha: "",
             folio: "",
@@ -40,6 +43,9 @@ function init() {
             total: "",
             agregando: "true",
             id_clave: "",
+            auxSubTotal:'',
+            cantidad:'',
+
           
         },
 
@@ -47,6 +53,8 @@ function init() {
             this.obtenerAlumno();
             this.obtenerConsulta();
             this.obtenerClave_p();
+            this.makeFolio();
+            
         },
 
         methods: {
@@ -341,37 +349,38 @@ function init() {
             },
 
             agregarConsulta: function() {
-              let consultas = {
-                id_alumno: this.id,
-                importe: this.importe,
-                id_clave: this.id_clave,
-                cantidad: this.cantidad,
-                cuota: this.cuota,
-                fecha: this.fecha,
-                folio: this.folio,
-                total: this.total,
-              };
-              // Validar que cantidad, importe y cuota sean números
-              if (
-                isNaN(this.cantidad) ||
-                isNaN(this.importe) ||
-                isNaN(this.cuota)
-              ) {
-                Swal.fire({
-                  icon: "warning",
-                  title: "OCURRIO UN PROBLEMA",
-                  text: "Los campos Cantidad, Importe y Cuota deben ser números",
-                  showConfirmButton: false,
-                  timer: 1000,
+              let pago={};
+              let detalles=[];
+
+              for(i=0; i < this.claveConsulta.length; i++){
+                detalles.push({
+                    folio:this.folio,
+                    fecha:this.fecha,
+                    id_clave:this.claveConsulta[i].id_clave,
+                    cantidad:this.claveConsulta[i].cantidad,
+                    total:this.claveConsulta[i].total,
+                    
+                    
+                    
                 });
-              } else if (
-                !this.importe ||
-                !this.id_clave ||
-                !this.cantidad ||
-                !this.cuota ||
-                !this.fecha ||
-                !this.folio ||
-                !this.total
+
+                 pago={
+                    id_alumno:this.id,
+                    folio:this.folio,
+                    fecha:this.fecha,
+                    total:this.subTotal,
+                    cantidad:this.numeroArticulos,
+                    id_clave:this.id_clave,
+                    detalles:detalles
+
+                }
+
+              }
+
+              if (
+                
+                !this.fecha
+                
               ) {
                 Swal.fire({
                   icon: "warning",
@@ -382,7 +391,7 @@ function init() {
                 });
               } else {
                 // AQUÍ USAS TU RUTA Y TU LET
-                this.$http.post(apiCon, consultas).then(function(json) {
+                this.$http.post(apiCon, pago).then(function(json) {
                   this.obtenerConsulta();
                   this.id_alumno = "";
                   this.importe = "";
@@ -403,6 +412,94 @@ function init() {
                 });
                 $("#modalConsulta").modal("hide");
               }
+
+            console.log(pago);
+            },
+
+            getClave:function(id){
+                let encontrado=0;
+                if (this.id_clave) {
+                    for (let i = 0; i < this.claveConsulta.length; i++) {
+                        if (this.id_clave===this.claveConsulta[i].id_clave) {
+                            encontrado=1;
+                            this.claveConsulta[i].cantidad++;
+                            this.cantidades[i]++;
+                            break;
+                        }
+                        
+                    }
+                    
+                if(encontrado===0){
+                this.$http.get(apiClav+"/"+id).then(function(json){
+                    
+                    this.cuotasObtenidas.push(json.data.precio);
+                    
+                    let consultaHecha={
+                    id_clave:json.data.id,
+                    clave:json.data.clave,
+                    cuota:json.data.precio,
+                    cantidad:1,
+                    total:json.data.precio,
+                    
+                };
+                this.claveConsulta.push(consultaHecha);
+                this.cantidades.push(1);
+                });
+            }
+            // __________________________________
+
+        }
+            },
+
+            // updatePrice(){
+            //     // const cant = this.cantidades.map((item) => item.cantidad)
+            //     // console.log(cant)
+            //     const cuota = this.claveConsulta.map((item) => item.cuota)
+               
+            //         console.log(cuota)
+                    
+            //        const contidad = cuota * this.cantidad;
+            //        this.importe = contidad;
+            // },
+
+
+
+
+            removeItem:function(id){
+                this.claveConsulta.splice(id,1);
+            },
+
+            makeFolio:function(){
+                this.folio="DGETAYCM " + moment().format('7949993')+1;
+            },
+
+            findClave:function(){
+                
+                let encontrado=0;
+                if(this.id_clave){
+                    for (let i = 0; i < this.claveConsulta.length; i++) {
+                        encontrado=1;
+                        this.claveConsulta[i].cantidad++;
+                        this.cantidades[i]++;
+                        break;
+                        
+                    }
+                    if (encontrado===0) {
+                        this.$http.get(apiClav+'/'+this.id_clave).then(function(json){
+                            consultaClave={
+                                id_clave:json.data.id_clave,
+                                cuota:json.data.precio,
+                                cantidad:1,
+                                importe:json.data.precio,
+                            };
+                            this.claveConsulta.push(consultaClave);
+                            this.cantidades.push(1);
+                            this.id_clave='';
+                        });
+                        
+                    }
+
+                }
             },
 
             actualizarAlumno: function () {
@@ -492,6 +589,44 @@ function init() {
                             });
                     }
                 });
+            },
+        },
+        // fin de los methods
+        computed:{
+            calcularImporte(){
+                
+                return(id)=>{
+                    let total=0;
+                    total=this.cuotasObtenidas[id] * this.cantidades[id];
+
+                    this.claveConsulta[id].total=total;
+
+                    this.claveConsulta[id].cantidad=this.cantidades[id];
+
+                    this.auxSubTotal=total.toFixed(1);
+                    return total.toFixed(1);
+                }
+            },
+
+            subTotal(){
+                let total=0;
+                for (var i = this.claveConsulta.length -1;i >=0; i--) {
+                    total=total+this.claveConsulta[i].total;
+               
+                 }//fin ciclo for
+                  this.auxSubTotal=total.toFixed(1); //manda una copia del subTotal al data para usar con otros datos 
+                 return total.toFixed(1);
+                
+            },
+
+            numeroArticulos(){
+                var art=0;
+                for (var i = this.claveConsulta.length - 1; i >= 0; i--) {
+                    art = art + parseInt(this.claveConsulta[i].cantidad, 10); 
+                  }
+                  
+   
+                return art;
             },
         },
     });
