@@ -7,10 +7,16 @@ use App\Http\Controllers\ConcentradoController;
 use App\Http\Controllers\ExcelImportController;
 use App\Http\Controllers\ListConcentradoController;
 use App\Http\Controllers\PartidaController;
-use App\Http\Controllers\CapituloController;
+// use App\Http\Controllers\CapituloController;
 use App\Http\Controllers\AlumnosController;
 use App\Http\Controllers\ClaveController;
 use App\Http\Controllers\ConsulasControlador;
+use App\Http\Controllers\HNuevaController;
+use App\Http\Controller\ControlDeFacturasController;
+use App\Http\Controller\ConsolidadoDeMesesController;
+use App\Http\Controller\PolizaDeIngresosController;
+use App\Http\Controller\FlujoDeEfectivoController;
+use App\Http\Controller\FormatoConciliacionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -67,6 +73,7 @@ Route::apiResource('apiPartida',PartidaController::class);
 
 
 Route::apiResource('apiDescripcion', DescripcionController::class);
+Route::apiResource('apiUsuario', UsuariosController::class);
 
 });
 
@@ -78,3 +85,12 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
+//PDF
+Route::get('Hojapdf', 'HNuevaController@hojares');
+Route::get('Facturapdf', 'ControlDeFacturasController@Facturas');
+Route::get('Consolidadopdf', 'ConsolidadoDeMesesController@Consolidado');
+Route::get('Polizapdf', 'PolizaDeIngresosController@Poliza');
+Route::get('FlujoDeEfectivopdf', 'FlujoDeEfectivoController@Flujo');
+Route::get('Conciliacionpdf','FormatoConciliacionController@Conciliacion');
+
+Route::view('Usuarios','usuarios/usuario');
