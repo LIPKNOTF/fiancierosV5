@@ -129,9 +129,9 @@ function init(){
                     showCancelButton: true,
                     confirmButtonColor: "#d33",
                     confirmButtonText:
-                        '<i class="fa-solid fa-check"></i>SI, Eliminar',
+                        '<i class="fa-solid fa-check"></i>Eliminar',
                     cancelButtonText:
-                        '<i class="fa-solid fa-ban"></i> CANCELAR',
+                        '<i class="fa-solid fa-ban"></i>CANCELAR',
                 }).then((result) => {
                     if (result.isConfirmed) {
                         Swal.fire({
