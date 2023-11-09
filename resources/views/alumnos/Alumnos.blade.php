@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.master')
 @section('content')
 <!-- AQUI EMPIEZA LA VISTA -->
 <div id="apiAlumno">
