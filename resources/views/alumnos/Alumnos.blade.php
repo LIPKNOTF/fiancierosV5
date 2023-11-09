@@ -208,7 +208,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form>
+
             <!-- EMPIEZA EL FORMULARIO -->
 
 
@@ -224,6 +224,7 @@
                 <input placeholder="Apellido Paterno" v-model="apellido_p" class="form-control " disabled>
 
                 <label class="fw-bold mt-2">FOLIO</label>
+                
                 <input placeholder="Folio" v-model="folio" @input="convertirMayusculas" disabled required type="text" class="form-control">
 
               </div>
@@ -240,7 +241,7 @@
                 <input placeholder="Apellido Materno" v-model="apellido_m" class="form-control " disabled>
 
                 <label class="fw-bold mt-2">FECHA</label>
-                <input placeholder="Fecha" v-model="fecha" autofocus required type="date" class="form-control">
+                <input placeholder="Fecha" v-model="fecha" autofocus  type="date" class="form-control">
               </div>
 
               <div class="col-6 mb-3 " >
@@ -298,7 +299,7 @@
 
             </div>
             <!-- TERMINA EL FORMULARIO -->
-          </form>
+          
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>

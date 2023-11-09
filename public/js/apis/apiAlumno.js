@@ -485,22 +485,31 @@ function init() {
                         
                     }
                     if (encontrado===0) {
-                        this.$http.get(apiClav+'/'+this.id_clave).then(function(json){
-                            consultaClave={
-                                id_clave:json.data.id_clave,
-                                cuota:json.data.precio,
-                                cantidad:1,
-                                importe:json.data.precio,
-                            };
-                            this.claveConsulta.push(consultaClave);
-                            this.cantidades.push(1);
-                            this.id_clave='';
-                        });
+                        var pruebas = {};
+                            this.claves_p.forEach(claves => {
+                                if (this.id_clave === claves.id) {
+                                    pruebas.push(claves);
+                                    console.log(pruebas);
+                                }
+                            });
+                            
+                        }
+                        // this.$http.get(apiClav+'/'+this.id_clave).then(function(json){
+                        //     consultaClave={
+                        //         id_clave:json.data.id_clave,
+                        //         cuota:json.data.precio,
+                        //         cantidad:1,
+                        //         importe:json.data.precio,
+                        //     };
+                        //     this.claveConsulta.push(consultaClave);
+                        //     this.cantidades.push(1);
+                        //     this.id_clave='';
+                        // });
                         
                     }
 
-                }
-            },
+                },
+            
 
             actualizarAlumno: function () {
                 let alumno = {

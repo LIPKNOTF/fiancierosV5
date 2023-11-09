@@ -12,8 +12,8 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script type="text/javascript" src="{{ asset('js/vue.js') }}"></script>
-    <script src="https://unpkg.com/vue-multiselect@2.1.6"></script>
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <!-- <script src="https://unpkg.com/vue-multiselect@2.1.6"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> -->
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -131,6 +131,8 @@
     <script src="js/moment.min.js"></script>
     <script src="js/moment-with-locales.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery.js"></script>
 
 
    

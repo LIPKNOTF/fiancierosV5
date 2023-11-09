@@ -138,6 +138,13 @@ function init() {
                 }
             },
 
+            saveXML:function () {
+                
+                
+                    alert("hola")
+                
+            },
+
             showConcentrado: function (id) {
                 this.agregando = false;
                 this.id = id;
