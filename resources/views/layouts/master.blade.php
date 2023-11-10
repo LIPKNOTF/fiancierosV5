@@ -93,7 +93,6 @@
         <!-- <button class="btn-modal" id="open-modal">Agregar
         </button>
         <table id="example" class="tabla display nowrap" style="width:100%">
-            <table id="tab" class="tabla display nowrap" style="width:100%">
       <thead class="fondo-negro">
         <tr>
           <th class="boder-inicio ">Matricula</th>
@@ -124,111 +123,20 @@
           </td>
         </tr>
       </tbody>
-    </table>
-  </div>
-            <thead class="fondo-negro">
-                <tr>
-                    <th class="boder-inicio ">Nombres</th>
-                    <th>Apellido P.</th>
-                    <th>Apellido M.</th>
-                    <th>CURP</th>
-                    <th>NSS</th>
-                    <th>Grado</th>
-                    <th>Grupo</th>
-                    <th>Carrera</th>
-                    <th>Matricula</th>
-                    <th>Tutor</th>
-                    <th>Telefono</th>
-                    <th>Direccion</th>
-                    <th class="boder-fin">ACCIONES</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Oscar Aldair</td>
-                    <td>Matu</td>
-                    <td>Miranda</td>
-                    <td>123456789012345678</td>
-                    <td>1234567890123</td>
-                    <td>4</td>
-                    <td>A</td>
-                    <td>Tics</td>
-                    <td>20212299</td>
-                    <td>Julia Marizol</td>
-                    <td>9881054669</td>
-                    <td>Calle35x42y44</td>
-                    <td>
-                        <button class="btn-edit"><i class="fa-solid fa-pen"></i></button>
-                        <button class="btn-delete"><i class="fa-solid fa-trash-can"></i></button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+    </table>-->
 
-        <div id="modal" class="modal">
-            <div class="modal-body">
-                <div>
-                    Agregar Producto
-                    <span class="close">
-                        <i class="fa-solid fa-xmark"></i>
-                    </span>
-                </div>
-                <div>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                </div>
-                <button>Guardar<i class="fa-solid fa-floppy-disk"></i></button>
-            </div>
-        </div> -->
+            
     </main>
     <script src="js/moment.min.js"></script>
     <script src="js/moment-with-locales.min.js"></script>
     {{-- sweft --}}
     <script src="js/sweetalert2.all.min.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
-    <script src="js/jquery.min.js"></script>
     <script src="https://unpkg.com/vue-select@3.0.0"></script>
 </body>
 @stack('scripts')
 <script>
-    $(document).ready(function() {
-        $('#myTableAlumnos').DataTable({
-            responsive: {
-                details: {
-                    type: 'column',
-                    target: -1
-                }
-            },
-            language: {
-                searchPlaceholder: "Buscar",
-                search: "Buscar:",
-                zeroRecords: "No se encontraron resultados",
-                emptyTable: "No hay datos disponibles en la tabla",
-                infoEmpty: "Mostrando 0 registros de un total de 0",
-                infoFiltered: "(filtrado de un total de MAX registros)",
-                example_info: "Se muestran 0 de 0 un total de 0",
-                sInfo: "<span style='margin-left: 2rem;'>Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros</span>",
-                lengthMenu: "Mostrar _MENU_",
-                paginate: {
-                    previous: "Anterior",
-                    next: "Siguiente"
-                }
-
-            },
-            columnDefs: [{
-                className: 'control',
-                orderable: false,
-                targets: -1
-            }],
-            "lengthMenu": [8, 10, 25, 50],
-            "pageLength": 8
-        });
-    });
+   
 </script>
 
 </html>

@@ -113,7 +113,7 @@ tr:last-child td:last-child {
 td:last-child {
     background: var(--var-color-negro);
     padding: 0.5rem;
-    width: 7.8rem;
+    width: auto;
 }
 
 tr:hover td {
