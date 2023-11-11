@@ -1,103 +1,76 @@
-@extends('layouts.app')
+@extends('layouts.master')
 @section('content')
 <div id="apiConsulta">
-<div class="card">
-<div class="card-body">
-    <div class="row justify-content-center">
-       
-    
-    <div class="card-header text-center fw-bold text-white" style="background-color: #21618C; margin-bottom: 10px; border-radius: 5px;">
-  <h4 class="mb-0">
-    <i class="fa-solid fa-ticket" style="margin-right: 5px;"></i>
-  {{ __('MODULO DE CONSULTAS') }}
-  </h4>
-</div>
+  <div class="card">
 
 
-<div class="text-center mb-3">
-  <div class="d-flex justify-content-center">
-    <button type="button" class="btn btn-outline-success btn-sm text-white text-center" style="background-color: #28a717;" @click="mostrarModal()">
-      <i class="fa-solid fa-ticket"></i> AGREGAR UNA NUEVA CONSULTA
-    </button>
-  </div>
-</div>
 
-<div class="text-center">
-  <div class="col-md-6 d-inline-block">
-    <div class="input-group">
+    <legend>
+      <h1>&nbsp; Consulta &nbsp;</h1>
+    </legend>
+
+    <button class="btn-modal" @click="mostrarModal()">Agregar</button>
+
+    <div class="text-center">
+
       <span class="input-group-text">Fecha Inicial</span>
       <input placeholder="FECHA DE TERMINO" v-model="fecha_f" type="date" class="form-control" />
       <span class="input-group-text">Fecha Final</span>
       <input placeholder="FECHA INICIO" v-model="fecha_i" type="date" class="form-control" />
-      <button type="button" class="btn btn-outline-success btn-sm text-white text-center" style="background-color: #28a717;" @click="limpiar()">
-        <i class="fa-solid fa-broom"></i> LIMPIAR
-      </button>
+
     </div>
+
+
+    <table id="myTable" class="tabla display nowrap" style="width:100%">
+      <thead class="fondo-negro">
+        <tr>
+          <th class="boder-inicio">Matricula</th>
+          <th class="text-center">Nombre</th>
+          <th class="text-center">AP. Paterno</th>
+          <th class="text-center">AP. Materno</th>
+          <th class="text-center">Cantidad</th>
+          <th class="text-center">Clave</th>
+          <th class="text-center">Concepto</th>
+          <th class="text-center">Total</th>
+          <th class="text-center">Fecha</th>
+          <th class="text-center">Folio</th>
+          <th class="text-center">Total</th>
+          <th class="boder-fin">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="con in filtrarfechas ">
+          <td>@{{con.alumno.matricula}}</td>
+          <td>@{{con.alumno.nombres}}</td>
+          <td>@{{con.alumno.apellido_p}}</td>
+          <td>@{{con.alumno.apellido_m}}</td>
+          <td>@{{con.cantidad}}</td>
+          <td>@{{con.claves_p ? con.claves_p.clave : 'Sin Clave'}}</td>
+          <td>@{{con.claves_p ? con.claves_p.concepto : 'Sin Concepto'}}</td>
+          <td>@{{con.total}}</td>
+          <td>@{{con.fecha}}</td>
+          <td>@{{con.folio}}</td>
+          <td>@{{con.total}}</td>
+          <td>
+            <button class="btn-edit" @click="editarConsulta(con.id)"><i class="fa-solid fa-pen"></i></button>
+            <button class="btn-delete" @click="eliminarConsulta(con.id)"><i class="fa-solid fa-trash-can"></i></button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
-</div>
 
-
-<table id="myTable" class="table table-bordered table-striped table-hover mt-4 ">
-  <thead class="table-primary"> 
-    <tr>
-    <th scope="col" class="text-center">Matricula</th>
-      <th scope="col" class="text-center">Nombre</th>
-      <th scope="col" class="text-center">AP. Paterno</th>
-      <th scope="col" class="text-center">AP. Materno</th>
-      <th scope="col" class="text-center">Cantidad</th>
-      <th scope="col" class="text-center">Clave</th>
-      <th scope="col" class="text-center">Concepto</th>
-      <th scope="col" class="text-center">Total</th>
-     
-      <th scope="col" class="text-center">Fecha</th>
-      <th scope="col" class="text-center">Folio</th>
-      <th scope="col" class="text-center">Total</th>
-      <th scope="col" class="text-center">Acciones</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr v-for="con in filtrarfechas ">
-     <td class="text-center">@{{con.alumno.matricula}}</td>
-      <td class="text-center">@{{con.alumno.nombres}}</td>
-      <td class="text-center">@{{con.alumno.apellido_p}}</td>
-      <td class="text-center">@{{con.alumno.apellido_m}}</td>
-      <td class="text-center">@{{con.cantidad}}</td>
-      <td class="text-center">@{{con.claves_p ? con.claves_p.clave : 'Sin Clave'}}</td>
-      <td class="text-center">@{{con.claves_p ? con.claves_p.concepto : 'Sin Concepto'}}</td>
-      <td class="text-center">@{{con.total}}</td>
-      <td class="text-center">@{{con.fecha}}</td>
-      <td class="text-center">@{{con.folio}}</td>
-      <td class="text-center">@{{con.total}}</td>
-      
-      <td class="text-center">
-        <div class="btn-group">
-  <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
- Acciones
-  </button>
-  <ul class="dropdown-menu">
-    <li><a class="dropdown-item"  @click="editarConsulta(con.id)"><i class="fa-solid fa-pen-to-square"></i> Editar</a></li>
-    <li><a class="dropdown-item"  @click="eliminarConsulta(con.id)"><i class="fa-solid fa-trash"></i> Eliminar</a></li>
-  </ul>
-</div>
-      </td>
-    </tr>
-  </tbody>
-</table>
-</div>
-</div>
-</div>
-
-<!-- VENTANA MODA -->
-<div class="modal fade" id="modalConsulta" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header text-white" :style="agregando ? 'background-color: #28a717;' : 'background-color: #f8be10;'">
-        <h1 class="modal-title fs-5 text-center fw-bold" id="staticBackdropLabel" v-if="agregando">AGREGAR UNA CONSULTA</h1>
-        <h1 class="modal-title fs-5 text-center fw-bold" id="staticBackdropLabel" v-else>EDITAR UNA CONSULTA</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-      <form>
+  <!-- VENTANA MODA -->
+  <div class="modal fade" id="modalConsulta" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header text-white" :style="agregando ? 'background-color: #28a717;' : 'background-color: #f8be10;'">
+          <h1 class="modal-title fs-5 text-center fw-bold" id="staticBackdropLabel" v-if="agregando">AGREGAR UNA CONSULTA</h1>
+          <h1 class="modal-title fs-5 text-center fw-bold" id="staticBackdropLabel" v-else>EDITAR UNA CONSULTA</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
             <!-- EMPIEZA EL FORMULARIO -->
 
 
@@ -106,19 +79,19 @@
 
               <div class="form-group col-6">
 
-              <label class="fw-bold mt-2">FOLIO</label>
-              <span>@{{folio}}</span>
+                <label class="fw-bold mt-2">FOLIO</label>
+                <span>@{{folio}}</span>
                 <input placeholder="Folio" v-model="folio" @input="convertirMayusculas" disabled required type="text" class="form-control">
 
                 <label class="fw-bold mt-2">ALUMNO</label>
                 <v-select v-model="id_alumno" :reduce="alumno => alumno.id" :options="alumnos" label="matricula"></v-select>
 
-                
+
 
               </div>
 
 
-              
+
               <div class="form-group col-6 ">
 
                 <label class="fw-bold mt-2">FECHA</label>
@@ -132,7 +105,7 @@
 
             </div>
 
-              <div class="row">
+            <div class="row">
               <div class="form-group mt-4">
 
                 <table class="table table-stripped table-hover table-responsive">
@@ -147,10 +120,10 @@
                   </thead>
                   <tbody>
                     <tr v-for="(row,index) in claveConsulta">
-                      <td><input type="number" class="form-control"  v-model="cantidades[index]" min="1"></td>
+                      <td><input type="number" class="form-control" v-model="cantidades[index]" min="1"></td>
                       <td>@{{row.clave}}</td>
-                      <td><input type="number" class="form-control"  v-model="cuotasObtenidas[index]"></td>
-                      <td >@{{calcularImporte(index)}}</td>
+                      <td><input type="number" class="form-control" v-model="cuotasObtenidas[index]"></td>
+                      <td>@{{calcularImporte(index)}}</td>
                       <td><button class="btn btn-danger" @click="removeItem(index)"><i class="fa-solid fa-trash"></i></button></td>
                     </tr>
                   </tbody>
@@ -158,12 +131,12 @@
 
 
               </div>
-              </div>
+            </div>
 
 
-              <div class="form-group">
-                
-                <div class="col-md-8   mx-auto ">
+            <div class="form-group">
+
+              <div class="col-md-8   mx-auto ">
                 <div class="card">
                   <div class="card-body ">
                     <span class="fw-bold">Total a pagar es de: @{{subTotal}}</span> <br>
@@ -171,16 +144,16 @@
 
                   </div>
                 </div>
-                </div>
               </div>
-
-
-
-
             </div>
-            <!-- TERMINA EL FORMULARIO -->
-          </form>
-      
+
+
+
+
+        </div>
+        <!-- TERMINA EL FORMULARIO -->
+        </form>
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
@@ -193,7 +166,7 @@
 </div>
 
 @endsection
- 
+
 
 @push('scripts')
 <script src="js/bootstrap.bundle.min.js"></script>

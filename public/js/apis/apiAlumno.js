@@ -179,30 +179,13 @@ function init() {
                                             // No hacer nada si es la columna de acciones
                                             return;
                                         }
-                                        var input = $(
-                                            '<input type="text" placeholder="Filtrar">'
-                                        )
-                                            .appendTo(header)
-                                            .on(
-                                                "keyup change clear",
-                                                function () {
-                                                    if (
-                                                        column.search() !==
-                                                        this.value
-                                                    ) {
-                                                        column
-                                                            .search(this.value)
-                                                            .draw();
-                                                    }
-                                                }
-                                            );
                                     });
                             },
                             responsive: {
                                 details: {
-                                    type: "column",
-                                    target: -1,
-                                },
+                                    type: 'inline', // Cambiado de 'column' a 'inline'
+                                    target: ':not(:last-child)' // Excluir la última columna
+                                }
                             },
                             language: {
                                 searchPlaceholder: "Buscar",
@@ -223,14 +206,8 @@ function init() {
                                     next: "Siguiente",
                                 },
                             },
-                            columnDefs: [
-                                {
-                                    className: "control",
-                                    orderable: false,
-                                    targets: -1,
-                                }
-                            ],
-                            "lengthMenu": [8, 10, 25, 50],
+
+                            "lengthMenu": [8, 15, 25, 50],
                             "pageLength": 8,
                         });
                     }

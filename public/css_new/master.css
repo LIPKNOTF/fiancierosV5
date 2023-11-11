@@ -55,7 +55,9 @@ a {
 .fa-paste,
 .fa-book,
 .fa-magnifying-glass,
-.fa-right-to-bracket {
+.fa-right-to-bracket,
+.fa-right-from-bracket,
+.fa-shield-halved {
     color: var(--var-color-gris-blanco);
     font-size: 1.3rem;
     margin: 0.5rem;
@@ -67,10 +69,13 @@ a {
     color: var(--var-color-verde);
 }
 
-.fa-right-to-bracket:hover {
+.rojo {
     color: var(--var-color-rojo);
 }
 
+.verde {
+    color: var(--var-color-verde);
+}
 
 .contenedor {
     padding: 1rem;
@@ -79,6 +84,7 @@ a {
     text-align: center;
     border-radius: var(--var-borde-radius);
     box-shadow: 0px 0 10px #0e0d0d;
+    height: auto;
 }
 
 /* Cosas Para Tabla */
@@ -139,10 +145,12 @@ tr:hover td:nth-child(1) {
 }
 
 .container {
-    max-width: 1920px
+    max-width: 1920px;
+
 }
+
 div.dataTables_wrapper div.dataTables_filter {
-    margin-bottom: 1rem; /* Ajusta la cantidad de margen según tus preferencias */
+    margin-bottom: 1rem;
 }
 
 /* bottones */
@@ -186,6 +194,7 @@ div.dataTables_wrapper div.dataTables_filter {
 .btn-delete:active {
     background: #861911;
 }
+
 /* Estilos para la ventana modal */
 .modal {
     display: none;
@@ -217,7 +226,8 @@ div.dataTables_wrapper div.dataTables_filter {
 .close:hover {
     color: #f00;
 }
-.modal{
+
+.modal {
     display: none;
     position: fixed;
     z-index: 1;
@@ -228,6 +238,7 @@ div.dataTables_wrapper div.dataTables_filter {
     overflow: auto;
     background-color: #26292f01;
 }
+
 .modal-body {
     width: 50%;
     background-color: var(--var-color-gris);
@@ -237,7 +248,8 @@ div.dataTables_wrapper div.dataTables_filter {
     border-radius: var(--var-borde-radius);
     border: 1px solid var(--var-color-balnco);
 }
-.btn-modal{
+
+.btn-modal {
     color: var(--var-color-balnco);
     margin: 1rem;
     background-color: #31b131;
@@ -246,6 +258,134 @@ div.dataTables_wrapper div.dataTables_filter {
     border-radius: var(--var-borde-radius);
     border: 1px solid var(--var-color-balnco);
 }
-.btn-modal:hover{
+
+.btn-modal:hover {
     background-color: #119711;
+}
+
+/* login */
+
+.input {
+    border: none;
+    padding-top: .4rem;
+    padding-bottom: .4rem;
+    border-radius: .4rem;
+    background-color: var(--var-color-gris-blanco);
+    text-align: center;
+}
+
+.btn-login {
+    cursor: pointer;
+    color: var(--var-color-balnco);
+    margin: 1rem;
+    background-color: #31b131;
+    padding: .5rem;
+    width: 8rem;
+    border-radius: var(--var-borde-radius);
+    border: 1px solid var(--var-color-balnco);
+    margin-left: 2.3rem;
+}
+
+.btn-login:hover {
+    background-color: #119711;
+}
+
+.mt {
+    margin-top: 2rem;
+}
+
+.mb {
+    margin-top: 13rem;
+    margin-bottom: 4rem;
+}
+
+.login {
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.carta {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 12rem;
+    height: 10rem;
+    border: 1px solid #ccc;
+    border-radius: 1rem;
+    cursor: pointer;
+    color: var(--var-color-balnco);
+}
+
+.card-body {
+    margin-top: 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+    gap: 2rem;
+}
+
+.carta .fa-wallet,
+.carta .fa-graduation-cap,
+.carta .fa-key,
+.carta .fa-paste,
+.carta .fa-book,
+.carta .fa-clipboard,
+.carta .fa-database,
+.carta .fa-rectangle-list,
+.carta .fa-user-graduate,
+.carta .fa-shield-halved,
+.carta .fa-house,
+.carta .fa-receipt,
+.carta .fa-file-code,
+.carta .fa-magnifying-glass,
+.carta .fa-right-to-bracket,
+.carta .fa-right-from-bracket {
+    font-size: 4rem;
+}
+
+.carta:hover {
+    color: var(--var-color-verde);
+    border: 1px solid var(--var-color-verde);
+}
+
+.contador {
+    margin: 1rem;
+}
+
+/* Agrega este estilo para la ventana de carga */
+.loader-overlay {
+    transition: .5s;
+    position: fixed;
+    top: 0;
+    left: 0;
+    margin-top: 5.5rem;
+    width: 100%;
+    height: 70rem;
+    background: var(--var-color-negro);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.loader {
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #3498db;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+
+.hover-rojo {
+    color: var(--var-color-rojo);
+}
+.hover-rojo:hover{
+    color: var(--var-color-rojo);
 }

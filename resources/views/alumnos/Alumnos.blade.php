@@ -57,24 +57,15 @@
               </div>
             </div>
           </div>
-
-
         </div>
         <!-- TERMINA BOTON PARA CARGAR A EXCEL -->
-        <div class="d-flex justify-content-between align-items-center">
-          <button type="button" class="btn btn-outline-success btn-sm text-white text-center" style="background-color: #28a717;" @click="mostrarModal()">
-            <i class="fa-sharp fa-regular fa-address-card"></i> AGREGAR UN NUEVO ALUMNO
-          </button>
-          <div class="mx-2"></div> <!-- Espacio entre los botones -->
-          <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
-            <i class="fa-solid fa-file-excel"></i> CARGAR ARCHIVO EXCEL
-          </button>
-        </div>
+        <button class="btn-modal" @click="mostrarModal()">Agregar</button>
+        <button class="btn-modal"  data-bs-toggle="modal" data-bs-target="#exampleModal">Inportar</button>
 
         <table id="myTableAlumnos" class="tabla display nowrap" style="width:100%">
           <thead class="fondo-negro">
             <tr>
-              <th class="boder-inicio ">Matricula</th>
+              <th class="boder-inicio">Matricula</th>
               <th>Nombres</th>
               <th>AP. Paterno</th>
               <th>AP. Materno</th>
