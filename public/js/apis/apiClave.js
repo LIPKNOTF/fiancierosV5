@@ -13,13 +13,12 @@ function init() {
 
         el: "#apiclaves",
         data: {
-            claves:[],
+            claves: [],
             id: "",
             clave: "",
             concepto: "",
-            precio:"",
+            precio: "",
             agregando: "true",
-          
         },
 
         created: function () {
@@ -41,90 +40,61 @@ function init() {
             },
             //FIN METODO PARA CONVERTIR EN MAYUSCULAS.
             dataClave() {
-              $(document).ready(function () {
-                  var table = $("#myTableClave");
-                  if (!table.hasClass("dataTable")) {
-                      table.DataTable({
-                          initComplete: function () {
-                              this.api()
-                                  .columns()
-                                  .every(function (index) {
-                                      var column = this;
-                                      var header = $(column.header());
-                                      if (header.hasClass("actions")) {
-                                          // No hacer nada si es la columna de acciones
-                                          return;
-                                      }
-                                      var input = $(
-                                          '<input type="text" class="text-center form-control form-control-sm mb-2" placeholder="Filtrar">'
-                                      )
-                                          .appendTo(header)
-                                          .on(
-                                              "keyup change clear",
-                                              function () {
-                                                  if (
-                                                      column.search() !==
-                                                      this.value
-                                                  ) {
-                                                      column
-                                                          .search(this.value)
-                                                          .draw();
-                                                  }
-                                              }
-                                          );
-                                  });
-                          },
-                          language: {
-                              sProcessing: "Procesando...",
-                              sLengthMenu: "Mostrar _MENU_ registros",
-                              sZeroRecords: "No se encontraron resultados",
-                              sEmptyTable:
-                                  "Ningún dato disponible en esta tabla",
-                              sInfo: "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-                              sInfoEmpty:
-                                  "Mostrando registros del 0 al 0 de un total de 0 registros",
-                              sInfoFiltered:
-                                  "(filtrado de un total de _MAX_ registros)",
-                              sInfoPostFix: "",
-                              sSearch: "Buscar:",
-                              sUrl: "",
-                              sInfoThousands: ",",
-                              sLoadingRecords: "Cargando...",
-                              oPaginate: {
-                                  sFirst: "Primero",
-                                  sLast: "Último",
-                                  sNext: "Siguiente",
-                                  sPrevious: "Anterior",
-                              },
-                              oAria: {
-                                  sSortAscending:
-                                      ": Activar para ordenar la columna de manera ascendente",
-                                  sSortDescending:
-                                      ": Activar para ordenar la columna de manera descendente",
-                              },
-                          },
-                          columnDefs: [
-                              {
-                                  targets: -1,
-                                  className: "actions",
-                                  searchable: false,
-                              },
-                          ],
+                $(document).ready(function () {
+                    var table = $("#myTableClave");
+                    if (!table.hasClass("dataTable")) {
+                        table.DataTable({
+                            initComplete: function () {
+                                this.api()
+                                    .columns()
+                                    .every(function (index) {
+                                        var column = this;
+                                        var header = $(column.header());
+                                        if (header.hasClass("actions")) {
+                                            // No hacer nada si es la columna de acciones
+                                            return;
+                                        }
+                                    });
+                            },
+                            responsive: {
+                                details: {
+                                    type: "inline", // Cambiado de 'column' a 'inline'
+                                    target: ":not(:last-child)", // Excluir la última columna
+                                },
+                            },
+                            language: {
+                                searchPlaceholder: "Buscar",
+                                search: "Buscar:",
+                                zeroRecords: "No se encontraron resultados",
+                                emptyTable:
+                                    "No hay datos disponibles en la tabla",
+                                infoEmpty:
+                                    "Mostrando 0 registros de un total de 0",
+                                infoFiltered:
+                                    "(filtrado de un total de MAX registros)",
+                                example_info:
+                                    "Se muestran 0 de 0 un total de 0",
+                                sInfo: "<span style='margin-left: 2rem;'>Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros</span>",
+                                lengthMenu: "Mostrar _MENU_",
+                                paginate: {
+                                    previous: "Anterior",
+                                    next: "Siguiente",
+                                },
+                            },
 
-                          pageLength: 5, // Número de registros por página
-                          lengthMenu: [5, 10, 25, 50], // Opciones de número de registros por página
-                      });
-                  }
-              });
-          },
-          // fin de la funcion para el complemento de dataTables
+                            "lengthMenu": [7, 10, 25, 50],
+                            "pageLength": 7,
+                        });
+                    }
+                });
+            },
+            // fin de la funcion para el complemento de dataTables
             mostrarModal: function () {
                 this.agregando = true;
                 this.id = "";
                 this.clave = "";
                 this.concepto = "";
                 this.precio = "";
-              
 
                 $("#modalClave").modal("show");
             },
@@ -135,13 +105,8 @@ function init() {
                     clave: this.clave,
                     concepto: this.concepto,
                     precio: this.precio,
-                    
                 };
-                if (
-                    !this.clave ||
-                    !this.precio ||
-                    !this.concepto 
-                ) {
+                if (!this.clave || !this.precio || !this.concepto) {
                     Swal.fire({
                         icon: "warning",
                         title: "OCURRIO UN PROBLEMA",
@@ -156,7 +121,6 @@ function init() {
                         this.clave = "";
                         this.concepto = "";
                         this.precio = "";
-                       
 
                         Swal.fire({
                             icon: "success",
@@ -179,7 +143,6 @@ function init() {
                     this.clave = json.data.clave;
                     this.concepto = json.data.concepto;
                     this.precio = json.data.precio;
-
                 });
                 $("#modalClave").modal("show");
             },
@@ -192,10 +155,7 @@ function init() {
                     concepto: this.concepto,
                     precio: this.precio,
                 };
-                if (
-                    !this.clave ||
-                    !this.concepto 
-                ) {
+                if (!this.clave || !this.concepto) {
                     Swal.fire({
                         icon: "warning",
                         title: "OCURRIO UN PROBLEMA",
@@ -220,18 +180,13 @@ function init() {
                 }
             },
 
-            eliminarClave: function (
-                id,
-                clave,
-                concepto,
-            ) {
+            eliminarClave: function (id, clave, concepto) {
                 Swal.fire({
                     title:
                         "Se perderan todos los registros con la clave:  " +
                         clave +
                         " " +
                         "Y que con el concepto:  " +
-
                         concepto +
                         " ",
                     icon: "warning",

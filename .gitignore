@@ -14,3 +14,6 @@ yarn-error.log
 /.idea
 /.vscode
 .env.example
+app/Providers/RouteServiceProvider.php
+routes/web.php
+routes/web.php
