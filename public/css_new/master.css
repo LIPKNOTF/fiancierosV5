@@ -146,7 +146,6 @@ tr:hover td:nth-child(1) {
 
 .container {
     max-width: 1920px;
-
 }
 
 div.dataTables_wrapper div.dataTables_filter {
@@ -267,8 +266,8 @@ div.dataTables_wrapper div.dataTables_filter {
 
 .input {
     border: none;
-    padding-top: .4rem;
-    padding-bottom: .4rem;
+    padding-top: .3rem;
+    padding-bottom: .3rem;
     border-radius: .4rem;
     background-color: var(--var-color-gris-blanco);
     text-align: center;
@@ -339,7 +338,7 @@ div.dataTables_wrapper div.dataTables_filter {
 }
 
 .psc {
-    color:#22242a;    
+    color: #22242a;
     padding-bottom: 4rem;
 }
 
@@ -426,6 +425,20 @@ div.dataTables_wrapper div.dataTables_filter {
     }
 }
 
+.contenedor-loader {
+    padding: 1rem;
+    margin-top: -16rem;
+    background-color: var(--var-color-gris);
+    border-radius: var(--var-borde-radius);
+    box-shadow: 0px 0 10px #0e0d0d;
+    width: 115rem;
+    height: 82vh;
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: .3s;
+}
 
 .hover-rojo {
     color: var(--var-color-rojo);
@@ -435,23 +448,50 @@ div.dataTables_wrapper div.dataTables_filter {
     color: var(--var-color-rojo);
 }
 
-@media (min-width: 901px) and (max-width: 1400px){
+@media (min-width: 1001px) and (max-width: 1400px) {
     .login {
         height: 91vh;
     }
+
     .login-datos {
         padding: 5rem;
     }
+    .contenedor-loader {
+        margin-top: -33rem;
+        width: 82rem;
+        height: 80vh;
+    }
+}
+@media (min-width: 601px) and (max-width: 1000px) {
+    .login {
+        height: 94vh;
+    }
+
+    .login-datos {
+        padding: 5rem;
+    }
+    .contenedor-loader {
+        margin-top: -14rem;
+        width: 57rem;
+        height: 86vh;
+    }
 }
 
-@media (min-width: 100px) and (max-width: 900px){
+@media (min-width: 100px) and (max-width: 600px) {
     .login {
         height: 88vh;
     }
+
     .login-datos {
         padding: 3rem;
     }
+
     .psc {
         padding-bottom: 2rem;
+    }
+    .contenedor-loader {
+        margin-top: -17rem;
+        width: 82rem;
+        height: 80vh;
     }
 }

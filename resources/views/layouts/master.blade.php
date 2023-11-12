@@ -40,7 +40,9 @@
 
 <body>
     <div class="loader-overlay" id="loaderOverlay">
-        <div class="loader"></div>
+        <div class="contenedor-loader">
+            <div class="loader"></div>
+        </div>
     </div>
     @auth
     <div class="nav-principal">
@@ -75,7 +77,7 @@
             </a>
             <!-- Partidas -->
             <a href="{{ url('partida') }}" title="Partidas">
-                <i class="fa-solid fa-paste hover-rojo"></i>
+                <i class="fa-solid fa-paste hover-verde"></i>
             </a>
             <!-- Capitulos -->
             <a href="{{ url('capitulo') }}" title="Capitulos">
@@ -118,7 +120,6 @@
         // Muestra la ventana de carga
         function showLoader() {
             document.getElementById('loaderOverlay').style.display = 'flex';
-            ventana();
         }
 
         function hideLoader() {

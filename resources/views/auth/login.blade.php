@@ -7,7 +7,7 @@
         <H1 class="psc">PsC</H1>
         <div class="login-datos">
             <legend class="mb">
-                <h1>&nbsp; INICIAR SECION &nbsp;</h1>
+                <h1>&nbsp; INICIAR SESION &nbsp;</h1>
             </legend>
             <di class="mt">
                 <i class="fa-solid fa-user"></i>

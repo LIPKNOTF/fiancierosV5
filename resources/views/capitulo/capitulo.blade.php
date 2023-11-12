@@ -8,7 +8,7 @@
         Agregar
     </button>
 
-    <input type="text" placeholder="  Bucar (Codigo)" class="form-control" v-model="buscar">
+    <input type="text" placeholder="Bucar (Codigo)" class="input" v-model="buscar">
 
     <table id="TablaCapitulo" class="tabla display nowrap" style="width:100%">
         <thead class="fondo-negro">
