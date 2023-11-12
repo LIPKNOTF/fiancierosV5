@@ -17,6 +17,7 @@ use App\Http\Controller\ConsolidadoDeMesesController;
 use App\Http\Controller\PolizaDeIngresosController;
 use App\Http\Controller\FlujoDeEfectivoController;
 use App\Http\Controller\FormatoConciliacionController;
+use App\Http\Controller\ControlDeIngresosController;
 
 /*
 |--------------------------------------------------------------------------
@@ -92,5 +93,7 @@ Route::get('Consolidadopdf', 'ConsolidadoDeMesesController@Consolidado');
 Route::get('Polizapdf', 'PolizaDeIngresosController@Poliza');
 Route::get('FlujoDeEfectivopdf', 'FlujoDeEfectivoController@Flujo');
 Route::get('Conciliacionpdf','FormatoConciliacionController@Conciliacion');
+Route::get('ControlDeIngresospdf','ControlDeIngresosController@Ingresos');
+
 
 Route::view('Usuarios','usuarios/usuario');
