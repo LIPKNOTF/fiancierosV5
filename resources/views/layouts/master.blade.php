@@ -69,11 +69,11 @@
             </a>
             <!-- Lectura xml -->
             <a href="{{ url('concentrado') }}" title="Lector XML">
-                <i class="fa-solid fa-file-code hover-rojo"></i>
+                <i class="fa-solid fa-file-code color-rojo"></i>
             </a>
             <!-- Consentrados -->
             <a href="{{ url('listConcentrado') }}" title="listConcentrado">
-                <i class="fa-solid fa-database hover-rojo"></i>
+                <i class="fa-solid fa-database color-rojo"></i>
             </a>
             <!-- Partidas -->
             <a href="{{ url('partida') }}" title="Partidas">

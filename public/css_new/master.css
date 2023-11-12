@@ -440,12 +440,12 @@ div.dataTables_wrapper div.dataTables_filter {
     transition: .3s;
 }
 
-.hover-rojo {
+.color-rojo {
     color: var(--var-color-rojo);
 }
 
-.hover-rojo:hover {
-    color: var(--var-color-rojo);
+.color-verde{
+    color: var(--var-color-verde);
 }
 
 @media (min-width: 1001px) and (max-width: 1400px) {

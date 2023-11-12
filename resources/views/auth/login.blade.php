@@ -12,11 +12,22 @@
             <di class="mt">
                 <i class="fa-solid fa-user"></i>
 
-                <input id="email" type="email" class="input @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="Correo"  autofocus>
+                <input id="email" type="email" class="input @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="Correo" autofocus>
 
                 @error('email')
-                <span class="invalid-feedback" role="alert">
+                <br>
+                <br>
+                <span class="color-rojo" role="alert">
+                    <i class="fa-solid fa-xmark"></i>
                     <strong>{{ $message }}</strong>
+                </span>
+                @enderror
+                @error('password')
+                <br>
+                <br>
+                <span class="color-verde" role="alert">
+                    <i class="fa-solid fa-check"></i>
+                    <strong>el correo es correcto.</strong>
                 </span>
                 @enderror
 
@@ -27,7 +38,10 @@
                 <input id="password" type="password" class="input @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="Contraseña">
 
                 @error('password')
-                <span class="invalid-feedback" role="alert">
+                <br>
+                <br>
+                <span class="color-rojo" role="alert">
+                    <i class="fa-solid fa-xmark"></i>
                     <strong>{{ $message }}</strong>
                 </span>
                 @enderror
