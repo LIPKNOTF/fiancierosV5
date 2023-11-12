@@ -7,7 +7,7 @@
         <H1 class="psc">PsC</H1>
         <div class="login-datos">
             <legend class="mb">
-                <h1>&nbsp; Iniciar Sesion &nbsp;</h1>
+                <h1>&nbsp; INICIAR SECION &nbsp;</h1>
             </legend>
             <di class="mt">
                 <i class="fa-solid fa-user"></i>
@@ -24,7 +24,7 @@
 
             <div class="mt">
                 <i class="fa-solid fa-lock"></i>
-                <input id="password" type="password" class="input @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="Contrasenia">
+                <input id="password" type="password" class="input @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="Contraseña">
 
                 @error('password')
                 <span class="invalid-feedback" role="alert">
