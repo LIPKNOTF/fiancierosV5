@@ -18,10 +18,10 @@ function init() {
         data: {
             alumnos: [],
             consultas: [],
-            claves_p:[],
-            claveConsulta:[],
-            cantidades:[],
-            cuotasObtenidas:[],
+            claves_p: [],
+            claveConsulta: [],
+            cantidades: [],
+            cuotasObtenidas: [],
             id: "",
             matricula: "",
             nombres: "",
@@ -43,10 +43,8 @@ function init() {
             total: "",
             agregando: "true",
             id_clave: "",
-            auxSubTotal:'',
-            cantidad:'',
-
-          
+            auxSubTotal: "",
+            cantidad: "",
         },
 
         created: function () {
@@ -54,7 +52,6 @@ function init() {
             this.obtenerConsulta();
             this.obtenerClave_p();
             this.makeFolio();
-            
         },
 
         methods: {
@@ -63,11 +60,10 @@ function init() {
                     this.consultas = json.data;
                 });
             },
-            obtenerClave_p: function (){
+            obtenerClave_p: function () {
                 this.$http.get(apiClav).then(function (json) {
                     this.claves_p = json.data;
                 });
-
             },
             // fin de la funcion para el complemento de dataTables
             //METODO PARA CONVERTIR EN MAYUSCULAS.
@@ -169,83 +165,55 @@ function init() {
             //TERMINA DATABLES
 
             dataAlumno() {
-              $(document).ready(function () {
-                  var table = $("#myTableAlumnos");
-                  if (!table.hasClass("dataTable")) {
-                      table.DataTable({
-                          initComplete: function () {
-                              this.api()
-                                  .columns()
-                                  .every(function (index) {
-                                      var column = this;
-                                      var header = $(column.header());
-                                      if (header.hasClass("actions")) {
-                                          // No hacer nada si es la columna de acciones
-                                          return;
-                                      }
-                                      var input = $(
-                                          '<input type="text" class="text-center form-control form-control-sm mb-2" placeholder="Filtrar">'
-                                      )
-                                          .appendTo(header)
-                                          .on(
-                                              "keyup change clear",
-                                              function () {
-                                                  if (
-                                                      column.search() !==
-                                                      this.value
-                                                  ) {
-                                                      column
-                                                          .search(this.value)
-                                                          .draw();
-                                                  }
-                                              }
-                                          );
-                                  });
-                          },
-                          language: {
-                              sProcessing: "Procesando...",
-                              sLengthMenu: "Mostrar _MENU_ registros",
-                              sZeroRecords: "No se encontraron resultados",
-                              sEmptyTable:
-                                  "Ningún dato disponible en esta tabla",
-                              sInfo: "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-                              sInfoEmpty:
-                                  "Mostrando registros del 0 al 0 de un total de 0 registros",
-                              sInfoFiltered:
-                                  "(filtrado de un total de _MAX_ registros)",
-                              sInfoPostFix: "",
-                              sSearch: "Buscar:",
-                              sUrl: "",
-                              sInfoThousands: ",",
-                              sLoadingRecords: "Cargando...",
-                              oPaginate: {
-                                  sFirst: "Primero",
-                                  sLast: "Último",
-                                  sNext: "Siguiente",
-                                  sPrevious: "Anterior",
-                              },
-                              oAria: {
-                                  sSortAscending:
-                                      ": Activar para ordenar la columna de manera ascendente",
-                                  sSortDescending:
-                                      ": Activar para ordenar la columna de manera descendente",
-                              },
-                          },
-                          columnDefs: [
-                              {
-                                  targets: -1,
-                                  className: "actions",
-                                  searchable: false,
-                              },
-                          ],
+                $(document).ready(function () {
+                    var table = $("#myTableAlumnos");
+                    if (!table.hasClass("dataTable")) {
+                        table.DataTable({
+                            initComplete: function () {
+                                this.api()
+                                    .columns()
+                                    .every(function (index) {
+                                        var column = this;
+                                        var header = $(column.header());
+                                        if (header.hasClass("actions")) {
+                                            // No hacer nada si es la columna de acciones
+                                            return;
+                                        }
+                                    });
+                            },
+                            responsive: {
+                                details: {
+                                    type: 'inline', // Cambiado de 'column' a 'inline'
+                                    target: ':not(:last-child)' // Excluir la última columna
+                                }
+                            },
+                            language: {
+                                searchPlaceholder: "Buscar",
+                                search: "Buscar:",
+                                zeroRecords: "No se encontraron resultados",
+                                emptyTable:
+                                    "No hay datos disponibles en la tabla",
+                                infoEmpty:
+                                    "Mostrando 0 registros de un total de 0",
+                                infoFiltered:
+                                    "(filtrado de un total de MAX registros)",
+                                example_info:
+                                    "Se muestran 0 de 0 un total de 0",
+                                sInfo: "<span style='margin-left: 2rem;'>Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros</span>",
+                                lengthMenu: "Mostrar _MENU_",
+                                paginate: {
+                                    previous: "Anterior",
+                                    next: "Siguiente",
+                                },
+                            },
 
-                          pageLength: 5, // Número de registros por página
-                          lengthMenu: [5, 10, 25, 50], // Opciones de número de registros por página
-                      });
-                  }
-              });
-          },
-          // fin de la funcion para el complemento de dataTables
+                            "lengthMenu": [8, 15, 25, 50],
+                            "pageLength": 8,
+                        });
+                    }
+                });
+            },
+            // fin de la funcion para el complemento de dataTables
             mostrarModal: function () {
                 this.agregando = true;
                 this.id = "";
@@ -340,165 +308,153 @@ function init() {
                     this.id = json.data.id;
                     this.matricula = json.data.matricula;
                     this.nombres = json.data.nombres;
-                    this.apellido_p= json.data.apellido_p;
-                    this.apellido_m= json.data.apellido_m;
-                    
+                    this.apellido_p = json.data.apellido_p;
+                    this.apellido_m = json.data.apellido_m;
 
                     $("#modalConsulta").modal("show"); // Mostramos el modal dentro de la función anidada
                 });
             },
 
-            agregarConsulta: function() {
-              let pago={};
-              let detalles=[];
+            agregarConsulta: function () {
+                let pago = {};
+                let detalles = [];
 
-              for(i=0; i < this.claveConsulta.length; i++){
-                detalles.push({
-                    folio:this.folio,
-                    fecha:this.fecha,
-                    id_clave:this.claveConsulta[i].id_clave,
-                    cantidad:this.claveConsulta[i].cantidad,
-                    total:this.claveConsulta[i].total,
-                    
-                    
-                    
-                });
+                for (i = 0; i < this.claveConsulta.length; i++) {
+                    detalles.push({
+                        folio: this.folio,
+                        fecha: this.fecha,
+                        id_clave: this.claveConsulta[i].id_clave,
+                        cantidad: this.claveConsulta[i].cantidad,
+                        total: this.claveConsulta[i].total,
+                    });
 
-                 pago={
-                    id_alumno:this.id,
-                    folio:this.folio,
-                    fecha:this.fecha,
-                    total:this.subTotal,
-                    cantidad:this.numeroArticulos,
-                    id_clave:this.id_clave,
-                    detalles:detalles
-
+                    pago = {
+                        id_alumno: this.id,
+                        folio: this.folio,
+                        fecha: this.fecha,
+                        total: this.subTotal,
+                        cantidad: this.numeroArticulos,
+                        id_clave: this.id_clave,
+                        detalles: detalles,
+                    };
                 }
 
-              }
+                if (!this.fecha) {
+                    Swal.fire({
+                        icon: "warning",
+                        title: "OCURRIO UN PROBLEMA",
+                        text: "Existen campos vacios!",
+                        showConfirmButton: false,
+                        timer: 1000,
+                    });
+                } else {
+                    // AQUÍ USAS TU RUTA Y TU LET
+                    this.$http.post(apiCon, pago).then(function (json) {
+                        this.obtenerConsulta();
+                        this.id_alumno = "";
+                        this.importe = "";
+                        this.id_clave = "";
+                        this.cantidad = "";
+                        this.cuota = "";
+                        this.fecha = "";
+                        this.folio = "";
+                        this.total = "";
 
-              if (
-                
-                !this.fecha
-                
-              ) {
-                Swal.fire({
-                  icon: "warning",
-                  title: "OCURRIO UN PROBLEMA",
-                  text: "Existen campos vacios!",
-                  showConfirmButton: false,
-                  timer: 1000,
-                });
-              } else {
-                // AQUÍ USAS TU RUTA Y TU LET
-                this.$http.post(apiCon, pago).then(function(json) {
-                  this.obtenerConsulta();
-                  this.id_alumno = "";
-                  this.importe = "";
-                  this.id_clave = "";
-                  this.cantidad = "";
-                  this.cuota = "";
-                  this.fecha = "";
-                  this.folio = "";
-                  this.total = "";
-            
-                  Swal.fire({
-                    icon: "success",
-                    title: "GENIAL",
-                    text: "Se agrego la consulta con éxito!",
-                    showConfirmButton: false,
-                    timer: 1000,
-                  });
-                });
-                $("#modalConsulta").modal("hide");
-              }
+                        Swal.fire({
+                            icon: "success",
+                            title: "GENIAL",
+                            text: "Se agrego la consulta con éxito!",
+                            showConfirmButton: false,
+                            timer: 1000,
+                        });
+                    });
+                    $("#modalConsulta").modal("hide");
+                }
 
-            console.log(pago);
+                console.log(pago);
             },
 
-            getClave:function(id){
-                let encontrado=0;
+            getClave: function (id) {
+                let encontrado = 0;
                 if (this.id_clave) {
                     for (let i = 0; i < this.claveConsulta.length; i++) {
-                        if (this.id_clave===this.claveConsulta[i].id_clave) {
-                            encontrado=1;
+                        if (this.id_clave === this.claveConsulta[i].id_clave) {
+                            encontrado = 1;
                             this.claveConsulta[i].cantidad++;
                             this.cantidades[i]++;
                             break;
                         }
-                        
                     }
-                    
-                if(encontrado===0){
-                this.$http.get(apiClav+"/"+id).then(function(json){
-                    
-                    this.cuotasObtenidas.push(json.data.precio);
-                    
-                    let consultaHecha={
-                    id_clave:json.data.id,
-                    clave:json.data.clave,
-                    cuota:json.data.precio,
-                    cantidad:1,
-                    total:json.data.precio,
-                    
-                };
-                this.claveConsulta.push(consultaHecha);
-                this.cantidades.push(1);
-                });
-            }
-            // __________________________________
 
-        }
+                    if (encontrado === 0) {
+                        this.$http
+                            .get(apiClav + "/" + id)
+                            .then(function (json) {
+                                this.cuotasObtenidas.push(json.data.precio);
+
+                                let consultaHecha = {
+                                    id_clave: json.data.id,
+                                    clave: json.data.clave,
+                                    cuota: json.data.precio,
+                                    cantidad: 1,
+                                    total: json.data.precio,
+                                };
+                                this.claveConsulta.push(consultaHecha);
+                                this.cantidades.push(1);
+                            });
+                    }
+                    // __________________________________
+                }
             },
 
             // updatePrice(){
             //     // const cant = this.cantidades.map((item) => item.cantidad)
             //     // console.log(cant)
             //     const cuota = this.claveConsulta.map((item) => item.cuota)
-               
+
             //         console.log(cuota)
-                    
+
             //        const contidad = cuota * this.cantidad;
             //        this.importe = contidad;
             // },
 
-
-
-
-            removeItem:function(id){
-                this.claveConsulta.splice(id,1);
+            removeItem: function (id) {
+                this.claveConsulta.splice(id, 1);
             },
 
-            makeFolio:function(){
-                this.folio="DGETAYCM " + moment().format('7949993')+1;
+            makeFolio: function () {
+                this.folio = "DGETAYCM " + moment().format("7949993") + 1;
             },
 
-            findClave:function(){
-                
-                let encontrado=0;
-                if(this.id_clave){
+            findClave: function () {
+                let encontrado = 0;
+                if (this.id_clave) {
                     for (let i = 0; i < this.claveConsulta.length; i++) {
-                        encontrado=1;
+                        encontrado = 1;
                         this.claveConsulta[i].cantidad++;
                         this.cantidades[i]++;
                         break;
-                        
                     }
-                    if (encontrado===0) {
-                        this.$http.get(apiClav+'/'+this.id_clave).then(function(json){
-                            consultaClave={
-                                id_clave:json.data.id_clave,
-                                cuota:json.data.precio,
-                                cantidad:1,
-                                importe:json.data.precio,
-                            };
-                            this.claveConsulta.push(consultaClave);
-                            this.cantidades.push(1);
-                            this.id_clave='';
+                    if (encontrado === 0) {
+                        var pruebas = {};
+                        this.claves_p.forEach((claves) => {
+                            if (this.id_clave === claves.id) {
+                                pruebas.push(claves);
+                                console.log(pruebas);
+                            }
                         });
-                        
                     }
-
+                    // this.$http.get(apiClav+'/'+this.id_clave).then(function(json){
+                    //     consultaClave={
+                    //         id_clave:json.data.id_clave,
+                    //         cuota:json.data.precio,
+                    //         cantidad:1,
+                    //         importe:json.data.precio,
+                    //     };
+                    //     this.claveConsulta.push(consultaClave);
+                    //     this.cantidades.push(1);
+                    //     this.id_clave='';
+                    // });
                 }
             },
 
@@ -592,40 +548,36 @@ function init() {
             },
         },
         // fin de los methods
-        computed:{
-            calcularImporte(){
-                
-                return(id)=>{
-                    let total=0;
-                    total=this.cuotasObtenidas[id] * this.cantidades[id];
+        computed: {
+            calcularImporte() {
+                return (id) => {
+                    let total = 0;
+                    total = this.cuotasObtenidas[id] * this.cantidades[id];
 
-                    this.claveConsulta[id].total=total;
+                    this.claveConsulta[id].total = total;
 
-                    this.claveConsulta[id].cantidad=this.cantidades[id];
+                    this.claveConsulta[id].cantidad = this.cantidades[id];
 
-                    this.auxSubTotal=total.toFixed(1);
+                    this.auxSubTotal = total.toFixed(1);
                     return total.toFixed(1);
-                }
+                };
             },
 
-            subTotal(){
-                let total=0;
-                for (var i = this.claveConsulta.length -1;i >=0; i--) {
-                    total=total+this.claveConsulta[i].total;
-               
-                 }//fin ciclo for
-                  this.auxSubTotal=total.toFixed(1); //manda una copia del subTotal al data para usar con otros datos 
-                 return total.toFixed(1);
-                
-            },
-
-            numeroArticulos(){
-                var art=0;
+            subTotal() {
+                let total = 0;
                 for (var i = this.claveConsulta.length - 1; i >= 0; i--) {
-                    art = art + parseInt(this.claveConsulta[i].cantidad, 10); 
-                  }
-                  
-   
+                    total = total + this.claveConsulta[i].total;
+                } //fin ciclo for
+                this.auxSubTotal = total.toFixed(1); //manda una copia del subTotal al data para usar con otros datos
+                return total.toFixed(1);
+            },
+
+            numeroArticulos() {
+                var art = 0;
+                for (var i = this.claveConsulta.length - 1; i >= 0; i--) {
+                    art = art + parseInt(this.claveConsulta[i].cantidad, 10);
+                }
+
                 return art;
             },
         },

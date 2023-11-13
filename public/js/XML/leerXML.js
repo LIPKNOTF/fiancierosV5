@@ -1,4 +1,70 @@
-document.getElementById('xmlForm').addEventListener('submit', function(event) {
+
+let ruta = document.querySelector("[name=route]").value;
+const baseURL=ruta+"/apiConcentrado";
+
+ function saveXml(){
+  let concentrado={};
+  let egresos=[];
+          
+          concentrado.fecha.getElementById('fecha').value;
+          concentrado.subTotal.getElementById('subTotal').value;
+          concentrado.total.getElementById('total').value;
+          concentrado.rfcReceptor.getElementById('rfcReceptor');
+          concentrado.razon_socialReceptor.getElementById('razon_socialReceptor');
+          concentrado.regimenFiscalReceptor.getElementById('regimenFiscalReceptor').value;
+          concentrado.rfcEmisor.getElementById('rfcEmisor');
+          concentrado.razon_socialEmisor.getElementById('razon_socialEmisor');
+          concentrado.regimenFiscalEmisor.getElementById('regimenFiscalEmisor').value;
+          concentrado.producto.getElementById('producto');
+          concentrado.impuestoTraslado.getElementById('impuestoTraslado').value;
+          concentrado.impuestoRetenido.getElementById('impuestoRetenido').value;
+          concentrado.impuestoRetenido.getElementById('impuestoRetenido').value;
+          
+          // nuevoConcentrado = {}
+          console.log();
+          console.log(concentrado);
+
+
+  // const request = await fetch('/apiConcentrado',{
+  //   method: 'POST',
+  //   headers: {
+  //   'Accept': 'application/json',
+  //   'Content-Type': 'application/json'
+  //   },
+  //   body: JSON.stringify(concentrado)
+  //   });
+    // alert("La cuenta se creo con exito!");
+    //  window.location.href="login.html";
+}
+
+const save = document.getElementById("guardar");
+
+save.addEventListener("click", ()=>{
+  let concentrado={};
+  let egresos=[];
+          
+          concentrado.fecha.getElementById('fecha').value;
+          concentrado.subTotal.getElementById('subTotal').value;
+          concentrado.total.getElementById('total').value;
+          concentrado.rfcReceptor.getElementById('rfcReceptor');
+          concentrado.razon_socialReceptor.getElementById('razon_socialReceptor');
+          concentrado.regimenFiscalReceptor.getElementById('regimenFiscalReceptor').value;
+          concentrado.rfcEmisor.getElementById('rfcEmisor');
+          concentrado.razon_socialEmisor.getElementById('razon_socialEmisor');
+          concentrado.regimenFiscalEmisor.getElementById('regimenFiscalEmisor').value;
+          concentrado.producto.getElementById('producto');
+          concentrado.impuestoTraslado.getElementById('impuestoTraslado').value;
+          concentrado.impuestoRetenido.getElementById('impuestoRetenido').value;
+          concentrado.impuestoRetenido.getElementById('impuestoRetenido').value;
+          
+          // nuevoConcentrado = {}
+          console.log();
+          console.log(concentrado);
+});
+
+
+
+  document.getElementById('xmlForm').addEventListener('submit', function(event) {
     event.preventDefault();
     var fileInput = document.getElementById('xmlFile');
     var file = fileInput.files[0];
@@ -112,3 +178,4 @@ document.getElementById('xmlForm').addEventListener('submit', function(event) {
       reader.readAsText(file);
     }
   });
+  

@@ -52,6 +52,7 @@ Route::post('/import', [ExcelImportController::class, 'import']);
 Route::view('alumno','alumnos/alumnos');
 Route::view('consulta', 'consultas/Consultas');
 Route::view('clave', 'clave/clave');
+Route::view('con', 'concentrado/concentrado2');
 
 Route::view('capitulo','capitulo/capitulo');
 Route::view('partida','partida/partida');
@@ -62,7 +63,7 @@ Route::view('descripcion', 'descripcion.index');
 
 Route::view('listConcentrado', 'concentrado/vueConcentrado');
 Route::resource('concentrado',ListConcentradoController::class);
-Route::post('guardarConcentrado',[ListConcentradoController::class,'store']);
+// Route::post('guardarConcentrado',[ListConcentradoController::class,'store']);
 // rutas apis(controladores)
 Route::apiResource('apiAlumno',AlumnosController::class);
 Route::apiResource('apiConsulta', ConsulasControlador::class);

@@ -23,7 +23,7 @@
 </form>
 
 
-<form id="frmConcentrado" method="post" action="guardarConcentrado" novalidate>
+<!-- <form id="frmConcentrado"   novalidate> -->
   @csrf
   <div class="row">
   <div class="col-md-2"></div>
@@ -191,20 +191,22 @@
     
     <div class="col-md-4 offset-md-4">
       <div class="d-grid mx-auto">
-        <input type="submit" class="btn btn-primary" value="Enviar">
+        <!-- <input type="submit" onclick="saveXml()" class="btn btn-primary" value="Enviar"> -->
+        <button onclick="saveXml(this)" id="guardar" class="btn btn-primary">Enviar</button>
       </div>
     </div>
 
   </div>
   <!-- aqui pondre el div -->
-</form>
+<!-- </form> -->
 </div>
   </div>
 </div>
 @endsection
 @push('scripts')
+<script src="js/XML/leerXML.js"></script>
 <script src="js/bootstrap.bundle.min.js"></script>
-<!-- <script src="js/XML/leerXML.js"></script> -->
+
 <!-- Script para leer xml -->
 <script>
   document.getElementById('xmlForm').addEventListener('submit', function(event) {
@@ -321,6 +323,7 @@
       reader.readAsText(file);
     }
   });
+  
 </script>
 <!-- Fin -->
 @endpush

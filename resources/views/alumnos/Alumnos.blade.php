@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.master')
 @section('content')
 <!-- AQUI EMPIEZA LA VISTA -->
 <div id="apiAlumno">
@@ -6,14 +6,9 @@
     <div class="card-body">
       <div class="row justify-content-center">
 
-
-        <div class="card-header text-center fw-bold text-white" style="background-color: #2471A3; margin-bottom: 10px; border-radius: 5px;">
-          <h4 class="mb-0">
-            <i class="fa-sharp fa-regular fa-address-card" style="margin-right: 5px;"></i>
-            {{ __('MODULO DE ALUMNOS') }}
-          </h4>
-        </div>
-
+        <legend>
+          <h1>&nbsp; Alumnos &nbsp;</h1>
+        </legend>
         <!-- INICIA BOTON PARA CARGAR A EXCEL -->
         <div class="container">
           @if ($errors->any())
@@ -62,56 +57,39 @@
               </div>
             </div>
           </div>
-
-
         </div>
         <!-- TERMINA BOTON PARA CARGAR A EXCEL -->
-        <div class="d-flex justify-content-between align-items-center">
-          <button type="button" class="btn btn-outline-success btn-sm text-white text-center" style="background-color: #28a717;" @click="mostrarModal()">
-            <i class="fa-sharp fa-regular fa-address-card"></i> AGREGAR UN NUEVO ALUMNO
-          </button>
-          <div class="mx-2"></div> <!-- Espacio entre los botones -->
-          <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
-            <i class="fa-solid fa-file-excel"></i> CARGAR ARCHIVO EXCEL
-          </button>
-        </div>
+        <button class="btn-modal" @click="mostrarModal()">Agregar</button>
+        <button class="btn-modal"  data-bs-toggle="modal" data-bs-target="#exampleModal">Inportar</button>
 
-
-
-
-        <table id="myTableAlumnos" class="table table-bordered table-striped table-hover mt-4 table-responsive">
-          <thead class="table-primary">
+        <table id="myTableAlumnos" class="tabla display nowrap" style="width:100%">
+          <thead class="fondo-negro">
             <tr>
-              <th scope="col" class="text-center">Matricula</th>
-              <th scope="col" class="text-center">Nombres</th>
-              <th scope="col" class="text-center">AP. Paterno</th>
-              <th scope="col" class="text-center">AP. Materno</th>
-              <th scope="col" class="text-center">Grado</th>
-              <th scope="col" class="text-center">Grupo</th>
-              <th scope="col" class="text-center">Carrera</th>
-              <th scope="col" class="text-center">Turno</th>
-              <th scope="col" class="text-center">Acciones</th>
+              <th class="boder-inicio">Matricula</th>
+              <th>Nombres</th>
+              <th>AP. Paterno</th>
+              <th>AP. Materno</th>
+              <th>Grado</th>
+              <th>Grupo</th>
+              <th>Carrera</th>
+              <th>Turno</th>
+              <th class="boder-fin">ACCIONES</th>
             </tr>
           </thead>
-          <tbody class="table-group-divider">
+          <tbody>
             <tr v-for="alu in alumnos">
-              <td class="text-center">@{{alu.matricula}}</td>
-              <td class="text-center">@{{alu.nombres}}</td>
-              <td class="text-center">@{{alu.apellido_p}}</td>
-              <td class="text-center">@{{alu.apellido_m}}</td>
-              <td class="text-center">@{{alu.grado}}</td>
-              <td class="text-center">@{{alu.grupo}}</td>
-              <td class="text-center">@{{alu.carrera}}</td>
-              <td class="text-center">@{{alu.turno}}</td>
-              <td class="text-center">
-                <div class="btn-group">
-
-                  <button class="btn btn-success" @click="mostrarAlumno(alu.id)"><i class="fa-regular fa-calendar-plus"></i> CONSULTA</a></button>
-                  <button class="btn btn-warning" @click="editarAlumno(alu.id)"><i class="fa-solid fa-pen-to-square"></i> EDITAR </a></button>
-                  <button class="btn btn-danger" @click="eliminarAlumno(alu.id, alu.matricula, alu.nombres, alu.apellido_p, alu.apellido_m)"><i class="fa-solid fa-trash"></i></button>
-                </div>
-
-
+              <td>@{{alu.matricula}}</td>
+              <td>@{{alu.nombres}}</td>
+              <td>@{{alu.apellido_p}}</td>
+              <td>@{{alu.apellido_m}}</td>
+              <td>@{{alu.grado}}</td>
+              <td>@{{alu.grupo}}</td>
+              <td>@{{alu.carrera}}</td>
+              <td>@{{alu.turno}}</td>
+              <td>
+                <button class="btn-edit" @click="mostrarAlumno(alu.id)"><i class="fa-solid fa-pen"></i></button>
+                <button class="btn-edit" @click="mostrarAlumno(alu.id)"><i class="fa-solid fa-pen"></i></button>
+                <button class="btn-delete" @click="eliminarAlumno(alu.id, alu.matricula, alu.nombres, alu.apellido_p, alu.apellido_m)"><i class="fa-solid fa-trash-can"></i></button>
               </td>
             </tr>
           </tbody>
@@ -208,81 +186,82 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form>
-            <!-- EMPIEZA EL FORMULARIO -->
+
+          <!-- EMPIEZA EL FORMULARIO -->
 
 
-            <div class="row">
+          <div class="row">
 
 
-              <div class="form-group col-6">
+            <div class="form-group col-6">
 
-                <label class="fw-bold">MATRICULA</label>
-                <input placeholder="Apellido Materno" v-model="matricula" @input="convertirMayusculas" class="form-control" disabled>
+              <label class="fw-bold">MATRICULA</label>
+              <input placeholder="Apellido Materno" v-model="matricula" @input="convertirMayusculas" class="form-control" disabled>
 
-                <label class="fw-bold mt-2">APELLIDO PATERNO</label>
-                <input placeholder="Apellido Paterno" v-model="apellido_p" class="form-control " disabled>
+              <label class="fw-bold mt-2">APELLIDO PATERNO</label>
+              <input placeholder="Apellido Paterno" v-model="apellido_p" class="form-control " disabled>
 
-                <label class="fw-bold mt-2">FOLIO</label>
-                <input placeholder="Folio" v-model="folio" @input="convertirMayusculas" disabled required type="text" class="form-control">
+              <label class="fw-bold mt-2">FOLIO</label>
 
-              </div>
+              <input placeholder="Folio" v-model="folio" @input="convertirMayusculas" disabled required type="text" class="form-control">
 
-
-
-              <div class="form-group col-6">
-
-                <label class="fw-bold">NOMBRES</label>
-                <input placeholder="Nombres" v-model="nombres" @input="convertirMayusculas" class="form-control" disabled>
+            </div>
 
 
-                <label class="fw-bold mt-2">APELLIDO MATERNO</label>
-                <input placeholder="Apellido Materno" v-model="apellido_m" class="form-control " disabled>
 
-                <label class="fw-bold mt-2">FECHA</label>
-                <input placeholder="Fecha" v-model="fecha" autofocus required type="date" class="form-control">
-              </div>
+            <div class="form-group col-6">
 
-              <div class="col-6 mb-3 " >
-                <label class="fw-bold">CLAVE</label>
-                <!-- <v-select  v-model="id_clave" :reduce="claves_p => claves_p.id" :options="claves_p" label="clave" type="text" v-on:keyup.enter="getClave(id_clave)"></v-select> -->
-                <v-select v-model="id_clave" :reduce="claves_p => claves_p.id" :options="claves_p" label="clave" type="text"></v-select>
-      <button class="btn btn-primary" @click="getClave(id_clave)">Buscar</button>
-                
-              </div>
-              
+              <label class="fw-bold">NOMBRES</label>
+              <input placeholder="Nombres" v-model="nombres" @input="convertirMayusculas" class="form-control" disabled>
 
 
-           
-              <div class="form-group">
+              <label class="fw-bold mt-2">APELLIDO MATERNO</label>
+              <input placeholder="Apellido Materno" v-model="apellido_m" class="form-control " disabled>
 
-                <table class="table table-stripped table-hover table-responsive">
-                  <thead>
-                    <tr>
-                      <th>Cantidad</th>
-                      <th>Descripcion</th>
-                      <th>Precio</th>
-                      <th>Importe</th>
-                      <th>Acciones</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr v-for="(row,index) in claveConsulta">
-                      <td><input type="number" class="form-control"  v-model="cantidades[index]" min="1"></td>
-                      <td>@{{row.clave}}</td>
-                      <td><input type="number" class="form-control"  v-model="cuotasObtenidas[index]"></td>
-                      <td >@{{calcularImporte(index)}}</td>
-                      <td><button class="btn btn-danger" @click="removeItem(index)"><i class="fa-solid fa-trash"></i></button></td>
-                    </tr>
-                  </tbody>
-                </table>
+              <label class="fw-bold mt-2">FECHA</label>
+              <input placeholder="Fecha" v-model="fecha" autofocus type="date" class="form-control">
+            </div>
+
+            <div class="col-6 mb-3 ">
+              <label class="fw-bold">CLAVE</label>
+              <!-- <v-select  v-model="id_clave" :reduce="claves_p => claves_p.id" :options="claves_p" label="clave" type="text" v-on:keyup.enter="getClave(id_clave)"></v-select> -->
+              <v-select v-model="id_clave" :reduce="claves_p => claves_p.id" :options="claves_p" label="clave" type="text"></v-select>
+              <button class="btn btn-primary" @click="getClave(id_clave)">Buscar</button>
+
+            </div>
 
 
-              </div>
 
-              <div class="form-group">
-                
-                <div class="col-md-8   mx-auto ">
+
+            <div class="form-group">
+
+              <table class="table table-stripped table-hover table-responsive">
+                <thead>
+                  <tr>
+                    <th>Cantidad</th>
+                    <th>Descripcion</th>
+                    <th>Precio</th>
+                    <th>Importe</th>
+                    <th>Acciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="(row,index) in claveConsulta">
+                    <td><input type="number" class="form-control" v-model="cantidades[index]" min="1"></td>
+                    <td>@{{row.clave}}</td>
+                    <td><input type="number" class="form-control" v-model="cuotasObtenidas[index]"></td>
+                    <td>@{{calcularImporte(index)}}</td>
+                    <td><button class="btn btn-danger" @click="removeItem(index)"><i class="fa-solid fa-trash"></i></button></td>
+                  </tr>
+                </tbody>
+              </table>
+
+
+            </div>
+
+            <div class="form-group">
+
+              <div class="col-md-8   mx-auto ">
                 <div class="card">
                   <div class="card-body ">
                     <span class="fw-bold">Total a pagar es de: @{{subTotal}}</span> <br>
@@ -290,15 +269,15 @@
 
                   </div>
                 </div>
-                </div>
               </div>
-
-
-
-
             </div>
-            <!-- TERMINA EL FORMULARIO -->
-          </form>
+
+
+
+
+          </div>
+          <!-- TERMINA EL FORMULARIO -->
+
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
@@ -323,6 +302,7 @@
     const fileLabel = document.getElementById('fileLabel');
     fileLabel.innerHTML = file.name;
   }
+
 </script>
 
 

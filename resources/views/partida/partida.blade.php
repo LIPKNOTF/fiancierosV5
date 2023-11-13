@@ -1,66 +1,42 @@
-@extends('layouts.app')
+@extends('layouts.master')
 @section('titulo','Partidas')
 @section('content')
 
 <div id="partidas">
-    <div class="card ">
-        <div class="card-body">
-            <pre></pre>
-            <div class="card header">
-                <div class="content-header">
-                    
-                    <div class="card-header text-center fw-bold text-white" style="background-color: #2471A3; margin-bottom: 10px; border-radius: 5px;">
-                        <h4 class="mb-0">
-                            Modulo de partidas
-                        </h4>
-                    </div>
+    <legend>
+        <h1>&nbsp; Partidas &nbsp;</h1>
+    </legend>
 
-                    <div class="col-md-4 offset-md-4">
-                    <div class="d-grid mx-auto">
-                    <button class="btn btn-sm btn-dark" @click="abrirModal()">
-                        Agregar <i class="fa-solid fa-file-circle-plus"></i>
-                    </button>
-                    </div>
-                    </div>
+    <button class="btn-modal" @click="abrirModal()">
+        Agregar
+    </button>
 
-                    <div class="col-md-3 offset-md-9">
-                        <input type="text" placeholder="Escriba un Código" class="form-control" v-model="buscar">
-                    </div>
+    <input type="text" placeholder="Escriba un Código" class="input" v-model="buscar">
 
-                    <div class="card-body">
-                    <!--Inicion de la tabla-->
-                    <table class="table table-bordered">
-                        <thead class="table-primary">
-                            <th scope="col" class="text-center">ID</th>
-                            <th scope="col" class="text-center">CODIGO</th>
-                            <th scope="col" class="text-center">Nombre</th>
-                            <th scope="col" class="text-center">Capitulo</th>
-                            <th scope="col" class="text-center">OPCIONES</th>
-                        </thead>
-
-                        <tbody v-for="Partida in filtroPatidas">
-                            <tr>
-                                <td class="text-center">@{{Partida.id}}</td>
-                                <td class="text-center">@{{Partida.codigo}}</td>
-                                <td class="text-center">@{{Partida.nombre}}</td>
-                                <td class="text-center">@{{Partida.capitulo.titulo}}</td>
-                                <td class="text-center">
-                                    <button class="btn btn-sm btn-Warning"  title="Editar" @click="editarPartida(Partida.id)">
-                                        <i class="fa-sharp fa-regular fa-pen-to-square"></i>
-                                    </button>
-                                    <button class="btn btn-sm btn-danger" title="Eliminar" @click="eliminarPartida(Partida.id)">
-                                        <i class="fa-solid fa-trash"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
+    <!--Inicion de la tabla-->
+    <table id="partidaTabla" class="tabla display nowrap" style="width:100%">
+        <thead class="fondo-negro">
+            <tr>
+                <th class="boder-inicio">Id</th>
+                <th>CODIGO</th>
+                <th>NOMBRE</th>
+                <th>CAPITULO</th>
+                <th class="boder-fin">ACCIONES</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-for="Partida in filtroPatidas">
+                <td>@{{Partida.id}}</td>
+                <td>@{{Partida.codigo}}</td>
+                <td>@{{Partida.nombre}}</td>
+                <td>@{{Partida.capitulo.titulo}}</td>
+                <td>
+                    <button class="btn-edit" @click="editarPartida(Partida.id)"><i class="fa-solid fa-pen"></i></button>
+                    <button class="btn-delete" @click="eliminarPartida(Partida.id)"><i class="fa-solid fa-trash-can"></i></button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 
     <!-- INICIA VENTANA MODAL -->
     <div class="modal fade" id="modalPartida" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -71,7 +47,7 @@
                     <h5 class="modal-title" id="exampleModalLabel" v-if="agregando==false">Editando Partida</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-  
+
                 <div class="modal-body">
                     <input type="text" class="form-control" placeholder="Codigo" v-model="codigo" @input="validarCodigo"><br>
                     <input type="text" class="form-control" placeholder="Nombre" v-model="nombre" @input="validarNombre"><br>
@@ -84,10 +60,10 @@
                         <option v-for="cap in capitulos" :value="cap.id" selected>@{{cap.titulo}}</option>
                     </select> -->
                 </div>
-                
+
 
                 <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                     <button type="button" class="btn btn-primary" @click="guardarPartida()" v-if="agregando==true">Guardar</button>
                     <button type="button" class="btn btn-primary" @click="actualizarPartida()" v-if="agregando==false">Guardar</button>
                 </div>
@@ -95,7 +71,6 @@
         </div>
     </div>
     <!-- FIN MODAL -->
-
 </div>
 
 @endsection
@@ -103,6 +78,51 @@
 @push('scripts')
 <script type="text/javascript" src="js/apis/apiPartida.js"></script>
 <script type="text/javascript" src="js/vue-resource.js"></script>
+<script>
+    $(document).ready(function() {
+        var table = $("#partidaTabla");
+        if (!table.hasClass("dataTable")) {
+            table.DataTable({
+                initComplete: function() {
+                    this.api()
+                        .columns()
+                        .every(function(index) {
+                            var column = this;
+                            var header = $(column.header());
+                            if (header.hasClass("actions")) {
+                                // No hacer nada si es la columna de acciones
+                                return;
+                            }
+                        });
+                },
+                responsive: {
+                    details: {
+                        type: "inline", // Cambiado de 'column' a 'inline'
+                        target: ":not(:last-child)", // Excluir la última columna
+                    },
+                },
+                language: {
+                    searchPlaceholder: "Buscar",
+                    search: "Buscar:",
+                    zeroRecords: "No se encontraron resultados",
+                    emptyTable: "No hay datos disponibles en la tabla",
+                    infoEmpty: "Mostrando 0 registros de un total de 0",
+                    infoFiltered: "(filtrado de un total de MAX registros)",
+                    example_info: "Se muestran 0 de 0 un total de 0",
+                    sInfo: "<span style='margin-left: 2rem;'>Mostrando registros del START al END de un total de TOTAL registros</span>",
+                    lengthMenu: "Mostrar _MENU_",
+                    paginate: {
+                        previous: "Anterior",
+                        next: "Siguiente",
+                    },
+                },
+
+                "lengthMenu": [7, 10, 25, 50],
+                "pageLength": 7,
+            });
+        }
+    });
+</script>
 @endpush
 
 <input type="hidden" name="route" value="{{ url('/') }}">
