@@ -3,11 +3,34 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Concentrado;
 use Codedge\Fpdf\Fpdf\Fpdf;
 
 class ControlDeFacturasController extends Controller
 {
-    public function Facturas(){
+    public function FacturasID($id){
+        $concentrado = Concentrado::with('partida')->find($id);
+
+        if (!$concentrado){
+            abort(404);
+        }
+
+        $fpdf = $this->initializePDF();
+        $this->addTitleSection($fpdf);
+        $this->AddInformationSection($fpdf, $concentrado);
+        $this->outputPDF($$fpdf);
+    }
+
+    
+    public function Facturas($id){
+
+        $concentrado = Concentrado::with('partida')->find($id);
+
+        if (!$concentrado){
+            abort(404);
+        }
+
+
         $fpdf = new FPDF();
         $fpdf->AddPage();
         
@@ -25,11 +48,11 @@ class ControlDeFacturasController extends Controller
         $fpdf->Cell(125, 4, utf8_decode('NIVEL EDUCATIVO: MEDIO SUPERIOR'), 0, 1, 'l');
         $fpdf->Ln();
 
-        $fpdf->Cell(45, 5, '$', 'B', 0, 'C');
+        $fpdf->Cell(45, 5, $concentrado->total, 'B', 0, 'C');
         $fpdf->Cell(40, 5, '', 0, 0, 'C');//espacio en blanco entre lineas
         $fpdf->Cell(45, 5, '', 'B', 0, 'C');
         $fpdf->Cell(15, 5, '', 0, 0, 'C');//espacio 
-        $fpdf->Cell(45, 5, '', 'B', 1, 'C');
+        $fpdf->Cell(45, 5, $concentrado->fecha, 'B', 1, 'C');
 
         $fpdf->setfont('arial','',8);
         $fpdf->Cell(45, 5, 'TOTAL DE EGRESOS', 0, 0, 'C');

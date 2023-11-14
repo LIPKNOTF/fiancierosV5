@@ -3,13 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Clave;
+use App\Models\Alumnos;
 use Codedge\Fpdf\Fpdf\Fpdf;
 
 class ControlDeIngresosController extends Controller
 { 
-    public function Ingresos(){
+    public function Ingresos($id){
 
+        $alumnos = Alumnos::find($id);
+ 
         $fpdf = new FPDF('L');
         $fpdf->AddPage();
 
@@ -62,13 +64,14 @@ class ControlDeIngresosController extends Controller
         $fpdf->Cell(277, 6, utf8_decode('RECIBÍ DE'), 0, 1,'C');
 
         //seccion 8
-        $fpdf->setfont('arial','B',8);
-        $fpdf->Cell(63, 6, '', 1, 0);
-        $fpdf->Cell(63, 6, '', 1, 0, 'C');
-        $fpdf->Cell(63, 6, '', 1, 0,'C');
+        $fpdf->setfont('arial','',8);
+        $fpdf->Cell(63, 6, utf8_decode($alumnos->apellido_p), 'LTB', 0,'C');
+        $fpdf->Cell(63, 6, utf8_decode($alumnos->apellido_m), 'TB', 0, 'C');
+        $fpdf->Cell(63, 6, utf8_decode($alumnos->nombres), 'RTB', 0,'C');
         $fpdf->Cell(18, 6, '', 0, 0);
         $fpdf->Cell(70, 6, utf8_decode('R.F.C. y/o MATRICULA'), 1, 1,'C');
 
+        $fpdf->setfont('arial','B',8);
         $fpdf->Cell(63, 6, utf8_decode('APELLIDO PATERNO '), 1, 0, 'C');
         $fpdf->Cell(63, 6, utf8_decode('APELLIDO MATERNO'), 1, 0, 'C');
         $fpdf->Cell(63, 6, utf8_decode('NOMBRE (S)'), 1, 0,'C');
