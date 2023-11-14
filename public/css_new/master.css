@@ -255,7 +255,7 @@ div.dataTables_wrapper div.dataTables_filter {
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: #26292f01;
+    background-color: rgba(6, 6, 6, 0.396);
 }
 
 .modal-body {
@@ -282,9 +282,37 @@ div.dataTables_wrapper div.dataTables_filter {
     background-color: #119711;
 }
 
+.btn-rojo {
+    color: var(--var-color-balnco);
+    margin: 1rem;
+    background-color: var(--var-color-rojo);
+    padding: .5rem;
+    width: 8rem;
+    border-radius: var(--var-borde-radius);
+    border: 1px solid var(--var-color-balnco);
+}
+
+.btn-rojo:hover {
+    background-color: #b83018;
+}
+
+.btn-azul {
+    color: var(--var-color-balnco);
+    margin: 1rem;
+    background-color: #1d5fc2;
+    padding: .5rem;
+    width: 8rem;
+    border-radius: var(--var-borde-radius);
+    border: 1px solid var(--var-color-balnco);
+}
+
+.btn-azul:hover {
+    background-color: #125ed0;
+}
+
 /* login */
 
-.input {
+/* .input {
     border: none;
     padding-top: .3rem;
     padding-bottom: .3rem;
@@ -293,7 +321,7 @@ div.dataTables_wrapper div.dataTables_filter {
     text-align: center;
     width: auto;
     font-size: 1.2rem;
-}
+} */
 
 .input:focus {
     outline: none;
@@ -473,7 +501,12 @@ div.dataTables_wrapper div.dataTables_filter {
     color: var(--var-color-balnco);
 }
 
+.gruup-input {
+    width: 100%;
+}
+
 @media (min-width: 1001px) and (max-width: 1400px) {
+
     .login {
         height: 91vh;
     }
@@ -523,4 +556,59 @@ div.dataTables_wrapper div.dataTables_filter {
         width: 82rem;
         height: 80vh;
     }
+}
+
+/* Estilos para el encabezado de la ventana modal */
+.modal-header {
+    border-radius: var(--var-borde-radius);
+    border: 1px solid var(--var-color-gris-blanco);
+}
+
+.modal-title {
+    color: #fff;
+}
+
+.input {
+    background-color: var(--var-color-negro);
+    color: var(--var-color-blanco);
+    border: 1px solid var(--var-color-gris-blanco);
+    border-radius: var(--var-borde-radius);
+    padding: 8px;
+    margin-bottom: 10px;
+}
+
+/* Estilos específicos para los botones de guardar */
+.btn-primary {
+    background-color: var(--var-color-verde);
+    border: 1px solid var(--var-color-verde);
+}
+
+.btn-secondary {
+    background-color: var(--var-color-rojo);
+    border: 1px solid var(--var-color-rojo);
+}
+
+
+/* Estilos para el grupo de inputs */
+.gruup-input {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+/* Estilos para el selector de turno */
+.form-control {
+    background-color: var(--var-color-negro);
+    color: var(--var-color-blanco);
+    border: 1px solid var(--var-color-gris-blanco);
+    border-radius: var(--var-borde-radius);
+    padding: 8px;
+    width: 20rem;
+
+}
+.texto-blanco{
+    color:var(--var-color-balnco) !important;
+    background-color: var(--var-color-gris-blanco);
+    padding: 0.4rem;
+    border-radius: var(--var-borde-radius);
 }
