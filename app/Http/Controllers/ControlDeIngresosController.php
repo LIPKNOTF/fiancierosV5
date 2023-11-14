@@ -32,20 +32,20 @@ class ControlDeIngresosController extends Controller
         //seccion 1(priemra fila horizontal)
         $fpdf->Image('img/secretaria.png', 10, 7, -90);
         $fpdf->Image('img/texto_ingresos.png', -20, 50, -180);
-        $fpdf->setfont('arial','',10);
-        $fpdf->Cell(50, 6, '', 0, 0);
-        $fpdf->Cell(160, 6, utf8_decode('SUBSECRETARÍA DE EDUCACIÓN MEDIA SUPERIOR'), 0, 0, 'C');
+        $fpdf->setfont('arial','',12);
+        $fpdf->Cell(60, 6, '', 0, 0);
+        $fpdf->Cell(145, 6, utf8_decode('SUBSECRETARÍA DE EDUCACIÓN MEDIA SUPERIOR'), 0, 0, 'C');
         $fpdf->setfont('arial','B',8);
-        $fpdf->Cell(25, 6, 'UR', 1, 0,'C');
+        $fpdf->Cell(30, 6, 'UR', 1, 0,'C');
         $fpdf->Cell(7, 6, '', 0, 0);
         $fpdf->Cell(35, 6, 'RECIBO No.', 1, 1,'C');
 
         //seccion 2
-        $fpdf->setfont('arial','',8);
-        $fpdf->Cell(50, 6, '', 0, 0);
-        $fpdf->Cell(160, 6, utf8_decode('Dirección General de Educación Tecnológica Agropeciaria y Ciencias del Mar'), 0, 0, 'C');
+        $fpdf->setfont('arial','',10);
+        $fpdf->Cell(60, 6, '', 0, 0);
+        $fpdf->Cell(145, 6, utf8_decode('Dirección General de Educación Tecnológica Agropeciaria y Ciencias del Mar'), 0, 0, 'C');
         $fpdf->setfont('arial','',7);
-        $fpdf->Cell(25, 6, '610', 1, 0,'C');
+        $fpdf->Cell(30, 6, '610', 1, 0,'C');
         $fpdf->Cell(7, 6, '', 0, 0);
         $fpdf->Cell(35, 6, 'DGETAYCM 7949987', 1, 1,'C');
 
@@ -57,17 +57,17 @@ class ControlDeIngresosController extends Controller
         //seccion 4
         $fpdf->setfont('arial','',7);
         $fpdf->Cell(50, 6, '', 0, 0);
-        $fpdf->Cell(160, 6, utf8_decode('R.F.C. SEP 210905778'), 0, 0, 'C');
+        $fpdf->Cell(155, 6, utf8_decode('R.F.C. SEP 210905778'), 0, 0, 'C');
         $fpdf->setfont('arial','B',8);
-        $fpdf->Cell(25, 6, 'FECHA', 1, 0,'C');
+        $fpdf->Cell(30, 6, 'FECHA', 1, 0,'C');
         $fpdf->Cell(7, 6, '', 0, 0);
         $fpdf->Cell(35, 6, 'ENTIDAD FEDERATIVA', 1, 1,'C');
 
         //seccion 5
         $fpdf->setfont('arial','',7);
-        $fpdf->Cell(210, 6, utf8_decode('AVENIDA REPÚBLICA DE ARGENTINA, NUMERO EXTERIOR 28, NUMERO INTERIOR:OFICINA 1044'), 0, 0);
+        $fpdf->Cell(205, 6, utf8_decode('AVENIDA REPÚBLICA DE ARGENTINA, NUMERO EXTERIOR 28, NUMERO INTERIOR:OFICINA 1044'), 0, 0);
         $fpdf->setfont('arial','',7);
-        $fpdf->Cell(25, 6, $fecha_actual, 1, 0,'C');
+        $fpdf->Cell(30, 6, $fecha_actual, 1, 0,'C');
         $fpdf->Cell(7, 6, '', 0, 0);
         $fpdf->Cell(35, 6, '31', 1, 1,'C');
 
