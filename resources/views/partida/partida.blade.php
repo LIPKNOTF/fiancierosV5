@@ -41,31 +41,30 @@
     <!-- INICIA VENTANA MODAL -->
     <div class="modal fade" id="modalPartida" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header" style="background-color: #96C7EB;">
-                    <h5 class="modal-title" id="exampleModalLabel" v-if="agregando==true">Agregando Partida</h5>
-                    <h5 class="modal-title" id="exampleModalLabel" v-if="agregando==false">Editando Partida</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <div class="modal-body">
+                <div class="modal-header text-white" :style="agregando ? 'background-color: #28a717;' : 'background-color: #f8be10;'">
+                    <h1 class="modal-title" id="exampleModalLabel" v-if="agregando==true">Agregando Partida</h1>
+                    <h1 class="modal-title" id="exampleModalLabel" v-if="agregando==false">Editando Partida</h1>
                 </div>
-
-                <div class="modal-body">
-                    <input type="text" class="form-control" placeholder="Codigo" v-model="codigo" @input="validarCodigo"><br>
-                    <input type="text" class="form-control" placeholder="Nombre" v-model="nombre" @input="validarNombre"><br>
-                    <select name="" v-model="id_capitulo" class="form-control" v-if="agregando==true">
-                        <option value="" selected>Seleciona un capitulo</option>
-                        <option v-for="cap in capitulos" :value="cap.id">@{{cap.titulo}}</option>
-                    </select>
-                    <!-- <select name="" v-model="id_capitulo" class="form-control" v-if="agregando==false">
+                <br>
+                <br>
+                <input type="text" class="form-control" placeholder="Codigo" v-model="codigo" @input="validarCodigo"><br>
+                <input type="text" class="form-control" placeholder="Nombre" v-model="nombre" @input="validarNombre"><br>
+                <select name="" v-model="id_capitulo" class="form-control" v-if="agregando==true">
+                    <option value="" selected>Seleciona un capitulo</option>
+                    <option v-for="cap in capitulos" :value="cap.id">@{{cap.titulo}}</option>
+                </select>
+                <!-- <select name="" v-model="id_capitulo" class="form-control" v-if="agregando==false">
                         <option value="" >Seleciona un capitulo</option>
                         <option v-for="cap in capitulos" :value="cap.id" selected>@{{cap.titulo}}</option>
                     </select> -->
-                </div>
+
 
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                    <button type="button" class="btn btn-primary" @click="guardarPartida()" v-if="agregando==true">Guardar</button>
-                    <button type="button" class="btn btn-primary" @click="actualizarPartida()" v-if="agregando==false">Guardar</button>
+                    <button type="button" class="btn-rojo" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn-modal" @click="guardarPartida()" v-if="agregando==true">Guardar</button>
+                    <button type="button" class="btn-azul" @click="actualizarPartida()" v-if="agregando==false">Guardar</button>
                 </div>
             </div>
         </div>
