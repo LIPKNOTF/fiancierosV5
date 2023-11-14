@@ -87,8 +87,8 @@
               <td>@{{alu.carrera}}</td>
               <td>@{{alu.turno}}</td>
               <td>
-                <button class="btn-edit" @click="mostrarAlumno(alu.id)"><i class="fa-solid fa-pen"></i></button>
-                <button class="btn-edit" @click="mostrarAlumno(alu.id)"><i class="fa-solid fa-pen"></i></button>
+                <button class="btn-ver" @click="mostrarAlumno(alu.id)"><i class="fa-solid fa-clipboard-list"></i></i></button>
+                <button class="btn-edit" @click="editarAlumno(alu.id)"><i class="fa-solid fa-pen"></i></button>
                 <button class="btn-delete" @click="eliminarAlumno(alu.id, alu.matricula, alu.nombres, alu.apellido_p, alu.apellido_m)"><i class="fa-solid fa-trash-can"></i></button>
               </td>
             </tr>

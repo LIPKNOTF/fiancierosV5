@@ -16,8 +16,7 @@
       <span class="input-group-text">Fecha Inicial</span>
       <input placeholder="FECHA DE TERMINO" v-model="fecha_f" type="date" class="input" />
       <span class="input-group-text">Fecha Final</span>
-      <input placeholder="FECHA INICIO" v-model="fecha_i" type="date" class="input" />
-
+      <input placeholder="FECHA INICIO" v-model="fecha_i" type="date" class="input"/>
     </div>
 
 

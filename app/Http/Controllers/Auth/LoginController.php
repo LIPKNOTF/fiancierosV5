@@ -37,11 +37,9 @@ class LoginController extends Controller
         if (!$this->guard()->attempt($credentials, $request->filled('remember'))) {
 
             throw ValidationException::withMessages([
-                'password' => [trans('La contrasenia no es correcta')],
+                'password' => [trans('La contrasenia no coincide.')],
             ]);
         }
-
-        // El usuario está autenticado correctamente
         return true;
     }
 }
