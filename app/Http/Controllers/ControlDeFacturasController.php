@@ -8,19 +8,6 @@ use Codedge\Fpdf\Fpdf\Fpdf;
 
 class ControlDeFacturasController extends Controller
 {
-    public function FacturasID($id){
-        $concentrado = Concentrado::with('partida')->find($id);
-
-        if (!$concentrado){
-            abort(404);
-        }
-
-        $fpdf = $this->initializePDF();
-        $this->addTitleSection($fpdf);
-        $this->AddInformationSection($fpdf, $concentrado);
-        $this->outputPDF($$fpdf);
-    }
-
     
     public function Facturas($id){
 
@@ -29,7 +16,6 @@ class ControlDeFacturasController extends Controller
         if (!$concentrado){
             abort(404);
         }
-
 
         $fpdf = new FPDF();
         $fpdf->AddPage();
