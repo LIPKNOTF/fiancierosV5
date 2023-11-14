@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.master')
 @section('titulo','Capitulo')
 @section('content')
 
@@ -16,7 +16,6 @@
                         </h4>
                     </div>
 
-                    
                     <div class="col-auto mt-4 text-center">
                     <button class="btn btn-sm btn-primary" @click="mostrarModal()">
                         Agregar <i class="fa-solid fa-file-circle-plus"></i>
