@@ -67,6 +67,7 @@ a {
 
 .hover-verde:hover {
     color: var(--var-color-verde);
+    transform: scale(1.5);
 }
 
 .rojo {
@@ -311,17 +312,6 @@ div.dataTables_wrapper div.dataTables_filter {
 }
 
 /* login */
-
-/* .input {
-    border: none;
-    padding-top: .3rem;
-    padding-bottom: .3rem;
-    border-radius: .4rem;
-    background-color: var(--var-color-gris-blanco);
-    text-align: center;
-    width: auto;
-    font-size: 1.2rem;
-} */
 
 .input:focus {
     outline: none;
@@ -606,9 +596,30 @@ div.dataTables_wrapper div.dataTables_filter {
     width: 20rem;
 
 }
-.texto-blanco{
-    color:var(--var-color-balnco) !important;
+
+.texto-blanco {
+    color: var(--var-color-balnco) !important;
     background-color: var(--var-color-gris-blanco);
     padding: 0.4rem;
     border-radius: var(--var-borde-radius);
+}
+
+.nav-link.active .fa-graduation-cap,
+.nav-link.active .fa-house,
+.nav-link.active .fa-key,
+.nav-link.active .fa-receipt,
+.nav-link.active .fa-file-code,.nav-link.active 
+.nav-link.active .fa-database,
+.nav-link.active .fa-paste,
+.nav-link.active .fa-book,
+.nav-link.active .fa-magnifying-glass,
+.nav-link.active .fa-right-to-bracket,
+.nav-link.active .fa-right-from-bracket,
+.nav-link.active .fa-shield-halved {
+    color: var(--var-color-verde);
+    transform: scale(1.5);
+    transition: color 0.3s ease, transform 0.3s ease;
+} 
+.mb-1{
+    margin-bottom: 1rem;
 }
