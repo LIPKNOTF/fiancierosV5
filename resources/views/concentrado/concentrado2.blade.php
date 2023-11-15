@@ -1,5 +1,5 @@
-@extends('layouts.app')
-@section('titulo','alumnos')
+@extends('layouts.master')
+@section('titulo','Lectura de XML')
 @section('content')
 <div id="concentrado2">
 <div>
@@ -18,10 +18,7 @@
     </div>
     
 
-    <div v-if="datos">
-      <!-- Muestra los datos como desees -->
-      @{{ datos }}
-    </div>
+
     
     <!-- Aqui ira los input en donde se alojaran de lo que se traiga de los xml -->
     <div>
@@ -139,7 +136,6 @@
 @push('scripts')
 <script src="js/apis/concentrado.js"></script>
 <script src="js/bootstrap.bundle.min.js"></script>
-<script type="text/javascript" src="js/vue-resource.js"></script>
 
 
 @endpush

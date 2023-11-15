@@ -1,5 +1,5 @@
-@extends('layouts.app')
-@section('titulo','alumnos')
+@extends('layouts.master')
+@section('titulo','Listado de Concentrados')
 @section('content')
 <div id="concentrado">
   <div class="container justify-content-center">
@@ -10,7 +10,7 @@
                     </div>
     <div class="col-md-4 offset-md-4">
       <div class="d-grid mx-auto">
-        <button class="btn btn-dark mb-2" @click="openModal()">Agregar Concentrado <i class="fa-solid fa-plus"></i></button>
+        <a class="btn btn-dark mb-2" href="/con">Agregar Concentrado <i class="fa-solid fa-plus"></i></a>
       </div>
     </div>
 
@@ -182,7 +182,6 @@
 @endsection
 @push('scripts')
 <script src="js/bootstrap.bundle.min.js"></script>
-<script src="js/vue-resource.js"></script>
 <script src="js/apis/apiConcentrado.js"></script>
 @endpush
 

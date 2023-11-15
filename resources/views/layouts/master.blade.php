@@ -68,7 +68,7 @@
                 <i class="fa-solid fa-shield-halved hover-verde "></i>
             </a>
             <!-- Lectura xml -->
-            <a href="{{ url('concentrado') }}" title="Lector XML" class="nav-link {{ Request::is('concentrado*') ? 'active' : '' }}">
+            <a href="{{ url('con') }}" title="Lector XML" class="nav-link {{ Request::is('con*') ? 'active' : '' }}">
                 <i class="fa-solid fa-file-code color-rojo"></i>
             </a>
             <!-- Consentrados -->

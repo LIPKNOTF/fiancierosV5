@@ -79,8 +79,7 @@ function init() {
                     // Asignar datos al estado del componente
                     this.datos = datos;
               
-                    // Imprimir en la consola
-                    console.log(datos);
+                    
                   };
               
                   reader.readAsText(file);
@@ -150,8 +149,6 @@ function init() {
                   regimenFiscalReceptor:regimenFiscalReceptor,
                   producto:producto,
                   importe:importe,
-
-                  // ... otros datos ...
                   impuestoTraslado: impuestoTraslado,
                   impuestoRetenido: impuestoRetenido,
                 };
@@ -210,11 +207,7 @@ function init() {
                                 timer: 1000,
                             });
                         });
-                        
-
-                        
-
-                        console.log(data);
+                    
                 },
               
 
