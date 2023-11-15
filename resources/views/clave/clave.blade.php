@@ -39,46 +39,40 @@
   <!-- VENTANA MODA -->
   <div class="modal fade" id="modalClave" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
-      <div class="modal-content">
+      <div class="modal-body">
         <div class="modal-header text-white" :style="agregando ? 'background-color: #28a717;' : 'background-color: #f8be10;'">
           <h1 class="modal-title fs-5 text-center fw-bold" id="staticBackdropLabel" v-if="agregando">AGREGAR UNA CONSULTA</h1>
           <h1 class="modal-title fs-5 text-center fw-bold" id="staticBackdropLabel" v-else>EDITAR UNA CONSULTA</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <form>
-            <!-- EMPIEZA EL FORMULARIO -->
-            <div class="row">
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label class="fw-bold">CLAVE</label>
-                  <input placeholder="Clave" v-model="clave" @input="convertirMayusculas" autofocus required type="text" class="form-control"></input>
-                </div>
-                <div class="form-group">
-                  <label class="fw-bold">PRECIO</label>
-                  <input placeholder="Precio" v-model="precio" autofocus required type="text" class="form-control"></input>
-                </div>
 
+        </div><br>
 
-
-
-
-
+        <form>
+          <!-- EMPIEZA EL FORMULARIO -->
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label class="fw-bold">CLAVE</label><br>
+                <input placeholder="Clave" v-model="clave" @input="convertirMayusculas" autofocus required type="text" class="form-control"></input>
+              </div>
+              <div class="form-group">
+                <label class="fw-bold">PRECIO</label><br>
+                <input placeholder="Precio" v-model="precio" autofocus required type="text" class="form-control"></input>
               </div>
 
+            </div>
 
-            </div>
-            <div class="mb-3">
-              <label for="exampleFormControlTextarea1" class="form-label fw-bold">CONCEPTO</label>
-              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" v-model="concepto" autofocus @input="convertirMayusculas" required type="text"></textarea>
-            </div>
-            <!-- TERMINA EL FORMULARIO -->
-          </form>
-        </div>
+          </div>
+          <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label fw-bold">CONCEPTO</label><br>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" v-model="concepto" autofocus @input="convertirMayusculas" required type="text"></textarea>
+          </div>
+          <!-- TERMINA EL FORMULARIO -->
+        </form>
+
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-          <button type="button" class="btn text-white" @click="agregarClave()" v-if="agregando" :style="agregando ? 'background-color: #28a717;' : 'background-color: #f8be10;'">GUARDAR</button>
-          <button type="button" class="btn text-white" @click="actualizarClave()" v-else :style="agregando ? 'background-color: #28a717;' : 'background-color: #f8be10;'">GUARDAR</button>
+          <button type="button" class="btn-rojo" data-bs-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn-modal" @click="agregarClave()" v-if="agregando" :style="agregando ? 'background-color: #28a717;' : 'background-color: #f8be10;'">GUARDAR</button>
+          <button type="button" class="btn-azul" @click="actualizarClave()" v-else :style="agregando ? 'background-color: #28a717;' : 'background-color: #f8be10;'">GUARDAR</button>
         </div>
       </div>
     </div>

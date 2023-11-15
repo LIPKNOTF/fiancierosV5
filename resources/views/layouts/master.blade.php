@@ -6,11 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>PSC</title>
+    <title>PsC</title>
     <!-- css master -->
     <link rel="stylesheet" href="css_new/master.css">
     <!-- foundawison css-->
     <link rel="stylesheet" href="css_new/all.min.css">
+    
     <!-- foundawison script -->
     <script src="js_new/all.min.js"></script>
     <!-- datatable -->
@@ -40,48 +41,50 @@
 
 <body>
     <div class="loader-overlay" id="loaderOverlay">
-        <div class="loader"></div>
+        <div class="contenedor-loader">
+            <div class="loader"></div>
+        </div>
     </div>
     @auth
     <div class="nav-principal">
         &nbsp;<h1>P</h1>
         <h2>S</h2>
         <h3>C</h3>
-
         <nav class="nav-primaria">
             <!-- Inicio -->
-            <a href="{{ url('home') }}" title="Inicio">
+            <a href="{{ url('home') }}" title="Inicio" class="nav-link {{ Request::is('home*') ? 'active' : '' }}">
                 <i class="fa-solid fa-house hover-verde"></i>
             </a>
             <!-- Alumnos -->
-            <a href="{{ url('alumno') }}" title="Alumnos">
+            <a href="{{ url('alumno') }}" title="Alumnos" class="nav-link {{ Request::is('alumno*') ? 'active' : '' }}">
                 <i class="fa-solid fa-graduation-cap hover-verde"></i>
             </a>
-            <!-- Consulata -->
-            <a href="{{ url('consulta') }}" title="Consulta">
+            <!-- Consulta -->
+            <a href="{{ url('consulta') }}" title="Consulta" class="nav-link {{ Request::is('consulta*') ? 'active' : '' }}">
                 <i class="fa-solid fa-magnifying-glass hover-verde"></i>
             </a>
             <!-- Clave -->
-            <a href="{{ url('clave') }}" title="Clave">
+            <a href="{{ url('clave') }}" title="Clave" class="nav-link {{ Request::is('clave*') ? 'active' : '' }}">
                 <i class="fa-solid fa-shield-halved hover-verde "></i>
             </a>
             <!-- Lectura xml -->
-            <a href="{{ url('concentrado') }}" title="Lector XML">
-                <i class="fa-solid fa-file-code hover-rojo"></i>
+            <a href="{{ url('concentrado') }}" title="Lector XML" class="nav-link {{ Request::is('concentrado*') ? 'active' : '' }}">
+                <i class="fa-solid fa-file-code color-rojo"></i>
             </a>
             <!-- Consentrados -->
-            <a href="{{ url('listConcentrado') }}" title="listConcentrado">
-                <i class="fa-solid fa-database hover-rojo"></i>
+            <a href="{{ url('listConcentrado') }}" title="listConcentrado" class="nav-link {{ Request::is('listConcentrado*') ? 'active' : '' }}">
+                <i class="fa-solid fa-database color-rojo"></i>
             </a>
             <!-- Partidas -->
-            <a href="{{ url('partida') }}" title="Partidas">
-                <i class="fa-solid fa-paste hover-rojo"></i>
+            <a href="{{ url('partida') }}" title="Partidas" class="nav-link {{ Request::is('partida*') ? 'active' : '' }}">
+                <i class="fa-solid fa-paste hover-verde"></i>
             </a>
             <!-- Capitulos -->
-            <a href="{{ url('capitulo') }}" title="Capitulos">
+            <a href="{{ url('capitulo') }}" title="Capitulos" class="nav-link {{ Request::is('capitulo*') ? 'active' : '' }}">
                 <i class="fa-solid fa-book hover-verde"></i>
             </a>
         </nav>
+
 
 
         <nav class="nav-secumdaria">
@@ -119,7 +122,6 @@
         // Muestra la ventana de carga
         function showLoader() {
             document.getElementById('loaderOverlay').style.display = 'flex';
-            ventana();
         }
 
         function hideLoader() {

@@ -29,7 +29,6 @@
           </div>
           @endif
 
-
           <!-- Modal -->
           <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static">
             <div class="modal-dialog">
@@ -60,8 +59,7 @@
         </div>
         <!-- TERMINA BOTON PARA CARGAR A EXCEL -->
         <button class="btn-modal" @click="mostrarModal()">Agregar</button>
-        <button class="btn-modal"  data-bs-toggle="modal" data-bs-target="#exampleModal">Inportar</button>
-
+        <button class="btn-modal" data-bs-toggle="modal" data-bs-target="#exampleModal">Inportar</button>
         <table id="myTableAlumnos" class="tabla display nowrap" style="width:100%">
           <thead class="fondo-negro">
             <tr>
@@ -87,8 +85,8 @@
               <td>@{{alu.carrera}}</td>
               <td>@{{alu.turno}}</td>
               <td>
-                <button class="btn-edit" @click="mostrarAlumno(alu.id)"><i class="fa-solid fa-pen"></i></button>
-                <button class="btn-edit" @click="mostrarAlumno(alu.id)"><i class="fa-solid fa-pen"></i></button>
+                <button class="btn-ver" @click="mostrarAlumno(alu.id)"><i class="fa-solid fa-clipboard-list"></i></button>
+                <button class="btn-edit" @click="editarAlumno(alu.id)"><i class="fa-solid fa-pen"></i></button>
                 <button class="btn-delete" @click="eliminarAlumno(alu.id, alu.matricula, alu.nombres, alu.apellido_p, alu.apellido_m)"><i class="fa-solid fa-trash-can"></i></button>
               </td>
             </tr>
@@ -98,195 +96,132 @@
     </div>
   </div>
 
-
   <!-- VENTANA MODA -->
   <div class="modal fade" id="modalAlumno" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
-      <div class="modal-content">
+      <div class="modal-body">
         <div class="modal-header text-white" :style="agregando ? 'background-color: #28a717;' : 'background-color: #f8be10;'">
-          <h1 class="modal-title fs-5 text-center fw-bold" id="staticBackdropLabel" v-if="agregando">AGREGAR UN ALUMNO</h1>
-          <h1 class="modal-title fs-5 text-center fw-bold" id="staticBackdropLabel" v-else>EDITAR ALUMNO</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <h1 class="modal-title" id="staticBackdropLabel" v-if="agregando">AGREGAR UN ALUMNO</h1>
+          <h1 class="modal-title" id="staticBackdropLabel" v-else>EDITAR ALUMNO</h1>
         </div>
-        <div class="modal-body">
+        <br>
+        <br>
+        <div>
           <form>
-            <!-- EMPIEZA EL FORMULARIO -->
+
             <div class="row">
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label class="fw-bold">MATRICULA</label>
-                  <input placeholder="Matricula" v-model="matricula" @input="convertirMayusculas" autofocus required type="text" class="form-control"></input>
-                </div>
+              <div class="gruup-input">
+                <input placeholder="Matricula" v-model="matricula" @input="convertirMayusculas" autofocus required type="text" class="input"></input>
 
-                <div class="form-group">
-                  <label class="fw-bold">NOMBRES</label>
-                  <input placeholder="Nombres" v-model="nombres" @input="convertirMayusculas" autofocus required type="text" class="form-control"></input>
-                </div>
+                <input placeholder="Nombres" v-model="nombres" @input="convertirMayusculas" autofocus required type="text" class="input"></input>
 
-                <div class="form-group">
-                  <label class="fw-bold">APELLIDO PATERNO</label>
-                  <input placeholder="Apellido Paterno" v-model="apellido_p" @input="convertirMayusculas" autofocus required type="text" class="form-control"></input>
-                </div>
+                <input placeholder="Apellido Paterno" v-model="apellido_p" @input="convertirMayusculas" autofocus required type="text" class="input"></input>
 
-                <div class="form-group">
-                  <label class="fw-bold">APELLIDO MATERNO</label>
-                  <input placeholder="Apellido Materno" v-model="apellido_m" @input="convertirMayusculas" autofocus required type="text" class="form-control"></input>
-                </div>
+                <input placeholder="Apellido Materno" v-model="apellido_m" @input="convertirMayusculas" autofocus required type="text" class="input"></input>
+
+                <input placeholder="Grado" v-model="grado" autofocus @input="convertirMayusculas" required type="text" class="input"></input>
+
+                <input placeholder="Grupo" v-model="grupo" autofocus @input="convertirMayusculas" required type="text" class="input"></input>
+
+                <input placeholder="Carrera" v-model="carrera" @input="convertirMayusculas" autofocus required type="text" class="input"></input>
               </div>
 
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label class="fw-bold">GRADO</label>
-                  <input placeholder="Grado" v-model="grado" autofocus @input="convertirMayusculas" required type="text" class="form-control"></input>
-                </div>
-
-                <div class="form-group">
-                  <label class="fw-bold">GRUPO</label>
-                  <input placeholder="Grupo" v-model="grupo" autofocus @input="convertirMayusculas" required type="text" class="form-control"></input>
-                </div>
-
-                <div class="form-group">
-                  <label class="fw-bold">CARRERA</label>
-                  <input placeholder="Carrera" v-model="carrera" @input="convertirMayusculas" autofocus required type="text" class="form-control"></input>
-                </div>
-
-                <div class="form-group">
-                  <label class="fw-bold">TURNO</label>
-                  <select v-model="turno" required class="form-control">
-                    <option value="MATUTINO">MATUTINO</option>
-                    <option value="VESPERTINO">VESPERTINO</option>
-                    <option value="OTRO">OTRO</option>
-                  </select>
-                </div>
+              <div class="form-group">
+                <label class="fw-bold">TURNO</label><br>
+                <select v-model="turno" required class="form-control">
+                  <option value="MATUTINO">MATUTINO</option>
+                  <option value="VESPERTINO">VESPERTINO</option>
+                  <option value="OTRO">OTRO</option>
+                </select>
               </div>
             </div>
-            <!-- TERMINA EL FORMULARIO -->
-          </form>
         </div>
+        <!-- TERMINA EL FORMULARIO -->
+        </form>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-          <button type="button" class="btn text-white" @click="agregarAlumno()" v-if="agregando" :style="agregando ? 'background-color: #28a717;' : 'background-color: #f8be10;'">GUARDAR</button>
-          <button type="button" class="btn text-white" @click="actualizarAlumno()" v-else :style="agregando ? 'background-color: #28a717;' : 'background-color: #f8be10;'">GUARDAR</button>
+          <button type="button" class="btn-rojo" data-bs-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn-modal" @click="agregarAlumno()" v-if="agregando" :style="agregando ? 'background-color: #28a717;' : 'background-color: #f8be10;'">GUARDAR</button>
+          <button type="button" class="btn-azul" @click="actualizarAlumno()" v-else :style="agregando ? 'background-color: #28a717;' : 'background-color: #f8be10;'">GUARDAR</button>
         </div>
       </div>
     </div>
   </div>
-
-
-
-
-
 
   <!-- VENTANA MODA CREAR UNA CONSULTA -->
-  <div id="modalConsulta" class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div id="modalConsulta" class="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-      <div class="modal-content row">
-        <div class="modal-header text-white bg-success">
-          <h1 class="modal-title fs-5 text-center fw-bold" id="staticBackdropLabel">AGREGAR UNA CONSULTA</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+      <div class="modal-body">
+        <h1 class="modal-title fs-5 text-center fw-bold" id="staticBackdropLabel">AGREGAR UNA CONSULTA</h1>
+        <br>
+        <div class="felex">
+          <label class="fw-bold">MATRICULA</label><br>
+          <input placeholder="Apellido Materno" v-model="matricula" @input="convertirMayusculas" class="form-control" disabled>
         </div>
-        <div class="modal-body">
-
-          <!-- EMPIEZA EL FORMULARIO -->
-
-
-          <div class="row">
-
-
-            <div class="form-group col-6">
-
-              <label class="fw-bold">MATRICULA</label>
-              <input placeholder="Apellido Materno" v-model="matricula" @input="convertirMayusculas" class="form-control" disabled>
-
-              <label class="fw-bold mt-2">APELLIDO PATERNO</label>
-              <input placeholder="Apellido Paterno" v-model="apellido_p" class="form-control " disabled>
-
-              <label class="fw-bold mt-2">FOLIO</label>
-
-              <input placeholder="Folio" v-model="folio" @input="convertirMayusculas" disabled required type="text" class="form-control">
-
-            </div>
-
-
-
-            <div class="form-group col-6">
-
-              <label class="fw-bold">NOMBRES</label>
-              <input placeholder="Nombres" v-model="nombres" @input="convertirMayusculas" class="form-control" disabled>
-
-
-              <label class="fw-bold mt-2">APELLIDO MATERNO</label>
-              <input placeholder="Apellido Materno" v-model="apellido_m" class="form-control " disabled>
-
-              <label class="fw-bold mt-2">FECHA</label>
-              <input placeholder="Fecha" v-model="fecha" autofocus type="date" class="form-control">
-            </div>
-
-            <div class="col-6 mb-3 ">
-              <label class="fw-bold">CLAVE</label>
-              <!-- <v-select  v-model="id_clave" :reduce="claves_p => claves_p.id" :options="claves_p" label="clave" type="text" v-on:keyup.enter="getClave(id_clave)"></v-select> -->
-              <v-select v-model="id_clave" :reduce="claves_p => claves_p.id" :options="claves_p" label="clave" type="text"></v-select>
-              <button class="btn btn-primary" @click="getClave(id_clave)">Buscar</button>
-
-            </div>
-
-
-
-
-            <div class="form-group">
-
-              <table class="table table-stripped table-hover table-responsive">
-                <thead>
-                  <tr>
-                    <th>Cantidad</th>
-                    <th>Descripcion</th>
-                    <th>Precio</th>
-                    <th>Importe</th>
-                    <th>Acciones</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr v-for="(row,index) in claveConsulta">
-                    <td><input type="number" class="form-control" v-model="cantidades[index]" min="1"></td>
-                    <td>@{{row.clave}}</td>
-                    <td><input type="number" class="form-control" v-model="cuotasObtenidas[index]"></td>
-                    <td>@{{calcularImporte(index)}}</td>
-                    <td><button class="btn btn-danger" @click="removeItem(index)"><i class="fa-solid fa-trash"></i></button></td>
-                  </tr>
-                </tbody>
-              </table>
-
-
-            </div>
-
-            <div class="form-group">
-
-              <div class="col-md-8   mx-auto ">
-                <div class="card">
-                  <div class="card-body ">
-                    <span class="fw-bold">Total a pagar es de: @{{subTotal}}</span> <br>
-                    <span class="fw-bold mt-1">El total de articulos es de: @{{numeroArticulos}}</span>
-
-                  </div>
-                </div>
-              </div>
-            </div>
-
-
-
-
-          </div>
-          <!-- TERMINA EL FORMULARIO -->
-
+        <div class="felex">
+          <label class="fw-bold mt-2">APELLIDO PATERNO</label><br>
+          <input placeholder="Apellido Paterno" v-model="apellido_p" class="form-control " disabled>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-          <button type="button" class="btn text-white" @click="agregarConsulta()" style="background-color: #28a717;">GUARDAR</button>
+        <div class="felex">
+          <label class="fw-bold mt-2">FOLIO</label><br>
+
+          <input placeholder="Folio" v-model="folio" @input="convertirMayusculas" disabled required type="text" class="form-control">
         </div>
+
+        <div class="felex">
+          <label class="fw-bold">NOMBRES</label><br>
+          <input placeholder="Nombres" v-model="nombres" @input="convertirMayusculas" class="form-control" disabled>
+        </div>
+        <div class="felex">
+          <label class="fw-bold mt-2">APELLIDO MATERNO</label><br>
+          <input placeholder="Apellido Materno" v-model="apellido_m" class="form-control " disabled>
+        </div>
+
+        <div class="felex">
+          <label class="fw-bold mt-2">FECHA</label><br>
+          <input placeholder="Fecha" v-model="fecha" autofocus type="date" class="form-control">
+        </div>
+
+        <div>
+          <label>CLAVE</label>
+          <!-- <v-select  v-model="id_clave" :reduce="claves_p => claves_p.id" :options="claves_p" label="clave" type="text" v-on:keyup.enter="getClave(id_clave)"></v-select> -->
+          <v-select class="texto-blanco" v-model="id_clave" :reduce="claves_p => claves_p.id" :options="claves_p" label="clave" type="text"></v-select>
+          <button class="btn-azul" @click="getClave(id_clave)">Buscar</button>
+        </div>
+
+        <table id="myTableAlumnos" class="tabla display nowrap" style="width:100%">
+          <thead class="fondo-negro">
+            <tr>
+              <th class="boder-inicio">Cantidad</th>
+              <th>Descripcion</th>
+              <th>Precio</th>
+              <th>Importe</th>
+              <th class="boder-fin">ACCIONES</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="(row,index) in claveConsulta">
+              <td><input type="number" class="input" v-model="cantidades[index]" min="1"></td>
+              <td>@{{row.clave}}</td>
+              <td><input type="number" class="input" v-model="cuotasObtenidas[index]"></td>
+              <td>@{{calcularImporte(index)}}</td>
+              <td><button class="btn-delete" @click="removeItem(index)"><i class="fa-solid fa-trash"></i></button></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="form-group">
+          <span class="fw-bold">Total a pagar es de: @{{subTotal}}</span> <br>
+          <span class="fw-bold mt-1">El total de articulos es de: @{{numeroArticulos}}</span>
+        </div>
+        <button type="button" class="btn-rojo" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn-modal" @click="agregarConsulta()">GUARDAR</button>
       </div>
     </div>
+    <!-- TERMINA EL FORMULARIO -->
   </div>
 </div>
+
 
 @endsection
 
@@ -302,7 +237,6 @@
     const fileLabel = document.getElementById('fileLabel');
     fileLabel.innerHTML = file.name;
   }
-
 </script>
 
 

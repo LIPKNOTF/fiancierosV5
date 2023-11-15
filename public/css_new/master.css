@@ -67,6 +67,7 @@ a {
 
 .hover-verde:hover {
     color: var(--var-color-verde);
+    transform: scale(1.5);
 }
 
 .rojo {
@@ -146,7 +147,6 @@ tr:hover td:nth-child(1) {
 
 .container {
     max-width: 1920px;
-
 }
 
 div.dataTables_wrapper div.dataTables_filter {
@@ -195,6 +195,26 @@ div.dataTables_wrapper div.dataTables_filter {
     background: #861911;
 }
 
+.btn-ver {
+    cursor: pointer;
+    margin: 0.3rem;
+    font-size: 1.3rem;
+    width: 2.4rem;
+    height: 2.4rem;
+    border-radius: 10px;
+    background: #339a33;
+    color: var(--var-color-balnco);
+    border: 1px solid var(--var-color-balnco);
+}
+
+.btn-ver:hover {
+    background: #37b537;
+}
+
+.btn-ver:active {
+    background: #267126;
+}
+
 /* Estilos para la ventana modal */
 .modal {
     display: none;
@@ -236,7 +256,7 @@ div.dataTables_wrapper div.dataTables_filter {
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: #26292f01;
+    background-color: rgba(6, 6, 6, 0.396);
 }
 
 .modal-body {
@@ -263,27 +283,61 @@ div.dataTables_wrapper div.dataTables_filter {
     background-color: #119711;
 }
 
+.btn-rojo {
+    color: var(--var-color-balnco);
+    margin: 1rem;
+    background-color: var(--var-color-rojo);
+    padding: .5rem;
+    width: 8rem;
+    border-radius: var(--var-borde-radius);
+    border: 1px solid var(--var-color-balnco);
+}
+
+.btn-rojo:hover {
+    background-color: #b83018;
+}
+
+.btn-azul {
+    color: var(--var-color-balnco);
+    margin: 1rem;
+    background-color: #1d5fc2;
+    padding: .5rem;
+    width: 8rem;
+    border-radius: var(--var-borde-radius);
+    border: 1px solid var(--var-color-balnco);
+}
+
+.btn-azul:hover {
+    background-color: #125ed0;
+}
+
 /* login */
 
-.input {
+.input:focus {
+    outline: none;
     border: none;
-    padding-top: .4rem;
-    padding-bottom: .4rem;
-    border-radius: .4rem;
-    background-color: var(--var-color-gris-blanco);
-    text-align: center;
+    outline: 2px solid #339a33;
+}
+
+.mt .fa-lock,
+.mt .fa-user {
+    color: var(--var-color-gris-blanco);
+    font-size: 1.3rem;
 }
 
 .btn-login {
+    font-weight: bold;
     cursor: pointer;
     color: var(--var-color-balnco);
     margin: 1rem;
     background-color: #31b131;
     padding: .5rem;
-    width: 8rem;
+    width: 9rem;
+    height: 2.5rem;
     border-radius: var(--var-borde-radius);
     border: 1px solid var(--var-color-balnco);
-    margin-left: 2.3rem;
+    margin-left: 2.4rem;
+    margin-top: 3rem;
 }
 
 .btn-login:hover {
@@ -295,16 +349,38 @@ div.dataTables_wrapper div.dataTables_filter {
 }
 
 .mb {
-    margin-top: 13rem;
+    margin-top: -1rem;
     margin-bottom: 4rem;
+    color: var(--var-color-gris-blanco);
+    font-weight: bold;
 }
 
 .login {
-    text-align: center;
-    align-items: center;
+    display: flex;
     justify-content: center;
+    align-items: center;
+    height: 94vh;
+    background: var(--var-color-negro);
+    border-radius: var(--var-borde-radius);
+    transition: .3s;
 }
 
+.login-datos {
+    justify-content: center;
+    align-items: center;
+    padding: 8rem;
+    background-color: var(--var-color-gris);
+    box-shadow: 0px 0 10px #0e0d0d;
+    border-radius: var(--var-borde-radius);
+    transition: .3s;
+}
+
+.psc {
+    color: #22242a;
+    padding-bottom: 4rem;
+}
+
+/* fin del logn */
 .carta {
     display: flex;
     justify-content: center;
@@ -369,8 +445,8 @@ div.dataTables_wrapper div.dataTables_filter {
 }
 
 .loader {
-    border: 5px solid #f3f3f3;
-    border-top: 5px solid #3498db;
+    border: 5px solid var(--var-color-balnco);
+    border-top: 5px solid var(--var-color-verde);
     border-radius: 50%;
     width: 50px;
     height: 50px;
@@ -378,14 +454,172 @@ div.dataTables_wrapper div.dataTables_filter {
 }
 
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.contenedor-loader {
+    padding: 1rem;
+    margin-top: -16rem;
+    background-color: var(--var-color-gris);
+    border-radius: var(--var-borde-radius);
+    box-shadow: 0px 0 10px #0e0d0d;
+    width: 115rem;
+    height: 82vh;
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: .3s;
+}
+
+.color-rojo {
+    color: var(--var-color-rojo);
+}
+
+.color-verde {
+    color: var(--var-color-verde);
+}
+
+.borde-verde {
+    background-color: var(--var-color-verde);
+    color: var(--var-color-balnco);
+}
+
+.gruup-input {
+    width: 100%;
+}
+
+@media (min-width: 1001px) and (max-width: 1400px) {
+
+    .login {
+        height: 91vh;
+    }
+
+    .login-datos {
+        padding: 5rem;
+    }
+
+    .contenedor-loader {
+        margin-top: -33rem;
+        width: 82rem;
+        height: 80vh;
+    }
+}
+
+@media (min-width: 601px) and (max-width: 1000px) {
+    .login {
+        height: 94vh;
+    }
+
+    .login-datos {
+        padding: 5rem;
+    }
+
+    .contenedor-loader {
+        margin-top: -14rem;
+        width: 57rem;
+        height: 86vh;
+    }
+}
+
+@media (min-width: 100px) and (max-width: 600px) {
+    .login {
+        height: 88vh;
+    }
+
+    .login-datos {
+        padding: 3rem;
+    }
+
+    .psc {
+        padding-bottom: 2rem;
+    }
+
+    .contenedor-loader {
+        margin-top: -17rem;
+        width: 82rem;
+        height: 80vh;
+    }
+}
+
+/* Estilos para el encabezado de la ventana modal */
+.modal-header {
+    border-radius: var(--var-borde-radius);
+    border: 1px solid var(--var-color-gris-blanco);
+}
+
+.modal-title {
+    color: #fff;
+}
+
+.input {
+    background-color: var(--var-color-negro);
+    color: var(--var-color-blanco);
+    border: 1px solid var(--var-color-gris-blanco);
+    border-radius: var(--var-borde-radius);
+    padding: 8px;
+    margin-bottom: 10px;
+}
+
+/* Estilos específicos para los botones de guardar */
+.btn-primary {
+    background-color: var(--var-color-verde);
+    border: 1px solid var(--var-color-verde);
+}
+
+.btn-secondary {
+    background-color: var(--var-color-rojo);
+    border: 1px solid var(--var-color-rojo);
 }
 
 
-.hover-rojo {
-    color: var(--var-color-rojo);
+/* Estilos para el grupo de inputs */
+.gruup-input {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
 }
-.hover-rojo:hover{
-    color: var(--var-color-rojo);
+
+/* Estilos para el selector de turno */
+.form-control {
+    background-color: var(--var-color-negro);
+    color: var(--var-color-blanco);
+    border: 1px solid var(--var-color-gris-blanco);
+    border-radius: var(--var-borde-radius);
+    padding: 8px;
+    width: 20rem;
+
+}
+
+.texto-blanco {
+    color: var(--var-color-balnco) !important;
+    background-color: var(--var-color-gris-blanco);
+    padding: 0.4rem;
+    border-radius: var(--var-borde-radius);
+}
+
+.nav-link.active .fa-graduation-cap,
+.nav-link.active .fa-house,
+.nav-link.active .fa-key,
+.nav-link.active .fa-receipt,
+.nav-link.active .fa-file-code,.nav-link.active 
+.nav-link.active .fa-database,
+.nav-link.active .fa-paste,
+.nav-link.active .fa-book,
+.nav-link.active .fa-magnifying-glass,
+.nav-link.active .fa-right-to-bracket,
+.nav-link.active .fa-right-from-bracket,
+.nav-link.active .fa-shield-halved {
+    color: var(--var-color-verde);
+    transform: scale(1.5);
+    transition: color 0.3s ease, transform 0.3s ease;
+} 
+.mb-1{
+    margin-bottom: 1rem;
 }

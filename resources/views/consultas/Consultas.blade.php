@@ -14,9 +14,15 @@
     <div class="text-center">
 
       <span class="input-group-text">Fecha Inicial</span>
-      <input placeholder="FECHA DE TERMINO" v-model="fecha_f" type="date" class="form-control" />
+      <input placeholder="FECHA DE TERMINO" v-model="fecha_f" type="date" class="input" />
+
       <span class="input-group-text">Fecha Final</span>
-      <input placeholder="FECHA INICIO" v-model="fecha_i" type="date" class="form-control" />
+      <input placeholder="FECHA INICIO" v-model="fecha_i" type="date" class="input" />
+
+      <button type="button" class="btn-edit" @click="limpiar()">
+        <i class="fa-solid fa-broom"></i>
+      </button>
+
 
     </div>
 
@@ -63,105 +69,90 @@
   <!-- VENTANA MODA -->
   <div class="modal fade" id="modalConsulta" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
-      <div class="modal-content">
+      <div class="modal-body">
         <div class="modal-header text-white" :style="agregando ? 'background-color: #28a717;' : 'background-color: #f8be10;'">
           <h1 class="modal-title fs-5 text-center fw-bold" id="staticBackdropLabel" v-if="agregando">AGREGAR UNA CONSULTA</h1>
           <h1 class="modal-title fs-5 text-center fw-bold" id="staticBackdropLabel" v-else>EDITAR UNA CONSULTA</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body">
-          <form>
-            <!-- EMPIEZA EL FORMULARIO -->
+        <br>
+        <br>
+        <form>
+          <!-- EMPIEZA EL FORMULARIO -->
+          <div class="row">
+            <div class="form-group col-6">
 
-
-            <div class="row">
-
-
-              <div class="form-group col-6">
-
-                <label class="fw-bold mt-2">FOLIO</label>
-                <span>@{{folio}}</span>
-                <input placeholder="Folio" v-model="folio" @input="convertirMayusculas" disabled required type="text" class="form-control">
-
-                <label class="fw-bold mt-2">ALUMNO</label>
-                <v-select v-model="id_alumno" :reduce="alumno => alumno.id" :options="alumnos" label="matricula"></v-select>
-
-
-
-              </div>
-
-
-
-              <div class="form-group col-6 ">
-
-                <label class="fw-bold mt-2">FECHA</label>
-                <input placeholder="Fecha" v-model="fecha" autofocus @input="convertirMayusculas" required type="date" class="form-control"></input>
-
-                <label class="fw-bold mt-2">CLAVE</label>
-                <v-select v-model="id_clave" :reduce="claves_p => claves_p.id" :options="claves_p" label="clave"></v-select>
-                <button class="btn btn-primary" @click="getClave(id_clave)">Buscar</button>
-
-              </div>
-
-            </div>
-
-            <div class="row">
-              <div class="form-group mt-4">
-
-                <table class="table table-stripped table-hover table-responsive">
-                  <thead>
-                    <tr>
-                      <th>Cantidad</th>
-                      <th>Descripcion</th>
-                      <th>Precio</th>
-                      <th>Importe</th>
-                      <th>Acciones</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr v-for="(row,index) in claveConsulta">
-                      <td><input type="number" class="form-control" v-model="cantidades[index]" min="1"></td>
-                      <td>@{{row.clave}}</td>
-                      <td><input type="number" class="form-control" v-model="cuotasObtenidas[index]"></td>
-                      <td>@{{calcularImporte(index)}}</td>
-                      <td><button class="btn btn-danger" @click="removeItem(index)"><i class="fa-solid fa-trash"></i></button></td>
-                    </tr>
-                  </tbody>
-                </table>
-
-
-              </div>
-            </div>
-
+              <label class="fw-bold mt-2">FOLIO</label>
+              <span>@{{folio}}</span>
+              <input placeholder="Folio" v-model="folio" @input="convertirMayusculas" disabled required type="text" class="form-control">
+              <label class="fw-bold mt-2">FECHA</label>
+              <input placeholder="Fecha" v-model="fecha" autofocus @input="convertirMayusculas" required type="date" class="form-control"></input>
+            </div><br>
 
             <div class="form-group">
 
-              <div class="col-md-8   mx-auto ">
-                <div class="card">
-                  <div class="card-body ">
-                    <span class="fw-bold">Total a pagar es de: @{{subTotal}}</span> <br>
-                    <span class="fw-bold mt-1">El total de articulos es de: @{{numeroArticulos}}</span>
+              <label class="fw-bold mt-2">ALUMNO</label>
+              <v-select class="texto-blanco" v-model="id_alumno" :reduce="alumno => alumno.id" :options="alumnos" label="matricula"></v-select>
 
-                  </div>
+              <label class="fw-bold mt-2">CLAVE</label>
+              <v-select class="texto-blanco" v-model="id_clave" :reduce="claves_p => claves_p.id" :options="claves_p" label="clave"></v-select>
+              <button class="btn-azul" @click="getClave(id_clave)">Buscar</button>
+
+            </div>
+
+          </div>
+
+          <table id="myTableAlumnos" class="tabla display nowrap" style="width:100%">
+            <thead class="fondo-negro">
+              <tr>
+                <th class="boder-inicio">Cantidad</th>
+                <th>Descripcion</th>
+                <th>Precio</th>
+                <th>Importe</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="(row,index) in claveConsulta">
+                <td><input type="number" class="input" v-model="cantidades[index]" min="1"></td>
+                <td>@{{row.clave}}</td>
+                <td><input type="number" class="input" v-model="cuotasObtenidas[index]"></td>
+                <td>@{{calcularImporte(index)}}</td>
+                <td><button class="btn-delete" @click="removeItem(index)"><i class="fa-solid fa-trash"></i></button></td>
+              </tr>
+            </tbody>
+          </table>
+
+
+
+
+          <div class="form-group">
+
+            <div class="col-md-8   mx-auto ">
+              <div class="card">
+                <div class="card-body ">
+                  <span class="fw-bold">Total a pagar es de: @{{subTotal}}</span> <br>
+                  <span class="fw-bold mt-1">El total de articulos es de: @{{numeroArticulos}}</span>
+
                 </div>
               </div>
             </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn-rojo" data-bs-dismiss="modal">Cerrar</button>
+            <button type="button" class="btn-modal" @click="agregarConsulta()" v-if="agregando" :style="agregando ? 'background-color: #28a717;' : 'background-color: #f8be10;'">GUARDAR</button>
+            <button type="button" class="btn-azul" @click="actualizarConsulta()" v-else :style="agregando ? 'background-color: #28a717;' : 'background-color: #f8be10;'">GUARDAR</button>
+          </div>
 
 
-
-
-        </div>
-        <!-- TERMINA EL FORMULARIO -->
-        </form>
 
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn text-white" @click="agregarConsulta()" v-if="agregando" :style="agregando ? 'background-color: #28a717;' : 'background-color: #f8be10;'">GUARDAR</button>
-        <button type="button" class="btn text-white" @click="actualizarConsulta()" v-else :style="agregando ? 'background-color: #28a717;' : 'background-color: #f8be10;'">GUARDAR</button>
-      </div>
+      <!-- TERMINA EL FORMULARIO -->
+      </form>
+
     </div>
+
   </div>
+</div>
 </div>
 </div>
 
