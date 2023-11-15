@@ -1,15 +1,17 @@
 function init() {
     var ruta = document.querySelector("[name=route]").value;
-    Vue.component("v-select", VueSelect.VueSelect);
-    var apiConcentrado = ruta + "/apiConcentrado";
-    var apiPartida = ruta + "/apiPartida"
+        var apiConcentrado = ruta + "/apiConcentrado";
+        var apiPartida = ruta + "/apiPartida";
     new Vue({
+
+        
+
         http: {
             headers: {
                 "X-CSRF-TOKEN": document
                     .querySelector("#token")
-                    .getAttribute("value"),
-            },
+                    .getAttribute("value")
+            }
         },
 
         el: "#concentrado2",
@@ -18,7 +20,24 @@ function init() {
             partidas: [],
             xmlData: null,
             datosNecesarios: '',
-            
+            datos:{
+                  fecha: '',
+                  subTotal: '',
+                  total: '',
+                  rfcEmisor:'',
+                  razon_socialEmisor:'',
+                  regimenFiscalEmisor:'',
+                  rfcReceptor:'',
+                  razon_socialReceptor:'',
+                  regimenFiscalReceptor:'',
+                  producto:'',
+                  importe:'',
+                  impuestoTraslado: '',
+                  impuestoRetenido: '',
+            },
+            id_partida:'',
+            descripcion:'',
+
 
         },
         created: function () {
@@ -30,8 +49,6 @@ function init() {
             getConcentrados: function () {
                 this.$http.get(apiConcentrado).then(function (json) {
                     this.concentrados = json.data;
-                }).catch(function (json) {
-                    console.log(json);
                 });
             },
 
@@ -43,116 +60,168 @@ function init() {
                 });
             },
 
-            leerArchivoXML(event) {
-                const datos={};
-                const archivo = event.target.files[0];
+            leerArchivoXML2:function() {
+                const fileInput = document.getElementById('xmlFile');
+                const file = fileInput.files[0];
               
-                if (archivo) {
+                if (file) {
                   const reader = new FileReader();
               
-                  reader.onload = () => {
+                  reader.onload = (event) => {
+                    const contenidoXML = event.target.result;
+              
                     const parser = new DOMParser();
-                    const xmlDoc = parser.parseFromString(reader.result, 'text/xml');
+                    const xmlDoc = parser.parseFromString(contenidoXML, 'text/xml');
               
-                    var comporbanteElement = xmlDoc.querySelector('cfdi:Comprobante')[0];
-        var fecha = comporbanteElement.getAttribute('Fecha');
-        var subTotal = comporbanteElement.getAttribute('SubTotal');
-        var total = comporbanteElement.getAttribute('Total');
-        // obtengo los datos requeridos del emisor
-        var emisorElement = xmlDoc.querySelector('cfdi:Emisor')[0];
-        var rfcEmisor = emisorElement.getAttribute('Rfc');
-        var razon_socialEmisor = emisorElement.getAttribute('Nombre');
-        var regimenFiscalEmisor = emisorElement.getAttribute('RegimenFiscal');
-        // obtengo los datos requeridos del receptor 
-        var receptorElement = xmlDoc.querySelector('cfdi:Receptor')[0];
-        var rfcReceptor = receptorElement.getAttribute('Rfc');
-        var razon_socialReceptor = receptorElement.getAttribute('Nombre');
-        var regimenFiscalReceptor = receptorElement.getAttribute('RegimenFiscalReceptor');
-        // obtenemos los datos del concepto 
-        var conceptoElement = xmlDoc.querySelector('cfdi:Concepto')[0];
-        var producto = conceptoElement.getAttribute('Descripcion');
-        var importe = conceptoElement.getAttribute('Importe');
-        // 
-        var impuestoElements = xmlDoc.querySelector('cfdi:Impuestos');
-        var impuestoElement;
-        var impuestoElement2;
-        var impuestoTraslado;
-        var impuestoRetenido;
-
-        for (var i = 0; i < impuestoElements.length; i++) {
-          var impuestoElement = impuestoElements[i];
-          var impuestoTraslado = impuestoElement.getAttribute('TotalImpuestosTrasladados');
-          var impuestoRetenido = impuestoElement.getAttribute('TotalImpuestosRetenidos');
-
-          if (impuestoTraslado !== null) {
-            // Se encontró un elemento con TotalImpuestosTrasladados, realizar la lógica correspondiente
-            var impuestoTraslado = impuestoElement.getAttribute('TotalImpuestosTrasladados');
-            var impuestoRetenido = impuestoElement.getAttribute('TotalImpuestosRetenidos');
-            break;
-          } else {
-            // Si no encuentra algun elemento nada mas traera datos vacios
-            impuestoElement = null;
-            impuestoElement2 = null;
-            impuestoTraslado = null;
-            impuestoRetenido = null;
-          }
-        }
-
-        
-
-        if (impuestoElement !== null) {
-          
-          // Si encuentra almeneos unos de los datos los trae 
-          var impuestoTraslado = impuestoElement.getAttribute('TotalImpuestosTrasladados');
-          var impuestoRetenido = impuestoElement.getAttribute('TotalImpuestosRetenidos');
-        } else {
-          
-        }
-        
-
-        var datos = {
-          fecha: fecha,
-          subTotal: subTotal,
-          total: total,
-          rfcReceptor: rfcReceptor,
-          razon_socialReceptor: razon_socialReceptor,
-          regimenFiscalReceptor: regimenFiscalReceptor,
-          rfcEmisor: rfcEmisor,
-          razon_socialEmisor: razon_socialEmisor,
-          regimenFiscalEmisor: regimenFiscalEmisor,
-          producto: producto,
-          impuestoTraslado: impuestoTraslado,
-          impuestoRetenido: impuestoRetenido,
-
-
-        };
-
-        console.log(datos);
+                    // Acceder a los datos específicos del XML
+                    const datos = this.obtenerDatosXML(xmlDoc);
               
-                    
+                    // Asignar datos al estado del componente
+                    this.datos = datos;
               
-                    // Puedes hacer más cosas con estos valores si es necesario
+                    // Imprimir en la consola
+                    console.log(datos);
                   };
               
-                  reader.readAsText(archivo);
+                  reader.readAsText(file);
                 }
               },
-              
-              enviarDatos() {
-                // Aquí puedes enviar this.datosNecesarios a tu base de datos
-                // y realizar otras operaciones necesarias
-                console.log('Datos enviados:', this.datosNecesarios);
-              },
-            }
-
 
             
+            
+
+              obtenerDatosXML(xmlDoc) {
+                // Elementos del comprobante
+                const comporbanteElement = xmlDoc.getElementsByTagName('cfdi:Comprobante')[0];
+                const fecha = comporbanteElement.getAttribute('Fecha');
+                const subTotal = comporbanteElement.getAttribute('SubTotal');
+                const total = comporbanteElement.getAttribute('Total');
+
+                // Elementos del Emisor
+                const emisorElement = xmlDoc.getElementsByTagName('cfdi:Emisor')[0];
+                const rfcEmisor = emisorElement.getAttribute('Rfc');
+                const razon_socialEmisor = emisorElement.getAttribute('Nombre');
+                const regimenFiscalEmisor = emisorElement.getAttribute('RegimenFiscal');
+
+                // Elementos del Receptor
+                const receptorElement = xmlDoc.getElementsByTagName('cfdi:Receptor')[0];
+                const rfcReceptor = receptorElement.getAttribute('Rfc');
+                const razon_socialReceptor = receptorElement.getAttribute('Nombre');
+                const regimenFiscalReceptor = receptorElement.getAttribute('RegimenFiscalReceptor');
 
 
+                // Elementos del Concepto
+                const conceptoElement = xmlDoc.getElementsByTagName('cfdi:Concepto')[0];
+                const producto = conceptoElement.getAttribute('Descripcion');
+                const importe = conceptoElement.getAttribute('Importe');
+              
+                // ... otros elementos ...
+              
+                const impuestoElements = xmlDoc.getElementsByTagName('cfdi:Impuestos');
+                let impuestoTraslado = null;
+                let impuestoRetenido = null;
+              
+                for (let i = 0; i < impuestoElements.length; i++) {
+                  const impuestoElement = impuestoElements[i];
+                  const impuestoTrasladoValue = impuestoElement.getAttribute('TotalImpuestosTrasladados');
+                  const impuestoRetenidoValue = impuestoElement.getAttribute('TotalImpuestosRetenidos');
+              
+                  if (impuestoTrasladoValue !== null) {
+                    // Se encontró un elemento con TotalImpuestosTrasladados, realizar la lógica correspondiente
+                    impuestoTraslado = impuestoTrasladoValue;
+                    impuestoRetenido = impuestoRetenidoValue;
+                    break;
+                  }
+                }
+                
+                // Asignamos a cada input el valor traido por el xmnl
+                // Asignamos los valores a los campos de entrada
+                
+              
+                return {
+                  fecha: fecha,
+                  subTotal: subTotal,
+                  total: total,
+                  rfcEmisor:rfcEmisor,
+                  razon_socialEmisor:razon_socialEmisor,
+                  regimenFiscalEmisor:regimenFiscalEmisor,
+                  rfcReceptor:rfcReceptor,
+                  razon_socialReceptor:razon_socialReceptor,
+                  regimenFiscalReceptor:regimenFiscalReceptor,
+                  producto:producto,
+                  importe:importe,
+
+                  // ... otros datos ...
+                  impuestoTraslado: impuestoTraslado,
+                  impuestoRetenido: impuestoRetenido,
+                };
+
+                
+              },
 
 
-        
+                saveConcentrado:function(){
+                        let egresos=[];
+
+                        const today = new Date();
+                        const year = today.getFullYear();
+                        const month = String(today.getMonth() + 1).padStart(2, '0');
+                        const day = String(today.getDate()).padStart(2, '0');
+
+                        const formattedDate = `${year}-${month}-${day}`;
+                        
+
+                        egresos.push({
+                            id_partida:this.id_partida,
+                            total:this.datos.total,
+                            fecha: formattedDate
+
+                        });
+                        let data ={
+                            id_partida: this.id_partida,
+                            fecha: this.datos.fecha,
+                            razon_social_emisor: this.datos.razon_socialEmisor,
+                            razon_social_receptor: this.datos.razon_socialReceptor,
+                            rfc_emisor: this.datos.rfcEmisor,
+                            rfc_receptor: this.datos.rfcReceptor,
+                            regimen_emisor: this.datos.regimenFiscalEmisor,
+                            regimen_receptor: this.datos.regimenFiscalReceptor,
+                            total: this.datos.total,
+                            sub_total: this.datos.subTotal,
+                            impuesto_traslado: this.datos.impuestoTraslado,
+                            impuesto_retenido: this.datos.impuestoRetenido,
+                            productos: this.datos.producto,
+                            descripcion: this.descripcion,
+                            egresos:egresos
+
+                        };
+
+                        this.$http.post(apiConcentrado,data).then(function(json){
+                            this.getConcentrados();
+                            this.id_partida='',
+                            this.descripcion='',
+                            this.datos=''
+
+                            Swal.fire({
+                                icon: "success",
+                                title: "GENIAL",
+                                text: "Se agrego el concentrado con éxito!",
+                                showConfirmButton: false,
+                                timer: 1000,
+                            });
+                        });
+                        
+
+                        
+
+                        console.log(data);
+                },
+              
+
+           
+            
+            },
+
     });
-    // fin de vue
-}
-window.onload = init;    
+    
+}window.onload = init;
