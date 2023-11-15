@@ -6,18 +6,18 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ConcentradoController;
 use App\Http\Controllers\ExcelImportController;
 use App\Http\Controllers\ListConcentradoController;
-use App\Http\Controllers\PartidaController;
+// use App\Http\Controllers\PartidaController;
 // use App\Http\Controllers\CapituloController;
-use App\Http\Controllers\AlumnosController;
-use App\Http\Controllers\ClaveController;
-use App\Http\Controllers\ConsulasControlador;
+// use App\Http\Controllers\AlumnosController;
+// use App\Http\Controllers\ClaveController;
+// use App\Http\Controllers\ConsulasControlador;
 use App\Http\Controllers\HNuevaController;
 use App\Http\Controller\ControlDeFacturasController;
 use App\Http\Controller\ConsolidadoDeMesesController;
 use App\Http\Controller\PolizaDeIngresosController;
 use App\Http\Controller\FlujoDeEfectivoController;
 use App\Http\Controller\FormatoConciliacionController;
-use App\Http\Controller\ControlDeIngresosController;
+
 
 /*
 |--------------------------------------------------------------------------
