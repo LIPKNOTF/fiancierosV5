@@ -6,7 +6,7 @@
 
 
     <legend>
-        <h1>&nbsp; Alumnos &nbsp;</h1>
+        <h1>&nbsp; Capitulo &nbsp;</h1>
     </legend>
 
     <div class="col-auto mt-4 text-center">
