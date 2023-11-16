@@ -16,6 +16,7 @@ use App\Http\Controller\ConsolidadoDeMesesController;
 use App\Http\Controller\PolizaDeIngresosController;
 use App\Http\Controller\FlujoDeEfectivoController;
 use App\Http\Controller\FormatoConciliacionController;
+use App\Http\Controller\FinanzasController;
 
 
 /*
@@ -52,6 +53,7 @@ Route::view('alumno','alumnos/Alumnos');
 Route::view('consulta', 'consultas/Consultas');
 Route::view('clave', 'clave/clave');
 Route::view('con', 'concentrado/concentrado2');
+Route::view('finanzas', 'finanzas/totalMensual');
 
 Route::view('capitulo','capitulo/capitulo');
 Route::view('partida','partida/partida');
@@ -68,6 +70,9 @@ Route::apiResource('apiAlumno',AlumnosController::class);
 Route::apiResource('apiConsulta', ConsulasControlador::class);
 Route::apiResource('apiConcentrado', ConcentradoController::class);
 Route::apiResource('apiClave', ClaveController::class);
+Route::get('apiTotalMes', 'FinanzasController@index');
+Route::get('apiEgresos', 'FinanzasController@getEgresos');
+Route::get('apiIngresos', 'FinanzasController@getIngresos');
 
 Route::apiResource('apiCapitulo',CapituloController::class);
 Route::apiResource('apiPartida',PartidaController::class);

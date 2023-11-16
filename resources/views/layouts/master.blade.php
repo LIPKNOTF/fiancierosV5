@@ -138,7 +138,7 @@
                 console.log((path === '/alumno') ? "alumnos" : path.substring(1));
             }, (path === '/alumno') ? 1500 : 0);
 
-            if (['/consulta', '/clave', '/concentrado', '/partida', '/capitulo'].includes(path)) {
+            if (['/consulta', '/clave', '/concentrado', '/partida', '/capitulo','finanzas'].includes(path)) {
                 setTimeout(function() {
                     hideLoader();
                     console.log("Demas");
