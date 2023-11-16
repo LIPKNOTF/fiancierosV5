@@ -76,7 +76,7 @@
 
 @push('scripts')
 <script type="text/javascript" src="js/apis/apiPartida.js"></script>
-<script type="text/javascript" src="js/vue-resource.js"></script>
+
 <script>
     $(document).ready(function() {
         var table = $("#partidaTabla");

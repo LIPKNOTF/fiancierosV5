@@ -81,6 +81,6 @@
 
 @push('scripts')
 <script type="text/javascript" src="js/apis/apiCapitulo.js"></script>
-<script type="text/javascript" src="js/vue-resource.js"></script>
+
 @endpush
 <input type="hidden" name="route" value="{{ url('/') }}">

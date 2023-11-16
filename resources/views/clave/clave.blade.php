@@ -86,7 +86,6 @@
 @push('scripts')
 <!-- IMPORTANTE PARA QUE NO OCURRA ERROR -->
 <script src="js/bootstrap.bundle.min.js"></script>
-<script src="js/vue-resource.js"></script>
 <script src="js/apis/apiClave.js"></script>
 @endpush
 <input type="hidden" name="route" value="{{ url('/') }}">

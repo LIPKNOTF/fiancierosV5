@@ -229,7 +229,7 @@
 @push('scripts')
 <!-- IMPORTANTE PARA QUE NO OCURRA ERROR -->
 <script src="js/bootstrap.bundle.min.js"></script>
-<script src="js/vue-resource.js"></script>
+
 <script src="js/apis/apiAlumno.js"></script>
 <script>
   function handleFileSelect(event) {
