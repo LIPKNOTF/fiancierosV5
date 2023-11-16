@@ -608,8 +608,8 @@ div.dataTables_wrapper div.dataTables_filter {
 .nav-link.active .fa-house,
 .nav-link.active .fa-key,
 .nav-link.active .fa-receipt,
-.nav-link.active .fa-file-code,.nav-link.active 
-.nav-link.active .fa-database,
+.nav-link.active .fa-file-code,
+.nav-link.active .nav-link.active .fa-database,
 .nav-link.active .fa-paste,
 .nav-link.active .fa-book,
 .nav-link.active .fa-magnifying-glass,
@@ -619,7 +619,48 @@ div.dataTables_wrapper div.dataTables_filter {
     color: var(--var-color-verde);
     transform: scale(1.5);
     transition: color 0.3s ease, transform 0.3s ease;
-} 
-.mb-1{
+}
+
+.mb-1 {
     margin-bottom: 1rem;
+}
+
+.gup-ino {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    /* Espaciado entre elementos */
+    max-width: 800px;
+    /* Ancho máximo para que no se expanda demasiado */
+    margin: 0 auto;
+    /* Centra el contenido */
+    margin-top: 1rem;
+}
+
+.gup-ino div {
+    flex: 1;
+    /* Ocupa todo el espacio disponible */
+    min-width: 250px;
+    /* Ancho mínimo para evitar que se hagan demasiado pequeños */
+}
+
+.gup-ino .form-label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.gup-ino .form-control {
+    width: 100%;
+}
+
+.mt-2 {
+    margin-top: 10px;
+}
+
+.btn-modal {
+    margin-top: 15px;
+}
+
+.wt{
+    width: 22rem;
 }

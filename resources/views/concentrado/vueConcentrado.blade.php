@@ -2,36 +2,29 @@
 @section('titulo','Listado de Concentrados')
 @section('content')
 <div id="concentrado">
-  <div class="container justify-content-center">
-  <div class="text-center p-1 fw-bold text-white" style="background-color: #2471A3; margin-bottom: 10px; border-radius: 5px;">
-                        <h4 class="mb-2">
-                            Modulo de concentrados
-                        </h4>
-                    </div>
-    <div class="col-md-4 offset-md-4">
-      <div class="d-grid mx-auto">
-        <a class="btn btn-dark mb-2" href="/con">Agregar Concentrado <i class="fa-solid fa-plus"></i></a>
-      </div>
-    </div>
+  <legend>
+    <h1>&nbsp; Concentrados &nbsp;</h1>
+  </legend><br>
+  <a class="btn-modal" href="/con">Agregar Concentrado</a>
+  <br>
+  <br>
 
-    <!-- Filtro por fecha  -->
-    <div class="text-center mb-4">
-      <div class="col-md-6 d-inline-block">
-        <div class="input-group">
-          <span class="input-group-text">Fecha Inicial</span>
-          <input placeholder="FECHA DE TERMINO" v-model="fecha_f" type="date" class="form-control" />
-          <span class="input-group-text">Fecha Final</span>
-          <input placeholder="FECHA INICIO" v-model="fecha_i" type="date" class="form-control" />
-          <button type="button" class="btn btn-outline-success btn-sm text-white text-center" style="background-color: #28a717;" @click="limpiar()">
-            <i class="fa-solid fa-broom"></i> LIMPIAR
-          </button>
-        </div>
-      </div>
-    </div>
+  <!-- Filtro por fecha -->
 
-    <table class="table table-bordered table-striped table-responsive">
-      <thead class="table-primary">
-        <th>Partida Codigo</th>
+  <div class="input-group">
+    <span class="input-group-text">Fecha Inicial</span>
+    <input placeholder="FECHA DE TERMINO" v-model="fecha_f" type="date" class="form-control" />
+    <span class="input-group-text">Fecha Final</span>
+    <input placeholder="FECHA INICIO" v-model="fecha_i" type="date" class="form-control" />
+    <button type="button" class="btn-azul" style="background-color: #28a717;" @click="limpiar()">
+      <i class="fa-solid fa-broom"></i>
+    </button>
+  </div>
+
+  <table id="tablaCon" class="tabla display nowrap" style="width:100%">
+    <thead class="fondo-negro">
+      <tr>
+        <th class="boder-inicio">Partida Codigo</th>
         <th>Partida Nombre</th>
         <th>Fecha</th>
         <th>Razon Social Emisor</th>
@@ -46,33 +39,34 @@
         <th>Impuesto Retenido</th>
         <th>Productos</th>
         <th>Descripcion</th>
-        <th>Acciones</th>
-      </thead>
-      <tbody>
-        <tr v-for="row in filtrarfechas">
-          <td>@{{row.partida.codigo}}</td>
-          <td>@{{row.partida.nombre}}</td>
-          <td>@{{row.fecha}}</td>
-          <td>@{{row.razon_social_emisor}}</td>
-          <td>@{{row.razon_social_receptor}}</td>
-          <td>@{{row.rfc_emisor}}</td>
-          <td>@{{row.rfc_receptor}}</td>
-          <td>@{{row.regimen_emisor}}</td>
-          <td>@{{row.regimen_receptor}}</td>
-          <td>@{{row.total}}</td>
-          <td>@{{row.sub_total}}</td>
-          <td>@{{row.impuesto_traslado}}</td>
-          <td>@{{row.impuesto_retenido}}</td>
-          <td>@{{row.productos}}</td>
-          <td>@{{row.descripcion}}</td>
-          <td>
-            <button class="btn btn-warning" @click="showConcentrado(row.id)"><i class="fa-solid fa-pencil"></i></button>
-            <button class="btn btn-danger" @click="deleteConcentrado(row.id)"><i class="fa-solid fa-trash"></i></button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+        <th class="boder-fin">ACCIONES</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr v-for="row in filtrarfechas">
+        <td>@{{row.partida.codigo}}</td>
+        <td>@{{row.partida.nombre}}</td>
+        <td>@{{row.fecha}}</td>
+        <td>@{{row.razon_social_emisor}}</td>
+        <td>@{{row.razon_social_receptor}}</td>
+        <td>@{{row.rfc_emisor}}</td>
+        <td>@{{row.rfc_receptor}}</td>
+        <td>@{{row.regimen_emisor}}</td>
+        <td>@{{row.regimen_receptor}}</td>
+        <td>@{{row.total}}</td>
+        <td>@{{row.sub_total}}</td>
+        <td>@{{row.impuesto_traslado}}</td>
+        <td>@{{row.impuesto_retenido}}</td>
+        <td>@{{row.productos}}</td>
+        <td>@{{row.descripcion}}</td>
+        <td>
+          <button class="btn btn-edit" @click="showConcentrado(row.id)"><i class="fa-solid fa-pencil"></i></button>
+          <button class="btn btn-delete" @click="deleteConcentrado(row.id)"><i class="fa-solid fa-trash"></i></button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
 
 
   <!-- Ventana modal -->
@@ -160,7 +154,7 @@
 
                 <div class="form-group">
                   <label class="fw-bold">DESCRIPCION</label>
-                  <input placeholder="Descripcion" v-model="descripcion"  type="text" class="form-control">
+                  <input placeholder="Descripcion" v-model="descripcion" type="text" class="form-control">
                 </div>
 
               </div>
@@ -183,6 +177,7 @@
 @push('scripts')
 <script src="js/bootstrap.bundle.min.js"></script>
 <script src="js/apis/apiConcentrado.js"></script>
+
 @endpush
 
 <input type="hidden" name="route" value="{{ url('/') }}">

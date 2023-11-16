@@ -20,7 +20,7 @@ class ControlDeIngresosController extends Controller
         if (!$consultas){
             abort(404);
         }
-
+ 
         $cantidadEnLetras = $this->Conversion($consultas->cantidad);
         $alumno = $consultas->alumno;
         $clave = $consultas->claves_p;

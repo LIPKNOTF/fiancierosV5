@@ -49,7 +49,7 @@ Route::get('/', function () {
 Route::middleware(['auth'])->group(function () {
 Route::get('/import-form', [ExcelImportController::class, 'importForm']);
 Route::post('/import', [ExcelImportController::class, 'import']);
-Route::view('alumno','alumnos/alumnos');
+Route::view('alumno','alumnos/Alumnos');
 Route::view('consulta', 'consultas/Consultas');
 Route::view('clave', 'clave/clave');
 Route::view('con', 'concentrado/concentrado2');
