@@ -69,7 +69,7 @@
             </a>
             <!-- Lectura xml -->
             <a href="{{ url('con') }}" title="Lector XML" class="nav-link {{ Request::is('con*') ? 'active' : '' }}">
-                <i class="fa-solid fa-file-code color-rojo"></i>
+                <i class="fa-solid fa-file-code hover-verde"></i>
             </a>
             <!-- Consentrados -->
             <a href="{{ url('listConcentrado') }}" title="listConcentrado" class="nav-link {{ Request::is('listConcentrado*') ? 'active' : '' }}">
@@ -84,8 +84,6 @@
                 <i class="fa-solid fa-book hover-verde"></i>
             </a>
         </nav>
-
-
 
         <nav class="nav-secumdaria">
             <!-- Cerrar Seccion -->
