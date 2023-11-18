@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 use App\Models\Alumnos;
 use App\Models\Consultas;
 use App\Models\DetalleConsulta;
+use App\Models\Ingresos;
+use App\Models\TotalMensual;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class ConsulasControlador extends Controller
@@ -51,8 +54,59 @@ class ConsulasControlador extends Controller
         $consulta->total = $request->get('total');
         $consulta->save();
 
-        $detalles=$request->get('detalles');
-        DetalleConsulta::insert($detalles);
+        // $detalles=$request->get('detalles');
+        // DetalleConsulta::insert($detalles);
+
+        $ingresoData = $request->get('detalles');
+
+        foreach ($ingresoData as $ingreso) {
+            $fecha = Carbon::parse($ingreso['fecha']);
+            $mes = $fecha->month;
+            $anio = $fecha->year;
+
+            // en caso de que la partida ya esté registrada lo que procede es validar
+            $ingresoExistente = Ingresos::where('id_clave', $ingreso['id_clave'])
+            ->where('mes',$mes)
+            ->where('anio',$anio)
+            ->first();
+
+            if ($ingresoExistente) {
+                // Si existe el registro, actualiza el valor del total
+                $ingresoExistente->total += $ingreso['total'];
+                // Actualiza otros campos si es necesario...
+                $ingresoExistente->save();
+            } else {
+                Ingresos::create([
+                    'id_clave' => $ingreso['id_clave'],
+                    'total' => $ingreso['total'],
+                    'mes' => $mes,
+                    'anio' => $anio
+                ]);
+            }
+
+
+            
+        }
+
+        $totalMensualData=$request->get('ingresos');
+        
+        foreach($totalMensualData as $totalMes){
+            $fecha = Carbon::parse($ingreso['fecha']);
+            $mes = $fecha->month;
+            $anio = $fecha->year;
+            $totalMensual = TotalMensual::where('mes',$mes)->where('anio',$anio)->first();
+
+            if($totalMensual){
+                $totalMensual->ingreso_total += $totalMes['total'];
+                $totalMensual->save();
+            }else {
+                TotalMensual::create([
+                    'mes'=>$mes,
+                    'anio'=>$anio,
+                    'ingreso_total'=>$totalMes['total']
+                ]);
+            }
+        }
 
     }
 

@@ -318,6 +318,13 @@ function init() {
             agregarConsulta: function () {
                 let pago = {};
                 let detalles = [];
+                let ingresos = [];
+
+                ingresos.push({
+                    total:this.subTotal,
+                    id_clave: this.id_clave,
+                    fecha:this.fecha
+                });
 
                 for (i = 0; i < this.claveConsulta.length; i++) {
                     detalles.push({
@@ -336,6 +343,7 @@ function init() {
                         cantidad: this.numeroArticulos,
                         id_clave: this.id_clave,
                         detalles: detalles,
+                        ingresos: ingresos,
                     };
                 }
 
