@@ -11,13 +11,31 @@ class ControlDeFacturasController extends Controller
      
     public function Facturas($id){
 
-        $factura = Egresos::with(['partida.capitulo'])->find($id);
-        if(!$factura){
+        $egresos = Egresos::with(['partida.capitulo'])->find($id);
+        if(!$egresos){
             abort(404);
         }
 
-        $partida = $factura->partida;
-        $capitulo = $factura->partida->capitulo;
+        $partida = $egresos->partida;
+        $capitulo = $egresos->partida->capitulo;
+        
+        $nombresMeses = [
+            1 => 'Enero',
+            2 => 'Febrero',
+            3 => 'Marzo',
+            4 => 'Abril',
+            5 => 'Mayo',
+            6 => 'Junio',
+            7 => 'Julio',
+            8 => 'Agosto',
+            9 => 'Septiembre',
+            10 => 'Octubre',
+            11 => 'Noviembre',
+            12 => 'Diciembre',
+        ];
+        $numeroMes = $egresos->mes;
+        $nombreMes = isset($nombresMeses[$numeroMes]) ? $nombresMeses[$numeroMes] : 'desconocido';
+    
 
         $fpdf = new FPDF();
         $fpdf->AddPage();
@@ -36,11 +54,11 @@ class ControlDeFacturasController extends Controller
         $fpdf->Cell(125, 4, utf8_decode('NIVEL EDUCATIVO: MEDIO SUPERIOR'), 0, 1, 'l');
         $fpdf->Ln();
 
-        $fpdf->Cell(45, 5, '', 'B', 0, 'C');
+        $fpdf->Cell(45, 5, $egresos->total, 'B', 0, 'C');
         $fpdf->Cell(40, 5, '', 0, 0, 'C');//espacio en blanco entre lineas
-        $fpdf->Cell(45, 5, '', 'B', 0, 'C');
+        $fpdf->Cell(45, 5, $nombreMes, 'B', 0, 'C');
         $fpdf->Cell(15, 5, '', 0, 0, 'C');//espacio 
-        $fpdf->Cell(45, 5, '', 'B', 1, 'C');
+        $fpdf->Cell(45, 5, $egresos->created_at, 'B', 1, 'C');
 
         $fpdf->setfont('arial','',8);
         $fpdf->Cell(45, 5, 'TOTAL DE EGRESOS', 0, 0, 'C');
@@ -66,7 +84,7 @@ class ControlDeFacturasController extends Controller
         $fpdf->Cell(27,  10, 'Importe por partida', 1, 1, 'C');
 
         $fpdf->Cell(10, 140, $capitulo->codigo, 1, 0, 'C');
-        $fpdf->Cell(25, 140, '', 1, 0, 'C');
+        $fpdf->Cell(25, 140, $partida->codigo, 1, 0, 'C');
         $fpdf->Cell(27, 140, '', 1, 0, 'C');
         $fpdf->Cell(3, 150, '', 1, 0, 'C');
         $fpdf->Cell(10, 140, '', 1, 0, 'C');
@@ -97,7 +115,7 @@ class ControlDeFacturasController extends Controller
         $fpdf->Cell(27, 58, '', 1, 1, 'C');
 
         $fpdf->Cell(35, 10, 'Total', 1, 0, 'C');
-        $fpdf->Cell(27, 10, '$', 1, 0, 'C');
+        $fpdf->Cell(27, 10, ('$'.$egresos->total), 1, 0, 'C');
         $fpdf->Cell(3, 0, '', 1, 0, 'C');
         $fpdf->Cell(35, 10, 'Total', 1, 0, 'C');
         $fpdf->Cell(27, 10, '$', 1, 0, 'C');
