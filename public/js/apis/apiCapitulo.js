@@ -1,7 +1,7 @@
 function init(){
 
     var ruta = document.querySelector("[name=route]").value;
-    var apiCapitulo = ruta + "/apiCapitulo";
+    var apiCapitulo = ruta + "/api/apiCapitulo";
 
     new Vue({
 
