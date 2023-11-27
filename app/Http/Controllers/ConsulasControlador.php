@@ -60,25 +60,30 @@ class ConsulasControlador extends Controller
         $ingresoData = $request->get('detalles');
 
         foreach ($ingresoData as $ingreso) {
+            // Recupero los datos individuales en caso de que sea mas de un pago 
+            $idClave = $ingreso['id_clave'];
+            $total = $ingreso['total'];
+
+
             $fecha = Carbon::parse($ingreso['fecha']);
             $mes = $fecha->month;
             $anio = $fecha->year;
 
             // en caso de que la partida ya esté registrada lo que procede es validar
-            $ingresoExistente = Ingresos::where('id_clave', $ingreso['id_clave'])
+            $ingresoExistente = Ingresos::where('id_clave', $idClave)
             ->where('mes',$mes)
             ->where('anio',$anio)
             ->first();
 
             if ($ingresoExistente) {
                 // Si existe el registro, actualiza el valor del total
-                $ingresoExistente->total += $ingreso['total'];
+                $ingresoExistente->total += $total;
                 // Actualiza otros campos si es necesario...
                 $ingresoExistente->save();
             } else {
                 Ingresos::create([
-                    'id_clave' => $ingreso['id_clave'],
-                    'total' => $ingreso['total'],
+                    'id_clave' => $idClave,
+                    'total' => $total,
                     'mes' => $mes,
                     'anio' => $anio
                 ]);
@@ -91,7 +96,7 @@ class ConsulasControlador extends Controller
         $totalMensualData=$request->get('ingresos');
         
         foreach($totalMensualData as $totalMes){
-            $fecha = Carbon::parse($ingreso['fecha']);
+            $fecha = Carbon::parse($totalMes['fecha']);
             $mes = $fecha->month;
             $anio = $fecha->year;
             $totalMensual = TotalMensual::where('mes',$mes)->where('anio',$anio)->first();

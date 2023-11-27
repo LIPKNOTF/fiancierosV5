@@ -141,73 +141,7 @@ function init() {
                 $("#modalConsulta").modal("show");
             },
 
-            agregarConsulta: function () {
-                let consultas = {
-                    id: this.id,
-                    id_alumno: this.id_alumno,
-                    importe: this.importe,
-                    cantidad: this.cantidad,
-                    cuota: this.cuota,
-                    fecha: this.fecha,
-                    folio: this.folio,
-                    id_clave: this.id_clave,
-                    total: this.total,
-                };
-                // Validar que cantidad, importe y cuota sean números
-                if (
-                    isNaN(this.cantidad) ||
-                    isNaN(this.importe) ||
-                    isNaN(this.cuota)
-                ) {
-                    Swal.fire({
-                        icon: "warning",
-                        title: "OCURRIO UN PROBLEMA",
-                        text: "Los campos Cantidad, Importe y Cuota deben ser números",
-                        showConfirmButton: false,
-                        timer: 1000,
-                    });
-                } else if (
-                    !this.id_alumno ||
-                    !this.importe ||
-                    !this.cantidad ||
-                    !this.cuota ||
-                    !this.fecha ||
-                    !this.folio ||
-                    !this.id_clave ||
-                    !this.total
-                ) {
-                    Swal.fire({
-                        icon: "warning",
-                        title: "OCURRIO UN PROBLEMA",
-                        text: "Existen campos vacios!",
-                        showConfirmButton: false,
-                        timer: 1000,
-                    });
-                } else {
-                    // AQUÍ USAS TU RUTA Y TU LET
-                    this.$http.post(apiCon, consultas).then(function (json) {
-                        this.obtenerConsulta();
-                        this.id = "";
-                        this.id_alumno = "";
-                        this.importe = "";
-                        this.cantidad = "";
-                        this.cuota = "";
-                        this.fecha = "";
-                        this.folio = "";
-                        this.total = "";
-                        this.id_clave = "";
-
-                        Swal.fire({
-                            icon: "success",
-                            title: "GENIAL",
-                            text: "Se agrego la consulta con éxito!",
-                            showConfirmButton: false,
-                            timer: 1000,
-                        });
-                    });
-                    $("#modalConsulta").modal("hide");
-                }
-            },
+            
 
             editarConsulta: function (id) {
                 this.agregando = false;
