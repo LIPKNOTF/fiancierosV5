@@ -74,7 +74,7 @@ Route::get('apiTotalMes', 'FinanzasController@index');
 Route::get('apiEgresos', 'FinanzasController@getEgresos');
 Route::get('apiIngresos', 'FinanzasController@getIngresos');
 
-Route::apiResource('apiCapitulo',CapituloController::class);
+
 Route::apiResource('apiPartida',PartidaController::class);
 
 
