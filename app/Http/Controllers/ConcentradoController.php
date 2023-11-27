@@ -80,7 +80,7 @@ class ConcentradoController extends Controller
                         $totalMensual = TotalMensual::where('mes',$mes)->where('anio',$anio)->first();
 
                         if($totalMensual){
-                            $totalMensual->total += $egreso['total'];
+                            $totalMensual->egreso_total += $egreso['total'];
                             $totalMensual->save();
                         }else {
                             TotalMensual::create([

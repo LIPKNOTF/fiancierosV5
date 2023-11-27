@@ -59,7 +59,7 @@
         </div>
         <!-- TERMINA BOTON PARA CARGAR A EXCEL -->
         <button class="btn-modal" @click="mostrarModal()">Agregar</button>
-        <button class="btn-modal" data-bs-toggle="modal" data-bs-target="#exampleModal">Inportar</button>
+        <button class="btn-modal" data-bs-toggle="modal" data-bs-target="#exampleModal">Importar</button>
         <table id="myTableAlumnos" class="tabla display nowrap" style="width:100%">
           <thead class="fondo-negro">
             <tr>
@@ -229,7 +229,6 @@
 @push('scripts')
 <!-- IMPORTANTE PARA QUE NO OCURRA ERROR -->
 <script src="js/bootstrap.bundle.min.js"></script>
-
 <script src="js/apis/apiAlumno.js"></script>
 <script>
   function handleFileSelect(event) {
