@@ -19,7 +19,6 @@ use App\Http\Controller\FormatoConciliacionController;
 use App\Http\Controller\FinanzasController;
 
 
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -53,14 +52,14 @@ Route::post('/import', [ExcelImportController::class, 'import']);
 Route::view('alumno','alumnos/Alumnos');
 Route::view('consulta', 'consultas/Consultas');
 Route::view('clave', 'clave/clave');
-Route::view('xml', 'concentrado/concentrado2');
+Route::view('con', 'concentrado/concentrado2');
 Route::view('finanzas', 'finanzas/totalMensual');
 
 Route::view('capitulo','capitulo/capitulo');
 Route::view('partida','partida/partida');
 Route::view('descripcion','descripcion/index');
 
-// Route::view('descripcion', 'descripcion.index');
+Route::view('descripcion', 'descripcion.index');
 
 
 Route::view('listConcentrado', 'concentrado/vueConcentrado');
@@ -77,6 +76,7 @@ Route::get('apiIngresos', 'FinanzasController@getIngresos');
 Route::get('/ingresos-por-mes', 'FinanzasController@filtroPorMes');
 Route::get('/egresos-por-mes', 'FinanzasController@filtroPorMesE');
 Route::get('/total-por-mes', 'FinanzasController@filtroPorMesMT');
+Route::get('/ultimo-folio', 'ConsulasControlador@obtenerUltimoFolio');
 
 
 Route::apiResource('apiPartida',PartidaController::class);
@@ -104,7 +104,6 @@ Route::get('FlujoDeEfectivopdf', 'FlujoDeEfectivoController@Flujo');
 Route::get('Conciliacionpdf','FormatoConciliacionController@Conciliacion');
 Route::get('/ControlDeIngresospdf/{id}','ControlDeIngresosController@Ingresos');
 
-Route::post('/generar-pdf', [ControlDeFacturasController::class, 'Facturas']);
 
 
 Route::view('Usuarios','usuarios/usuario');

@@ -292,8 +292,20 @@ function init() {
                 this.claveConsulta.splice(id, 1);
             },
 
-            makeFolio: function () {
-                this.folio = "DGETAYCM " + moment().format("7949993") + 1;
+            getLastFolio:function(){
+                this.$http('/ultimo-folio').then(
+                    response=>{
+                        let ultimoFolio = response.data;
+                        let nuevoFolio = this.createNewFolio(ultimoFolio);
+                        this.folio=nuevoFolio;
+                        console.log('Nuevo folio: ', this.folio);
+                    }).cath(error=>{
+                        console.error('Error al obtener el ultimo folio: ', error);
+                    });
+            },
+
+            createNewFolio:function(){
+
             },
 
             agregarConsulta: function () {

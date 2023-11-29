@@ -173,4 +173,18 @@ class ConsulasControlador extends Controller
         $consulta = Consultas::find($id);
         $consulta->delete();
     }
+
+    public function obtenerUltimoFolio(){
+        $ultimaConsulta = Consultas::latest('folio')->first();
+
+        if ($ultimaConsulta) {
+            // Obtener el número del folio eliminando los espacios en blanco
+            $numeroFolio = (int)str_replace(' ', '', explode(' ', $ultimaConsulta->folio)[1]);
+
+            return $numeroFolio;
+        } else {
+            return null;
+        }
+    }
+
 }
