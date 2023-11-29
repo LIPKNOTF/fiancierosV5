@@ -19,6 +19,7 @@ use App\Http\Controller\FormatoConciliacionController;
 use App\Http\Controller\FinanzasController;
 
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -59,7 +60,7 @@ Route::view('capitulo','capitulo/capitulo');
 Route::view('partida','partida/partida');
 Route::view('descripcion','descripcion/index');
 
-Route::view('descripcion', 'descripcion.index');
+// Route::view('descripcion', 'descripcion.index');
 
 
 Route::view('listConcentrado', 'concentrado/vueConcentrado');
@@ -103,6 +104,7 @@ Route::get('FlujoDeEfectivopdf', 'FlujoDeEfectivoController@Flujo');
 Route::get('Conciliacionpdf','FormatoConciliacionController@Conciliacion');
 Route::get('/ControlDeIngresospdf/{id}','ControlDeIngresosController@Ingresos');
 
+Route::post('/generar-pdf', [ControlDeFacturasController::class, 'Facturas']);
 
 
 Route::view('Usuarios','usuarios/usuario');

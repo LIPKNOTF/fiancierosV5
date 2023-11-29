@@ -9,9 +9,14 @@ use Codedge\Fpdf\Fpdf\Fpdf;
 class ControlDeFacturasController extends Controller
 {
      
+   
+
     public function Facturas($id){
 
-        $egresos = Egresos::with(['partida.capitulo'])->find($id);
+        $mesFiltrado = $request->input('mes');  
+        
+        $egresos = Egresos::with(['partida.capitulo'])->find($id)->where('mes', $mesFiltrado)->get();
+        
         if(!$egresos){
             abort(404);
         }

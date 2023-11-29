@@ -110,6 +110,14 @@ function init() {
                     this.claves=json.data;
                 });
             },
+
+            descargarPDF() {
+                axios.post('/generar-pdf', { mes: this.mesEgreso })
+                    .then(response => {
+                    console.log(response.data);
+                })
+                .catch(error => { console.error(error);});
+            }
             
             
             },

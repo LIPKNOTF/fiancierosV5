@@ -30,6 +30,8 @@
         </tbody>
     </table>
 
+    <button @click="descargarPDF">Descargar PDF</button>
+
     <legend class="mb-2">
         <h1>&nbsp; Total por Mes &nbsp;</h1>
     </legend>
