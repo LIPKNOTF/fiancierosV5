@@ -37,7 +37,7 @@ class ConsolidadoDeMesesController extends Controller
         $fpdf->Cell(45, 5, '', 'B', 1, 'C');
 
         $fpdf->setfont('arial','',8);
-        $fpdf->Cell(45, 5, 'TOTAL DE EGRESOS', 0, 0, 'C');
+        $fpdf->Cell(45, 5, 'TOTAL DE INGRESOS', 0, 0, 'C');
         $fpdf->Cell(40, 5, '', 0, 0, 'C');//espacio
         $fpdf->Cell(45, 5, 'MES QUE SE INFORMA', 0, 0, 'C');
         $fpdf->Cell(15, 5, '', 0, 0, 'C');//espacio
@@ -59,13 +59,60 @@ class ConsolidadoDeMesesController extends Controller
         $fpdf->Cell(25, 10, 'SUBGRUPO', 1, 0, 'C');
         $fpdf->Cell(27, 10, 'IMPORTE', 1, 1, 'C');
 
-        $fpdf->Cell(10, 48, '', 1, 0, 'C');
-        $fpdf->Cell(25, 48, '', 1, 0, 'C');
-        $fpdf->Cell(27, 48, '', 1, 0, 'C');
+        //SUPERIOR IZQUIERDO 1
+        $fpdf->Cell(10, 16, '', 1, 0, 'C');
+        $fpdf->Cell(25, 16, '', 1, 0, 'C');
+        $fpdf->Cell(27, 16, '', 1, 1, 'C');
+
+        //2
+        $fpdf->Cell(10, 16, '', 1, 0, 'C');
+        $fpdf->Cell(25, 16, '', 1, 0, 'C');
+        $fpdf->Cell(27, 16, '', 1, 1, 'C');
+
+        //3
+        $fpdf->Cell(10, 16, '', 1, 0, 'C');
+        $fpdf->Cell(25, 16, '', 1, 0, 'C');
+        $fpdf->Cell(27, 16, '', 1, 1, 'C');
+
+        $fpdf->SetXY(72, 74);
         $fpdf->Cell(3, 150, '', 1, 0, 'C');
-        $fpdf->Cell(10, 140, '', 1, 0, 'C');
-        $fpdf->Cell(25, 140, '', 1, 0, 'C');
-        $fpdf->Cell(27, 140, '', 1, 0, 'C');
+        
+        $fpdf->SetXY(75, 74);
+        $fpdf->Cell(10, 20, '', 1, 0, 'C');
+        $fpdf->Cell(25, 20, '', 1, 0, 'C');
+        $fpdf->Cell(27, 20, '', 1, 0, 'C');
+
+        $fpdf->SetXY(75, 94);
+        $fpdf->Cell(10, 20, '', 1, 0, 'C');
+        $fpdf->Cell(25, 20, '', 1, 0, 'C');
+        $fpdf->Cell(27, 20, '', 1, 0, 'C');
+
+        $fpdf->SetXY(75, 114);
+        $fpdf->Cell(10, 20, '', 1, 0, 'C');
+        $fpdf->Cell(25, 20, '', 1, 0, 'C');
+        $fpdf->Cell(27, 20, '', 1, 0, 'C');
+
+        $fpdf->SetXY(75, 134);
+        $fpdf->Cell(10, 20, '', 1, 0, 'C');
+        $fpdf->Cell(25, 20, '', 1, 0, 'C');
+        $fpdf->Cell(27, 20, '', 1, 0, 'C');
+
+        $fpdf->SetXY(75, 154);
+        $fpdf->Cell(10, 20, '', 1, 0, 'C');
+        $fpdf->Cell(25, 20, '', 1, 0, 'C');
+        $fpdf->Cell(27, 20, '', 1, 0, 'C');
+
+        $fpdf->SetXY(75, 174);
+        $fpdf->Cell(10, 20, '', 1, 0, 'C');
+        $fpdf->Cell(25, 20, '', 1, 0, 'C');
+        $fpdf->Cell(27, 20, '', 1, 0, 'C');
+
+        $fpdf->SetXY(75 , 194);
+        $fpdf->Cell(10, 20, '', 1, 0, 'C');
+        $fpdf->Cell(25, 20, '', 1, 0, 'C');
+        $fpdf->Cell(27, 20, '', 1, 0, 'C');
+
+        $fpdf->SetXY(137, 74);
         $fpdf->Cell(3, 150, '', 1, 0, 'C');
         $fpdf->Cell(10, 58, '', 1, 0, 'C');
         $fpdf->Cell(25, 58, '', 1, 0, 'C');
