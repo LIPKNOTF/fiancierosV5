@@ -32,25 +32,22 @@
           <!-- Modal -->
           <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static">
             <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header bg-success">
-                  <h5 class="modal-title fw-bold" id="importModalLabel">IMPORTAR DATOS DESDE UN EXCEL</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
+              <div class="modal-body">
+                <div class="modal-content">
+
+                  <h2 class="modal-title fw-bold" id="importModalLabel">IMPORTAR DATOS DESDE UN EXCEL</h2>
+<br>
                   <form method="POST" action="/import" enctype="multipart/form-data">
                     @csrf
-
                     <div class="form-group">
-                      <label for="file">Asegúrate de que el formato sea el correcto</label>
                       <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="file" name="file" onchange="handleFileSelect(event)">
-                        <label class="custom-file-label" for="file" id="fileLabel">SELECCIONA O ARRASTRA AQUÍ.</label>
+                        <input type="file" class="form-control" id="file" name="file" onchange="handleFileSelect(event)">
+                        <label class="custom-file-label" for="file" id="fileLabel">
                       </div>
                     </div>
 
-                    <button type="submit" class="btn btn-success">Importar</button>
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn-modal">Importar</button>
+                    <button type="button" class="btn-rojo" data-bs-dismiss="modal">Cerrar</button>
                   </form>
                 </div>
               </div>

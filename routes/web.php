@@ -52,7 +52,7 @@ Route::post('/import', [ExcelImportController::class, 'import']);
 Route::view('alumno','alumnos/Alumnos');
 Route::view('consulta', 'consultas/Consultas');
 Route::view('clave', 'clave/clave');
-Route::view('con', 'concentrado/concentrado2');
+Route::view('xml', 'concentrado/concentrado2');
 Route::view('finanzas', 'finanzas/totalMensual');
 
 Route::view('capitulo','capitulo/capitulo');

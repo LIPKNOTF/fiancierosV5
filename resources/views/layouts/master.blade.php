@@ -68,7 +68,7 @@
                 <i class="fa-solid fa-shield-halved hover-verde "></i>
             </a>
             <!-- Lectura xml -->
-            <a href="{{ url('con') }}" title="Lector XML" class="nav-link {{ Request::is('con*') ? 'active' : '' }}">
+            <a href="{{ url('xml') }}" title="Lector XML" class="nav-link {{ Request::is('xml*') ? 'active' : '' }}">
                 <i class="fa-solid fa-file-code hover-verde"></i>
             </a>
             <!-- Consentrados -->
@@ -82,6 +82,9 @@
             <!-- Capitulos -->
             <a href="{{ url('capitulo') }}" title="Capitulos" class="nav-link {{ Request::is('capitulo*') ? 'active' : '' }}">
                 <i class="fa-solid fa-book hover-verde"></i>
+            </a>
+            <a href="{{ url('finanzas') }}" title="finanzas" class="nav-link {{ Request::is('finanzas*') ? 'active' : '' }}">
+                <i class="fa-solid fa-landmark hover-verde"></i>
             </a>
         </nav>
 
@@ -138,7 +141,7 @@
                 console.log((path === '/alumno') ? "alumnos" : path.substring(1));
             }, (path === '/alumno') ? 1500 : 0);
 
-            if (['/consulta', '/clave', '/concentrado', '/partida', '/capitulo','finanzas'].includes(path)) {
+            if (['/consulta', '/clave', '/concentrado', '/partida', '/capitulo','/finanzas'].includes(path)) {
                 setTimeout(function() {
                     hideLoader();
                     console.log("Demas");

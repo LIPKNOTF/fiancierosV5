@@ -2,97 +2,85 @@
 @section('titulo','Finanzas')
 @section('content')
 <div id="finanzas">
-    <div class="container justify-content-center">
 
+    <legend class="mb-2">
+        <h1>&nbsp; Egresos &nbsp;</h1>
+    </legend>
 
+    <input type="month" class="input" v-model="mesEgreso" @input="egresoMes" />
 
-        
+    <table id="" class="tabla display nowrap" style="width:100%">
+        <thead class="fondo-negro">
+            <tr>
+                <th class="boder-inicio">Mes</th>
+                <th>Año</th>
+                <th>Partida: Nombre</th>
+                <th>Partida: Código</th>
+                <th class="boder-fin">Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-for="row in egresos">
+                <td>@{{row.mes}}</td>
+                <td>@{{row.anio}}</td>
+                <td>@{{row.partida.nombrel}}</td>
+                <td>@{{row.partida.codigo}}</td>
+                <td class="verde">@{{row.total}}</td>
+            </tr>
+        </tbody>
+    </table>
 
-        <h2>Egresos</h2>
-        <div class="col-md-6">
-        <input type="month" class="form-control" v-model="mesEgreso" @input="egresoMes" />
-        </div>
-        <table id="" class="tabla display nowrap" style="width:100%">
-            <thead class="fondo-negro">
-                <tr>
-                    <th class="boder-inicio">Mes</th>
-                    <th>Año</th>
-                    <th>Partida: Nombre</th>
-                    <th>Partida: Código</th>
-                    <th class="boder-fin">Total</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="row in egresos">
-                    <td>@{{row.mes}}</td>
-                    <td>@{{row.anio}}</td>
-                    <td>@{{row.partida.nombrel}}</td>
-                    <td>@{{row.partida.codigo}}</td>
-                    <td>@{{row.total}}</td>
+    <legend class="mb-2">
+        <h1>&nbsp; Total por Mes &nbsp;</h1>
+    </legend>
 
-                </tr>
-            </tbody>
-        </table>
+    <input type="month" class="input" v-model="mesTotal" @input="totalPorMes" />
 
-        <h2>Total por Mes</h2>
-        <div class="col-md-6">
-        <input type="month" class="form-control" v-model="mesTotal" @input="totalPorMes" />
-        </div>
-        <table id="" class="tabla display nowrap" style="width:100%">
-            <thead class="fondo-negro">
-                <tr>
-                    <th class="boder-inicio">Mes</th>
-                    <th>Año</th>
-                    <th>Egresos Totales</th>
-                    <th class="boder-fin">Ingresos Totales</th>
+    <table id="" class="tabla display nowrap" style="width:100%">
+        <thead class="fondo-negro">
+            <tr>
+                <th class="boder-inicio">Mes</th>
+                <th>Año</th>
+                <th>Egresos Totales</th>
+                <th class="boder-fin">Ingresos Totales</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-for="row in totalMes">
+                <td>@{{row.mes}}</td>
+                <td>@{{row.anio}}</td>
+                <td>@{{row.egreso_total}}</td>
+                <td class="verde">@{{row.ingreso_total}}</td>
+            </tr>
+        </tbody>
+    </table>
 
-            </thead>
-            <tbody>
-                <tr v-for="row in totalMes">
-                    <td>@{{row.mes}}</td>
-                    <td>@{{row.anio}}</td>
-                    <td>@{{row.egreso_total}}</td>
-                    <td>@{{row.ingreso_total}}</td>
+    <legend class="mb-2">
+        <h1>&nbsp; Ingresos &nbsp;</h1>
+    </legend>
 
-                </tr>
-            </tbody>
-        </table>
+    <input type="month" class="input" v-model="mesIngreso" @input="filtrarMes" />
 
-        <h2>Ingresos</h2>
-        <div class="col-md-6">
-        <input type="month" class="form-control" v-model="mesIngreso" @input="filtrarMes" />
-        </div>
-        <table id="" class="tabla display nowrap" style="width:100%">
-            <thead class="fondo-negro">
-                <tr>
-                    <th class="boder-inicio">Mes</th>
-                    <th>Año</th>
-                    <th>Clave: Concepto</th>
-                    <th>Clave: Código</th>
-                    <th class="boder-fin">Total</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="row in ingresos">
-                    <td>@{{row.mes}}</td>
-                    <td>@{{row.anio}}</td>
-                    <td>@{{row.claves_p.concepto}}</td>
-                    <td>@{{row.claves_p.clave}}</td>
-                    <td>@{{row.total}}</td>
-
-                </tr>
-            </tbody>
-        </table>
-
-
-
-
-    </div>
-</div>
-
-
-
-</div>
+    <table id="" class="tabla display nowrap" style="width:100%">
+        <thead class="fondo-negro">
+            <tr>
+                <th class="boder-inicio">Mes</th>
+                <th>Año</th>
+                <th>Clave: Concepto</th>
+                <th>Clave: Código</th>
+                <th class="boder-fin">Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-for="row in ingresos">
+                <td>@{{row.mes}}</td>
+                <td>@{{row.anio}}</td>
+                <td>@{{row.claves_p.concepto}}</td>
+                <td>@{{row.claves_p.clave}}</td>
+                <td class="verde">@{{row.total}}</td>
+            </tr>
+        </tbody>
+    </table>
 
 </div>
 
