@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="css_new/master.css">
     <!-- foundawison css-->
     <link rel="stylesheet" href="css_new/all.min.css">
-    
+
     <!-- foundawison script -->
     <script src="js_new/all.min.js"></script>
     <!-- datatable -->
@@ -47,9 +47,11 @@
     </div>
     @auth
     <div class="nav-principal">
+
         &nbsp;<h1>P</h1>
         <h2>S</h2>
         <h3>C</h3>
+
         <nav class="nav-primaria">
             <!-- Inicio -->
             <a href="{{ url('home') }}" title="Inicio" class="nav-link {{ Request::is('home*') ? 'active' : '' }}">
@@ -97,6 +99,7 @@
 
             @endif
             @else
+
             <a href="{{ route('logout') }}" class="nav-link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" title="SALIR">
                 <i class="fa-solid fa-right-from-bracket rojo"></i>
             </a>
@@ -110,6 +113,7 @@
     <main class="contenedor">
         @yield('content')
     </main>
+
     <script src="js/moment.min.js"></script>
     <script src="js/moment-with-locales.min.js"></script>
     {{-- sweft --}}
@@ -141,7 +145,7 @@
                 console.log((path === '/alumno') ? "alumnos" : path.substring(1));
             }, (path === '/alumno') ? 1500 : 0);
 
-            if (['/consulta', '/clave', '/concentrado', '/partida', '/capitulo','/finanzas'].includes(path)) {
+            if (['/consulta', '/clave', '/concentrado', '/partida', '/capitulo', '/finanzas'].includes(path)) {
                 setTimeout(function() {
                     hideLoader();
                     console.log("Demas");
