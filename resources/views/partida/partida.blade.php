@@ -52,7 +52,7 @@
                 <input type="text" class="form-control" placeholder="Nombre" v-model="nombre" @input="validarNombre"><br>
                 <select name="" v-model="id_capitulo" class="form-control" v-if="agregando==true">
                     <option value="" selected>Seleciona un capitulo</option>
-                    <option v-for="cap in capitulos" :value="cap.id">@{{cap.titulo}}</option>
+                    <option v-for="cap in capitulos" :value="cap.id">@{{cap.id}}</option>
                 </select>
                 <!-- <select name="" v-model="id_capitulo" class="form-control" v-if="agregando==false">
                         <option value="" >Seleciona un capitulo</option>
@@ -60,7 +60,7 @@
                     </select> -->
 
 
-
+ 
                 <div class="modal-footer">
                     <button type="button" class="btn-rojo" data-bs-dismiss="modal">Cerrar</button>
                     <button type="button" class="btn-modal" @click="guardarPartida()" v-if="agregando==true">Guardar</button>

@@ -80,6 +80,7 @@ Route::get('/ultimo-folio', 'ConsulasControlador@obtenerUltimoFolio');
 
 
 Route::apiResource('apiPartida',PartidaController::class);
+Route::apiResource('apiCapitulo', CapituloController::class);
 
 
 Route::apiResource('apiDescripcion', DescripcionController::class);

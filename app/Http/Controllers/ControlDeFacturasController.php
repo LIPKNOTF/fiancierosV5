@@ -13,9 +13,8 @@ class ControlDeFacturasController extends Controller
 
     public function Facturas($id){
 
-        $mesFiltrado = $request->input('mes');  
         
-        $egresos = Egresos::with(['partida.capitulo'])->find($id)->where('mes', $mesFiltrado)->get();
+        $egresos = Egresos::with(['partida.capitulo'])->find($id);
         
         if(!$egresos){
             abort(404);
