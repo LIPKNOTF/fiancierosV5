@@ -1,6 +1,5 @@
 @extends('layouts.master')
 @section('content')
-
 <h1>Inicio</h1>
 <div class="card-body">
     <a href="/alumno">
@@ -75,7 +74,10 @@
     </a>
 
 </div>
-
+@auth
+<br>
+<footer class="footer">Sesion <span class="verde">activa</span> de {{ Auth::user()->name }}</footer>
+@endauth
 @endsection
 
 
