@@ -280,7 +280,7 @@ div.dataTables_wrapper div.dataTables_filter {
 }
 
 .btn-modal:hover {
-    background-color: #119711;
+    background-color: #0b670b;
 }
 
 .btn-rojo {
@@ -510,6 +510,9 @@ div.dataTables_wrapper div.dataTables_filter {
         width: 82rem;
         height: 80vh;
     }
+    #myTableAlumnos tbody tr td .input{
+        width: 5rem;
+    }
 }
 
 @media (min-width: 601px) and (max-width: 1000px) {
@@ -525,6 +528,9 @@ div.dataTables_wrapper div.dataTables_filter {
         margin-top: -14rem;
         width: 57rem;
         height: 86vh;
+    }
+    #myTableAlumnos tbody tr td .input{
+        width: 4rem;
     }
 }
 

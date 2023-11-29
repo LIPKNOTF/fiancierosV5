@@ -101,14 +101,14 @@
 
           </div>
 
-          <table id="myTableAlumnos" class="tabla display nowrap" style="width:100%">
+          <table id="myTableAlumnos" class="tabla display nowrap">
             <thead class="fondo-negro">
               <tr>
                 <th class="boder-inicio">Cantidad</th>
                 <th>Descripcion</th>
                 <th>Precio</th>
                 <th>Importe</th>
-                <th>Acciones</th>
+                <th class="boder-fin">Acciones</th>
               </tr>
             </thead>
             <tbody>
