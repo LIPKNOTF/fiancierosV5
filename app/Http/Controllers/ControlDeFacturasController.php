@@ -83,18 +83,125 @@ class ControlDeFacturasController extends Controller
         $fpdf->Cell(25,  10, 'Partida de gasto', 1, 0, 'C');
         $fpdf->Cell(27,  10, 'Importe por partida', 1, 1, 'C');
 
-        $fpdf->Cell(10, 140, $capitulo->codigo, 1, 0, 'C');
-        $fpdf->Cell(25, 140, $partida->codigo, 1, 0, 'C');
-        $fpdf->Cell(27, 140, '', 1, 0, 'C');
-        $fpdf->Cell(3, 150, '', 1, 0, 'C');
-        $fpdf->Cell(10, 140, '', 1, 0, 'C');
-        $fpdf->Cell(25, 140, '', 1, 0, 'C');
-        $fpdf->Cell(27, 140, '', 1, 0, 'C');
+        //1FILA1
+        $fpdf->Cell(10, 14, $capitulo->codigo, 'LRT', 0, 'C');
+        $fpdf->Cell(25, 14, $partida->codigo, 'LRT', 0, 'C');
+        $fpdf->Cell(27, 14, '', 'LRT', 1, 'C');
+
+        //2FILA1
+        $fpdf->Cell(10, 14, '', 'LR', 0, 'C'); 
+        $fpdf->Cell(25, 14, '', 'LR', 0, 'C'); 
+        $fpdf->Cell(27, 14, '', 'LR', 1, 'C'); 
+
+        //3FIAL1
+        $fpdf->Cell(10, 14, '', 'LR', 0, 'C'); 
+        $fpdf->Cell(25, 14, '', 'LR', 0, 'C'); 
+        $fpdf->Cell(27, 14, '', 'LR', 1, 'C'); 
+
+        //4FILA1
+        $fpdf->Cell(10, 14, '', 'LR', 0, 'C'); 
+        $fpdf->Cell(25, 14, '', 'LR', 0, 'C'); 
+        $fpdf->Cell(27, 14, '', 'LR', 1, 'C');
+
+        //5FILA1
+        $fpdf->Cell(10, 14, '', 'LR', 0, 'C'); 
+        $fpdf->Cell(25, 14, '', 'LR', 0, 'C'); 
+        $fpdf->Cell(27, 14, '', 'LR', 1, 'C');
+
+        //6FILA1
+        $fpdf->Cell(10, 14, '', 'LR', 0, 'C'); 
+        $fpdf->Cell(25, 14, '', 'LR', 0, 'C'); 
+        $fpdf->Cell(27, 14, '', 'LR', 1, 'C');
+
+        //7FILA1
+        $fpdf->Cell(10, 14, '', 'LR', 0, 'C'); 
+        $fpdf->Cell(25, 14, '', 'LR', 0, 'C'); 
+        $fpdf->Cell(27, 14, '', 'LR', 1, 'C');
+
+        //8FILA1
+        $fpdf->Cell(10, 14, '', 'LR', 0, 'C'); 
+        $fpdf->Cell(25, 14, '', 'LR', 0, 'C'); 
+        $fpdf->Cell(27, 14, '', 'LR', 1, 'C');
+
+        //9FILA1
+        $fpdf->Cell(10, 14, '', 'LR', 0, 'C'); 
+        $fpdf->Cell(25, 14, '', 'LR', 0, 'C'); 
+        $fpdf->Cell(27, 14, '', 'LR', 1, 'C');
+
+        //10FILA1
+        $fpdf->Cell(10, 14, '', 'LRB', 0, 'C'); 
+        $fpdf->Cell(25, 14, '', 'LRB', 0, 'C'); 
+        $fpdf->Cell(27, 14, '', 'LRB', 1, 'C');
+        
+        $fpdf->SetXY(72, 74);
+        $fpdf->Cell(3, 150, '', 1, 1, 'C');
+
+        //1FILA2
+        $fpdf->SetXY(75, 74);
+        $fpdf->Cell(10, 14, '', 'LRT', 0, 'C');
+        $fpdf->Cell(25, 14, '', 'LRT', 0, 'C');
+        $fpdf->Cell(27, 14, '', 'LRT', 1, 'C');
+
+        //2FILA2
+        $fpdf->SetXY(75, 88);
+        $fpdf->Cell(10, 14, '', 'LR', 0, 'C');
+        $fpdf->Cell(25, 14, '', 'LR', 0, 'C');
+        $fpdf->Cell(27, 14, '', 'LR', 1, 'C');
+
+        //3FILA2
+        $fpdf->SetXY(75, 102);
+        $fpdf->Cell(10, 14, '', 'LR', 0, 'C');
+        $fpdf->Cell(25, 14, '', 'LR', 0, 'C');
+        $fpdf->Cell(27, 14, '', 'LR', 1, 'C');
+
+        //4FILA2
+        $fpdf->SetXY(75, 116);
+        $fpdf->Cell(10, 14, '', 'LR', 0, 'C');
+        $fpdf->Cell(25, 14, '', 'LR', 0, 'C');
+        $fpdf->Cell(27, 14, '', 'LR', 1, 'C');
+
+        //5FILA2
+        $fpdf->SetXY(75, 130);
+        $fpdf->Cell(10, 14, '', 'LR', 0, 'C');
+        $fpdf->Cell(25, 14, '', 'LR', 0, 'C');
+        $fpdf->Cell(27, 14, '', 'LR', 1, 'C');
+
+        //6FILA2
+        $fpdf->SetXY(75, 144);
+        $fpdf->Cell(10, 14, '', 'LR', 0, 'C');
+        $fpdf->Cell(25, 14, '', 'LR', 0, 'C');
+        $fpdf->Cell(27, 14, '', 'LR', 1, 'C');
+
+        //7FILA2
+        $fpdf->SetXY(75, 158);
+        $fpdf->Cell(10, 14, '', 'LR', 0, 'C');
+        $fpdf->Cell(25, 14, '', 'LR', 0, 'C');
+        $fpdf->Cell(27, 14, '', 'LR', 1, 'C');
+
+        //8FILA2
+        $fpdf->SetXY(75, 172);
+        $fpdf->Cell(10, 14, '', 'LR', 0, 'C');
+        $fpdf->Cell(25, 14, '', 'LR', 0, 'C');
+        $fpdf->Cell(27, 14, '', 'LR', 1, 'C');
+
+        //9FILA2
+        $fpdf->SetXY(75, 186);
+        $fpdf->Cell(10, 14, '', 'LR', 0, 'C');
+        $fpdf->Cell(25, 14, '', 'LR', 0, 'C');
+        $fpdf->Cell(27, 14, '', 'LR', 1, 'C');
+
+        //10FILA2
+        $fpdf->SetXY(75, 200);
+        $fpdf->Cell(10, 14, '', 'LRB', 0, 'C');
+        $fpdf->Cell(25, 14, '', 'LRB', 0, 'C');
+        $fpdf->Cell(27, 14, '', 'LRB', 1, 'C');
+
+        $fpdf->SetXY(137, 74);
         $fpdf->Cell(3, 150, '', 1, 0, 'C');
         $fpdf->Cell(10, 58, '', 1, 0, 'C');
         $fpdf->Cell(25, 58, '', 1, 0, 'C');
         $fpdf->Cell(27, 58, '', 1, 1, 'C');
-
+ 
 
         $fpdf->SetX(140); // Cambia la posición horizontal según tu diseño
         $fpdf->Cell(35, 10, 'Total', 1, 0, 'C'); 
