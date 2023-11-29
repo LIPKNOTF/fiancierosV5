@@ -6,8 +6,12 @@
 
 
 
+        
 
         <h2>Egresos</h2>
+        <div class="col-md-6">
+        <input type="month" class="form-control" v-model="mesEgreso" @input="egresoMes" />
+        </div>
         <table id="" class="tabla display nowrap" style="width:100%">
             <thead class="fondo-negro">
                 <tr>
@@ -31,6 +35,9 @@
         </table>
 
         <h2>Total por Mes</h2>
+        <div class="col-md-6">
+        <input type="month" class="form-control" v-model="mesTotal" @input="totalPorMes" />
+        </div>
         <table id="" class="tabla display nowrap" style="width:100%">
             <thead class="fondo-negro">
                 <tr>
@@ -51,8 +58,10 @@
             </tbody>
         </table>
 
-
         <h2>Ingresos</h2>
+        <div class="col-md-6">
+        <input type="month" class="form-control" v-model="mesIngreso" @input="filtrarMes" />
+        </div>
         <table id="" class="tabla display nowrap" style="width:100%">
             <thead class="fondo-negro">
                 <tr>
@@ -69,7 +78,7 @@
                     <td>@{{row.anio}}</td>
                     <td>@{{row.claves_p.concepto}}</td>
                     <td>@{{row.claves_p.clave}}</td>
-                    <td>@{{row.total}}></td>
+                    <td>@{{row.total}}</td>
 
                 </tr>
             </tbody>

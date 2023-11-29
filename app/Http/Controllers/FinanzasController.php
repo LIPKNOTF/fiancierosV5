@@ -34,6 +34,31 @@ class FinanzasController extends Controller
         
     }
 
+    public function filtroPorMes(Request $request){
+        $fecha = $request->input('mes');
+        $mes= date('m',strtotime($fecha));
+        $anio= date('Y',strtotime($fecha));
+        $ingresos = Ingresos::where('mes',$mes)->where('anio',$anio)->get();
+        return response()->json($ingresos);
+    }
+
+    public function filtroPorMesE(Request $request){
+        $fecha = $request->input('mes');
+        $mes= date('m',strtotime($fecha));
+        $anio= date('Y',strtotime($fecha));
+        $egresos = Egresos::where('mes',$mes)->where('anio',$anio)->get();
+        return response()->json($egresos);
+    }
+
+    public function filtroPorMesMT(Request $request){
+        $fecha = $request->input('mes');
+        $mes= date('m',strtotime($fecha));
+        $anio= date('Y',strtotime($fecha));
+        $totalMes = TotalMensual::where('mes',$mes)->where('anio',$anio)->get();
+        return response()->json($totalMes);
+    }
+    
+
     /**
      * Store a newly created resource in storage.
      *
