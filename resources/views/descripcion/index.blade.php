@@ -69,9 +69,9 @@
         </form>
 
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-          <button type="button" class="btn text-white" @click="agregarDescripcion()" v-if="agregando" :style="agregando ? 'background-color: #28a717;' : 'background-color: #f8be10;'">GUARDAR</button>
-          <button type="button" class="btn text-white" @click="actualizarDescripcion()" v-else :style="agregando ? 'background-color: #28a717;' : 'background-color: #f8be10;'">GUARDAR</button>
+          <button type="button" class="btn-rojo" data-bs-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn-modal" @click="agregarDescripcion()" v-if="agregando" :style="agregando ? 'background-color: #28a717;' : 'background-color: #f8be10;'">GUARDAR</button>
+          <button type="button" class="btn-modal" @click="actualizarDescripcion()" v-else :style="agregando ? 'background-color: #28a717;' : 'background-color: #f8be10;'">GUARDAR</button>
         </div>
       </div>
     </div>
