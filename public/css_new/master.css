@@ -58,7 +58,8 @@ a {
 .fa-right-to-bracket,
 .fa-right-from-bracket,
 .fa-shield-halved,
-.fa-landmark {
+.fa-landmark,
+.fa-clipboard {
     color: var(--var-color-gris-blanco);
     font-size: 1.3rem;
     margin: 0.5rem;
@@ -628,7 +629,8 @@ div.dataTables_wrapper div.dataTables_filter {
 .nav-link.active .fa-right-to-bracket,
 .nav-link.active .fa-right-from-bracket,
 .nav-link.active .fa-shield-halved,
-.nav-link.active .fa-landmark
+.nav-link.active .fa-landmark,
+.nav-link.active .fa-clipboard
 {
     color: var(--var-color-verde);
     transform: scale(1.5);

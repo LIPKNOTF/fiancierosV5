@@ -88,6 +88,9 @@
             <a href="{{ url('finanzas') }}" title="finanzas" class="nav-link {{ Request::is('finanzas*') ? 'active' : '' }}">
                 <i class="fa-solid fa-landmark hover-verde"></i>
             </a>
+            <a href="{{ url('descripcion') }}" title="descripcion" class="nav-link {{ Request::is('descripcion*') ? 'active' : '' }}">
+                <i class="fa-solid fa-clipboard hover-verde"></i>
+            </a>
         </nav>
 
         <nav class="nav-secumdaria">
@@ -145,7 +148,7 @@
                 console.log((path === '/alumno') ? "alumnos" : path.substring(1));
             }, (path === '/alumno') ? 1500 : 0);
 
-            if (['/consulta', '/clave', '/concentrado', '/partida', '/capitulo', '/finanzas'].includes(path)) {
+            if (['/consulta', '/clave', '/concentrado', '/partida', '/capitulo', '/finanzas','/descripcion'].includes(path)) {
                 setTimeout(function() {
                     hideLoader();
                     console.log("Demas");
