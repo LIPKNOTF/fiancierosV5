@@ -3,6 +3,9 @@
 @section('content')
 <div id="concentrado2">
 
+  <legend>
+    <h1>&nbsp; lector XML &nbsp;</h1>
+  </legend>
 
   <div>
     <label for="xmlFile">Ingrese su archivo XML</label>

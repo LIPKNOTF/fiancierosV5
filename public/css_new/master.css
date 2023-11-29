@@ -57,7 +57,8 @@ a {
 .fa-magnifying-glass,
 .fa-right-to-bracket,
 .fa-right-from-bracket,
-.fa-shield-halved {
+.fa-shield-halved,
+.fa-landmark {
     color: var(--var-color-gris-blanco);
     font-size: 1.3rem;
     margin: 0.5rem;
@@ -228,7 +229,6 @@ div.dataTables_wrapper div.dataTables_filter {
 }
 
 .modal-content {
-    background-color: #fff;
     margin: 10% auto;
     padding: 20px;
     border-radius: 5px;
@@ -277,24 +277,30 @@ div.dataTables_wrapper div.dataTables_filter {
     width: 8rem;
     border-radius: var(--var-borde-radius);
     border: 1px solid var(--var-color-balnco);
+    transition: .3s;
 }
 
 .btn-modal:hover {
     background-color: #0b670b;
+    border: none;
+    transform: scale(1.1);
 }
 
 .btn-rojo {
     color: var(--var-color-balnco);
     margin: 1rem;
-    background-color: var(--var-color-rojo);
+    background-color: #b83018;
     padding: .5rem;
     width: 8rem;
     border-radius: var(--var-borde-radius);
     border: 1px solid var(--var-color-balnco);
+    transition: .2s;
 }
 
 .btn-rojo:hover {
-    background-color: #b83018;
+    background-color: #6f2113;
+    border: none;
+    transform: scale(1.1);
 }
 
 .btn-azul {
@@ -600,7 +606,7 @@ div.dataTables_wrapper div.dataTables_filter {
     border-radius: var(--var-borde-radius);
     padding: 8px;
     width: 20rem;
-
+    cursor: pointer;
 }
 
 .texto-blanco {
@@ -621,7 +627,9 @@ div.dataTables_wrapper div.dataTables_filter {
 .nav-link.active .fa-magnifying-glass,
 .nav-link.active .fa-right-to-bracket,
 .nav-link.active .fa-right-from-bracket,
-.nav-link.active .fa-shield-halved {
+.nav-link.active .fa-shield-halved,
+.nav-link.active .fa-landmark
+{
     color: var(--var-color-verde);
     transform: scale(1.5);
     transition: color 0.3s ease, transform 0.3s ease;
@@ -669,4 +677,7 @@ div.dataTables_wrapper div.dataTables_filter {
 
 .wt{
     width: 22rem;
+}
+.mb-2{
+    margin-bottom: 2rem;
 }
