@@ -517,7 +517,8 @@ div.dataTables_wrapper div.dataTables_filter {
         width: 82rem;
         height: 80vh;
     }
-    #myTableAlumnos tbody tr td .input{
+
+    #myTableAlumnos tbody tr td .input {
         width: 5rem;
     }
 }
@@ -536,7 +537,8 @@ div.dataTables_wrapper div.dataTables_filter {
         width: 57rem;
         height: 86vh;
     }
-    #myTableAlumnos tbody tr td .input{
+
+    #myTableAlumnos tbody tr td .input {
         width: 4rem;
     }
 }
@@ -630,8 +632,7 @@ div.dataTables_wrapper div.dataTables_filter {
 .nav-link.active .fa-right-from-bracket,
 .nav-link.active .fa-shield-halved,
 .nav-link.active .fa-landmark,
-.nav-link.active .fa-clipboard
-{
+.nav-link.active .fa-clipboard {
     color: var(--var-color-verde);
     transform: scale(1.5);
     transition: color 0.3s ease, transform 0.3s ease;
@@ -677,25 +678,35 @@ div.dataTables_wrapper div.dataTables_filter {
     margin-top: 15px;
 }
 
-.wt{
+.wt {
     width: 22rem;
 }
-.mb-2{
+
+.mb-2 {
     margin-bottom: 2rem;
 }
 
 
 /*boton descarga de consulta*/
 .btn-download {
-    display: inline-block;
-    padding: 5px 10px;
-    margin: 0 5px;
+    cursor: pointer;
+    margin: 0.3rem;
+    font-size: 1.3rem;
+    width: 2.4rem;
+    height: 2.4rem;
+    border-radius: 10px;  
     background-color: #3498db;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 10px;
- }
- 
- .btn-download:hover {
+    color: var(--var-color-balnco);
+    border: 1px solid var(--var-color-balnco);
+}
+
+.btn-download:hover {
     background-color: #2980b9;
- }
+}
+
+.btn-download:active {
+    background: #1a5175;
+}
+.fa-download{
+    color: var(--var-color-balnco);
+}
