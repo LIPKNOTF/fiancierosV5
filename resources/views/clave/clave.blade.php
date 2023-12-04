@@ -30,6 +30,7 @@
           <div class="btn-group">
             <button class="btn-edit" @click="editarClave(cla.id)"><i class="fa-solid fa-pen"></i></button>
             <button class="btn-delete" @click="eliminarClave(cla.id,cla.clave, cla.concepto)"><i class="fa-solid fa-trash-can"></i></button>
+            <a :href="'/Polizapdf/' + cla.id" class="btn-download" target="_blank"><i class="fa-solid fa-download"></i> Descargar</a>
           </div>
         </td>
       </tr>
