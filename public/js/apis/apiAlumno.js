@@ -51,7 +51,7 @@ function init() {
             this.obtenerAlumno();
             this.obtenerConsulta();
             this.obtenerClave_p();
-            this.makeFolio();
+            
         },
 
         methods: {
@@ -430,9 +430,7 @@ function init() {
                 this.claveConsulta.splice(id, 1);
             },
 
-            makeFolio: function () {
-                this.folio = "DGETAYCM " + moment().format("7949993") + 1;
-            },
+            
 
             findClave: function () {
                 let encontrado = 0;
