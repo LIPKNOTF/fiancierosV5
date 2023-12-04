@@ -88,9 +88,9 @@
             <a href="{{ url('finanzas') }}" title="finanzas" class="nav-link {{ Request::is('finanzas*') ? 'active' : '' }}">
                 <i class="fa-solid fa-landmark hover-verde"></i>
             </a>
-            <a href="{{ url('descripcion') }}" title="descripcion" class="nav-link {{ Request::is('descripcion*') ? 'active' : '' }}">
+            <!-- <a href="{{ url('descripcion') }}" title="descripcion" class="nav-link {{ Request::is('descripcion*') ? 'active' : '' }}">
                 <i class="fa-solid fa-clipboard hover-verde"></i>
-            </a>
+            </a> -->
         </nav>
 
         <nav class="nav-secumdaria">
