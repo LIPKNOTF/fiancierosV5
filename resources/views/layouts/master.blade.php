@@ -70,7 +70,7 @@
                 <i class="fa-solid fa-shield-halved hover-verde "></i>
             </a>
             <!-- Lectura xml -->
-            <a href="{{ url('xml') }}" title="Lector XML" class="nav-link {{ Request::is('xml*') ? 'active' : '' }}">
+            <a href="{{ url('con') }}" title="Lector XML" class="nav-link {{ Request::is('con*') ? 'active' : '' }}">
                 <i class="fa-solid fa-file-code hover-verde"></i>
             </a>
             <!-- Consentrados -->

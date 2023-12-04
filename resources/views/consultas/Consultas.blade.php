@@ -60,7 +60,7 @@
           <td>
             <button class="btn-edit" @click="editarConsulta(con.id)"><i class="fa-solid fa-pen"></i></button>
             <button class="btn-delete" @click="eliminarConsulta(con.id)"><i class="fa-solid fa-trash-can"></i></button>
-            <a :href="'/ControlDeIngresospdf/' + con.id" class="btn-download" target="_blank"><i class="fa-solid fa-download"></i> Descargar</a>
+            <button class="btn-download"><a :href="'/ControlDeIngresospdf/' + con.id" class="" target="_blank"><i class="fa-solid fa-download"></i></a></button>
           </td>
         </tr>
       </tbody>
@@ -77,78 +77,78 @@
         </div>
         <br>
         <br>
-        
-          <!-- EMPIEZA EL FORMULARIO -->
-          <div class="row">
-            <div class="form-group col-6">
 
-              <label class="fw-bold mt-2">FOLIO</label>
-              <span>@{{folio}}</span>
-              <input placeholder="Folio" v-model="folio" @input="convertirMayusculas" disabled required type="text" class="form-control">
-              <label class="fw-bold mt-2">FECHA</label>
-              <input placeholder="Fecha" v-model="fecha" autofocus @input="convertirMayusculas" required type="date" class="form-control"></input>
-            </div><br>
+        <!-- EMPIEZA EL FORMULARIO -->
+        <div class="row">
+          <div class="form-group col-6">
 
-            <div class="form-group">
-
-              <label class="fw-bold mt-2">ALUMNO</label>
-              <v-select class="texto-blanco" v-model="id_alumno" :reduce="alumno => alumno.id" :options="alumnos" label="matricula"></v-select>
-
-              <label class="fw-bold mt-2">CLAVE</label>
-              <v-select class="texto-blanco" v-model="id_clave" :reduce="claves_p => claves_p.id" :options="claves_p" label="clave"></v-select>
-              <button class="btn-azul" @click="getClave(id_clave)">Buscar</button>
-
-            </div>
-
-          </div>
-
-          <table id="myTableAlumnos" class="tabla display nowrap">
-            <thead class="fondo-negro">
-              <tr>
-                <th class="boder-inicio">Cantidad</th>
-                <th>Descripcion</th>
-                <th>Precio</th>
-                <th>Importe</th>
-                <th class="boder-fin">Acciones</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr v-for="(row,index) in claveConsulta">
-                <td><input type="number" class="input" v-model="cantidades[index]" min="1"></td>
-                <td>@{{row.clave}}</td>
-                <td><input type="number" class="input" v-model="cuotasObtenidas[index]"></td>
-                <td>@{{calcularImporte(index)}}</td>
-                <td><button class="btn-delete" @click="removeItem(index)"><i class="fa-solid fa-trash"></i></button></td>
-              </tr>
-            </tbody>
-          </table>
-
-
-
+            <label class="fw-bold mt-2">FOLIO</label>
+            <span>@{{folio}}</span>
+            <input placeholder="Folio" v-model="folio" @input="convertirMayusculas" disabled required type="text" class="form-control">
+            <label class="fw-bold mt-2">FECHA</label>
+            <input placeholder="Fecha" v-model="fecha" autofocus @input="convertirMayusculas" required type="date" class="form-control"></input>
+          </div><br>
 
           <div class="form-group">
 
-            <div class="col-md-8   mx-auto ">
-              <div class="card">
-                <div class="card-body ">
-                  <span class="fw-bold">Total a pagar es de: @{{subTotal}}</span> <br>
-                  <span class="fw-bold mt-1">El total de articulos es de: @{{numeroArticulos}}</span>
+            <label class="fw-bold mt-2">ALUMNO</label>
+            <v-select class="texto-blanco" v-model="id_alumno" :reduce="alumno => alumno.id" :options="alumnos" label="matricula"></v-select>
 
-                </div>
+            <label class="fw-bold mt-2">CLAVE</label>
+            <v-select class="texto-blanco" v-model="id_clave" :reduce="claves_p => claves_p.id" :options="claves_p" label="clave"></v-select>
+            <button class="btn-azul" @click="getClave(id_clave)">Buscar</button>
+
+          </div>
+
+        </div>
+
+        <table id="myTableAlumnos" class="tabla display nowrap">
+          <thead class="fondo-negro">
+            <tr>
+              <th class="boder-inicio">Cantidad</th>
+              <th>Descripcion</th>
+              <th>Precio</th>
+              <th>Importe</th>
+              <th class="boder-fin">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="(row,index) in claveConsulta">
+              <td><input type="number" class="input" v-model="cantidades[index]" min="1"></td>
+              <td>@{{row.clave}}</td>
+              <td><input type="number" class="input" v-model="cuotasObtenidas[index]"></td>
+              <td>@{{calcularImporte(index)}}</td>
+              <td><button class="btn-delete" @click="removeItem(index)"><i class="fa-solid fa-trash"></i></button></td>
+            </tr>
+          </tbody>
+        </table>
+
+
+
+
+        <div class="form-group">
+
+          <div class="col-md-8   mx-auto ">
+            <div class="card">
+              <div class="card-body ">
+                <span class="fw-bold">Total a pagar es de: @{{subTotal}}</span> <br>
+                <span class="fw-bold mt-1">El total de articulos es de: @{{numeroArticulos}}</span>
+
               </div>
             </div>
           </div>
-          <div class="modal-footer">
-            <button type="button" class="btn-rojo" data-bs-dismiss="modal">Cerrar</button>
-            <button type="button" class="btn-modal" @click="agregarConsulta()" v-if="agregando" :style="agregando ? 'background-color: #28a717;' : 'background-color: #f8be10;'">GUARDAR</button>
-            <button type="button" class="btn-azul" @click="actualizarConsulta()" v-else :style="agregando ? 'background-color: #28a717;' : 'background-color: #f8be10;'">GUARDAR</button>
-          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn-rojo" data-bs-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn-modal" @click="agregarConsulta()" v-if="agregando" :style="agregando ? 'background-color: #28a717;' : 'background-color: #f8be10;'">GUARDAR</button>
+          <button type="button" class="btn-azul" @click="actualizarConsulta()" v-else :style="agregando ? 'background-color: #28a717;' : 'background-color: #f8be10;'">GUARDAR</button>
+        </div>
 
 
 
       </div>
       <!-- TERMINA EL FORMULARIO -->
-      
+
 
     </div>
 
