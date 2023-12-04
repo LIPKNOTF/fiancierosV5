@@ -162,7 +162,7 @@
         <div class="felex">
           <label class="fw-bold mt-2">FOLIO</label><br>
 
-          <input placeholder="Folio" v-model="folio" @input="convertirMayusculas" disabled required type="text" class="form-control">
+          <input placeholder="Folio" v-model="folio" @input="convertirMayusculas"  required type="text" class="form-control">
         </div>
 
         <div class="felex">

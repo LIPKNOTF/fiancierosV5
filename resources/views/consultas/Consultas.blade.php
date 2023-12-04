@@ -83,8 +83,8 @@
           <div class="form-group col-6">
 
             <label class="fw-bold mt-2">FOLIO</label>
-            <span>@{{folio}}</span>
-            <input placeholder="Folio" v-model="folio" @input="convertirMayusculas" disabled required type="text" class="form-control">
+            <!-- <span>@{{folio}}</span> -->
+            <input placeholder="Folio" v-model="folio" @input="convertirMayusculas"  required type="text" class="form-control">
             <label class="fw-bold mt-2">FECHA</label>
             <input placeholder="Fecha" v-model="fecha" autofocus @input="convertirMayusculas" required type="date" class="form-control"></input>
           </div><br>
