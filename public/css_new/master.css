@@ -683,3 +683,19 @@ div.dataTables_wrapper div.dataTables_filter {
 .mb-2{
     margin-bottom: 2rem;
 }
+
+
+/*boton descarga de consulta*/
+.btn-download {
+    display: inline-block;
+    padding: 5px 10px;
+    margin: 0 5px;
+    background-color: #3498db;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 10px;
+ }
+ 
+ .btn-download:hover {
+    background-color: #2980b9;
+ }

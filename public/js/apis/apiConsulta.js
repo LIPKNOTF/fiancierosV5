@@ -38,7 +38,7 @@ function init() {
             auxSubTotal: "",
         },
         created: function () {
-            this.makeFolio();
+            // this.makeFolio();
             this.obtenerConsulta();
             this.obtenerAlumno();
             this.obtenerClave_p();

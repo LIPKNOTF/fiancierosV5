@@ -60,6 +60,7 @@
           <td>
             <button class="btn-edit" @click="editarConsulta(con.id)"><i class="fa-solid fa-pen"></i></button>
             <button class="btn-delete" @click="eliminarConsulta(con.id)"><i class="fa-solid fa-trash-can"></i></button>
+            <a :href="'/ControlDeIngresospdf/' + con.id" class="btn-download" target="_blank"><i class="fa-solid fa-download"></i> Descargar</a>
           </td>
         </tr>
       </tbody>
