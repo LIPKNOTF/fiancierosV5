@@ -58,9 +58,9 @@
                 <i class="fa-solid fa-house hover-verde"></i>
             </a>
             <!-- Alumnos -->
-            <a href="{{ url('alumno') }}" title="Alumnos" class="nav-link {{ Request::is('alumno*') ? 'active' : '' }}">
+            <!-- <a href="{{ url('alumno') }}" title="Alumnos" class="nav-link {{ Request::is('alumno*') ? 'active' : '' }}">
                 <i class="fa-solid fa-graduation-cap hover-verde"></i>
-            </a>
+            </a> -->
             <!-- Consulta -->
             <a href="{{ url('consulta') }}" title="Consulta" class="nav-link {{ Request::is('consulta*') ? 'active' : '' }}">
                 <i class="fa-solid fa-magnifying-glass hover-verde"></i>
