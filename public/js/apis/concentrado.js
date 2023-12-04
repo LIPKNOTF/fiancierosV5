@@ -193,6 +193,20 @@ function init() {
 
                         };
 
+                        if( 
+                            !this.id_partida ||
+                            !this.descripcion 
+                            ){
+                                Swal.fire({
+                                    icon: "warning",
+                                    title: "OCURRIO UN PROBLEMA",
+                                    text: "Existen campos vacios!",
+                                    showConfirmButton: false,
+                                    timer: 1000,
+                                });
+
+                        }else {
+
                         this.$http.post(apiConcentrado,data).then(function(json){
                             this.getConcentrados();
                             this.id_partida='',
@@ -207,6 +221,7 @@ function init() {
                                 timer: 1000,
                             });
                         });
+                    }
                     
                 },
               
