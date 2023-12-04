@@ -2,45 +2,48 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+
 use App\Models\Egresos;
 use Codedge\Fpdf\Fpdf\Fpdf;
+use Illuminate\Http\Request;
 
 class ControlDeFacturasController extends Controller
-{
-     
-   
+{    
+    public function Facturas(Request $request){
 
-    public function Facturas($id){
+        $mes = $request->input('mes');
+        if (empty($mes)) {
+            abort(400, 'El parámetro del mes es obligatorio');
+        }
 
-        
-        $egresos = Egresos::with(['partida.capitulo'])->find($id);
-        
-        if(!$egresos){
+        $egresos = Egresos::with(['partida.capitulo'])->whereRaw("DATE_FORMAT(mes, '%Y-%m') = ?", [$mes])->get();
+        if ($egresos->isEmpty()) {
             abort(404);
         }
 
-        $partida = $egresos->partida;
-        $capitulo = $egresos->partida->capitulo;
-        
-        $nombresMeses = [
-            1 => 'Enero',
-            2 => 'Febrero',
-            3 => 'Marzo',
-            4 => 'Abril',
-            5 => 'Mayo',
-            6 => 'Junio',
-            7 => 'Julio',
-            8 => 'Agosto',
-            9 => 'Septiembre',
-            10 => 'Octubre',
-            11 => 'Noviembre',
-            12 => 'Diciembre',
-        ];
-        $numeroMes = $egresos->mes;
-        $nombreMes = isset($nombresMeses[$numeroMes]) ? $nombresMeses[$numeroMes] : 'desconocido';
+        // $nombresMeses = [
+        //     1 => 'Enero',
+        //     2 => 'Febrero',
+        //     3 => 'Marzo',
+        //     4 => 'Abril',
+        //     5 => 'Mayo',
+        //     6 => 'Junio',
+        //     7 => 'Julio',
+        //     8 => 'Agosto',
+        //     9 => 'Septiembre',
+        //     10 => 'Octubre',
+        //     11 => 'Noviembre',
+        //     12 => 'Diciembre',
+        // ];
+        // $numeroMes = $egresos->mes;
+        // $nombreMes = isset($nombresMeses[$numeroMes]) ? $nombresMeses[$numeroMes] : 'desconocido';
     
-
+        //suma de egresos
+        $totalGeneral = 0;
+        foreach ($egresos as $egreso) {
+            $totalGeneral += $egreso->total;
+        }
+        
         $fpdf = new FPDF();
         $fpdf->AddPage();
 
@@ -58,11 +61,11 @@ class ControlDeFacturasController extends Controller
         $fpdf->Cell(125, 4, utf8_decode('NIVEL EDUCATIVO: MEDIO SUPERIOR'), 0, 1, 'l');
         $fpdf->Ln();
 
-        $fpdf->Cell(45, 5, $egresos->total, 'B', 0, 'C');
+        $fpdf->Cell(45, 5, '$'. number_format($totalGeneral, 2), 'B', 0, 'C');
         $fpdf->Cell(40, 5, '', 0, 0, 'C');//espacio en blanco entre lineas
-        $fpdf->Cell(45, 5, $nombreMes, 'B', 0, 'C');
+        $fpdf->Cell(45, 5, '', 'B', 0, 'C');
         $fpdf->Cell(15, 5, '', 0, 0, 'C');//espacio 
-        $fpdf->Cell(45, 5, $egresos->created_at, 'B', 1, 'C');
+        $fpdf->Cell(45, 5, '', 'B', 1, 'C');
 
         $fpdf->setfont('arial','',8);
         $fpdf->Cell(45, 5, 'TOTAL DE EGRESOS', 0, 0, 'C');
@@ -88,55 +91,23 @@ class ControlDeFacturasController extends Controller
         $fpdf->Cell(27,  10, 'Importe por partida', 1, 1, 'C');
 
         //1FILA1
-        $fpdf->Cell(10, 14, $capitulo->codigo, 'LRT', 0, 'C');
-        $fpdf->Cell(25, 14, $partida->codigo, 'LRT', 0, 'C');
-        $fpdf->Cell(27, 14, '', 'LRT', 1, 'C');
-
-        //2FILA1
-        $fpdf->Cell(10, 14, '', 'LR', 0, 'C'); 
-        $fpdf->Cell(25, 14, '', 'LR', 0, 'C'); 
-        $fpdf->Cell(27, 14, '', 'LR', 1, 'C'); 
-
-        //3FIAL1
-        $fpdf->Cell(10, 14, '', 'LR', 0, 'C'); 
-        $fpdf->Cell(25, 14, '', 'LR', 0, 'C'); 
-        $fpdf->Cell(27, 14, '', 'LR', 1, 'C'); 
-
-        //4FILA1
-        $fpdf->Cell(10, 14, '', 'LR', 0, 'C'); 
-        $fpdf->Cell(25, 14, '', 'LR', 0, 'C'); 
-        $fpdf->Cell(27, 14, '', 'LR', 1, 'C');
-
-        //5FILA1
-        $fpdf->Cell(10, 14, '', 'LR', 0, 'C'); 
-        $fpdf->Cell(25, 14, '', 'LR', 0, 'C'); 
-        $fpdf->Cell(27, 14, '', 'LR', 1, 'C');
-
-        //6FILA1
-        $fpdf->Cell(10, 14, '', 'LR', 0, 'C'); 
-        $fpdf->Cell(25, 14, '', 'LR', 0, 'C'); 
-        $fpdf->Cell(27, 14, '', 'LR', 1, 'C');
-
-        //7FILA1
-        $fpdf->Cell(10, 14, '', 'LR', 0, 'C'); 
-        $fpdf->Cell(25, 14, '', 'LR', 0, 'C'); 
-        $fpdf->Cell(27, 14, '', 'LR', 1, 'C');
-
-        //8FILA1
-        $fpdf->Cell(10, 14, '', 'LR', 0, 'C'); 
-        $fpdf->Cell(25, 14, '', 'LR', 0, 'C'); 
-        $fpdf->Cell(27, 14, '', 'LR', 1, 'C');
-
-        //9FILA1
-        $fpdf->Cell(10, 14, '', 'LR', 0, 'C'); 
-        $fpdf->Cell(25, 14, '', 'LR', 0, 'C'); 
-        $fpdf->Cell(27, 14, '', 'LR', 1, 'C');
-
-        //10FILA1
-        $fpdf->Cell(10, 14, '', 'LRB', 0, 'C'); 
-        $fpdf->Cell(25, 14, '', 'LRB', 0, 'C'); 
-        $fpdf->Cell(27, 14, '', 'LRB', 1, 'C');
-        
+        $fpdf->setfont('arial','',8);
+        $numCeldas = 10; 
+        foreach (range(1, $numCeldas) as $index) {
+            if (isset($egresos[$index - 1])) {
+                $egreso = $egresos[$index - 1];
+                // Ajusta este bloque según la estructura real de tu PDF
+                $fpdf->Cell(10, 14, $egreso->partida->capitulo->codigo, 'LR', 0, 'C');
+                $fpdf->Cell(25, 14, $egreso->partida->codigo, 'LR', 0, 'C');
+                $fpdf->Cell(27, 14, $egreso->total, 'LR', 1, 'C');
+            } else {
+                // Agrega celdas vacías si no hay egresos disponibles
+                $fpdf->Cell(10, 14, '', 'LR', 0, 'C');
+                $fpdf->Cell(25, 14, '', 'LR', 0, 'C');
+                $fpdf->Cell(27, 14, '', 'LR', 1, 'C');
+            }
+        }
+    
         $fpdf->SetXY(72, 74);
         $fpdf->Cell(3, 150, '', 1, 1, 'C');
 
@@ -225,8 +196,8 @@ class ControlDeFacturasController extends Controller
         $fpdf->Cell(25, 58, '', 1, 0, 'C');
         $fpdf->Cell(27, 58, '', 1, 1, 'C');
 
-        $fpdf->Cell(35, 10, 'Total', 1, 0, 'C');
-        $fpdf->Cell(27, 10, ('$'.$egresos->total), 1, 0, 'C');
+        $fpdf->Cell(35, 10, 'Totaljj', 1, 0, 'C');
+        $fpdf->Cell(27, 10, '$'. number_format($totalGeneral, 2), 1, 0, 'C');
         $fpdf->Cell(3, 0, '', 1, 0, 'C');
         $fpdf->Cell(35, 10, 'Total', 1, 0, 'C');
         $fpdf->Cell(27, 10, '$', 1, 0, 'C');

@@ -28,9 +28,10 @@
                 <td class="verde">@{{row.total}}</td>
             </tr>
         </tbody>
-    </table>
 
-    <button @click="descargarPDF">Descargar PDF</button>
+        <a v-if="mesEgreso" :href="'http://127.0.0.1:8000/Facturapdf?mes=' + mesEgreso" style="color: white;" @click="downloadPdf">Descargar</a>
+
+    </table>
 
     <legend class="mb-2">
         <h1>&nbsp; Total por Mes &nbsp;</h1>
