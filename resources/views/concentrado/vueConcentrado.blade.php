@@ -12,13 +12,13 @@
   <!-- Filtro por fecha -->
 
   <div class="input-group">
-    <span class="input-group-text">Fecha Inicial</span>
-    <input placeholder="FECHA DE TERMINO" v-model="fecha_f" type="date" class="form-control" />
     <span class="input-group-text">Fecha Final</span>
     <input placeholder="FECHA INICIO" v-model="fecha_i" type="date" class="form-control" />
     <button type="button" class="btn-azul" style="background-color: #28a717;" @click="limpiar()">
       <i class="fa-solid fa-broom"></i>
     </button>
+    <span class="input-group-text">Fecha Inicial</span>
+    <input placeholder="FECHA DE TERMINO" v-model="fecha_f" type="date" class="form-control" />
   </div>
 
   <table id="tablaCon" class="tabla display nowrap" style="width:100%">

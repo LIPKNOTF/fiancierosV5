@@ -58,17 +58,17 @@
                 <i class="fa-solid fa-house hover-verde"></i>
             </a>
             <!-- Alumnos -->
-            <a href="{{ url('alumno') }}" title="Alumnos" class="nav-link {{ Request::is('alumno*') ? 'active' : '' }}">
+            <!-- <a href="{{ url('alumno') }}" title="Alumnos" class="nav-link {{ Request::is('alumno*') ? 'active' : '' }}">
                 <i class="fa-solid fa-graduation-cap hover-verde"></i>
-            </a>
+            </a> -->
             <!-- Consulta -->
             <a href="{{ url('consulta') }}" title="Consulta" class="nav-link {{ Request::is('consulta*') ? 'active' : '' }}">
                 <i class="fa-solid fa-magnifying-glass hover-verde"></i>
             </a>
             <!-- Clave -->
-            <a href="{{ url('clave') }}" title="Clave" class="nav-link {{ Request::is('clave*') ? 'active' : '' }}">
+            <!-- <a href="{{ url('clave') }}" title="Clave" class="nav-link {{ Request::is('clave*') ? 'active' : '' }}">
                 <i class="fa-solid fa-shield-halved hover-verde "></i>
-            </a>
+            </a> -->
             <!-- Lectura xml -->
             <a href="{{ url('con') }}" title="Lector XML" class="nav-link {{ Request::is('con*') ? 'active' : '' }}">
                 <i class="fa-solid fa-file-code hover-verde"></i>
@@ -78,19 +78,19 @@
                 <i class="fa-solid fa-database color-rojo"></i>
             </a>
             <!-- Partidas -->
-            <a href="{{ url('partida') }}" title="Partidas" class="nav-link {{ Request::is('partida*') ? 'active' : '' }}">
+            <!-- <a href="{{ url('partida') }}" title="Partidas" class="nav-link {{ Request::is('partida*') ? 'active' : '' }}">
                 <i class="fa-solid fa-paste hover-verde"></i>
-            </a>
+            </a> -->
             <!-- Capitulos -->
-            <a href="{{ url('capitulo') }}" title="Capitulos" class="nav-link {{ Request::is('capitulo*') ? 'active' : '' }}">
+            <!-- <a href="{{ url('capitulo') }}" title="Capitulos" class="nav-link {{ Request::is('capitulo*') ? 'active' : '' }}">
                 <i class="fa-solid fa-book hover-verde"></i>
-            </a>
+            </a> -->
             <a href="{{ url('finanzas') }}" title="finanzas" class="nav-link {{ Request::is('finanzas*') ? 'active' : '' }}">
                 <i class="fa-solid fa-landmark hover-verde"></i>
             </a>
-            <a href="{{ url('descripcion') }}" title="descripcion" class="nav-link {{ Request::is('descripcion*') ? 'active' : '' }}">
+            <!-- <a href="{{ url('descripcion') }}" title="descripcion" class="nav-link {{ Request::is('descripcion*') ? 'active' : '' }}">
                 <i class="fa-solid fa-clipboard hover-verde"></i>
-            </a>
+            </a> -->
         </nav>
 
         <nav class="nav-secumdaria">

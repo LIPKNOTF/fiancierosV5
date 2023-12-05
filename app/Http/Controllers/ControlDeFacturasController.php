@@ -16,7 +16,7 @@ class ControlDeFacturasController extends Controller
             abort(400, 'El parámetro del mes es obligatorio');
         }
 
-        $egresos = Egresos::with(['partida.capitulo'])->whereRaw("DATE_FORMAT(mes, '%Y-%m') = ?", [$mes])->get();
+        $egresos = Egresos::with(['partida.capitulo'])->whereRaw("mes = ?", [$mes])->get();
         if ($egresos->isEmpty()) {
             abort(404);
         }
