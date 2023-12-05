@@ -347,7 +347,7 @@ function init() {
                     };
                 }
 
-                if (!this.fecha) {
+                if (!this.fecha, !this.folio) {
                     Swal.fire({
                         icon: "warning",
                         title: "OCURRIO UN PROBLEMA",

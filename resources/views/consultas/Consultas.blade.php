@@ -12,18 +12,16 @@
     <button class="btn-modal" @click="mostrarModal()">Agregar</button>
 
     <div class="text-center">
+      <span class="input-group-text">Fecha Final</span>
+      <input placeholder="FECHA INICIO" v-model="fecha_i" type="date" class="input" />
 
       <span class="input-group-text">Fecha Inicial</span>
       <input placeholder="FECHA DE TERMINO" v-model="fecha_f" type="date" class="input" />
 
-      <span class="input-group-text">Fecha Final</span>
-      <input placeholder="FECHA INICIO" v-model="fecha_i" type="date" class="input" />
-
       <button type="button" class="btn-edit" @click="limpiar()">
         <i class="fa-solid fa-broom"></i>
       </button>
-
-
+      
     </div>
 
 
@@ -84,7 +82,7 @@
 
             <label class="fw-bold mt-2">FOLIO</label>
             <!-- <span>@{{folio}}</span> -->
-            <input placeholder="Folio" v-model="folio" @input="convertirMayusculas"  required type="text" class="form-control">
+            <input placeholder="Folio" v-model="folio" @input="convertirMayusculas" required type="text" class="form-control">
             <label class="fw-bold mt-2">FECHA</label>
             <input placeholder="Fecha" v-model="fecha" autofocus @input="convertirMayusculas" required type="date" class="form-control"></input>
           </div><br>
