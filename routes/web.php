@@ -107,5 +107,4 @@ Route::get('/ControlDeIngresospdf/{id}','ControlDeIngresosController@Ingresos');
 Route::get('/Control_De_Ingresospdf/{id}','ControlDeIngresos_Controller@Ingresos');
 
 
-
-Route::view('Usuarios','usuarios/usuario');
+Route::get('/Factura_pdf/{anio}/{mes}', 'ControlDeFacturas_Controller@Facturas');

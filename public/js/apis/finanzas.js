@@ -72,6 +72,15 @@ function init() {
            });
            },
 
+           descargarFactura() {
+            // Obtener el año y mes seleccionados
+            const anio = this.mesEgreso.split("-")[0];
+            const mes =  parseInt(this.mesEgreso.split("-")[1]);
+    
+            // Redirigir a la URL de descarga
+            window.location.href = `/Factura_pdf/${anio}/${mes}`;
+        },
+
            totalPorMes:function(){
             let mesTotales = String(this.mesTotal);
             this.$http.get(`/total-por-mes?mes=${mesTotales}`)
