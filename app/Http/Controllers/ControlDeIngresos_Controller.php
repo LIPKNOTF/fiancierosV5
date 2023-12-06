@@ -21,7 +21,13 @@ class ControlDeIngresos_Controller extends Controller
         }
 
         $importe = $consultas->cantidad * $consultas->total;
+        $importe_formateado = number_format($importe, 2);
+
+        $total = $consultas->total;
+        $total_formateado = number_format($total, 2);
         $cantidadEnLetras = $this->Conversion($consultas->total);
+        $TotalCompleto = $cantidadEnLetras . ' Pesos ' . substr($total_formateado, strpos($total_formateado, '.') + 1);
+
         $alumno = $consultas->alumno;
         $clave = $consultas->claves_p;
         $fecha_actual = date("d-m-Y");
@@ -132,7 +138,7 @@ class ControlDeIngresos_Controller extends Controller
         $fpdf->setfont('arial','B',7);
         $fpdf->Cell(25, 5, utf8_decode('LA CANTIDA DE $'), 'LTB', 0);
         $fpdf->Cell(20, 5, $consultas->total, 'RTB', 0);
-        $fpdf->Cell(147, 5, $cantidadEnLetras.' Pesos', 1, 1,'C');
+        $fpdf->Cell(147, 5, $TotalCompleto, 1, 1,'C');
 
         //espacio vacio
         $fpdf->Cell(192, 2, '', 0, 1);
@@ -153,7 +159,7 @@ class ControlDeIngresos_Controller extends Controller
         $fpdf->Cell(76, 4, $clave->concepto, 1, 0,'C');
         $fpdf->Cell(25, 4, $consultas->total, 'LRB', 0,'C');
         $fpdf->Cell(3, 4, '', 0, 0);
-        $fpdf->Cell(38, 4, $importe, 'LRB', 1,'C');
+        $fpdf->Cell(38, 4, $importe_formateado, 'LRB', 1,'C');
         
         $fpdf->Cell(10, 4, '', 0, 0);
         $fpdf->Cell(20, 4, '', 1, 0);
@@ -178,7 +184,7 @@ class ControlDeIngresos_Controller extends Controller
         $fpdf->Cell(76, 4, '', 0, 0);
         $fpdf->Cell(25, 4, utf8_decode('TOTAL'), 0, 0,'C');
         $fpdf->Cell(3, 4, '', 0, 0);
-        $fpdf->Cell(38, 4, $consultas->importe, 0, 1,'C');
+        $fpdf->Cell(38, 4, $importe_formateado, 0, 1,'C');
 
         //espacio vacio
         $fpdf->Cell(192, 3, '', 0, 1);
