@@ -138,7 +138,7 @@ class ControlDeIngresos_Controller extends Controller
         $fpdf->setfont('arial','B',7);
         $fpdf->Cell(25, 5, utf8_decode('LA CANTIDA DE $'), 'LTB', 0);
         $fpdf->Cell(20, 5, $consultas->total, 'RTB', 0);
-        $fpdf->Cell(147, 5, $TotalCompleto, 1, 1,'C');
+        $fpdf->Cell(147, 5, $TotalCompleto.'/100', 1, 1,'C');
 
         //espacio vacio
         $fpdf->Cell(192, 2, '', 0, 1);
