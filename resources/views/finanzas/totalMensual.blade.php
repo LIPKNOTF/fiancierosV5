@@ -8,7 +8,9 @@
     </legend>
 
     <input type="month" class="input" v-model="mesIngreso" @input="filtrarMes" />
-
+    <br>
+    <button class="btn-modal azul" ><i class="fa-solid fa-download"></i></button>
+    
     <table id="" class="tabla display nowrap" style="width:100%">
         <thead class="fondo-negro">
             <tr>

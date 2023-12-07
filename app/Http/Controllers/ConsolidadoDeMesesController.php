@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Ingresos;
+use Carbon\Carbon;
 use Codedge\Fpdf\Fpdf\Fpdf;
 
 class ConsolidadoDeMesesController extends Controller

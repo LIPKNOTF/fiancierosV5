@@ -98,13 +98,11 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 //PDF
 Route::get('Hojapdf', 'HNuevaController@hojares');
-Route::get('Facturapdf', 'ControlDeFacturasController@Facturas');
+// Route::get('Facturapdf', 'ControlDeFacturasController@Facturas');//no sirve 
 Route::get('Consolidadopdf', 'ConsolidadoDeMesesController@Consolidado');
 Route::get('/Polizapdf/{id}', 'PolizaDeIngresosController@Poliza');
 Route::get('FlujoDeEfectivopdf', 'FlujoDeEfectivoController@Flujo');
 Route::get('Conciliacionpdf','FormatoConciliacionController@Conciliacion');
-Route::get('/ControlDeIngresospdf/{id}','ControlDeIngresosController@Ingresos');
+// Route::get('/ControlDeIngresospdf/{id}','ControlDeIngresosController@Ingresos');//no sirve
 Route::get('/Control_De_Ingresospdf/{id}','ControlDeIngresos_Controller@Ingresos');
-
-
 Route::get('/Factura_pdf/{anio}/{mes}', 'ControlDeFacturas_Controller@Facturas');
