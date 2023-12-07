@@ -70,7 +70,7 @@
                 <i class="fa-solid fa-shield-halved hover-verde "></i>
             </a> -->
             <!-- Lectura xml -->
-            <a href="{{ url('con') }}" title="Lector XML" class="nav-link {{ Request::is('con*') ? 'active' : '' }}">
+            <a href="{{ url('lector') }}" title="Lector XML" class="nav-link {{ Request::is('lector*') ? 'active' : '' }}">
                 <i class="fa-solid fa-file-code hover-verde"></i>
             </a>
             <!-- Consentrados -->
@@ -148,7 +148,7 @@
                 console.log((path === '/alumno') ? "alumnos" : path.substring(1));
             }, (path === '/alumno') ? 1500 : 0);
 
-            if (['/consulta', '/clave', '/concentrado', '/partida', '/capitulo', '/finanzas','/descripcion'].includes(path)) {
+            if (['/consulta', '/clave', '/concentrado', '/partida', '/capitulo', '/finanzas','/descripcion,'].includes(path)) {
                 setTimeout(function() {
                     hideLoader();
                     console.log("Demas");

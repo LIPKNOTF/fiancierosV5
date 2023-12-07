@@ -2,7 +2,7 @@ function init() {
     var ruta = document.querySelector("[name=route]").value;
     Vue.component("v-select", VueSelect.VueSelect);
     var apiConcentrado = ruta + "/apiConcentrado";
-    var apiPartida = ruta + "/apiPartida"
+    var apiPartida = ruta + "/apiPartida";
     new Vue({
         http: {
             headers: {
@@ -16,78 +16,131 @@ function init() {
         data: {
             concentrados: [],
             partidas: [],
-            mensaje: 'Aqui es el concentrado',
-            id: '',
-            id_partida: '',
-            fecha: '',
-            razon_social_emisor: '',
-            razon_social_receptor: '',
-            rfc_emisor: '',
-            rfc_receptor: '',
-            regimen_emisor: '',
-            regimen_receptor: '',
-            total: '',
-            sub_total: '',
-            descripcion: '',
-            impuesto_traslado: '',
-            impuesto_retenido: '',
+            mensaje: "Aqui es el concentrado",
+            id: "",
+            id_partida: "",
+            fecha: "",
+            razon_social_emisor: "",
+            razon_social_receptor: "",
+            rfc_emisor: "",
+            rfc_receptor: "",
+            regimen_emisor: "",
+            regimen_receptor: "",
+            total: "",
+            sub_total: "",
+            descripcion: "",
+            impuesto_traslado: "",
+            impuesto_retenido: "",
             monto: null,
-            productos: '',
+            productos: "",
             agregando: true,
             fecha_i: "",
             fecha_f: "",
-
         },
         created: function () {
             this.getConcentrados();
             this.getPartida();
+            this.dataTable();
         },
 
         methods: {
-            getConcentrados: function () {
-                this.$http.get(apiConcentrado).then(function (json) {
-                    this.concentrados = json.data;
-                }).catch(function (json) {
-                    console.log(json);
+            dataTable() {
+                $(document).ready(function () {
+                    // Configuración en español
+                    $.extend(true, $.fn.dataTable.defaults, {
+                        language: {
+                            sProcessing: "Procesando...",
+                            sLengthMenu: "Mostrar _MENU_ registros",
+                            sZeroRecords: "No se encontraron resultados",
+                            sEmptyTable: "Ningún dato disponible en esta tabla",
+                            sInfo: "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                            sInfoEmpty:
+                                "Mostrando registros del 0 al 0 de un total de 0 registros",
+                            sInfoFiltered:
+                                "(filtrado de un total de _MAX_ registros)",
+                            sInfoPostFix: "",
+                            sSearch: "Buscar:",
+                            sUrl: "",
+                            sInfoThousands: ",",
+                            sLoadingRecords: "Cargando...",
+                            oPaginate: {
+                                sFirst: "Primero",
+                                sLast: "Último",
+                                sNext: "Siguiente",
+                                sPrevious: "Anterior",
+                            },
+                            oAria: {
+                                sSortAscending:
+                                    ": Activar para ordenar la columna de manera ascendente",
+                                sSortDescending:
+                                    ": Activar para ordenar la columna de manera descendente",
+                            },
+                        },
+                        lengthMenu: [8, 12, 20, 50],
+                        pageLength: 8,
+                    });
+
+                    // Inicializar el DataTable
+                    new DataTable("#myTable", {
+                        responsive: true,
+                        columnDefs: [
+                            {
+                                responsivePriority: 1, // Prioridad baja para la última columna
+                                targets: -1, // Índice de la última columna (puede necesitar ajustarse)
+                            },
+                        ],
+                    });
                 });
+            },
+            getConcentrados: function () {
+                this.$http
+                    .get(apiConcentrado)
+                    .then(function (json) {
+                        this.concentrados = json.data;
+                    })
+                    .catch(function (json) {
+                        console.log(json);
+                    });
             },
 
             getPartida: function () {
-                this.$http.get(apiPartida).then(function (json) {
-                    this.partidas = json.data;
-                }).catch(function (json) {
-                    console.log(json);
-                });
+                this.$http
+                    .get(apiPartida)
+                    .then(function (json) {
+                        this.partidas = json.data;
+                    })
+                    .catch(function (json) {
+                        console.log(json);
+                    });
             },
-
 
             openModal: function () {
                 this.agregando = true;
-                this.id_partida = '';
-                this.fecha = '';
-                this.razon_social_emisor = '';
-                this.razon_social_receptor = '';
-                this.rfc_emisor = '';
-                this.rfc_receptor = '';
-                this.regimen_emisor = '';
-                this.regimen_receptor = '';
-                this.total = '';
-                this.sub_total = '';
-                this.impuesto_traslado = '';
-                this.impuesto_retenido = '';
-                this.productos = '';
-                this.descripcion = '';
-                $('#modalCon').modal('show');
+                this.id_partida = "";
+                this.fecha = "";
+                this.razon_social_emisor = "";
+                this.razon_social_receptor = "";
+                this.rfc_emisor = "";
+                this.rfc_receptor = "";
+                this.regimen_emisor = "";
+                this.regimen_receptor = "";
+                this.total = "";
+                this.sub_total = "";
+                this.impuesto_traslado = "";
+                this.impuesto_retenido = "";
+                this.productos = "";
+                this.descripcion = "";
+                $("#modalCon").modal("show");
             },
 
-
             saveConcentrado: function () {
-                let concentrado = { id_partida: this.id_partida, 
-                    fecha: this.fecha, 
-                    razon_social_emisor: this.razon_social_emisor, 
-                    razon_social_receptor: this.razon_social_receptor, 
-                    rfc_emisor: this.rfc_emisor, 
-                    rfc_receptor: this.rfc_receptor, 
+                let concentrado = {
+                    id_partida: this.id_partida,
+                    fecha: this.fecha,
+                    razon_social_emisor: this.razon_social_emisor,
+                    razon_social_receptor: this.razon_social_receptor,
+                    rfc_emisor: this.rfc_emisor,
+                    rfc_receptor: this.rfc_receptor,
                     regimen_emisor: this.regimen_emisor,
                     regimen_receptor: this.regimen_receptor,
                     impuesto_retenido: this.impuesto_retenido,
@@ -95,7 +148,8 @@ function init() {
                     total: this.total,
                     sub_total: this.sub_total,
                     productos: this.productos,
-                    descripcion: this.descripcion };
+                    descripcion: this.descripcion,
+                };
                 if (
                     !this.id_partida ||
                     !this.fecha ||
@@ -119,91 +173,91 @@ function init() {
                         showConfirmButton: false,
                         timer: 1000,
                     });
-
                 } else {
-                    this.$http.post(apiConcentrado, concentrado).then(function (json) {
-                        console.log(json);
-                        $('#modalCon').modal('hide');
-                        this.getConcentrados();
-                        Swal.fire({
-                            icon: "success",
-                            title: "GENIAL",
-                            text: "Se agrego el concentrado con éxito!",
-                            showConfirmButton: false,
-                            timer: 1000,
-                        });
-                    }).catch(function (json) {
-
-                    });
+                    this.$http
+                        .post(apiConcentrado, concentrado)
+                        .then(function (json) {
+                            console.log(json);
+                            $("#modalCon").modal("hide");
+                            this.getConcentrados();
+                            Swal.fire({
+                                icon: "success",
+                                title: "GENIAL",
+                                text: "Se agrego el concentrado con éxito!",
+                                showConfirmButton: false,
+                                timer: 1000,
+                            });
+                        })
+                        .catch(function (json) {});
                 }
             },
 
-            saveXML:function () {
-                
-                
-                    alert("hola")
-                
+            saveXML: function () {
+                alert("hola");
             },
 
             showConcentrado: function (id) {
                 this.agregando = false;
                 this.id = id;
-                this.$http.get(apiConcentrado + "/" + this.id).then(function (json) {
-                    this.id_partida = json.data.id_partida;
-                    this.fecha = json.data.fecha;
-                    this.razon_social_emisor = json.data.razon_social_emisor;
-                    this.razon_social_receptor = json.data.razon_social_receptor;
-                    this.rfc_emisor = json.data.rfc_emisor;
-                    this.rfc_receptor = json.data.rfc_receptor;
-                    this.regimen_emisor = json.data.regimen_emisor;
-                    this.regimen_receptor = json.data.regimen_receptor;
-                    this.total = json.data.total;
-                    this.sub_total = json.data.sub_total;
-                    this.impuesto_traslado = json.data.impuesto_traslado;
-                    this.impuesto_retenido = json.data.impuesto_retenido;
-                    this.productos = json.data.productos;
-                    this.descripcion = json.data.descripcion;
-                    $('#modalCon').modal('show');
-
-                });
-
+                this.$http
+                    .get(apiConcentrado + "/" + this.id)
+                    .then(function (json) {
+                        this.id_partida = json.data.id_partida;
+                        this.fecha = json.data.fecha;
+                        this.razon_social_emisor =
+                            json.data.razon_social_emisor;
+                        this.razon_social_receptor =
+                            json.data.razon_social_receptor;
+                        this.rfc_emisor = json.data.rfc_emisor;
+                        this.rfc_receptor = json.data.rfc_receptor;
+                        this.regimen_emisor = json.data.regimen_emisor;
+                        this.regimen_receptor = json.data.regimen_receptor;
+                        this.total = json.data.total;
+                        this.sub_total = json.data.sub_total;
+                        this.impuesto_traslado = json.data.impuesto_traslado;
+                        this.impuesto_retenido = json.data.impuesto_retenido;
+                        this.productos = json.data.productos;
+                        this.descripcion = json.data.descripcion;
+                        $("#modalCon").modal("show");
+                    });
             },
 
             updateConcentrado: function () {
-                let jsonConcentrado = { id_partida: this.id_partida, 
-                    fecha: this.fecha, 
-                    razon_social_emisor: this.razon_social_emisor, 
+                let jsonConcentrado = {
+                    id_partida: this.id_partida,
+                    fecha: this.fecha,
+                    razon_social_emisor: this.razon_social_emisor,
                     razon_social_receptor: this.razon_social_receptor,
-                    rfc_emisor:this.rfc_emisor, 
-                    rfc_receptor:this.rfc_receptor, 
-                    regimen_emisor:this.regimen_emisor,
-                    regimen_receptor:this.regimen_receptor,
-                    total:this.total,
-                    sub_total:this.sub_total,
-                    impuesto_retenido:this.impuesto_retenido,
-                    impuesto_traslado:this.impuesto_traslado, 
+                    rfc_emisor: this.rfc_emisor,
+                    rfc_receptor: this.rfc_receptor,
+                    regimen_emisor: this.regimen_emisor,
+                    regimen_receptor: this.regimen_receptor,
+                    total: this.total,
+                    sub_total: this.sub_total,
+                    impuesto_retenido: this.impuesto_retenido,
+                    impuesto_traslado: this.impuesto_traslado,
                     productos: this.productos,
-                    descripcion: this.descripcion };
-                    
-                this.$http.patch(apiConcentrado + '/' + this.id, jsonConcentrado).then(function (json) {
-                    this.getConcentrados();
-                    Swal.fire({
-                        icon: "success",
-                        title: "GENIAL",
-                        text: "Se actualizo el concentrado con éxito!",
-                        showConfirmButton: false,
-                        timer: 1000,
-                    });
-                });
-                $('#modalCon').modal('hide');
-                
-            },
+                    descripcion: this.descripcion,
+                };
 
+                this.$http
+                    .patch(apiConcentrado + "/" + this.id, jsonConcentrado)
+                    .then(function (json) {
+                        this.getConcentrados();
+                        Swal.fire({
+                            icon: "success",
+                            title: "GENIAL",
+                            text: "Se actualizo el concentrado con éxito!",
+                            showConfirmButton: false,
+                            timer: 1000,
+                        });
+                    });
+                $("#modalCon").modal("hide");
+            },
 
             deleteConcentrado: function (id) {
                 Swal.fire({
-                    title:
-                        "Se eliminara el registro esta seguro?",
+                    title: "Se eliminara el registro esta seguro?",
                     icon: "warning",
                     showCancelButton: true,
                     confirmButtonColor: "#d33",
@@ -220,9 +274,11 @@ function init() {
                             timer: 1000,
                             showConfirmButton: false,
                         });
-                        this.$http.delete(apiConcentrado + "/" + id).then(function (json) {
-                            this.getConcentrados();
-                        });
+                        this.$http
+                            .delete(apiConcentrado + "/" + id)
+                            .then(function (json) {
+                                this.getConcentrados();
+                            });
                     }
                 });
             },
@@ -231,10 +287,7 @@ function init() {
                 this.fecha_i = "";
                 this.fecha_f = "";
             },
-
         },
-
-
 
         computed: {
             filtrarfechas: function () {
@@ -253,4 +306,4 @@ function init() {
     });
     // fin de vue
 }
-window.onload = init;    
+window.onload = init;
