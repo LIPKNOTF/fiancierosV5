@@ -9,6 +9,8 @@
   <br>
   <br>
 
+  <!-- Filtro por fecha -->
+
   <div class="input-group">
     <span class="input-group-text">Fecha Final</span>
     <input placeholder="FECHA INICIO" v-model="fecha_i" type="date" class="form-control" />
@@ -19,7 +21,7 @@
     <input placeholder="FECHA DE TERMINO" v-model="fecha_f" type="date" class="form-control" />
   </div>
 
-  <table id="myTable" class="tabla display nowrap" style="width:100%">
+  <table id="tablaCon" class="tabla display nowrap" style="width:100%">
     <thead class="fondo-negro">
       <tr>
         <th class="boder-inicio">Partida Codigo</th>
@@ -65,6 +67,9 @@
     </tbody>
   </table>
 
+
+
+  <!-- Ventana modal -->
   <!-- VENTANA MODA CREAR UNA CONSULTA -->
   <div class="modal fade" id="modalCon" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -165,6 +170,7 @@
       </div>
     </div>
   </div>
+
 </div>
 
 @endsection

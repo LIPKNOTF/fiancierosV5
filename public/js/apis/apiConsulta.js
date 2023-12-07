@@ -78,50 +78,51 @@ function init() {
             // funcion para el complemento de dataTables
             dataPagPre() {
                 $(document).ready(function () {
-                    // Configuración en español
-                    $.extend(true, $.fn.dataTable.defaults, {
-                        language: {
-                            sProcessing: "Procesando...",
-                            sLengthMenu: "Mostrar _MENU_ registros",
-                            sZeroRecords: "No se encontraron resultados",
-                            sEmptyTable: "Ningún dato disponible en esta tabla",
-                            sInfo: "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-                            sInfoEmpty:
-                                "Mostrando registros del 0 al 0 de un total de 0 registros",
-                            sInfoFiltered:
-                                "(filtrado de un total de _MAX_ registros)",
-                            sInfoPostFix: "",
-                            sSearch: "Buscar:",
-                            sUrl: "",
-                            sInfoThousands: ",",
-                            sLoadingRecords: "Cargando...",
-                            oPaginate: {
-                                sFirst: "Primero",
-                                sLast: "Último",
-                                sNext: "Siguiente",
-                                sPrevious: "Anterior",
+                    var table = $("#myTable");
+                    if (!table.hasClass("dataTable")) {
+                        table.DataTable({
+                            initComplete: function () {
+                                this.api()
+                                    .columns()
+                                    .every(function (index) {
+                                        var column = this;
+                                        var header = $(column.header());
+                                        if (header.hasClass("actions")) {
+                                            // No hacer nada si es la columna de acciones
+                                            return;
+                                        }
+                                    });
                             },
-                            oAria: {
-                                sSortAscending:
-                                    ": Activar para ordenar la columna de manera ascendente",
-                                sSortDescending:
-                                    ": Activar para ordenar la columna de manera descendente",
+                            responsive: {
+                                details: {
+                                    type: "inline", // Cambiado de 'column' a 'inline'
+                                    target: ":not(:last-child)", // Excluir la última columna
+                                },
                             },
-                        },
-                        lengthMenu: [8, 12, 20, 50],
-                        pageLength: 8,
-                    });
+                            language: {
+                                searchPlaceholder: "Buscar",
+                                search: "Buscar:",
+                                zeroRecords: "No se encontraron resultados",
+                                emptyTable:
+                                    "No hay datos disponibles en la tabla",
+                                infoEmpty:
+                                    "Mostrando 0 registros de un total de 0",
+                                infoFiltered:
+                                    "(filtrado de un total de MAX registros)",
+                                example_info:
+                                    "Se muestran 0 de 0 un total de 0",
+                                sInfo: "<span style='margin-left: 2rem;'>Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros</span>",
+                                lengthMenu: "Mostrar _MENU_",
+                                paginate: {
+                                    previous: "Anterior",
+                                    next: "Siguiente",
+                                },
+                            },
 
-                    // Inicializar el DataTable
-                    new DataTable("#myTable", {
-                        responsive: true,
-                        columnDefs: [
-                            {
-                                responsivePriority: 1, // Prioridad baja para la última columna
-                                targets: -1, // Índice de la última columna (puede necesitar ajustarse)
-                            },
-                        ],
-                    });
+                            lengthMenu: [7, 10, 25, 50],
+                            pageLength: 7,
+                        });
+                    }
                 });
             },
             // fin de la funcion para el complemento de dataTables
@@ -139,6 +140,8 @@ function init() {
                 this.total = "";
                 $("#modalConsulta").modal("show");
             },
+
+            
 
             editarConsulta: function (id) {
                 this.agregando = false;
@@ -289,23 +292,21 @@ function init() {
                 this.claveConsulta.splice(id, 1);
             },
 
-            getLastFolio: function () {
-                this.$http("/ultimo-folio")
-                    .then((response) => {
+            getLastFolio:function(){
+                this.$http('/ultimo-folio').then(
+                    response=>{
                         let ultimoFolio = response.data;
                         let nuevoFolio = this.createNewFolio(ultimoFolio);
-                        this.folio = nuevoFolio;
-                        console.log("Nuevo folio: ", this.folio);
-                    })
-                    .cath((error) => {
-                        console.error(
-                            "Error al obtener el ultimo folio: ",
-                            error
-                        );
+                        this.folio=nuevoFolio;
+                        console.log('Nuevo folio: ', this.folio);
+                    }).cath(error=>{
+                        console.error('Error al obtener el ultimo folio: ', error);
                     });
             },
 
-            createNewFolio: function () {},
+            createNewFolio:function(){
+
+            },
 
             agregarConsulta: function () {
                 let pago = {};
@@ -313,9 +314,9 @@ function init() {
                 let ingresos = [];
 
                 ingresos.push({
-                    total: this.subTotal,
+                    total:this.subTotal,
                     id_clave: this.id_clave,
-                    fecha: this.fecha,
+                    fecha:this.fecha
                 });
 
                 for (i = 0; i < this.claveConsulta.length; i++) {
@@ -339,7 +340,7 @@ function init() {
                     };
                 }
 
-                if ((!this.fecha, !this.folio)) {
+                if (!this.fecha, !this.folio) {
                     Swal.fire({
                         icon: "warning",
                         title: "OCURRIO UN PROBLEMA",

@@ -86,56 +86,131 @@ function init() {
                 });
             },
 
-            
+            // EMPIEZA DATA TABLES
+            // dataAlumno() {
+            //     $("#myTableAlumnos").DataTable().destroy();
+            //     this.$nextTick(() => {
+            //         $("#myTableAlumnos").DataTable({
+            //           initComplete: function () {
+            //             this.api()
+            //                 .columns()
+            //                 .every(function (index) {
+            //                     var column = this;
+            //                     var header = $(column.header());
+            //                     if (header.hasClass("actions")) {
+            //                         // No hacer nada si es la columna de acciones
+            //                         return;
+            //                     }
+            //                     var input = $(
+            //                         '<input type="text" class="text-center form-control form-control-sm mb-2" placeholder="Filtrar">'
+            //                     )
+            //                         .appendTo(header)
+            //                         .on(
+            //                             "keyup change clear",
+            //                             function () {
+            //                                 if (
+            //                                     column.search() !==
+            //                                     this.value
+            //                                 ) {
+            //                                     column
+            //                                         .search(this.value)
+            //                                         .draw();
+            //                                 }
+            //                             }
+            //                         );
+            //                 });
+            //         },
+            //             language: {
+            //                 sProcessing: "Procesando...",
+            //                 sLengthMenu: "Mostrar _MENU_ registros",
+            //                 sZeroRecords: "No se encontraron resultados",
+            //                 sEmptyTable: "Ningún dato disponible en esta tabla",
+            //                 sInfo: "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+            //                 sInfoEmpty:
+            //                     "Mostrando registros del 0 al 0 de un total de 0 registros",
+            //                 sInfoFiltered:
+            //                     "(filtrado de un total de _MAX_ registros)",
+            //                 sInfoPostFix: "",
+            //                 sSearch: "Buscar:",
+            //                 sUrl: "",
+            //                 sInfoThousands: ",",
+            //                 sLoadingRecords: "Cargando...",
+            //                 oPaginate: {
+            //                     sFirst: "Primero",
+            //                     sLast: "Último",
+            //                     sNext: "Siguiente",
+            //                     sPrevious: "Anterior",
+            //                 },
+            //                 oAria: {
+            //                     sSortAscending:
+            //                         ": Activar para ordenar la columna de manera ascendente",
+            //                     sSortDescending:
+            //                         ": Activar para ordenar la columna de manera descendente",
+            //                 },
+            //             },
+            //             columnDefs: [
+            //                 {
+            //                     targets: -1,
+            //                     className: "actions",
+            //                     searchable: false,
+            //                 },
+            //             ],
+
+            //             pageLength: 5, // Número de registros por página
+            //             lengthMenu: [5, 10, 25, 50], // Opciones de número de registros por página
+            //         });
+            //     });
+            // },
+
+            //TERMINA DATABLES
 
             dataAlumno() {
                 $(document).ready(function () {
-                    // Configuración en español
-                    $.extend(true, $.fn.dataTable.defaults, {
-                        language: {
-                            sProcessing: "Procesando...",
-                            sLengthMenu: "Mostrar _MENU_ registros",
-                            sZeroRecords: "No se encontraron resultados",
-                            sEmptyTable: "Ningún dato disponible en esta tabla",
-                            sInfo: "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-                            sInfoEmpty:
-                                "Mostrando registros del 0 al 0 de un total de 0 registros",
-                            sInfoFiltered:
-                                "(filtrado de un total de _MAX_ registros)",
-                            sInfoPostFix: "",
-                            sSearch: "Buscar:",
-                            sUrl: "",
-                            sInfoThousands: ",",
-                            sLoadingRecords: "Cargando...",
-                            oPaginate: {
-                                sFirst: "Primero",
-                                sLast: "Último",
-                                sNext: "Siguiente",
-                                sPrevious: "Anterior",
+                    var table = $("#myTableAlumnos");
+                    if (!table.hasClass("dataTable")) {
+                        table.DataTable({
+                            initComplete: function () {
+                                this.api()
+                                    .columns()
+                                    .every(function (index) {
+                                        var column = this;
+                                        var header = $(column.header());
+                                        if (header.hasClass("actions")) {
+                                            // No hacer nada si es la columna de acciones
+                                            return;
+                                        }
+                                    });
                             },
-                            oAria: {
-                                sSortAscending:
-                                    ": Activar para ordenar la columna de manera ascendente",
-                                sSortDescending:
-                                    ": Activar para ordenar la columna de manera descendente",
+                            responsive: {
+                                details: {
+                                    type: 'inline', // Cambiado de 'column' a 'inline'
+                                    target: ':not(:last-child)' // Excluir la última columna
+                                }
+                            },
+                            language: {
+                                searchPlaceholder: "Buscar",
+                                search: "Buscar:",
+                                zeroRecords: "No se encontraron resultados",
+                                emptyTable:
+                                    "No hay datos disponibles en la tabla",
+                                infoEmpty:
+                                    "Mostrando 0 registros de un total de 0",
+                                infoFiltered:
+                                    "(filtrado de un total de MAX registros)",
+                                example_info:
+                                    "Se muestran 0 de 0 un total de 0",
+                                sInfo: "<span style='margin-left: 2rem;'>Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros</span>",
+                                lengthMenu: "Mostrar _MENU_",
+                                paginate: {
+                                    previous: "Anterior",
+                                    next: "Siguiente",
+                                },
                             },
 
-                        },
-                        "lengthMenu": [8, 12, 20, 50],
-                        "pageLength": 8,
-                    });
-
-                    // Inicializar el DataTable
-                    new DataTable("#myTableAlumnos", {
-                        responsive: true,
-                        columnDefs: [
-                            {
-                                responsivePriority: 1, // Prioridad baja para la última columna
-                                targets: -1, // Índice de la última columna (puede necesitar ajustarse)
-                            },
-                        ],
-                    });
-                    
+                            "lengthMenu": [8, 15, 25, 50],
+                            "pageLength": 8,
+                        });
+                    }
                 });
             },
             // fin de la funcion para el complemento de dataTables
