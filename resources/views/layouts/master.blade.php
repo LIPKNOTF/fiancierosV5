@@ -14,6 +14,8 @@
 
     <!-- foundawison script -->
     <script src="js_new/all.min.js"></script>
+    <script src="js_new/spanish.js"></script>
+    <script src="js_new/typo.js"></script>
     <!-- datatable -->
     <script src="js_new/jquery.js"></script>
     <script src="js_new/jquery.data.js"></script>
@@ -67,7 +69,7 @@
             </a>
             <!-- Consentrados -->
             <a href="{{ url('listConcentrado') }}" title="listConcentrado" class="nav-link {{ Request::is('listConcentrado*') ? 'active' : '' }}">
-                <i class="fa-solid fa-database hover-verde"></i>
+                <i class="fa-solid fa-calendar-day hover-verde"></i>
             </a>
             <a href="{{ url('finanzas') }}" title="finanzas" class="nav-link {{ Request::is('finanzas*') ? 'active' : '' }}">
                 <i class="fa-solid fa-landmark hover-verde"></i>
@@ -129,7 +131,7 @@
                 console.log((path === '/alumno') ? "alumnos" : path.substring(1));
             }, (path === '/alumno') ? 1500 : 0);
 
-            if (['/consulta', '/clave', '/concentrado', '/partida', '/capitulo', '/finanzas','/descripcion'].includes(path)) {
+            if (['/consulta', '/clave', '/concentrado', '/partida', '/capitulo', '/finanzas', '/descripcion'].includes(path)) {
                 setTimeout(function() {
                     hideLoader();
                     console.log("Demas");

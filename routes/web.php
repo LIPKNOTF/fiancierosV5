@@ -17,7 +17,7 @@ use App\Http\Controller\PolizaDeIngresosController;
 use App\Http\Controller\FlujoDeEfectivoController;
 use App\Http\Controller\FormatoConciliacionController;
 use App\Http\Controller\FinanzasController;
-
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -92,8 +92,6 @@ Route::apiResource('apiUsuario', UsuariosController::class);
 // rutas apis(controladores)
 
 Auth::routes();
-
-
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 

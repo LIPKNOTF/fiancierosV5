@@ -59,7 +59,9 @@ a {
 .fa-right-from-bracket,
 .fa-shield-halved,
 .fa-landmark,
-.fa-clipboard {
+.fa-clipboard,
+.fa-file-pdf,
+.fa-calendar-day{
     color: var(--var-color-gris-blanco);
     font-size: 1.3rem;
     margin: 0.5rem;
@@ -585,7 +587,8 @@ div.dataTables_wrapper div.dataTables_filter {
 .nav-link.active .fa-shield-halved,
 .nav-link.active .fa-landmark,
 .nav-link.active .fa-clipboard,
-.nav-link.active .fa-database {
+.nav-link.active .fa-database,
+.nav-link.active .fa-calendar-day {
     color: var(--var-color-verde);
     transform: scale(1.5);
     transition: color 0.3s ease, transform 0.3s ease;

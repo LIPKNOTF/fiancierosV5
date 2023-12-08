@@ -39,7 +39,7 @@
     <a href="/clave" class="carta">
         <div class="caja">
             <div class="icono">
-                <div class="icono-caja"> <i class="fa-solid fa-shield-halved carta-icono"></i></div>
+                <div class="icono-caja"><i class="fa-solid fa-key carta-icono"></i></div>
             </div>
             <div class="card-contenido">
                 <h2 class="mb-1">Claves</h2>
@@ -56,7 +56,7 @@
     <a href="/partida" class="carta">
         <div class="caja">
             <div class="icono">
-                <div class="icono-caja"><i class="fa-solid fa-paste carta-icono"></i></div>
+                <div class="icono-caja"><i class="fa-solid fa-list-ul carta-icono"></i></div>
             </div>
             <div class="card-contenido">
                 <h2 class="mb-1">Partidas</h2>
@@ -90,7 +90,7 @@
     <a href="/listConcentrado" class="carta">
         <div class="caja">
             <div class="icono">
-                <div class="icono-caja"><i class="fa-solid fa-database carta-icono"></i></div>
+                <div class="icono-caja"><i class="fas fa-calendar-day carta-icono"></i></div>
             </div>
             <div class="card-contenido">
                 <h2 class="mb-1">Concentrados</h2>

@@ -1,6 +1,9 @@
 @extends('layouts.master')
 
 @section('content')
+@guest
+@if (Route::has('login'))
+
 <div class="login">
     <form method="POST" action="{{ route('login') }}">
         @csrf
@@ -11,7 +14,7 @@
             </legend>
             <di class="mt">
                 <i class="fa-solid fa-user"></i>
-                <input id="email" type="email" class="input @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" autocomplete="email" title="Correo"  placeholder="Correo" required>
+                <input id="email" type="email" class="input @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" autocomplete="email" title="Correo" placeholder="Correo" required>
                 @error('email')
                 <br>
                 <br>
@@ -50,4 +53,12 @@
         </div>
     </form>
 </div>
+@endif
+@else
+@auth
+<i class="fa-solid fa-caret-up fa-bounce fa-2xl verde"></i>
+<h1 class="titulo">Bienvenido, <span class="verde">{{ Auth::user()->name }}</span> Seleccione su vista.</h1>
+<i class="fa-solid fa-window-minimize fa-2xl"></i>
+@endauth
+@endguest
 @endsection
