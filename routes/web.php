@@ -50,9 +50,10 @@ Route::middleware(['auth'])->group(function () {
 Route::get('/import-form', [ExcelImportController::class, 'importForm']);
 Route::post('/import', [ExcelImportController::class, 'import']);
 Route::view('alumno','alumnos/Alumnos');
-Route::view('consulta', 'consultas/Consultas');
+Route::view('informacion', 'consultas/Consultas');
 Route::view('clave', 'clave/clave');
-Route::view('lector', 'concentrado/concentrado2');
+
+Route::view('con', 'concentrado/concentrado2');
 Route::view('finanzas', 'finanzas/totalMensual');
 
 Route::view('capitulo','capitulo/capitulo');

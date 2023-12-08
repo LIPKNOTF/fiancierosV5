@@ -51,7 +51,6 @@ function init() {
             this.obtenerAlumno();
             this.obtenerConsulta();
             this.obtenerClave_p();
-            
         },
 
         methods: {
@@ -86,8 +85,6 @@ function init() {
                 });
             },
 
-            
-
             dataAlumno() {
                 $(document).ready(function () {
                     // Configuración en español
@@ -119,23 +116,35 @@ function init() {
                                 sSortDescending:
                                     ": Activar para ordenar la columna de manera descendente",
                             },
-
                         },
-                        "lengthMenu": [8, 12, 20, 50],
-                        "pageLength": 8,
+                        lengthMenu: [4, 8, 15, 25, 50],
+                        pageLength: calculatePageLength(),
                     });
 
                     // Inicializar el DataTable
-                    new DataTable("#myTableAlumnos", {
+                    var dataTable = $("#myTableAlumnos").DataTable({
                         responsive: true,
                         columnDefs: [
                             {
-                                responsivePriority: 1, // Prioridad baja para la última columna
-                                targets: -1, // Índice de la última columna (puede necesitar ajustarse)
+                                responsivePriority: 1,
+                                targets: -1,
                             },
                         ],
                     });
-                    
+
+                    // Volver a calcular y actualizar el número de filas al cambiar el tamaño de la ventana
+                    $(window).resize(function () {
+                        var newPageLength = calculatePageLength();
+                        dataTable.page.len(newPageLength).draw();
+                    });
+
+                    // Función para calcular el número de filas a mostrar
+                    function calculatePageLength() {
+                        var screenHeight = window.innerHeight;
+                        // Ajusta este valor según tus necesidades
+                        var rowsToShow = screenHeight >= 768 ? 8 : 4;
+                        return rowsToShow;
+                    }
                 });
             },
             // fin de la funcion para el complemento de dataTables
@@ -246,9 +255,9 @@ function init() {
                 let ingresos = [];
 
                 ingresos.push({
-                    total:this.subTotal,
+                    total: this.subTotal,
                     id_clave: this.id_clave,
-                    fecha:this.fecha
+                    fecha: this.fecha,
                 });
 
                 for (i = 0; i < this.claveConsulta.length; i++) {
@@ -272,7 +281,7 @@ function init() {
                     };
                 }
 
-                if (!this.fecha, !this.folio) {
+                if ((!this.fecha, !this.folio)) {
                     Swal.fire({
                         icon: "warning",
                         title: "OCURRIO UN PROBLEMA",
@@ -354,8 +363,6 @@ function init() {
             removeItem: function (id) {
                 this.claveConsulta.splice(id, 1);
             },
-
-            
 
             findClave: function () {
                 let encontrado = 0;

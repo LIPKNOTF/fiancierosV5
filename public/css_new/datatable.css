@@ -18,17 +18,17 @@ table.dataTable td.dt-control:before {
     border: .15em solid white;
     border-radius: 1em;
     box-shadow: 0 0 .2em #444;
-    box-sizing: content-box;
+    box-sizing: content-box; 
     text-align: center;
     text-indent: 0 !important;
     font-family: "Courier New", Courier, monospace;
     line-height: 1em;
-    content: "+";
+    content: "▼";
     background-color: #31b131
 }
 
 table.dataTable tr.dt-hasChild td.dt-control:before {
-    content: "-";
+    content: "▲";
     background-color: #d33333
 }
 
@@ -530,11 +530,12 @@ table.dataTable td {
 }
 
 .dataTables_wrapper .dataTables_length select {
-    border: 1px solid #aaa;
+    border: none;
+    background-color:  var(--var-color-negro);
     border-radius: 3px;
     padding: 5px;
-    background-color: transparent;
-    padding: 4px
+    padding: 4px;
+    color: var(--var-color-gris-blanco);
 }
 
 .dataTables_wrapper .dataTables_filter {
@@ -543,11 +544,12 @@ table.dataTable td {
 }
 
 .dataTables_wrapper .dataTables_filter input {
-    border: 1px solid #aaa;
+    border: none;
     border-radius: 3px;
     padding: 5px;
-    background-color: transparent;
-    margin-left: 3px
+    background-color:  var(--var-color-negro);
+    margin-left: 3px;
+    color: var(--var-color-gris-blanco);
 }
 
 .dataTables_wrapper .dataTables_info {

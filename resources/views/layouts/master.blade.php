@@ -57,40 +57,21 @@
             <a href="{{ url('home') }}" title="Inicio" class="nav-link {{ Request::is('home*') ? 'active' : '' }}">
                 <i class="fa-solid fa-house hover-verde"></i>
             </a>
-            <!-- Alumnos -->
-            <!-- <a href="{{ url('alumno') }}" title="Alumnos" class="nav-link {{ Request::is('alumno*') ? 'active' : '' }}">
-                <i class="fa-solid fa-graduation-cap hover-verde"></i>
-            </a> -->
             <!-- Consulta -->
-            <a href="{{ url('consulta') }}" title="Consulta" class="nav-link {{ Request::is('consulta*') ? 'active' : '' }}">
+            <a href="{{ url('informacion') }}" title="Consulta" class="nav-link {{ Request::is('informacion*') ? 'active' : '' }}">
                 <i class="fa-solid fa-magnifying-glass hover-verde"></i>
             </a>
-            <!-- Clave -->
-            <!-- <a href="{{ url('clave') }}" title="Clave" class="nav-link {{ Request::is('clave*') ? 'active' : '' }}">
-                <i class="fa-solid fa-shield-halved hover-verde "></i>
-            </a> -->
             <!-- Lectura xml -->
             <a href="{{ url('con') }}" title="Lector XML" class="nav-link {{ Request::is('con*') ? 'active' : '' }}">
                 <i class="fa-solid fa-file-code hover-verde"></i>
             </a>
             <!-- Consentrados -->
             <a href="{{ url('listConcentrado') }}" title="listConcentrado" class="nav-link {{ Request::is('listConcentrado*') ? 'active' : '' }}">
-                <i class="fa-solid fa-database color-rojo"></i>
+                <i class="fa-solid fa-database hover-verde"></i>
             </a>
-            <!-- Partidas -->
-            <!-- <a href="{{ url('partida') }}" title="Partidas" class="nav-link {{ Request::is('partida*') ? 'active' : '' }}">
-                <i class="fa-solid fa-paste hover-verde"></i>
-            </a> -->
-            <!-- Capitulos -->
-            <!-- <a href="{{ url('capitulo') }}" title="Capitulos" class="nav-link {{ Request::is('capitulo*') ? 'active' : '' }}">
-                <i class="fa-solid fa-book hover-verde"></i>
-            </a> -->
             <a href="{{ url('finanzas') }}" title="finanzas" class="nav-link {{ Request::is('finanzas*') ? 'active' : '' }}">
                 <i class="fa-solid fa-landmark hover-verde"></i>
             </a>
-            <!-- <a href="{{ url('descripcion') }}" title="descripcion" class="nav-link {{ Request::is('descripcion*') ? 'active' : '' }}">
-                <i class="fa-solid fa-clipboard hover-verde"></i>
-            </a> -->
         </nav>
 
         <nav class="nav-secumdaria">

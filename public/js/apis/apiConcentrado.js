@@ -40,7 +40,6 @@ function init() {
         created: function () {
             this.getConcentrados();
             this.getPartida();
-            this.dataTable();
         },
 
         methods: {
@@ -76,20 +75,34 @@ function init() {
                                     ": Activar para ordenar la columna de manera descendente",
                             },
                         },
-                        lengthMenu: [8, 12, 20, 50],
-                        pageLength: 8,
+                        lengthMenu: [4, 8, 15, 25, 50],
+                        pageLength: calculatePageLength(),
                     });
 
                     // Inicializar el DataTable
-                    new DataTable("#myTable", {
+                    var dataTable = $("#myTable").DataTable({
                         responsive: true,
                         columnDefs: [
                             {
-                                responsivePriority: 1, // Prioridad baja para la última columna
-                                targets: -1, // Índice de la última columna (puede necesitar ajustarse)
+                                responsivePriority: 1,
+                                targets: -1,
                             },
                         ],
                     });
+
+                    // Volver a calcular y actualizar el número de filas al cambiar el tamaño de la ventana
+                    $(window).resize(function () {
+                        var newPageLength = calculatePageLength();
+                        dataTable.page.len(newPageLength).draw();
+                    });
+
+                    // Función para calcular el número de filas a mostrar
+                    function calculatePageLength() {
+                        var screenHeight = window.innerHeight;
+                        // Ajusta este valor según tus necesidades
+                        var rowsToShow = screenHeight >= 768 ? 8 : 4;
+                        return rowsToShow;
+                    }
                 });
             },
             getConcentrados: function () {
@@ -97,6 +110,7 @@ function init() {
                     .get(apiConcentrado)
                     .then(function (json) {
                         this.concentrados = json.data;
+                        this.dataTable();
                     })
                     .catch(function (json) {
                         console.log(json);
