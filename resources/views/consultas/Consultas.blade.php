@@ -45,7 +45,7 @@
       <tbody>
         <tr v-for="con in filtrarfechas ">
           <td>@{{con.alumno ? con.alumno.matricula :'Sin Matricula'}}</td>
-          <td>@{{con.alumno ? con.alumno.nombre :'Sin Nombre'}}</td>
+          <td>@{{con.alumno ? con.alumno.nombres :'Sin Nombre'}}</td>
           <td>@{{con.alumno ? con.alumno.apellido_p :'Sin Apellidos Paterno'}}</td>
           <td>@{{con.alumno ? con.alumno.apellido_m : 'Sin Apellido Materno'}}</td>
           <td>@{{con.cantidad}}</td>

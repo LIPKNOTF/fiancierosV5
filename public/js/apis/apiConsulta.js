@@ -108,7 +108,7 @@ function init() {
                                     ": Activar para ordenar la columna de manera descendente",
                             },
                         },
-                        lengthMenu: [4, 9, 15, 25, 50],
+                        lengthMenu: [4, 8, 15, 25, 50],
                         pageLength: calculatePageLength(),
                     });
 
