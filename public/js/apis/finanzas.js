@@ -72,14 +72,29 @@ function init() {
            });
            },
 
-           descargarFactura() {
-            // Obtener el año y mes seleccionados
-            const anio = this.mesEgreso.split("-")[0];
-            const mes =  parseInt(this.mesEgreso.split("-")[1]);
-    
-            // Redirigir a la URL de descarga
-            window.location.href = `/Factura_pdf/${anio}/${mes}`;
-        },
+            descargarFacturaEgresos() {
+                // Obtener el año y mes seleccionados
+                const anio = this.mesEgreso.split("-")[0];
+                const mes =  parseInt(this.mesEgreso.split("-")[1]);
+            
+                // Construir la URL de descarga
+                const urlDescarga = `/Factura_pdf/${anio}/${mes}`;
+
+                // Abrir la URL en una nueva ventana
+                window.open(urlDescarga, '_blank');
+            },
+
+            descargarFacturaIngresos() {
+                // Obtener el año y mes seleccionados
+                const anio = this.mesIngreso.split("-")[0];
+                const mes =  parseInt(this.mesIngreso.split("-")[1]);
+            
+                // Construir la URL de descarga
+                const urlDescarga = `/Consolidadopdf/${anio}/${mes}`;
+        
+                // Abrir la URL en una nueva ventana
+                window.open(urlDescarga, '_blank');
+            },
 
            totalPorMes:function(){
             let mesTotales = String(this.mesTotal);

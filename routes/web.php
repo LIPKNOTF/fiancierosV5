@@ -99,7 +99,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 //PDF
 Route::get('Hojapdf', 'HNuevaController@hojares');
 // Route::get('Facturapdf', 'ControlDeFacturasController@Facturas');//no sirve 
-Route::get('Consolidadopdf', 'ConsolidadoDeMesesController@Consolidado');
+Route::get('/Consolidadopdf/{anio}/{mes}', 'ConsolidadoDeMesesController@Consolidado');
 Route::get('/Polizapdf/{id}', 'PolizaDeIngresosController@Poliza');
 Route::get('FlujoDeEfectivopdf', 'FlujoDeEfectivoController@Flujo');
 Route::get('Conciliacionpdf','FormatoConciliacionController@Conciliacion');

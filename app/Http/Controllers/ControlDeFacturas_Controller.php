@@ -65,7 +65,7 @@ class ControlDeFacturas_Controller extends Controller
         $fpdf->Cell(125, 4, utf8_decode('NIVEL EDUCATIVO: MEDIO SUPERIOR'), 0, 1, 'l');
         $fpdf->Ln();
 
-        $fpdf->Cell(45, 5, '$'.$totalGeneral, 'B', 0, 'C');
+        $fpdf->Cell(45, 5, '$' . number_format($totalGeneral, 2, '.', ','), 'B', 0, 'C');
         $fpdf->Cell(40, 5, '', 0, 0, 'C');//espacio en blanco entre lineas
         $fpdf->Cell(45, 5, $nombreMes, 'B', 0, 'C');
         $fpdf->Cell(15, 5, '', 0, 0, 'C');//espacio 
@@ -94,102 +94,173 @@ class ControlDeFacturas_Controller extends Controller
         $fpdf->Cell(25,  10, 'Partida de gasto', 1, 0, 'C');
         $fpdf->Cell(27,  10, 'Importe por partida', 1, 1, 'C');
 
-         //1FILA1
-        for ($i = 0; $i < 10; $i++) {
-            // Verifica si hay un egreso disponible para la fila actual
-            if (isset($egresos[$i])) {
-                $egreso = $egresos[$i];
+        //1FILA1
+        $fpdf->setfont('arial','',8);
+        $totales = []; //paso 1: se crea un arrray
 
-                // Imprime las celdas para cada fila con los datos del egreso
-                $fpdf->Cell(10, 14, $egreso->partida->capitulo->codigo, 'LR', 0, 'C');
-                $fpdf->Cell(25, 14, $egreso->partida->codigo, 'LR', 0, 'C');
-                $fpdf->Cell(27, 14, $egreso->total, 'LR', 1, 'C');
-            } else {
-                // Si no hay un egreso disponible, imprime celdas vacías
-                $fpdf->Cell(10, 14, '', 'LR', 0, 'C');
-                $fpdf->Cell(25, 14, '', 'LR', 0, 'C');
-                $fpdf->Cell(27, 14, '', 'LR', 1, 'C');
+        foreach ($egresos as $egreso) {
+            // Verificar si el código de capítulo comienza con "2"
+            $codigoCapitulo = $egreso->partida->capitulo->codigo ?? '';
+             
+            if (strpos($codigoCapitulo, '2') === 0) {
+                // Paso 2: Acumular los totales en el array
+                $codigoPartida = $egreso->partida->codigo;
+         
+                if (!isset($totales[$codigoCapitulo][$codigoPartida])) {
+                    $totales[$codigoCapitulo][$codigoPartida] = 0;
+                }
+         
+                $totales[$codigoCapitulo][$codigoPartida] += $egreso->total;
             }
         }
          
-         $fpdf->SetXY(72, 74);
-         $fpdf->Cell(3, 150, '', 1, 1, 'C');
-         //1FILA2
-         $fpdf->SetXY(75, 74);
-         $fpdf->Cell(10, 14, '', 'LRT', 0, 'C');
-         $fpdf->Cell(25, 14, '', 'LRT', 0, 'C');
-         $fpdf->Cell(27, 14, '', 'LRT', 1, 'C');
-         //2FILA2
-         $fpdf->SetXY(75, 88);
-         $fpdf->Cell(10, 14, '', 'LR', 0, 'C');
-         $fpdf->Cell(25, 14, '', 'LR', 0, 'C');
-         $fpdf->Cell(27, 14, '', 'LR', 1, 'C');
-         //3FILA2
-         $fpdf->SetXY(75, 102);
-         $fpdf->Cell(10, 14, '', 'LR', 0, 'C');
-         $fpdf->Cell(25, 14, '', 'LR', 0, 'C');
-         $fpdf->Cell(27, 14, '', 'LR', 1, 'C');
-         //4FILA2
-         $fpdf->SetXY(75, 116);
-         $fpdf->Cell(10, 14, '', 'LR', 0, 'C');
-         $fpdf->Cell(25, 14, '', 'LR', 0, 'C');
-         $fpdf->Cell(27, 14, '', 'LR', 1, 'C');
-         //5FILA2
-         $fpdf->SetXY(75, 130);
-         $fpdf->Cell(10, 14, '', 'LR', 0, 'C');
-         $fpdf->Cell(25, 14, '', 'LR', 0, 'C');
-         $fpdf->Cell(27, 14, '', 'LR', 1, 'C');
-         //6FILA2
-         $fpdf->SetXY(75, 144);
-         $fpdf->Cell(10, 14, '', 'LR', 0, 'C');
-         $fpdf->Cell(25, 14, '', 'LR', 0, 'C');
-         $fpdf->Cell(27, 14, '', 'LR', 1, 'C');
-         //7FILA2
-         $fpdf->SetXY(75, 158);
-         $fpdf->Cell(10, 14, '', 'LR', 0, 'C');
-         $fpdf->Cell(25, 14, '', 'LR', 0, 'C');
-         $fpdf->Cell(27, 14, '', 'LR', 1, 'C');
-         //8FILA2
-         $fpdf->SetXY(75, 172);
-         $fpdf->Cell(10, 14, '', 'LR', 0, 'C');
-         $fpdf->Cell(25, 14, '', 'LR', 0, 'C');
-         $fpdf->Cell(27, 14, '', 'LR', 1, 'C');
-         //9FILA2
-         $fpdf->SetXY(75, 186);
-         $fpdf->Cell(10, 14, '', 'LR', 0, 'C');
-         $fpdf->Cell(25, 14, '', 'LR', 0, 'C');
-         $fpdf->Cell(27, 14, '', 'LR', 1, 'C');
-         //10FILA2
-         $fpdf->SetXY(75, 200);
-         $fpdf->Cell(10, 14, '', 'LRB', 0, 'C');
-         $fpdf->Cell(25, 14, '', 'LRB', 0, 'C');
-         $fpdf->Cell(27, 14, '', 'LRB', 1, 'C');
-         $fpdf->SetXY(137, 74);
-         $fpdf->Cell(3, 150, '', 1, 0, 'C');
-         $fpdf->Cell(10, 58, '', 1, 0, 'C');
-         $fpdf->Cell(25, 58, '', 1, 0, 'C');
-         $fpdf->Cell(27, 58, '', 1, 1, 'C');
+        $total2000 = 0;
+        // Paso 3: Imprimir la tabla final utilizando FPDF
+        foreach ($totales as $codigoCapitulo => $partidas) {
+            foreach ($partidas as $codigoPartida => $total) {
+                $total2000 += $total;
+                // Imprimir las celdas en FPDF
+                $fpdf->Cell(10, 14, $codigoCapitulo, 'LR', 0, 'C');
+                $fpdf->Cell(25, 14, $codigoPartida, 'LR', 0, 'C');
+                $fpdf->Cell(27, 14, '$' . number_format($total, 2, '.', ','), 'LR', 1, 'C');
+            }
+        }
+         
+        // Puedes agregar celdas adicionales para completar las 10 filas si es necesario
+        for ($i = count($totales); $i < 10; $i++) {
+            $fpdf->Cell(10, 14, '', 'LR', 0, 'C');
+            $fpdf->Cell(25, 14, '', 'LR', 0, 'C');
+            $fpdf->Cell(27, 14, '', 'LR', 1, 'C');
+        }
+        //FIN DE 1FILA1
+         
+        $fpdf->SetXY(72, 74);
+        $fpdf->Cell(3, 150, '', 1, 1, 'C');
+
+        //1FILA2
+        $totalesFila2 = []; // Paso 1: se crea un array
+
+        // Paso 2: Acumular los totales en el array
+        foreach ($egresos as $egreso) {
+            // Verificar si el código de capítulo comienza con "3"
+            $codigoCapitulo = $egreso->partida->capitulo->codigo ?? '';
+         
+            if (strpos($codigoCapitulo, '3') === 0) {
+                $codigoPartida = $egreso->partida->codigo;
+         
+                if (!isset($totalesFila2[$codigoCapitulo][$codigoPartida])) {
+                    $totalesFila2[$codigoCapitulo][$codigoPartida] = 0;
+                }
+         
+                $totalesFila2[$codigoCapitulo][$codigoPartida] += $egreso->total;
+            }
+        }
+         
+        // Paso 3: Imprimir la tabla final utilizando FPDF
+        $yPosition = 74; // Posición inicial en Y para la primera fila
+        $total3000 = 0;
+        foreach ($totalesFila2 as $codigoCapitulo => $partidas) {
+            foreach ($partidas as $codigoPartida => $total) {
+                $total3000 += $total;
+                // Imprimir las celdas en FPDF
+                $fpdf->SetXY(75, $yPosition);
+                $fpdf->Cell(10, 14, $codigoCapitulo, 'LR', 0, 'C');
+                $fpdf->Cell(25, 14, $codigoPartida, 'LR', 0, 'C');
+                $fpdf->Cell(27, 14, '$' . number_format($total, 2, '.', ','), 'LR', 1, 'C');
+         
+                $yPosition += 14; // Incrementar la posición en Y para la siguiente fila
+            }
+        }
+         
+        // Puedes agregar celdas adicionales para completar las 10 filas si es necesario
+        for ($i = count($totalesFila2); $i < 10; $i++) {
+            $fpdf->SetXY(75, $yPosition);
+            $fpdf->Cell(10, 14, '', 'LR', 0, 'C');
+            $fpdf->Cell(25, 14, '', 'LR', 0, 'C');
+            $fpdf->Cell(27, 14, '', 'LR', 1, 'C');
+         
+            $yPosition += 14; // Incrementar la posición en Y para la siguiente fila
+        }
+        //FIN 1FILA2
+
+
+        //ultima columna/parte superior
+        $totalFila3S = [];
+        foreach ($egresos as $egreso) {
+            // Verificar si el código de capítulo comienza con "3"
+            $codigoCapitulo = $egreso->partida->capitulo->codigo ?? '';
+         
+            if (strpos($codigoCapitulo, '5') === 0) {
+                $codigoPartida = $egreso->partida->codigo;
+         
+                if (!isset($totalFila3S[$codigoCapitulo][$codigoPartida])) {
+                    $totalFila3S[$codigoCapitulo][$codigoPartida] = 0;
+                }
+         
+                $totalFila3S[$codigoCapitulo][$codigoPartida] += $egreso->total;
+            }
+        }
+
+        $yPosition = 74; // Posición inicial en Y para la primera fila
+        $total5000 = 0;
+        foreach ($totalFila3S as $codigoCapitulo => $partidas) {
+            foreach ($partidas as $codigoPartida => $total) {
+                $total5000 += $total;
+                // Imprimir las celdas en FPDF
+                $fpdf->SetXY(140, $yPosition);
+                $fpdf->Cell(10, 19, $codigoCapitulo, 'LR', 0, 'C');
+                $fpdf->Cell(25, 19, $codigoPartida, 'LR', 0, 'C');
+                $fpdf->Cell(27, 19, '$' . number_format($total, 2, '.', ','), 'LR', 1, 'C');
+         
+                $yPosition += 19; // Incrementar la posición en Y para la siguiente fila
+            }
+        }
+
+        for ($i = count($totalFila3S); $i < 3; $i++) {
+            $fpdf->SetXY(140, $yPosition);
+            $fpdf->Cell(10, 19, '', 'LR', 0, 'C');
+            $fpdf->Cell(25, 19, '', 'LR', 0, 'C');
+            $fpdf->Cell(27, 19, '', 'LR', 1, 'C');
+         
+            $yPosition += 19; // Incrementar la posición en Y para la siguiente fila
+        }
+
+        //fin de ultima columna/parte superior
   
+         $fpdf->setfont('arial','B',8);
          $fpdf->SetX(140); // Cambia la posición horizontal según tu diseño
          $fpdf->Cell(35, 10, 'Total', 1, 0, 'C'); 
-         $fpdf->Cell(27, 10, '$', 1, 1, 'C');
+         $fpdf->Cell(27, 10, '$'.number_format($total5000, 2, '.', ','), 1, 1, 'C');
          $fpdf->SetX(140); 
-         $fpdf->Cell(62, 4, '', 1, 1, 'C'); 
+         $fpdf->Cell(62, 6, '', 1, 1, 'C'); 
          
          $fpdf->SetX(140);
          $fpdf->Cell(10, 10, 'CAP', 1, 0, 'C'); 
          $fpdf->Cell(25, 10, 'Subgrupo', 1, 0, 'C'); 
          $fpdf->Cell(27, 10, 'Importe', 1, 1, 'C');
          
+         //ultima columna/parte inferior
          $fpdf->SetX(140);
-         $fpdf->Cell(10, 58, '', 1, 0, 'C');
-         $fpdf->Cell(25, 58, '', 1, 0, 'C');
-         $fpdf->Cell(27, 58, '', 1, 1, 'C');
+         $fpdf->Cell(10, 19, '', 'LR', 0, 'C');
+         $fpdf->Cell(25, 19, '', 'LR', 0, 'C');
+         $fpdf->Cell(27, 19, '', 'LR', 1, 'C');
+
+         $fpdf->SetX(140);
+         $fpdf->Cell(10, 19, '', 'LR', 0, 'C');
+         $fpdf->Cell(25, 19, '', 'LR', 0, 'C');
+         $fpdf->Cell(27, 19, '', 'LR', 1, 'C');
+
+         $fpdf->SetX(140);
+         $fpdf->Cell(10, 19, '', 'LR', 0, 'C');
+         $fpdf->Cell(25, 19, '', 'LR', 0, 'C');
+         $fpdf->Cell(27, 19, '', 'LR', 1, 'C');
+         //fin de ultima columna/parte inferior
+
          $fpdf->Cell(35, 10, 'Total', 1, 0, 'C');
-         $fpdf->Cell(27, 10, '$'.$totalGeneral, 1, 0, 'C');
+         $fpdf->Cell(27, 10, '$'.number_format($total2000, 2, '.', ','), 1, 0, 'C');
          $fpdf->Cell(3, 0, '', 1, 0, 'C');
          $fpdf->Cell(35, 10, 'Total', 1, 0, 'C');
-         $fpdf->Cell(27, 10, '$', 1, 0, 'C');
+         $fpdf->Cell(27, 10, '$'.number_format($total3000, 2, '.', ','), 1, 0, 'C');
          $fpdf->Cell(3, 0, '', 1, 0, 'C');
          $fpdf->Cell(35, 10, 'Total', 1, 0, 'C');
          $fpdf->Cell(27, 10, '$', 1, 1, 'C');
