@@ -127,11 +127,11 @@ class ConsolidadoDeMesesController extends Controller
                     break;
             }
 
-             // Verifica si hay ingresos disponibles para la fila actual y si la clave inicia con "A"
-             $clave = 'A' . str_pad($i, 3, '0', STR_PAD_LEFT); // Construye la clave
-             $ingresosFiltrados = $ingresos->filter(function ($ingreso) use ($clave) {
-                 return strtoupper(substr($ingreso->claves_p->clave, 0, 4)) === $clave;
-             })->toArray();
+            // Verifica si hay ingresos disponibles para la fila actual y si la clave inicia con "A"
+            $clave = 'A' . str_pad($i, 3, '0', STR_PAD_LEFT); // Construye la clave
+            $ingresosFiltrados = $ingresos->filter(function ($ingreso) use ($clave) {
+                return strtoupper(substr($ingreso->claves_p->clave, 0, 4)) === $clave;
+            })->toArray();
 
             // Verifica si hay un ingreso disponible para la fila actual y si la clave inicia con "A"
             if (!empty($ingresosFiltrados)) {

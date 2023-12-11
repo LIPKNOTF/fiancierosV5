@@ -227,49 +227,49 @@ class ControlDeFacturas_Controller extends Controller
 
         //fin de ultima columna/parte superior
   
-         $fpdf->setfont('arial','B',8);
-         $fpdf->SetX(140); // Cambia la posición horizontal según tu diseño
-         $fpdf->Cell(35, 10, 'Total', 1, 0, 'C'); 
-         $fpdf->Cell(27, 10, '$'.number_format($total5000, 2, '.', ','), 1, 1, 'C');
-         $fpdf->SetX(140); 
-         $fpdf->Cell(62, 6, '', 1, 1, 'C'); 
+        $fpdf->setfont('arial','B',8);
+        $fpdf->SetX(140); // Cambia la posición horizontal según tu diseño
+        $fpdf->Cell(35, 10, 'Total', 1, 0, 'C'); 
+        $fpdf->Cell(27, 10, '$'.number_format($total5000, 2, '.', ','), 1, 1, 'C');
+        $fpdf->SetX(140); 
+        $fpdf->Cell(62, 6, '', 1, 1, 'C'); 
          
-         $fpdf->SetX(140);
-         $fpdf->Cell(10, 10, 'CAP', 1, 0, 'C'); 
-         $fpdf->Cell(25, 10, 'Subgrupo', 1, 0, 'C'); 
-         $fpdf->Cell(27, 10, 'Importe', 1, 1, 'C');
+        $fpdf->SetX(140);
+        $fpdf->Cell(10, 10, 'CAP', 1, 0, 'C'); 
+        $fpdf->Cell(25, 10, 'Subgrupo', 1, 0, 'C'); 
+        $fpdf->Cell(27, 10, 'Importe', 1, 1, 'C');
          
-         //ultima columna/parte inferior
-         $fpdf->SetX(140);
-         $fpdf->Cell(10, 19, '', 'LR', 0, 'C');
-         $fpdf->Cell(25, 19, '', 'LR', 0, 'C');
-         $fpdf->Cell(27, 19, '', 'LR', 1, 'C');
+        //ultima columna/parte inferior
+        $fpdf->SetX(140);
+        $fpdf->Cell(10, 19, '', 'LR', 0, 'C');
+        $fpdf->Cell(25, 19, '', 'LR', 0, 'C');
+        $fpdf->Cell(27, 19, '', 'LR', 1, 'C');
 
-         $fpdf->SetX(140);
-         $fpdf->Cell(10, 19, '', 'LR', 0, 'C');
-         $fpdf->Cell(25, 19, '', 'LR', 0, 'C');
-         $fpdf->Cell(27, 19, '', 'LR', 1, 'C');
+        $fpdf->SetX(140);
+        $fpdf->Cell(10, 19, '', 'LR', 0, 'C');
+        $fpdf->Cell(25, 19, '', 'LR', 0, 'C');
+        $fpdf->Cell(27, 19, '', 'LR', 1, 'C');
 
-         $fpdf->SetX(140);
-         $fpdf->Cell(10, 19, '', 'LR', 0, 'C');
-         $fpdf->Cell(25, 19, '', 'LR', 0, 'C');
-         $fpdf->Cell(27, 19, '', 'LR', 1, 'C');
-         //fin de ultima columna/parte inferior
+        $fpdf->SetX(140);
+        $fpdf->Cell(10, 19, '', 'LR', 0, 'C');
+        $fpdf->Cell(25, 19, '', 'LR', 0, 'C');
+        $fpdf->Cell(27, 19, '', 'LR', 1, 'C');
+        //fin de ultima columna/parte inferior
 
-         $fpdf->Cell(35, 10, 'Total', 1, 0, 'C');
-         $fpdf->Cell(27, 10, '$'.number_format($total2000, 2, '.', ','), 1, 0, 'C');
-         $fpdf->Cell(3, 0, '', 1, 0, 'C');
-         $fpdf->Cell(35, 10, 'Total', 1, 0, 'C');
-         $fpdf->Cell(27, 10, '$'.number_format($total3000, 2, '.', ','), 1, 0, 'C');
-         $fpdf->Cell(3, 0, '', 1, 0, 'C');
-         $fpdf->Cell(35, 10, 'Total', 1, 0, 'C');
-         $fpdf->Cell(27, 10, '$', 1, 1, 'C');
-         $fpdf->Ln();
+        $fpdf->Cell(35, 10, 'Total', 1, 0, 'C');
+        $fpdf->Cell(27, 10, '$'.number_format($total2000, 2, '.', ','), 1, 0, 'C');
+        $fpdf->Cell(3, 0, '', 1, 0, 'C');
+        $fpdf->Cell(35, 10, 'Total', 1, 0, 'C');
+        $fpdf->Cell(27, 10, '$'.number_format($total3000, 2, '.', ','), 1, 0, 'C');
+        $fpdf->Cell(3, 0, '', 1, 0, 'C');
+        $fpdf->Cell(35, 10, 'Total', 1, 0, 'C');
+        $fpdf->Cell(27, 10, '$', 1, 1, 'C');
+        $fpdf->Ln();
          
-         $fpdf->Cell(126, 30, '', 'LRT', 1, 'T');
-         $fpdf->Cell(126, 5, utf8_decode('M.E. ANGÉLICA MARÍA CASTILLO LÓPEZ'), 'LR', 1, 'C');
-         $fpdf->Cell(126, 5, utf8_decode('NOMBRE Y FIRMA DEL TITULAR DE LA UNIDAD RESPONSABLE EDUCATIVA'), 1, 1, 'C');
-         $fpdf->Output();
-         exit;
-     }
+        $fpdf->Cell(126, 30, '', 'LRT', 1, 'T');
+        $fpdf->Cell(126, 5, utf8_decode('M.E. ANGÉLICA MARÍA CASTILLO LÓPEZ'), 'LR', 1, 'C');
+        $fpdf->Cell(126, 5, utf8_decode('NOMBRE Y FIRMA DEL TITULAR DE LA UNIDAD RESPONSABLE EDUCATIVA'), 1, 1, 'C');
+        $fpdf->Output();
+        exit;
+    }
 }
