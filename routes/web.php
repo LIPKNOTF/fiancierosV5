@@ -17,7 +17,7 @@ use App\Http\Controller\PolizaDeIngresosController;
 use App\Http\Controller\FlujoDeEfectivoController;
 use App\Http\Controller\FormatoConciliacionController;
 use App\Http\Controller\FinanzasController;
-
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,8 +50,9 @@ Route::middleware(['auth'])->group(function () {
 Route::get('/import-form', [ExcelImportController::class, 'importForm']);
 Route::post('/import', [ExcelImportController::class, 'import']);
 Route::view('alumno','alumnos/Alumnos');
-Route::view('consulta', 'consultas/Consultas');
+Route::view('informacion', 'consultas/Consultas');
 Route::view('clave', 'clave/clave');
+
 Route::view('con', 'concentrado/concentrado2');
 Route::view('finanzas', 'finanzas/totalMensual');
 
@@ -91,8 +92,6 @@ Route::apiResource('apiUsuario', UsuariosController::class);
 // rutas apis(controladores)
 
 Auth::routes();
-
-
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 

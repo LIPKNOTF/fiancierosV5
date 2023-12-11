@@ -51,7 +51,6 @@ function init() {
             this.obtenerAlumno();
             this.obtenerConsulta();
             this.obtenerClave_p();
-            
         },
 
         methods: {
@@ -86,130 +85,65 @@ function init() {
                 });
             },
 
-            // EMPIEZA DATA TABLES
-            // dataAlumno() {
-            //     $("#myTableAlumnos").DataTable().destroy();
-            //     this.$nextTick(() => {
-            //         $("#myTableAlumnos").DataTable({
-            //           initComplete: function () {
-            //             this.api()
-            //                 .columns()
-            //                 .every(function (index) {
-            //                     var column = this;
-            //                     var header = $(column.header());
-            //                     if (header.hasClass("actions")) {
-            //                         // No hacer nada si es la columna de acciones
-            //                         return;
-            //                     }
-            //                     var input = $(
-            //                         '<input type="text" class="text-center form-control form-control-sm mb-2" placeholder="Filtrar">'
-            //                     )
-            //                         .appendTo(header)
-            //                         .on(
-            //                             "keyup change clear",
-            //                             function () {
-            //                                 if (
-            //                                     column.search() !==
-            //                                     this.value
-            //                                 ) {
-            //                                     column
-            //                                         .search(this.value)
-            //                                         .draw();
-            //                                 }
-            //                             }
-            //                         );
-            //                 });
-            //         },
-            //             language: {
-            //                 sProcessing: "Procesando...",
-            //                 sLengthMenu: "Mostrar _MENU_ registros",
-            //                 sZeroRecords: "No se encontraron resultados",
-            //                 sEmptyTable: "Ningún dato disponible en esta tabla",
-            //                 sInfo: "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-            //                 sInfoEmpty:
-            //                     "Mostrando registros del 0 al 0 de un total de 0 registros",
-            //                 sInfoFiltered:
-            //                     "(filtrado de un total de _MAX_ registros)",
-            //                 sInfoPostFix: "",
-            //                 sSearch: "Buscar:",
-            //                 sUrl: "",
-            //                 sInfoThousands: ",",
-            //                 sLoadingRecords: "Cargando...",
-            //                 oPaginate: {
-            //                     sFirst: "Primero",
-            //                     sLast: "Último",
-            //                     sNext: "Siguiente",
-            //                     sPrevious: "Anterior",
-            //                 },
-            //                 oAria: {
-            //                     sSortAscending:
-            //                         ": Activar para ordenar la columna de manera ascendente",
-            //                     sSortDescending:
-            //                         ": Activar para ordenar la columna de manera descendente",
-            //                 },
-            //             },
-            //             columnDefs: [
-            //                 {
-            //                     targets: -1,
-            //                     className: "actions",
-            //                     searchable: false,
-            //                 },
-            //             ],
-
-            //             pageLength: 5, // Número de registros por página
-            //             lengthMenu: [5, 10, 25, 50], // Opciones de número de registros por página
-            //         });
-            //     });
-            // },
-
-            //TERMINA DATABLES
-
             dataAlumno() {
                 $(document).ready(function () {
-                    var table = $("#myTableAlumnos");
-                    if (!table.hasClass("dataTable")) {
-                        table.DataTable({
-                            initComplete: function () {
-                                this.api()
-                                    .columns()
-                                    .every(function (index) {
-                                        var column = this;
-                                        var header = $(column.header());
-                                        if (header.hasClass("actions")) {
-                                            // No hacer nada si es la columna de acciones
-                                            return;
-                                        }
-                                    });
+                    // Configuración en español
+                    $.extend(true, $.fn.dataTable.defaults, {
+                        language: {
+                            sProcessing: "Procesando...",
+                            sLengthMenu: "Mostrar _MENU_ registros",
+                            sZeroRecords: "No se encontraron resultados",
+                            sEmptyTable: "Ningún dato disponible en esta tabla",
+                            sInfo: "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                            sInfoEmpty:
+                                "Mostrando registros del 0 al 0 de un total de 0 registros",
+                            sInfoFiltered:
+                                "(filtrado de un total de _MAX_ registros)",
+                            sInfoPostFix: "",
+                            sSearch: "Buscar:",
+                            sUrl: "",
+                            sInfoThousands: ",",
+                            sLoadingRecords: "Cargando...",
+                            oPaginate: {
+                                sFirst: "Primero",
+                                sLast: "Último",
+                                sNext: "Siguiente",
+                                sPrevious: "Anterior",
                             },
-                            responsive: {
-                                details: {
-                                    type: 'inline', // Cambiado de 'column' a 'inline'
-                                    target: ':not(:last-child)' // Excluir la última columna
-                                }
+                            oAria: {
+                                sSortAscending:
+                                    ": Activar para ordenar la columna de manera ascendente",
+                                sSortDescending:
+                                    ": Activar para ordenar la columna de manera descendente",
                             },
-                            language: {
-                                searchPlaceholder: "Buscar",
-                                search: "Buscar:",
-                                zeroRecords: "No se encontraron resultados",
-                                emptyTable:
-                                    "No hay datos disponibles en la tabla",
-                                infoEmpty:
-                                    "Mostrando 0 registros de un total de 0",
-                                infoFiltered:
-                                    "(filtrado de un total de MAX registros)",
-                                example_info:
-                                    "Se muestran 0 de 0 un total de 0",
-                                sInfo: "<span style='margin-left: 2rem;'>Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros</span>",
-                                lengthMenu: "Mostrar _MENU_",
-                                paginate: {
-                                    previous: "Anterior",
-                                    next: "Siguiente",
-                                },
-                            },
+                        },
+                        lengthMenu: [4, 8, 15, 25, 50],
+                        pageLength: calculatePageLength(),
+                    });
 
-                            "lengthMenu": [8, 15, 25, 50],
-                            "pageLength": 8,
-                        });
+                    // Inicializar el DataTable
+                    var dataTable = $("#myTableAlumnos").DataTable({
+                        responsive: true,
+                        columnDefs: [
+                            {
+                                responsivePriority: 1,
+                                targets: -1,
+                            },
+                        ],
+                    });
+
+                    // Volver a calcular y actualizar el número de filas al cambiar el tamaño de la ventana
+                    $(window).resize(function () {
+                        var newPageLength = calculatePageLength();
+                        dataTable.page.len(newPageLength).draw();
+                    });
+
+                    // Función para calcular el número de filas a mostrar
+                    function calculatePageLength() {
+                        var screenHeight = window.innerHeight;
+                        // Ajusta este valor según tus necesidades
+                        var rowsToShow = screenHeight >= 768 ? 8 : 4;
+                        return rowsToShow;
                     }
                 });
             },
@@ -321,9 +255,9 @@ function init() {
                 let ingresos = [];
 
                 ingresos.push({
-                    total:this.subTotal,
+                    total: this.subTotal,
                     id_clave: this.id_clave,
-                    fecha:this.fecha
+                    fecha: this.fecha,
                 });
 
                 for (i = 0; i < this.claveConsulta.length; i++) {
@@ -347,7 +281,7 @@ function init() {
                     };
                 }
 
-                if (!this.fecha, !this.folio) {
+                if ((!this.fecha, !this.folio)) {
                     Swal.fire({
                         icon: "warning",
                         title: "OCURRIO UN PROBLEMA",
@@ -429,8 +363,6 @@ function init() {
             removeItem: function (id) {
                 this.claveConsulta.splice(id, 1);
             },
-
-            
 
             findClave: function () {
                 let encontrado = 0;

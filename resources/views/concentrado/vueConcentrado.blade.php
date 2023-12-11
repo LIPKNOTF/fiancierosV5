@@ -9,8 +9,6 @@
   <br>
   <br>
 
-  <!-- Filtro por fecha -->
-
   <div class="input-group">
     <span class="input-group-text">Fecha Final</span>
     <input placeholder="FECHA INICIO" v-model="fecha_i" type="date" class="form-control" />
@@ -21,7 +19,7 @@
     <input placeholder="FECHA DE TERMINO" v-model="fecha_f" type="date" class="form-control" />
   </div>
 
-  <table id="tablaCon" class="tabla display nowrap" style="width:100%">
+  <table id="myTable" class="display nowrap tabla " style="width:100%">
     <thead class="fondo-negro">
       <tr>
         <th class="boder-inicio">Partida Codigo</th>
@@ -67,19 +65,16 @@
     </tbody>
   </table>
 
-
-
-  <!-- Ventana modal -->
   <!-- VENTANA MODA CREAR UNA CONSULTA -->
   <div class="modal fade" id="modalCon" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header text-white " style="background-color: #2471A3;">
-          <h1 class="modal-title fs-5 text-center fw-bold" id="staticBackdropLabel" v-if="agregando==true">AGREGAR CONCENTRADO</h1>
-          <h1 class="modal-title fs-5 text-center fw-bold" id="staticBackdropLabel" v-if="agregando==false">EDITAR CONCENTRADO</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
+      <div class="modal-body">
+        <div class="modal-content">
+          <div class="modal-header text-white " style="background-color: #2471A3;">
+            <h1 class="modal-title fs-5 text-center fw-bold" id="staticBackdropLabel" v-if="agregando==true">AGREGAR CONCENTRADO</h1>
+            <h1 class="modal-title fs-5 text-center fw-bold" id="staticBackdropLabel" v-if="agregando==false">EDITAR CONCENTRADO</h1>
+          </div>
+
           <form>
             <!-- EMPIEZA EL FORMULARIO -->
             <div class="row">
@@ -170,7 +165,6 @@
       </div>
     </div>
   </div>
-
 </div>
 
 @endsection
