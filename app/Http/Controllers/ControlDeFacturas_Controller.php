@@ -263,7 +263,7 @@ class ControlDeFacturas_Controller extends Controller
         $fpdf->Cell(27, 10, '$'.number_format($total3000, 2, '.', ','), 1, 0, 'C');
         $fpdf->Cell(3, 0, '', 1, 0, 'C');
         $fpdf->Cell(35, 10, 'Total', 1, 0, 'C');
-        $fpdf->Cell(27, 10, '$', 1, 1, 'C');
+        $fpdf->Cell(27, 10, '$ 0.00', 1, 1, 'C');
         $fpdf->Ln();
          
         $fpdf->Cell(126, 30, '', 'LRT', 1, 'T');
