@@ -104,7 +104,7 @@ Route::get('/Polizapdf/{id}', 'PolizaDeIngresosController@Poliza');
 Route::get('FlujoDeEfectivopdf', 'FlujoDeEfectivoController@Flujo');
 Route::get('Conciliacionpdf','FormatoConciliacionController@Conciliacion');
 Route::get('/ControlDeIngresospdf/{id}','ControlDeIngresosController@Ingresos');
-Route::get('/Control_De_Ingresospdf/{id}','ControlDeIngresos_Controller@Ingresos');
+//
 
 
 Route::get('/Factura_pdf/{anio}/{mes}', 'ControlDeFacturas_Controller@Facturas');

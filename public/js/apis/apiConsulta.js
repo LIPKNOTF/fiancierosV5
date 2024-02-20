@@ -141,7 +141,7 @@ function init() {
                 $("#modalConsulta").modal("show");
             },
 
-            
+
 
             editarConsulta: function (id) {
                 this.agregando = false;
@@ -292,19 +292,19 @@ function init() {
                 this.claveConsulta.splice(id, 1);
             },
 
-            getLastFolio:function(){
+            getLastFolio: function () {
                 this.$http('/ultimo-folio').then(
-                    response=>{
+                    response => {
                         let ultimoFolio = response.data;
                         let nuevoFolio = this.createNewFolio(ultimoFolio);
-                        this.folio=nuevoFolio;
+                        this.folio = nuevoFolio;
                         console.log('Nuevo folio: ', this.folio);
-                    }).cath(error=>{
+                    }).cath(error => {
                         console.error('Error al obtener el ultimo folio: ', error);
                     });
             },
 
-            createNewFolio:function(){
+            createNewFolio: function () {
 
             },
 
@@ -312,12 +312,17 @@ function init() {
                 let pago = {};
                 let detalles = [];
                 let ingresos = [];
+                let primerAlumno=null;
 
                 ingresos.push({
-                    total:this.subTotal,
+                    total: this.subTotal,
                     id_clave: this.id_clave,
-                    fecha:this.fecha
+                    fecha: this.fecha
                 });
+                // Se obtiene el primer alumno de los detalles
+                for (i = 0; i<this.claveConsulta.length; i++) {
+                     primerAlumno = this.claveConsulta[i].id_alumno;
+                }
 
                 for (i = 0; i < this.claveConsulta.length; i++) {
                     detalles.push({
@@ -329,7 +334,7 @@ function init() {
                     });
 
                     pago = {
-                        id_alumno: this.id,
+                        id_alumno: primerAlumno,
                         folio: this.folio,
                         fecha: this.fecha,
                         total: this.subTotal,

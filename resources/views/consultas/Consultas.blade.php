@@ -25,7 +25,7 @@
     </div>
 
 
-    <table id="myTable" class="tabla display nowrap" style="width:100%">
+    <table  class="tabla display nowrap" style="width:100%">
       <thead class="fondo-negro">
         <tr>
           <th class="boder-inicio">Matricula</th>
@@ -44,10 +44,14 @@
       </thead>
       <tbody>
         <tr v-for="con in filtrarfechas ">
-          <td>@{{con.alumno ? con.alumno.matricula :'Sin Matricula'}}</td>
-          <td>@{{con.alumno ? con.alumno.nombre :'Sin Nombre'}}</td>
-          <td>@{{con.alumno ? con.alumno.apellido_p :'Sin Apellidos Paterno'}}</td>
-          <td>@{{con.alumno ? con.alumno.apellido_m : 'Sin Apellido Materno'}}</td>
+          <td>@{{con.alumno.matricula}}</td>
+          <!-- <td>@{{con.alumno.matricula :'Sin Matricula'}}</td> -->
+          <td>@{{con.alumno.nombres}}</td>
+          <!-- <td>@{{con.alumno ? con.alumno.nombre :'Sin Nombre'}}</td> -->
+          <td>@{{con.alumno.apellido_p}}</td>
+          <!-- <td>@{{con.alumno ? con.alumno.apellido_p :'Sin Apellidos Paterno'}}</td> -->
+          <td>@{{con.alumno.apellido_m}}</td>
+          <!-- <td>@{{con.alumno ? con.alumno.apellido_m : 'Sin Apellido Materno'}}</td> -->
           <td>@{{con.cantidad}}</td>
           <td>@{{con.claves_p ? con.claves_p.clave : 'Sin Clave'}}</td>
           <td>@{{con.claves_p ? con.claves_p.concepto : 'Sin Concepto'}}</td>
