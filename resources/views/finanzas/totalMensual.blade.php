@@ -8,6 +8,8 @@
     </legend>
 
     <input type="month" class="input" v-model="mesIngreso" @input="filtrarMes" />
+    <br>
+    <button class="btn-modal azul" @click="descargarFacturaIngresos"><i class="fa-solid fa-download"></i></button>
 
     <table id="" class="tabla display nowrap" style="width:100%">
         <thead class="fondo-negro">
@@ -35,7 +37,7 @@
 
     <input type="month" class="input" v-model="mesEgreso" @input="egresoMes" />
     <br>
-    <button class="btn-modal azul" @click="descargarFactura"><i class="fa-solid fa-download"></i></button>
+    <button class="btn-modal azul" @click="descargarFacturaEgresos"><i class="fa-solid fa-download"></i></button>
     <table id="" class="tabla display nowrap" style="width:100%">
         <thead class="fondo-negro">
             <tr>

@@ -36,7 +36,7 @@
                 <div class="modal-content">
 
                   <h2 class="modal-title fw-bold" id="importModalLabel">IMPORTAR DATOS DESDE UN EXCEL</h2>
-<br>
+                  <br>
                   <form method="POST" action="/import" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
@@ -160,21 +160,18 @@
           <input placeholder="Apellido Paterno" v-model="apellido_p" class="form-control " disabled>
         </div>
         <div class="felex">
-          <label class="fw-bold mt-2">FOLIO</label><br>
-
-          <input placeholder="Folio" v-model="folio" @input="convertirMayusculas"  required type="text" class="form-control">
+          <label class="fw-bold mt-2">APELLIDO MATERNO</label><br>
+          <input placeholder="Apellido Materno" v-model="apellido_m" class="form-control " disabled>
         </div>
-
         <div class="felex">
           <label class="fw-bold">NOMBRES</label><br>
           <input placeholder="Nombres" v-model="nombres" @input="convertirMayusculas" class="form-control" disabled>
         </div>
         <div class="felex">
-          <label class="fw-bold mt-2">APELLIDO MATERNO</label><br>
-          <input placeholder="Apellido Materno" v-model="apellido_m" class="form-control " disabled>
+          <label class="fw-bold mt-2">FOLIO</label><br>
+          <input placeholder="Folio" v-model="folio" @input="convertirMayusculas" required type="text" class="form-control">
         </div>
-
-        <div class="felex">
+        <div class="felex mb-2">
           <label class="fw-bold mt-2">FECHA</label><br>
           <input placeholder="Fecha" v-model="fecha" autofocus type="date" class="form-control">
         </div>
