@@ -333,11 +333,6 @@ function init() {
                     });
             },
 
-                
-
-            createNewFolio: function () {},
-
-
             agregarConsulta: function () {
                 let pago = {};
                 let detalles = [];
@@ -348,30 +343,21 @@ function init() {
                     total: this.subTotal,
                     id_clave: this.id_clave,
                     fecha: this.fecha
-
-
                 });
-                // Se obtiene el primer alumno de los detalles
-                for (i = 0; i<this.claveConsulta.length; i++) {
-                     primerAlumno = this.claveConsulta[i].id_alumno;
-                }
 
                 for (i = 0; i < this.claveConsulta.length; i++) {
                     detalles.push({
-                        folio: this.folio,
-                        fecha: this.fecha,
                         id_clave: this.claveConsulta[i].id_clave,
                         cantidad: this.claveConsulta[i].cantidad,
-                        total: this.claveConsulta[i].total,
+                        total: this.claveConsulta[i].total
                     });
 
                     pago = {
-                        id_alumno: primerAlumno,
+                        id_alumno: this.id_alumno,
                         folio: this.folio,
                         fecha: this.fecha,
                         total: this.subTotal,
                         cantidad: this.numeroArticulos,
-                        id_clave: this.id_clave,
                         detalles: detalles,
                         ingresos: ingresos,
                     };
@@ -406,6 +392,7 @@ function init() {
                             timer: 1000,
                         });
                     });
+                    console.log('pago: ', pago);
                     $("#modalConsulta").modal("hide");
                 }
 
