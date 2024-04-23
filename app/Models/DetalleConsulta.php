@@ -10,12 +10,11 @@ class DetalleConsulta extends Model
     use HasFactory;
     protected $table = 'detalle_consulta'; // Nombre de la tabla en la base de datos
     protected $primaryKey = "id";
-    protected $with = ['claves_p'];
+    protected $with = ['claves_p', 'consulta'];
     protected $fillable = [
-        'folio', 
-        'fecha',
-        'total',
         'id_clave',
+        'id_consulta', 
+        'total',
         'cantidad'
     ]; 
     
@@ -23,5 +22,10 @@ class DetalleConsulta extends Model
     public function claves_p()
     {
         return $this->belongsTo(Clave::class, 'id_clave');
+    }
+
+    public function consulta()
+    {
+        return $this->belongsTo(Consultas::class,'id_consulta');
     }
 }

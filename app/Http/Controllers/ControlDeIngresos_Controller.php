@@ -15,7 +15,7 @@ class ControlDeIngresos_Controller extends Controller
 
     public function Ingresos($id){
 
-        $consultas = Consultas::with(['alumno','claves_p'])->find($id);
+        $consultas = Consultas::with(['alumno', 'detalleConsulta'])->find($id);
         if (!$consultas){
             abort(404);
         }
@@ -29,7 +29,7 @@ class ControlDeIngresos_Controller extends Controller
         $TotalCompleto = $cantidadEnLetras . ' Pesos ' . substr($total_formateado, strpos($total_formateado, '.') + 1);
 
         $alumno = $consultas->alumno;
-        $clave = $consultas->claves_p;
+        // $clave = $consultas->claves_p;
         $fecha_actual = date("d-m-Y");
 
         $fpdf = new FPDF();
@@ -144,47 +144,44 @@ class ControlDeIngresos_Controller extends Controller
         $fpdf->Cell(192, 2, '', 0, 1);
 
         //SECCION 11
-        $fpdf->Cell(10, 4, '', 0, 0);
+        $detalleConsulta = $consultas->detalleConsulta;
+
+        $fpdf->Cell(2, 4, '', 0, 0);
         $fpdf->Cell(20, 4, utf8_decode('CANTIDAD'), 0, 0,'C');
         $fpdf->Cell(20, 4, utf8_decode('CLAVE'), 0, 0,'C');
-        $fpdf->Cell(76, 4, utf8_decode('CONCEPTO'), 0, 0,'C');
+        $fpdf->Cell(85, 4, utf8_decode('CONCEPTO'), 0, 0,'C');
         $fpdf->Cell(25, 4, utf8_decode('CUOTA'), 0, 0,'C');
         $fpdf->Cell(3, 4, '', 0, 0);
         $fpdf->Cell(38, 4, utf8_decode('IMPORTE'), 0, 1,'C');
         
+        foreach ($detalleConsulta as $row) {
+        $claveDetalle = $row->claves_p;
         $fpdf->setfont('arial','',7);
-        $fpdf->Cell(10, 4,'', 0, 0);
+        $fpdf->Cell(2, 4,'', 0, 0);
         $fpdf->Cell(20, 4, $consultas->cantidad, 1, 0,'C');
-        $fpdf->Cell(20, 4, $clave->clave, 1, 0,'C');
-        $fpdf->Cell(76, 4, $clave->concepto, 1, 0,'C');
-        $fpdf->Cell(25, 4, $consultas->total, 'LRB', 0,'C');
+        $fpdf->Cell(20, 4, $claveDetalle->clave, 1, 0,'C');
+        $fpdf->Cell(85, 4, $claveDetalle->concepto, 1, 0,'C');
+        $fpdf->Cell(25, 4, $claveDetalle->precio, 'LRB', 0,'C');
         $fpdf->Cell(3, 4, '', 0, 0);
-        $fpdf->Cell(38, 4, $importe_formateado, 'LRB', 1,'C');
-        
-        $fpdf->Cell(10, 4, '', 0, 0);
-        $fpdf->Cell(20, 4, '', 1, 0);
-        $fpdf->Cell(20, 4, '', 1, 0);
-        $fpdf->Cell(76, 4, '', 1, 0);
-        $fpdf->Cell(25, 4, '', 1, 0);
-        $fpdf->Cell(3, 4, '', 0, 0);
-        $fpdf->Cell(38, 4, '', 1, 1);
+        $fpdf->Cell(38, 4, $row->total, 'LRB', 1,'C');
+    }
 
-        $fpdf->Cell(10, 4, '', 0, 0);
+        $fpdf->Cell(2, 4, '', 0, 0);
         $fpdf->Cell(20, 4, '', 'LTB', 0);
         $fpdf->Cell(20, 4, '', 'TB', 0);
-        $fpdf->Cell(76, 4, '', 'RTB', 0);
+        $fpdf->Cell(85, 4, '', 'RTB', 0);
         $fpdf->Cell(25, 4, '', 1, 0);
         $fpdf->Cell(3, 4, '', 0, 0);
         $fpdf->Cell(38, 4, '', 1, 1);
 
         $fpdf->setfont('arial','B',7);
-        $fpdf->Cell(10, 4, '', 0, 0);
+        $fpdf->Cell(2, 4, '', 0, 0);
         $fpdf->Cell(20, 4, '', 0, 0);
         $fpdf->Cell(20, 4, '', 1, 0);
-        $fpdf->Cell(76, 4, '', 0, 0);
+        $fpdf->Cell(85, 4, '', 0, 0);
         $fpdf->Cell(25, 4, utf8_decode('TOTAL'), 0, 0,'C');
         $fpdf->Cell(3, 4, '', 0, 0);
-        $fpdf->Cell(38, 4, $importe_formateado, 0, 1,'C');
+        $fpdf->Cell(38, 4, $consultas->total, 0, 1,'C');
 
         //espacio vacio
         $fpdf->Cell(192, 3, '', 0, 1);

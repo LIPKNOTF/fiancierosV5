@@ -45,36 +45,33 @@ class ConsulasControlador extends Controller
         $consulta = new Consultas();
         $consulta->id = $request->get('id');
         $consulta->id_alumno = $request->get('id_alumno');
-        
         $consulta->cantidad = $request->get('cantidad');
-        
         $consulta->fecha = $request->get('fecha');
         $consulta->folio = $request->get('folio');
-        $consulta->id_clave = $request->get('id_clave');
         $consulta->total = $request->get('total');
         $consulta->save();
 
-        // $detalles=$request->get('detalles');
-        // DetalleConsulta::insert($detalles);
-
         $ingresoData = $request->get('detalles');
-
+        $formatDate = Carbon::createFromFormat('Y-m-d', $consulta->fecha);
+        $consultaId = $consulta->id;
         foreach ($ingresoData as $ingreso) {
+            
             // Recupero los datos individuales en caso de que sea mas de un pago 
             $idClave = $ingreso['id_clave'];
             $total = $ingreso['total'];
-
-
-            $fecha = Carbon::parse($ingreso['fecha']);
-            $mes = $fecha->month;
-            $anio = $fecha->year;
-
+            $mes = $formatDate->month;
+            $anio = $formatDate->year;
+            DetalleConsulta::create([
+                'id_clave' => $ingreso['id_clave'],
+                'id_consulta' => $consulta->id,
+                'total' => $ingreso['total'],
+                'cantidad' => $ingreso['cantidad']
+            ]);
             // en caso de que la partida ya esté registrada lo que procede es validar
             $ingresoExistente = Ingresos::where('id_clave', $idClave)
             ->where('mes',$mes)
             ->where('anio',$anio)
             ->first();
-
             if ($ingresoExistente) {
                 // Si existe el registro, actualiza el valor del total
                 $ingresoExistente->total += $total;
@@ -88,17 +85,12 @@ class ConsulasControlador extends Controller
                     'anio' => $anio
                 ]);
             }
-
-
-            
         }
 
         $totalMensualData=$request->get('ingresos');
-        
         foreach($totalMensualData as $totalMes){
-            $fecha = Carbon::parse($totalMes['fecha']);
-            $mes = $fecha->month;
-            $anio = $fecha->year;
+            $mes = $formatDate->month;
+            $anio = $formatDate->year;
             $totalMensual = TotalMensual::where('mes',$mes)->where('anio',$anio)->first();
 
             if($totalMensual){
