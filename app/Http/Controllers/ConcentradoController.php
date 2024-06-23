@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Concentrado;
+use App\Models\DetalleConcentrado;
+use App\Models\DetalleConsulta;
 use App\Models\Egresos;
 use App\Models\TotalMensual;
 use Carbon\Carbon;
@@ -29,87 +31,119 @@ class ConcentradoController extends Controller
      */
     public function store(Request $request)
     {
-        
-            
-            $concentrado= new Concentrado();
-            $concentrado->id_partida = $request->get('id_partida');
-            $concentrado->fecha = $request->get('fecha');
-            $concentrado->razon_social_emisor = $request->get('razon_social_emisor');
-            $concentrado->razon_social_receptor = $request->get('razon_social_receptor');
-            $concentrado->rfc_emisor = $request->get('rfc_emisor');
-            $concentrado->rfc_receptor = $request->get('rfc_receptor');
-            $concentrado->regimen_emisor = $request->get('regimen_emisor');
-            $concentrado->regimen_receptor = $request->get('regimen_receptor');
-            $concentrado->total = $request->get('total');
-            $concentrado->sub_total = $request->get('sub_total');
-            $concentrado->impuesto_traslado = $request->get('impuesto_traslado');
-            $concentrado->impuesto_retenido = $request->get('impuesto_retenido');
-            $concentrado->productos = $request->get('productos');
-            $concentrado->descripcion = $request->get('descripcion');
-            $concentrado->save();
-    
-
-                    $egresoData = $request->get('egresos');
-
-                    foreach ($egresoData as $egreso) {
-                        $fecha = Carbon::parse($egreso['fecha']);
-                        $mes = $fecha->month;
-                        $anio = $fecha->year;
-
-                        // en caso de que la partida ya esté registrada lo que procede es validar
-                        $egresoExistente = Egresos::where('id_partida', $egreso['id_partida'])
-                        ->where('mes',$mes)
-                        ->where('anio',$anio)
-                        ->first();
-
-                        if ($egresoExistente) {
-                            // Si existe el registro, actualiza el valor del total
-                            $egresoExistente->total += $egreso['total'];
-                            // Actualiza otros campos si es necesario...
-                            $egresoExistente->save();
-                        } else {
-                            Egresos::create([
-                                'id_partida' => $egreso['id_partida'],
-                                'total' => $egreso['total'],
-                                'mes' => $mes,
-                                'anio' => $anio
-                            ]);
-                        }
 
 
-                        $totalMensual = TotalMensual::where('mes',$mes)->where('anio',$anio)->first();
+        $concentrado = new Concentrado();
+        // $concentrado->id_partida = $request->get('id_partida');
+        $concentrado->fecha = $request->get('fecha');
+        $concentrado->razon_social_emisor = $request->get('razon_social_emisor');
+        $concentrado->razon_social_receptor = $request->get('razon_social_receptor');
+        $concentrado->rfc_emisor = $request->get('rfc_emisor');
+        $concentrado->rfc_receptor = $request->get('rfc_receptor');
+        $concentrado->regimen_emisor = $request->get('regimen_emisor');
+        $concentrado->regimen_receptor = $request->get('regimen_receptor');
+        $concentrado->total = $request->get('total');
+        $concentrado->sub_total = $request->get('sub_total');
+        $concentrado->impuesto_traslado = $request->get('impuesto_traslado');
+        $concentrado->impuesto_retenido = $request->get('impuesto_retenido');
+        $concentrado->productos = $request->get('productos');
+        $concentrado->descripcion = $request->get('descripcion');
+        $concentrado->save();
 
-                        if($totalMensual){
-                            $totalMensual->egreso_total += $egreso['total'];
-                            $totalMensual->save();
-                        }else {
-                            TotalMensual::create([
-                                'mes'=>$mes,
-                                'anio'=>$anio,
-                                'egreso_total'=>$egreso['total']
-                            ]);
-                        }
-                    }
+        $detalleConcentradoData = $request->get('detalleConcentrado');
+        foreach ($detalleConcentradoData as $detalleConcentrado) {
+            DetalleConcentrado::create([
+                'id_concentrado' => $concentrado->id,
+                'id_partida' => $detalleConcentrado['partida'],
+                'nombre_producto' => $detalleConcentrado['descripcion'],
+                'cantidad' => $detalleConcentrado['cantidad'],
+                'precio_unitario' => $detalleConcentrado['precioUnitario'],
+                'iva' => $detalleConcentrado['iva'],
+                'importe' => $detalleConcentrado['importe']
+            ]);
 
 
-            
+            // Los egresos ahora dependen de los detalle de concentrado para tener 
+            // Para que de esta forma tengamos mas control de los productos de los XML
+            // Hacer pruebas de este flujo
+            $fecha = Carbon::parse($detalleConcentrado['fecha']);
+            $mes = $fecha->month;
+            $anio = $fecha->year;
+            $egresoExiste = Egresos::where('id_partida', $detalleConcentrado['partida'])
+                ->where('mes', $mes)
+                ->where('anio', $anio)
+                ->first();
 
-            
-            
+            if ($egresoExiste) {
+                // Si existe el registro, actualiza el valor del total
+                $egresoExiste->total += $detalleConcentrado['importe'];
+                // Actualiza otros campos si es necesario...
+                $egresoExiste->save();
+            } else {
+                Egresos::create([
+                    'id_partida' => $detalleConcentrado['partida'],
+                    'total' => $detalleConcentrado['importe'],
+                    'mes' => $mes,
+                    'anio' => $anio
+                ]);
+            }
 
-            
+            $totalMensual = TotalMensual::where('mes', $mes)->where('anio', $anio)->first();
+
+            if ($totalMensual) {
+                $totalMensual->egreso_total += $detalleConcentrado['importe'];
+                $totalMensual->save();
+            } else {
+                TotalMensual::create([
+                    'mes' => $mes,
+                    'anio' => $anio,
+                    'egreso_total' => $detalleConcentrado['importe']
+                ]);
+            }
+        }
 
 
-            
-            
+        // [$egresoData = $request->get('egresos');
+
+        // foreach ($egresoData as $egreso) {
+        //     $fecha = Carbon::parse($egreso['fecha']);
+        //     $mes = $fecha->month;
+        //     $anio = $fecha->year;
+
+        //     // en caso de que la partida ya esté registrada lo que procede es validar
+        //     $egresoExistente = Egresos::where('id_partida', $egreso['id_partida'])
+        //     ->where('mes',$mes)
+        //     ->where('anio',$anio)
+        //     ->first();
+
+        //     if ($egresoExistente) {
+        //         // Si existe el registro, actualiza el valor del total
+        //         $egresoExistente->total += $egreso['total'];
+        //         // Actualiza otros campos si es necesario...
+        //         $egresoExistente->save();
+        //     } else {
+        //         Egresos::create([
+        //             'id_partida' => $egreso['id_partida'],
+        //             'total' => $egreso['total'],
+        //             'mes' => $mes,
+        //             'anio' => $anio
+        //         ]);
+        //     }
 
 
-            
-            
-        
-        
-       
-        
+        //     $totalMensual = TotalMensual::where('mes',$mes)->where('anio',$anio)->first();
+
+        //     if($totalMensual){
+        //         $totalMensual->egreso_total += $egreso['total'];
+        //         $totalMensual->save();
+        //     }else {
+        //         TotalMensual::create([
+        //             'mes'=>$mes,
+        //             'anio'=>$anio,
+        //             'egreso_total'=>$egreso['total']
+        //         ]);
+        //     }
+        // }]
 
     }
 

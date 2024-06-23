@@ -154,7 +154,6 @@ function init() {
                 $("#modalConsulta").modal("show");
             },
 
-
             editarConsulta: function (id) {
                 this.agregando = false;
                 this.id = id;
@@ -305,15 +304,18 @@ function init() {
             },
 
             getLastFolio: function () {
-
-                this.$http('/ultimo-folio').then(
-                    response => {
+                this.$http("/ultimo-folio")
+                    .then((response) => {
                         let ultimoFolio = response.data;
                         let nuevoFolio = this.createNewFolio(ultimoFolio);
                         this.folio = nuevoFolio;
-                        console.log('Nuevo folio: ', this.folio);
-                    }).cath(error => {
-                        console.error('Error al obtener el ultimo folio: ', error);
+                        console.log("Nuevo folio: ", this.folio);
+                    })
+                    .cath((error) => {
+                        console.error(
+                            "Error al obtener el ultimo folio: ",
+                            error
+                        );
                     });
             },
 
@@ -337,19 +339,18 @@ function init() {
                 let pago = {};
                 let detalles = [];
                 let ingresos = [];
-                let primerAlumno=null;
 
                 ingresos.push({
                     total: this.subTotal,
                     id_clave: this.id_clave,
-                    fecha: this.fecha
+                    fecha: this.fecha,
                 });
 
                 for (i = 0; i < this.claveConsulta.length; i++) {
                     detalles.push({
                         id_clave: this.claveConsulta[i].id_clave,
                         cantidad: this.claveConsulta[i].cantidad,
-                        total: this.claveConsulta[i].total
+                        total: this.claveConsulta[i].total,
                     });
 
                     pago = {
@@ -392,7 +393,7 @@ function init() {
                             timer: 1000,
                         });
                     });
-                    console.log('pago: ', pago);
+                    console.log("pago: ", pago);
                     $("#modalConsulta").modal("hide");
                 }
 
