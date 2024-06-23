@@ -10,12 +10,12 @@ class Concentrado extends Model
     use HasFactory;
     protected $table = 'concentrado'; // Nombre de la tabla en la base de datos
     protected $primaryKey = "id";
-    public $with = ['partida'];
+    // public $with = ['partida'];
     public $timestamps = true;
     public $incrementing = true;
     protected $fillable = [
         'id',
-        'id_partida',
+        // 'id_partida',
         'fecha',
         'razon_social_emisor',
         'razon_social_receptor',
@@ -31,8 +31,8 @@ class Concentrado extends Model
         'descripcion',
     ];
 
-    public function partida(){
+    // public function partida(){
 
-        return $this->belongsTo(Partida::class, 'id_partida', 'id');
-    }
+    //     return $this->belongsTo(Partida::class, 'id_partida', 'id');
+    // }
 }

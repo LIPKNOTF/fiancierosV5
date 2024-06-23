@@ -74,20 +74,52 @@
     </div>
 
 
-    <div>
+    <!-- <div>
       <label for="" class="form-label">Partida</label>
       <select name="" v-model="id_partida" class="form-control">
         <option value="" selected>Seleciona una partida</option>
         <option v-for="row in partidas" :value="row.id">@{{row.codigo}} : @{{row.nombre}}</option>
       </select>
-    </div>
+    </div> -->
 
     <div>
       <label for="" class="form-label">Descripción</label>
       <input type="text" class="form-control" placeholder="Descripción" v-model="descripcion">
     </div>
-  </div>
-  <button @click="saveConcentrado()" class="btn-modal">Guardar</button>
+    </div>
+  <div class="gup-ino">
+  
+    <div class="mt-2 mb-2">
+        <table class="table table-bordered table-responsive">
+          <thead>
+            <th>Descripcion</th>
+            <th>Cantidad</th>
+            <th>Precio Unitario</th>
+            <th>IVA</th>
+            <th>Importe</th>
+            <th>Partida</th>
+          </thead>
+          <tbody>
+            <tr v-for="(row, index) in conceptos">
+              <td>@{{row.descripcion}}</td>
+              <td>@{{row.cantidad}}</td>
+              <td>@{{row.precioUnitario}}</td>
+              <td>@{{row.iva}}</td>
+              <td>@{{row.importe}}</td>
+              <td>
+              <select name="" class="form-control" @change="updatePartida(index, $event.target.value)" >
+                <option value="" selected>Seleciona una partida</option>
+                <option v-for="row in partidas" :value="row.id">@{{row.codigo}} : @{{row.nombre}}</option>
+              </select>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+  
+  
+    </div>
+    <button @click="saveConcentrado()" class="btn-modal">Guardar</button>
 
 </div>
 @endsection
