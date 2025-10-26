@@ -85,6 +85,10 @@ function init() {
                 });
             },
 
+            paginationAlumno: function(){
+                
+            },
+
             dataAlumno() {
                 $(document).ready(function () {
                     // Configuración en español
