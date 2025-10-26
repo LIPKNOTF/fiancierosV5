@@ -76,7 +76,7 @@
               <td>@{{alu.matricula}}</td>
               <td>@{{alu.nombres}}</td>
               <td>@{{alu.apellido_p}}</td>
-              <td>@{{alu.apellido_m}}</td>
+              <td>@{{alu.apellido_m}}</td>git status
               <td>@{{alu.grado}}</td>
               <td>@{{alu.grupo}}</td>
               <td>@{{alu.carrera}}</td>
@@ -92,6 +92,10 @@
       </div>
     </div>
   </div>
+
+  <!-- Paginacion Inicio -->
+
+   <!-- Paginacion Fin -->
 
   <!-- VENTANA MODA -->
   <div class="modal fade" id="modalAlumno" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
